@@ -1,0 +1,23 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ * 
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
+
+// LEVEL: 0
+// DEPENDENCE:  ../../cjdb_test.py  ../../basecase/past_basic/055_noncodeline_bp.cj ../../basecase/past_basic/055_noncodeline_bp_ext.cj 
+// EXEC: %compiler %cmp_opt -g 055_noncodeline_bp.cj 055_noncodeline_bp_ext.cj -o Noncodeline_bp_003%cmp_output
+// RUN-EXEC: python3 cjdb_test.py Noncodeline_bp_003.info Noncodeline_bp_003 %run_env
+
+
+
+test#
+cjdb,cjdb --no-use-colors Noncodeline_bp_003,Noncodeline_bp_003
+CJVM b,b 3,Breakpoint 1: no code at[\s\S]*055_noncodeline_bp.cj:3
+CJVM b,b 8,Breakpoint 2: no code at[\s\S]*055_noncodeline_bp.cj:8
+CJVM b,b 17,Breakpoint 3: no code at[\s\S]*055_noncodeline_bp.cj:17
+CJVM b,b 39,Breakpoint 4: no code at[\s\S]*055_noncodeline_bp.cj:39
+CJVM c,c,Process exited
+q,q,

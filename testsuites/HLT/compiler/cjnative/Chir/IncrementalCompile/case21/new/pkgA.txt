@@ -1,0 +1,6 @@
+package A
+import B.* 
+
+public func testA():Int64{
+    return testB()
+}

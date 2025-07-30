@@ -1,0 +1,10 @@
+class A{
+    public open func test(): Int64{
+        return 1
+    }
+}
+
+main() : Int64{
+    var a = A()
+    return a.test() - 1
+}

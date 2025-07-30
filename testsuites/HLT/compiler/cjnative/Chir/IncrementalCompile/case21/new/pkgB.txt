@@ -1,0 +1,9 @@
+package B
+
+func temp(): Int64{
+    return 2
+}
+
+public func testB():Int64{
+    return temp() - 1
+}

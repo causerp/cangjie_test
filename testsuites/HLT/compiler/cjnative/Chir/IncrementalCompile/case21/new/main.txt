@@ -1,0 +1,4 @@
+import A.* 
+main():Int64{
+    return testA() - 1
+}

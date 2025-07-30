@@ -1,0 +1,28 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ * 
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
+
+// LEVEL: 0
+// DEPENDENCE:  ../../cjdb_test.py  ../../basecase/generics_expression/generics_local_var010.cj
+// (not MAC and not Windows) EXEC: %compiler %cmp_opt -g generics_local_var010.cj -o generics_local_var010%cmp_output
+// (not MAC and not Windows) RUN-EXEC: python3 cjdb_test.py cjdb_ConditionBP031.info generics_local_var010 %run_env
+
+
+test#
+cjdb,cjdb --no-use-colors generics_local_var010,generics_local_var010
+breakpoint,breakpoint set -l 6 -c "a1!=0",generics_local_var010.cj:6
+breakpoint,breakpoint set -l 25 -c "a1!=0",generics_local_var010.cj:25
+AOT r,r,-> 6
+CJVM c,c,
+p,p a1,\(Int64\) \$[\d] = 2
+n,n,-> 7
+n,n,-> 8
+expr:expr vInt8[0]:\(Int8\) \$[\d] = -1
+c,c,-> 25
+expr:expr a1:\(Int64\) \$[\d] = 2
+expr:expr a2:\(Int64\) \$[\d] = 2
+q,q,

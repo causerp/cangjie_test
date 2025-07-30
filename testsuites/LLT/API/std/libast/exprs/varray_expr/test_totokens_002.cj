@@ -1,0 +1,35 @@
+// EXEC: %compiler %cmp_opt_chir2hlir %f -o %output
+// EXEC: %run %run_opt %output %run_args
+
+internal import std.ast.*
+
+main(): Int64 {
+    let input = quote(
+       VArray<Int64, \$5>({i => i})
+    )
+    let varray = (parseExpr(input) as VArrayExpr).getOrThrow()
+    var varrayArgs = varray.arguments
+    if (varrayArgs.size != 1) {
+        return 1
+    }
+    for (i in varrayArgs) {
+        var a = i.toTokens()
+        if (a.size != 5) {
+            return 2
+        }
+        if (a[4].kind == TokenKind.NL) {
+            return 3
+        }
+        if (a[4].kind != TokenKind.RCURL) {
+            return 4
+        }
+    }
+    return 0
+}
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */

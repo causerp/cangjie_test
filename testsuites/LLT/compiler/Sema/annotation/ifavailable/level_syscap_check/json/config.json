@@ -1,0 +1,32 @@
+{
+    "cj.d.dir": {
+        "std.dir": "D:\\Cangjie\\B104\\deveco-studio\\plugins\\cangjie\\sdk\\cangjie\\compiler\\lib\\cjdecl",
+        "ohos.dir": "D:\\Cangjie\\B104\\deveco-studio\\plugins\\cangjie\\sdk\\cangjie\\build\\lib\\cjdecl"
+    },
+    "Modules": {
+        "entry": {
+            "deviceSysCap": {
+                "phone": [
+                    "./json/phone-hmos.json",
+                    "./json/phone.json"
+                ],
+                "tablet": [
+                    "./json/tablet-hmos.json",
+                    "./json/tablet.json"
+                ],
+                "2in1": [
+                    "./json/2in1-hmos.json",
+                    "./json/2in1.json"
+                ]
+            }
+        },
+        "library": {
+            "deviceSysCap": {
+                "default": [
+                    "D:\\Cangjie\\400\\deveco-studio\\sdk\\default\\openharmony\\ets\\api\\device-define\\default.json"
+                ]
+            }
+        }
+    },
+    "apiLevel": 19
+}

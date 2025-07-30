@@ -1,0 +1,10 @@
+struct A{
+    static public var  a :Int64 = 3
+    init(){
+
+    }
+}
+
+main() : Int64{
+    return A.a - 3
+}

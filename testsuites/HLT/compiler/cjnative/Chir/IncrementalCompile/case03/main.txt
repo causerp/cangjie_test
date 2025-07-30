@@ -1,0 +1,11 @@
+struct A{
+    var  a :Int64 = 4
+    init(){
+
+    }
+}
+
+main(){
+    var temp = A()
+    return temp.a - 4
+}

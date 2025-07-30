@@ -1,0 +1,7 @@
+struct A{
+    static var a : Int64 = 1
+}
+
+main(): Int64{
+    return A.a - 1
+}

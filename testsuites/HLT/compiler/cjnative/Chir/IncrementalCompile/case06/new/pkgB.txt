@@ -1,0 +1,5 @@
+package B
+
+public func testB():Int64{
+    return 2
+}

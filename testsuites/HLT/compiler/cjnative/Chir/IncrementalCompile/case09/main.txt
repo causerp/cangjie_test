@@ -1,0 +1,10 @@
+func test1() :Int64 {1}
+func test2():Int64{
+    var  b : Int64 = 1
+    var a = 1
+    1
+}
+
+main(){
+    return test1() - test2()
+}

@@ -1,0 +1,6 @@
+func f<T>(x:T):Int64{1-1}
+
+
+main(): Int64 {
+    return 1..8 |> f
+}

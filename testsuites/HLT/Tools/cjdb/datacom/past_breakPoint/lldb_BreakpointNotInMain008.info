@@ -1,0 +1,54 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ * 
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
+
+// LEVEL: 0
+// DEPENDENCE:  ../../cjdb_test.py  ../../basecase/past_basic/028_debuginfun_while.cj
+// EXEC: %compiler %cmp_opt -g 028_debuginfun_while.cj -o 028_debuginfun_while%cmp_output
+// RUN-EXEC: python3 cjdb_test.py lldb_BreakpointNotInMain008.info 028_debuginfun_while %run_env
+
+
+
+
+test#
+cjdb,cjdb --no-use-colors 028_debuginfun_while,028_debuginfun_while
+b,b 8,028_debuginfun_while.cj:8
+b,b 9,028_debuginfun_while.cj:9
+b,b 10,028_debuginfun_while.cj:10
+AOT b,b 11,028_debuginfun_while.cj:12
+CJVM b,b 11,028_debuginfun_while.cj:11
+AOT r,r,-> 8
+CJVM c,c,-> 8
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 10
+c,c,-> 9
+n,n,-> 12
+locals,locals,hundred = 10
+AOT rerun,r,-> 8
+AOT c,c,-> 9
+AOT set,set hundred = 11,11
+AOT n,n,-> 12
+AOT locals,locals,hundred = 11
+q,q,

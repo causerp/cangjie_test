@@ -1,0 +1,13 @@
+func a(input:Int64):Int64{input}
+
+func b(input:Int64):Int64{input}
+
+func c(input:(Int64)->Int64):Int64{input(2)}
+
+main(): Int64 {
+    1 |> a
+    a~>b
+    1 |> (a~>b)
+    a ~> b |> c
+    return ((a ~> b) |> c) - 2
+}

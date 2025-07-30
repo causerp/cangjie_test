@@ -1,0 +1,26 @@
+# Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+# This source file is part of the Cangjie project, licensed under Apache-2.0
+# with Runtime Library Exception.
+#
+# See https://cangjie-lang.cn/pages/LICENSE for license information.
+
+[ALL-TEST-CASE]
+CJNATIVE/
+
+[EXCLUDE-TEST-CASE]
+# 交叉编译用例仅用于本地验证
+CJNATIVE/target/cross_compile
+CJNATIVE/cross_compile
+
+# macOS暂不支持lto
+CJNATIVE/build/lto
+CJNATIVE/test/lto
+
+# macOS本次不支持安全编译选项
+CJNATIVE/build/safe_compile/safe_compile_02
+CJNATIVE/build/safe_compile/safe_compile_03
+CJNATIVE/build/safe_compile/safe_compile_04
+CJNATIVE/build/safe_compile/safe_compile_06
+
+# 需要手动扩栈
+CJNATIVE/build/multi_module/multi_module_from_10008

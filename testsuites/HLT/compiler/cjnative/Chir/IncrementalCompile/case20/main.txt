@@ -1,0 +1,11 @@
+func test(): Int64 {var a = 1
+    func myfunc():Int32{return 0}
+    match (myfunc()) {
+        case _ => 0
+    }
+    return 0
+}
+
+main(): Int64 {
+    return test()
+}

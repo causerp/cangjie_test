@@ -1,0 +1,6 @@
+func f(input:Unit):Int64{0}
+var a = 1
+
+main(): Int64 {
+    return (a = 1 - 1) |> f
+}

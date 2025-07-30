@@ -1,0 +1,21 @@
+main() : Int64 { var test = 1
+    var a:Int8 = 1
+
+    if ( !(a == r'a')){
+        return 1
+    }
+    if ( a == r'b' ){
+        return 2
+    }
+    return 0
+}
+
+extend Int8 {
+    public operator func ==(right:Rune):Bool { //error: illegal extend member in extend block
+        if (right == r'a') {
+            return true
+        }else{
+            return false
+        }
+    }
+}

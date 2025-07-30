@@ -1,0 +1,37 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ * 
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
+
+// LEVEL: 0
+// DEPENDENCE:  ../../cjdb_test.py  ../../basecase/past_basic/027_debuginfun_match.cj
+//  EXEC: %compiler %cmp_opt -g 027_debuginfun_match.cj -o 027_debuginfun_match%cmp_output
+//  EXEC: python3 cjdb_test.py lldb_StepInAndOut031.info 027_debuginfun_match %run_env
+
+
+
+
+test#
+cjdb,cjdb --no-use-colors 027_debuginfun_match,027_debuginfun_match
+CJVM b main,b main,027_debuginfun_match.cj:4
+CJVM c,c,-> 4
+b,b 8,027_debuginfun_match.cj:8
+b,b 11,027_debuginfun_match.cj:11
+b,b 16,027_debuginfun_match.cj:16
+AOT b,b 18,027_debuginfun_match.cj:19
+CJVM b,b 19,027_debuginfun_match.cj:19
+AOT r,r,-> 8
+CJVM c,c,-> 8
+s,s,-> 9
+s,s,-> 10
+s,s,-> 11
+s,s,-> 16
+s,s,-> 11
+s,s,-> 19
+locals,locals,scoreResult = 5
+rerun,r,-> 8
+AOT finish,finish,-> 11
+q,q,

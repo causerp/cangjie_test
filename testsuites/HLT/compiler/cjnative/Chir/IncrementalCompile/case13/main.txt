@@ -1,0 +1,16 @@
+enum A{ TEST
+    func test(a !: Int64 = 1): Int64{
+        func test1(){
+            func test2(){
+                13
+            }
+        }
+        return 0
+    }
+}
+
+
+main(){
+    var a = A.TEST
+    return a.test()
+}

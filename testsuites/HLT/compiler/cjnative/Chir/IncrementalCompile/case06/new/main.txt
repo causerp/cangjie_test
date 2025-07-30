@@ -1,0 +1,5 @@
+import A.* 
+import B.* 
+main():Int64{
+    return testA() - 4
+}

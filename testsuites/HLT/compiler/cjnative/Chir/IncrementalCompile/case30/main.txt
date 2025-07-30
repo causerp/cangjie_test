@@ -1,0 +1,11 @@
+main(): Int64{
+	var c = 0
+	for (a in [1, 2, 3]) {
+		c++
+		if (a == 1) {
+			break 
+			continue
+		}
+	}
+	return c - 1
+}

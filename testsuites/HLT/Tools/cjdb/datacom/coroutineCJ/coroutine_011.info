@@ -1,0 +1,44 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ * 
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
+
+// LEVEL:0
+// DEPENDENCE:  ../../cjdb_test.py ../../basecase/coroutine/
+// EXEC: %compiler %cmp_opt %compile_lib_opt -g coroutine/p3/p3_file.cj -o p3.%middle
+// EXEC: %compiler %cmp_opt -g coroutine/coroutine_8.cj p3.%middle -o coroutine_8%cmp_output
+// RUN-EXEC: python3 cjdb_test.py coroutine_011.info coroutine_8 %run_env
+
+test#
+cjdb,cjdb --no-use-colors coroutine_8,coroutine_8
+b,b 6,coroutine_8.cj:6
+AOT r,r,-> 6
+CJVM c,c,
+s,s,-> 11
+n,n,-> 24
+n,n,-> 25
+p,p returnList[0][1],\(std[.]core.String\) \$[\d] = "Cangjie"
+cjthread,cjthread list,state:
+finish,finish,-> 6
+n,n,-> 8
+b,b 12,coroutine_8.cj:12
+c,c,-> 12
+cjthread,cjthread list,state: pending
+n,n,-> 13
+b,b func_1,p3_file.cj:30
+c,c,-> 30
+p,p c,\(Rune\) \$[\d] = \'c\'
+set,set c='a',error: unsupported expression
+finish,finish,-> 16
+n,n,-> 17
+p,p getChar,\(Rune\) \$[\d] = \'c\'
+b,b 20,coroutine_8.cj:20
+c,c,-> 20
+n,n,-> 21
+n,n,-> 19
+n,n,-> 20
+n,n,-> 21
+q,quit,

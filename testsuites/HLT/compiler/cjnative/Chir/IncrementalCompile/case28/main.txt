@@ -1,0 +1,10 @@
+var a: Array<Nothing> = [      ]
+
+main(): Int64{
+  var b = 0
+  while(b < 4){
+    b++
+    a = [break,continue]
+  }
+  return a.size + b - 1
+}

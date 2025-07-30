@@ -1,0 +1,12 @@
+
+class A{
+    func test(a !: Int64 = 1): Int64{
+        return a
+    }
+}
+
+
+main(){
+    var temp = A()
+    return temp.test(a: 1) - 1
+}

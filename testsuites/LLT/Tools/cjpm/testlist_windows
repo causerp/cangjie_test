@@ -1,0 +1,49 @@
+# Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+# This source file is part of the Cangjie project, licensed under Apache-2.0
+# with Runtime Library Exception.
+#
+# See https://cangjie-lang.cn/pages/LICENSE for license information.
+
+[ALL-TEST-CASE]
+CJNATIVE/
+
+[EXCLUDE-TEST-CASE]
+# 交叉编译用例仅用于本地验证
+CJNATIVE/target/cross_compile
+CJNATIVE/cross_compile
+
+# 路径过深的用例场景,暂时无法使用测试框架
+CJNATIVE/build/build_depth
+CJNATIVE/init/init_019/`ps`/aa
+CJNATIVE/init/init_021/`ps`/aa
+CJNATIVE/init/init_022/`ps`/aa
+CJNATIVE/build/long_pkg/long_pkg_01
+
+# windows 脚本路径问题
+CJNATIVE/build/git_local
+CJNATIVE/build/cangjie_test_build/cangjie_test_build_13
+
+# windows版本的ld不支持以下选项,-z、--disable-new-dtags
+CJNATIVE/build/safe_compile/safe_compile_02
+CJNATIVE/build/safe_compile/safe_compile_03
+CJNATIVE/build/safe_compile/safe_compile_06
+
+# 查看文件的读写权限用例
+CJNATIVE/init/cangjie_test_init014/cangjie_test_init014.info
+
+# windows不支持lto功能，不需要跑相关用例
+CJNATIVE/build/lto
+CJNATIVE/test/lto
+
+# 增量编译相关用例本地全部自验通过
+# 暂时无法使用测试框架, win上需要类似touch命令去修改文件的时间戳
+CJNATIVE/build/incremental
+CJNATIVE/workspace/case_18
+CJNATIVE/workspace/case_19
+CJNATIVE/workspace/case_20
+CJNATIVE/workspace/case_21
+CJNATIVE/test/incremental
+
+# windows 标准库已知问题
+CJNATIVE/build_script/clean
+CJNATIVE/install/git

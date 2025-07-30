@@ -1,0 +1,132 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ * 
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
+
+// LEVEL: 0
+// DEPENDENCE: ./data
+// EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
+// RUN-EXEC: %run_stdx %n.%suffix %run_utest_opt %run_args
+
+import std.net.*
+import std.fs.*
+import stdx.net.tls.*
+import stdx.crypto.x509.{X509Certificate, PrivateKey}
+import std.sync.*
+import std.time.*
+import std.runtime.*
+import std.unittest.*
+import std.unittest.testmacro.*
+import std.io.*
+
+var sum = 0
+var sum1 = 0
+var sum2 = 0
+var port = AtomicUInt16(0)
+var bound = AtomicUInt16(0)
+var tcpser = Option<TcpServerSocket>.None
+var tlsser = Option<TlsSocket>.None
+
+@Test
+class Test_tlssocketconf_03 {
+    public override func beforeEach(): Unit {
+        sum = 0
+        port = AtomicUInt16(0)
+        bound = AtomicUInt16(0)
+    }
+
+    @TestCase
+    func test_01(): Unit {
+        //the server set the certificate, the server query and query the peer certificate.
+        func startServerHandshake(): Unit {
+            let pemser = String.fromUtf8(readToEnd(File("./data/end_ecdsa.cer", Read)))
+            let keypemser = String.fromUtf8(readToEnd(File("./data/end_ecdsa_private_key.pem", Read)))
+            var serverConf = TlsServerConfig(X509Certificate.decodeFromPem(pemser), PrivateKey.decodeFromPem(keypemser))
+            let pemSer = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
+            serverConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pemSer))
+            var tcpServer = TcpServerSocket(bindAt: 0)
+            tcpServer.bind()
+            port.store((tcpServer.localAddress as IPSocketAddress)?.port ?? 0)
+            bound.fetchAdd(1)
+            var tcpServerAccept = tcpServer.accept()
+            var tlsServer = TlsSocket.server(tcpServerAccept, sessionContext: None, serverConfig: serverConf)
+            tcpser = Option<TcpServerSocket>.Some(tcpServer)
+            tlsser = Option<TlsSocket>.Some(tlsServer)
+            tlsServer.handshake()
+            @Expect(tlsServer.serverCertificate == X509Certificate.decodeFromPem(pemser))
+            @Expect(tlsServer.peerCertificate == None)
+        }
+        spawn {
+            startServerHandshake()
+        }
+        while (!bound.compareAndSwap(1, 0)) {
+            sleep(Duration.millisecond)
+        }
+        let pem1 = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
+        var clientConf = TlsClientConfig()
+        clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem1))
+        let pem = String.fromUtf8(readToEnd(File("./data/end_ecdsa.cer", Read)))
+        var tcpClient = TcpSocket("127.0.0.1", port.load())
+        tcpClient.connect()
+        var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
+        tlsClient.handshake()
+        @Expect(tlsClient.clientCertificate == None)
+        sleep(Duration.millisecond * 1000)
+        tlsClient.close()
+        tcpClient.close()
+        tlsser.getOrThrow().close()
+        tcpser.getOrThrow().close()
+    }
+
+    @TestCase
+    func test_02(): Unit {
+        //the client set the certificate, the server and client query certificate mutual.
+        func startServerHandshake(): Unit {
+            let pemser = String.fromUtf8(readToEnd(File("./data/end_ecdsa.cer", Read)))
+            let keypemser = String.fromUtf8(readToEnd(File("./data/end_ecdsa_private_key.pem", Read)))
+            var serverConf = TlsServerConfig(X509Certificate.decodeFromPem(pemser), PrivateKey.decodeFromPem(keypemser))
+            let pemSer = String.fromUtf8(readToEnd(File("./data/root_rsa.cer", Read)))
+            serverConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pemSer))
+            serverConf.clientIdentityRequired = Required
+            var tcpServer = TcpServerSocket(bindAt: 0)
+            tcpServer.bind()
+            port.store((tcpServer.localAddress as IPSocketAddress)?.port ?? 0)
+            bound.fetchAdd(1)
+            var tcpServerAccept = tcpServer.accept()
+            var tlsServer = TlsSocket.server(tcpServerAccept, sessionContext: None, serverConfig: serverConf)
+            tcpser = Option<TcpServerSocket>.Some(tcpServer)
+            tlsser = Option<TlsSocket>.Some(tlsServer)
+            tlsServer.handshake()
+            @Expect(tlsServer.serverCertificate == X509Certificate.decodeFromPem(pemser))
+            let pem1 = String.fromUtf8(readToEnd(File("./data/end_rsa.cer", Read)))
+            @Expect(tlsServer.peerCertificate.getOrThrow()[0].encodeToDer().body.toString(), X509Certificate.decodeFromPem(pem1)[0].encodeToDer().body.toString())
+        }
+        spawn {
+            startServerHandshake()
+        }
+        while (!bound.compareAndSwap(1, 0)) {
+            sleep(Duration.millisecond)
+        }
+        let pem1 = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
+        var clientConf = TlsClientConfig()
+        clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem1))
+        let pem = String.fromUtf8(readToEnd(File("./data/end_rsa.cer", Read)))
+        let keyPem = String.fromUtf8(readToEnd(File("./data/end_rsa_private_key.pem", Read)))
+        clientConf.clientCertificate = (X509Certificate.decodeFromPem(pem), PrivateKey.decodeFromPem(keyPem))
+        var tcpClient = TcpSocket("127.0.0.1", port.load())
+        tcpClient.connect()
+        var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
+        tlsClient.handshake()
+        let pemser1 = String.fromUtf8(readToEnd(File("./data/end_ecdsa.cer", Read)))
+        @Expect(tlsClient.clientCertificate.getOrThrow() == X509Certificate.decodeFromPem(pem))
+        @Expect(tlsClient.peerCertificate.getOrThrow()[0].encodeToDer().body.toString(), X509Certificate.decodeFromPem(pemser1)[0].encodeToDer().body.toString())
+        sleep(Duration.millisecond * 1000)
+        tlsClient.close()
+        tcpClient.close()
+        tlsser.getOrThrow().close()
+        tcpser.getOrThrow().close()
+    }
+}

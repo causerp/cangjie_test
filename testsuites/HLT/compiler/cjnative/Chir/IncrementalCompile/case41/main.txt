@@ -1,0 +1,6 @@
+main(): Int64 {
+  var a: Int64 = 1
+  a = a + 2
+  println(a)
+  0
+}
