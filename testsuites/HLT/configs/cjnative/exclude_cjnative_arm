@@ -24,3 +24,6 @@ Tools/cjdb/datacom/generics_expression/generics_local_var014.info
 
 # syntax will be supported in future
 API/syntax
+
+# timezone file in ci not support now
+API/std/time/TimeZone/load/test_loadFromPaths.cj

@@ -359,3 +359,6 @@ API/std/unittest/mock/test_mock_extend_cjnative.cj
 
 # syntax will be supported in future
 API/syntax
+
+# timezone file in ci not support now
+API/std/time/TimeZone/load/test_loadFromPaths.cj

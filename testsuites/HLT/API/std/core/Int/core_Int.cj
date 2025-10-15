@@ -7,12 +7,6 @@
  */
 
 // LEVEL: 0
-// EXEC: echo $LIBRARY_PATH
-// EXEC: echo $LD_LIBRARY_PATH
-// EXEC: echo $PATH
-// EXEC: echo $CANGJIE_STDX_PATH
-// EXEC: echo $WORKSPACE
-// EXEC: echo $CANGJIE_HOME
 // EXEC: %compiler %cmp_opt %f -o %output %cmp_utest_opt
 // RUN-EXEC-PIPE: %run %run_opt %output %run_utest_opt %run_args
 
