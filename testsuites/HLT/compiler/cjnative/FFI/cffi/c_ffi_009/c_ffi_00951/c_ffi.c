@@ -27,9 +27,7 @@ void* MallocWithZero(size_t size)
     if (ptr == NULL) {
         return NULL;
     }
-    if (memset(ptr, 0, size) != 0) {
-        return NULL;
-    }
+    memset(ptr, 0, size);
     return ptr;
 }
 
