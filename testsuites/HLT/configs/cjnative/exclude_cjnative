@@ -18,3 +18,6 @@ Tools/cjpm/cjpm_command/build1/release_debug_path/case15
 Tools/cjpm/cjpm_build/zero_module/zero_module_005
 Tools/cjpm/cjpm_command/build1/zero/module_build_005
 Tools/cjpm/cjpm_command/build1/zero/module_build_006
+
+# fail in ci env
+API/std/socket/UdpSocket/test_udp_transportation_init.cj
