@@ -4,7 +4,10 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// EXEC-PIPE-1: %compiler %cmp_opt  %f  -o %output 2>&1 | compare %f
+// ERRCHECK: %compiler %diag_json %f -o %output
+// ASSERT: scan sema_upper_bound_must_be_class_or_interface
+// ASSERT: scan sema_generic_type_argument_not_match_constraint
+// ASSERT: scan "Errors": 2,
 
 class Aoo<T> where T <: Bool & Object {
     public var a: T
@@ -20,27 +23,3 @@ main() {
     }
     return 0
 }
-
-/* SCAN
-error: the upper bound 'Bool' of generic parameter 'Generics-T' must be class or interface
- ==> err_invalid_upper.cj:9:11:
-  | 
-9 | class Aoo<T> where T <: Bool & Object {
-  |           ^ 
-  | 
-
-error: generics type arguments do not match the constraint of 'Class-Aoo<Generics-T>'
-  ==> err_invalid_upper.cj:17:17:
-   | 
-17 |     var a = Aoo<Bool>(false)
-   |                 ^ 
-   | 
-note: 'Bool' is not a subtype of 'Class-Object'
- ==> err_invalid_upper.cj:9:20:
-  | 
-9 | class Aoo<T> where T <: Bool & Object {
-  |                    ^ 
-  | 
-
-2 errors generated, 2 errors printed.
-*/

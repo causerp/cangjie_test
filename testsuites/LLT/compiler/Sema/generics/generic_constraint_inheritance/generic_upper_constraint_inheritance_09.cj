@@ -4,7 +4,9 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// EXEC-PIPE-1: %compiler %cmp_opt %f 2>&1 | compare %f
+// ERRCHECK: %compiler %diag_json %f -o %output
+// ASSERT: scan sema_inherit_member_type_inconsistent
+// ASSERT: scan "Errors": 1,
 
 open class C {}
 
@@ -25,15 +27,3 @@ func bar<T>(x: T) where T <: C & I {
 main() {
     return 1
 }
-
-/* SCAN
-error: return type of the inherited function members 'foo' are not identical and not in subtype relation
-  ==> generic_upper_constraint_inheritance_09.cj:21:25:
-   | 
-21 | func bar<T>(x: T) where T <: C & I {
-   |                         ^^^^^^^^^^ 
-   | 
-   # note: conflict types are 'Int64', 'Struct-String'
-
-1 error generated, 1 error printed.
-*/

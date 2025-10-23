@@ -4,7 +4,10 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// EXEC: %compiler %cmp_opt %f -o %n.%suffix 2>&1 | compare %f
+// EXEC: %compiler %diag_json %f -o %n.%suffix 2>&1 | compare %f
+// ASSERT: scan sema_generic_type_argument_not_match_constraint
+// ASSERT: scan sema_class_uninitialized_field
+// ASSERT: scan "Errors": 2,
 
 type A<T> = Cl<T>
 
@@ -19,27 +22,3 @@ class Sub<X> {
 main() {
     return 0;
 }
-
-/* SCAN
-error: generics type arguments do not match the constraint of 'Class-Cl<Generics-U>'
-  ==> typealias9.cj:16:19:
-   | 
-16 |     public var a: A<X>
-   |                   ^ 
-   | 
-note: 'Generics-X' is not a subtype of 'Class-Base'
-  ==> typealias9.cj:13:19:
-   | 
-13 | class Cl<U> where U <: Base {}
-   |                   ^ 
-   | 
-
-error: the uninitialized member variable 'a' is not initialized in the constructor of class or struct
-  ==> typealias9.cj:16:5:
-   | 
-16 |     public var a: A<X>
-   |     ^ 
-   | 
-
-2 errors generated, 2 errors printed.
-*/

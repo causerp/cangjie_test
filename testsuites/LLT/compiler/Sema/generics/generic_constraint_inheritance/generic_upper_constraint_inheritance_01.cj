@@ -4,7 +4,10 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// ERRCHECK: %compiler %cmp_opt %f -o %output
+// ERRCHECK: %compiler %diag_json %f -o %output
+// ASSERT: scan sema_upper_bound_must_be_class_or_interface
+// ASSERT: scan sema_generic_constraint_not_looser
+// ASSERT: scan "Errors": 2,
 
 interface I {
     static func f<T1, T2>(): Unit where T1 <: Any {}
@@ -15,22 +18,3 @@ class A <: I {
 }
 
 main() {}
-
-/* SCAN
-error: the upper bound 'Generics-T2' of generic parameter 'Generics-T1' must be class or interface
-  ==> generic_upper_constraint_inheritance_01.cj:14:26:
-   | 
-14 |     public static func f<T1, T2>() where T1 <: T2 {}
-   |                          ^^ 
-   | 
-
-error: the constraint of type parameter is not looser than parent's constraint
-  ==> generic_upper_constraint_inheritance_01.cj:14:42:
-   | 
-14 |     public static func f<T1, T2>() where T1 <: T2 {}
-   |                                          ^^^^^^^^ 
-   | 
-   # note: parent constraint is 'Interface-Any'
-
-2 errors generated, 2 errors printed.
-*/

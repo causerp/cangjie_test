@@ -4,7 +4,10 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// EXEC: %compiler %cmp_opt %f 2>&1 | compare %f
+// ERRCHECK: %compiler %diag_json %f -o %output
+// ASSERT: scan sema_return_type_incompatible
+// ASSERT: scan sema_inherit_member_type_inconsistent
+// ASSERT: scan "Errors": 2,
 
 class E1 {}
 
@@ -32,28 +35,3 @@ main() {
     let obj = D<C1>().foo()
     return 1
 }
-
-/* SCAN
-error: return type of 'foo' is not identical or not a subtype of the overridden/redefined/implement function
-  ==> access_by_parameter_interface_10.cj:26:24:
-   | 
-26 |     public static func foo(): E2 {
-   |                        ^^^ 
-   | 
-note: 'Class-E2' is not a subtype of 'Class-E1'
-  ==> access_by_parameter_interface_10.cj:14:17:
-   | 
-14 |     static func foo(): E1 {
-   |                 ^^^ 
-   | 
-
-error: return type of the inherited function members 'foo' are not identical and not in subtype relation
-  ==> access_by_parameter_interface_10.cj:19:18:
-   | 
-19 | class D<T> where T <: C1 & I {
-   |                  ^^^^^^^^^^^ 
-   | 
-   # note: conflict types are 'Class-E1', 'Class-E2'
-
-2 errors generated, 2 errors printed.
-*/

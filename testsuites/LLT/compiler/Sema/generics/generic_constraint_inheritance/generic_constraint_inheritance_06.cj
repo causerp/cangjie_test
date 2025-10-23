@@ -4,7 +4,9 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// ERRCHECK: %compiler %cmp_opt %f -o %output
+// ERRCHECK: %compiler %diag_json %f -o %output
+// ASSERT: scan-2 sema_generic_constraint_not_looser
+// ASSERT: scan "Errors": 2,
 
 open class A {}
 
@@ -29,23 +31,3 @@ class F <: I<B> {
 }
 
 main() {}
-
-/* SCAN
-error: the constraint of type parameter is not looser than parent's constraint
-  ==> generic_constraint_inheritance_06.cj:20:46:
-   | 
-20 |     public static func test<T>(): Unit where T <: C & Equatable<B> {}
-   |                                              ^^^^^^^^^^^^^^^^^^^^^ 
-   | 
-   # note: parent constraint is 'Class-B & Interface-Equatable<Class-B>'
-
-error: the constraint of type parameter is not looser than parent's constraint
-  ==> generic_constraint_inheritance_06.cj:24:46:
-   | 
-24 |     public static func test<T>(): Unit where T <: Equatable<C> {}
-   |                                              ^^^^^^^^^^^^^^^^^ 
-   | 
-   # note: parent constraint is 'Class-B & Interface-Equatable<Class-B>'
-
-2 errors generated, 2 errors printed.
-*/
