@@ -9,23 +9,14 @@
 import objc.lang.*
 
 @ObjCMirror
-open class N {
-    public open func foo(): Unit
-    public open func bar(): Bool
-}
+interface M {
+    prop x: Int64
+    mut prop xm: Int64
+    static prop xs: Int64
+    static mut prop xms: Int64
 
-@ObjCMirror
-open class M <: N {
-    init()
-
-    public override func bar(): Bool
-}
-
-@ObjCImpl
-class L <: M {
-    init() {
-        super()
-    }
-
-    public override func foo() {}
+    prop y: M
+    mut prop ym: M
+    static prop ys: M
+    static mut prop yms: M
 }
