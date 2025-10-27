@@ -4,18 +4,18 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package dep
+// EXEC: %compiler %cmp_opt %diag_json %n.cj -o %output 2>&1 | compare %f
+// ASSERT: scan sema_ambiguous_match
 
-import ohos.labels.*
-
-@!APILevel[since: "9"]
-public func f9(): Unit {
+open class A {
+    public open func f<T>(x: Int, y: T) {}
 }
 
-@!APILevel[since: "11"]
-public func f11(): Unit {
+class B <: A {
+    public func f<T>(x: T, y: Int) {}
 }
 
-// 没写，相当于 @!APILevel[since: "0"]
-public func f0(): Unit {
+main() {
+    let b = B()
+    b.f(1, 1)
 }

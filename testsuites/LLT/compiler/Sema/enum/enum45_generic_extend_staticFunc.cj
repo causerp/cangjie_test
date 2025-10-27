@@ -4,11 +4,22 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package dep
+// EXEC: %compiler %cmp_opt %f -o %output
+// EXEC: %run %run_opt %output %run_args | compare %f
+// ASSERT: scan 2
 
-@!APILevel[since: "12"]
-public class A<T> where T <: ToString {
+enum E<T> {
+    AB
 }
 
-@!APILevel[since: "12"]
-public func foo<T>() where T <: ToString
+extend E<Rune> {
+    static func f3(a: UInt32): UInt32 {
+        println(a)
+        a
+    }
+}
+
+main() {
+    var c3 = E.f3(2)
+    0
+}
