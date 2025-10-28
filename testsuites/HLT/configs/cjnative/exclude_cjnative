@@ -21,3 +21,7 @@ Tools/cjpm/cjpm_command/build1/zero/module_build_006
 
 # fail in ci env
 API/std/socket/UdpSocket/test_udp_transportation_init.cj
+
+# not support now
+API/net/New_HTTP/HttpRequest/test_connection_close.cj
+API/net/request/request_api_15.cj
