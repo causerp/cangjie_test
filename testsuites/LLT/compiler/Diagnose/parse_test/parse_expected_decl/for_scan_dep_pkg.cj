@@ -5,16 +5,23 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // LEVEL: 0
-// ERRCHECK: %compiler %noColor %n.cj
+// (Linux) EXEC: %mkdir src
+// (Linux) EXEC: %cpfile %f ./src
+// (Linux) ERRCHECK: %compiler %cmp_opt -p src --scan-dependency
 
-from
+pkg test
+
+main(): Int64 {
+    println("hello world")
+    return 0
+}
 
 /* SCAN
-error: expected declaration, found 'from'
-  ==> case2.cj:10:1:
+error: expected declaration, found 'pkg'
+  ==> src/for_scan_dep_pkg.cj:12:1:
    | 
-10 | from
-   | ^^^^ expected declaration here
+12 | pkg test
+   | ^^^ expected declaration here
    | 
    # note: only declarations or macro expressions can be used in the top-level
 
