@@ -5,32 +5,32 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // (CJNATIVE and not Windows) EXEC-PIPE-0: %compiler %cmp_opt %f -o %output %compile_shared_lib_opt %import_objc_interop 2>& 1 | compare %f
+
 // ASSERT: scan-not error
 
+import interoplib.objc.*
 import objc.lang.*
 
+func nop(): ObjCBlock<() -> Unit> {
+    return unsafe { zeroValue() }
+}
+
+func primitives(): ObjCBlock<(Float64) -> Float64> {
+    return unsafe { zeroValue() }
+}
+
+func mirrors(): ObjCBlock<(Moo) -> Moo> {
+    return unsafe { zeroValue() }
+}
+
+func impls(): ObjCBlock<(Foo) -> Foo> {
+    return unsafe { zeroValue() }
+}
+
 @ObjCMirror
-open class M {
-    @ForeignName["initWithA:"]
-    init(a: Bool)
+open class Moo {
     init()
 }
 
 @ObjCImpl
-class A <: M {
-    init() {
-        super()
-    }
-
-    init(b: Bool) { }
-    init(i: Int64) { }
-    init(a: Int64, b: Bool) { }
-    init(a: Int64, b: Bool, d: M) { }
-}
-
-@ObjCImpl
-class B <: M {
-    init() {
-        super()
-    }
-}
+class Foo <: Moo {}

@@ -4,11 +4,6 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package cjworld
+#import <Foundation/Foundation.h>
 
-import objc.lang.*
-
-@ObjCMirror
-public open class M <: NSObject {
-    init()
-}
+// This file only exists to correctly import NSObject into class implementation
