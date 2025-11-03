@@ -7,30 +7,16 @@
 // LEVEL: 0
 // ERRCHECK: %compiler %noColor %n.cj
 
-from var
+from
 
 /* SCAN
 error: expected declaration, found 'from'
-  ==> case1.cj:10:1:
+  ==> from.cj:10:1:
    | 
-10 | from var
+10 | from
    | ^^^^ expected declaration here
    | 
    # note: only declarations or macro expressions can be used in the top-level
 
-error: expected ';' or '<NL>', found keyword 'var'
-  ==> case1.cj:10:6:
-   | 
-10 | from var
-   |      ^^^ expected ';' or '<NL>' here
-   | 
-
-error: expected identifier or pattern after 'var', found '<EOF>'
-  ==> case1.cj:10:9:
-   | 
-10 | from var
-   |      ~~~^ expected identifier or pattern here
-   | 
-
-3 errors generated, 3 errors printed.
+1 error generated, 1 error printed.
 */
