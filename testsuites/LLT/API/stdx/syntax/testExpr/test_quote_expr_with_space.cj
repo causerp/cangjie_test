@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
+
 // DEPENDENCE: sourceFile/quote_expr_with_space.cj
 // (not Windows) EXEC: dos2unix quote_expr_with_space.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -13,7 +21,6 @@ func test_QuoteExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile : SourceFile = res.node.getOrThrow()
-    sourcefile.toString() |> println
     @Expect(sourcefile.toString().contains(##"main() {
     quote()
     quote(a)
@@ -92,12 +99,3 @@ func test_QuoteExpr_01() {
         case _ => @Assert(false)
     }
 }
-
-
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */
