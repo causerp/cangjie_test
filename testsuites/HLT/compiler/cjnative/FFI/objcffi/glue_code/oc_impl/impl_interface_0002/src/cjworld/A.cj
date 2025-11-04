@@ -6,6 +6,13 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
  
-package objc.foundation
+package cjworld
 
-public struct Class 
+import interoplib.objc.*
+
+@ObjCImpl
+public class A <: I {
+    public init() {
+        println("in cangjie init")
+    }
+}
