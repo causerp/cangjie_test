@@ -8,8 +8,8 @@
  
 // LEVEL: 1
 // DEPENDENCE: test.toml test.h
-// (iOS) EXEC: %mirror_gen test.toml
-// (iOS) EXEC: %cat test.cj | compare %f
+// (iOSNative) EXEC: %mirror_gen test.toml
+// (iOSNative) EXEC: %cat test.cj | compare %f
 /* SCAN-IN
 package cjworld
 
@@ -20,7 +20,7 @@ import interoplib.objc.*
 
 @ObjCMirror
 public interface test1 <: NSObjectProtocol {
-    public func f1(): Unit
+    public open func f1(): Unit
     public static func f2(): Unit
 }
 

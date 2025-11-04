@@ -6,19 +6,22 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
  
-// LEVEL: 1
-// DEPENDENCE: test.toml test.h
-// (iOSNative) EXEC: %mirror_gen test.toml
-// (iOSNative) EXEC: %cat test.cj | compare %f
-/* SCAN-IN
 package cjworld
 
-import objc.foundation.NSObject
 import interoplib.objc.*
 
-@ObjCMirror
-public open class test/*<T>*/ <: NSObject {
-    public open func f1(): Unit
-    public static func f2(): Unit
+@ObjCImpl
+public class A <: M {
+    public init() {
+        println("in cangjie init")
+    }
+    public func f() {
+        var m = M()
+        m.p1 = 2
+        println("p1: ${m.p1}")
+        println("p2: ${m.p2}")
+        m.f1()
+        m.f2()
+        m.f3()
+    }
 }
-*/
