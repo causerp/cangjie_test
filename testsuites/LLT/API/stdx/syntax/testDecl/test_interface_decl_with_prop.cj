@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/interface_decl_with_prop.cj
 // (not Windows) EXEC: dos2unix interface_decl_with_prop.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -12,7 +19,6 @@ func test_InterfaceDecl_01() {
     @Assert(diags.size, 0)
 
     let sourcefile : SourceFile = res.node.getOrThrow()
-    sourcefile.toString() |> println
     @Expect(sourcefile.toString().contains(##"@Deprecated["aaa"]
 public interface I1<T> <: S1<T> where T <: I2<T> {
     static mut prop p1: Int64
@@ -42,11 +48,3 @@ public interface I1<T> <: S1<T> where T <: I2<T> {
     @Assert(interfaceDecl.annotations.size, 1)
     @Assert(interfaceDecl.annotations[0].toString(), ##"@Deprecated["aaa"]"##)
 }
-
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */

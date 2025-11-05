@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/quote_expr_with_newline.cj
 // (not Windows) EXEC: dos2unix quote_expr_with_newline.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -26,7 +33,6 @@ func test_QuoteExpr_With_NewLine() {
 }"##))
 
     var _decl: MacroDecl = (sourcefile.topLevelDecls[0] as MacroDecl).getOrThrow()
-    _decl.toString() |> println
     @Expect(_decl.toString(), ##"public macro Prop(input:Tokens):Tokens {
     let v = parseDecl(input)
     @getIdent[ident](input)
@@ -57,11 +63,3 @@ func test_QuoteExpr_With_NewLine() {
     @Assert(_decl.params.toString(), "(input:Tokens)")
     @Assert(_decl.retTyAnnotation.getOrThrow().toString(), "Tokens")
 }
-
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */

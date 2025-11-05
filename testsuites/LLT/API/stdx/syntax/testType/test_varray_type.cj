@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/varray_type.cj
 // (not Windows) EXEC: dos2unix varray_type.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -100,18 +107,12 @@ class Test {
     func testInit01() {
         let varDecl = (decls[1] as VarDecl).getOrThrow()
         let ty = (varDecl.tyAnnotation.getOrThrow() as VArrayType).getOrThrow()
-        println("5555555555555555555")
         let vArrayType = VArrayType(ty.elementType, ty.size)
-        println("5555555555555555555")
 
         @Expect(vArrayType.elementType is AtomicType)
-        println("5555555555555555555")
         @Expect(vArrayType.elementType.toString(), "Int32")
-        println("5555555555555555555")
         @Expect(vArrayType.size, 0)
-        println("5555555555555555555")
         @Expect(vArrayType.toString(), "VArray<Int32, $0>")
-        println("5555555555555555555")
 
         var pos = vArrayType.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 1, 1, 18]).toArray())
@@ -127,10 +128,3 @@ class Test {
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 13, 1, 14]).toArray())
     }
 }
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */

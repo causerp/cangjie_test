@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/enum_pattern.cj
 // (not Windows) EXEC: dos2unix enum_pattern.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -100,7 +107,6 @@ class Test {
         let enumPattern = EnumPattern(pattern.enumConstructor, pattern.enumType, pattern.subPatterns)
         @Expect(enumPattern.enumConstructor.toString(), "A")
         @Expect(enumPattern.subPatterns.size, 1)
-        enumPattern.toString() |> println
         @Expect(enumPattern.toString(), "A(n)")
 
         var pos = enumPattern.nodePos
@@ -112,10 +118,3 @@ class Test {
         @Expect(enumPattern.getCommasPos().size, 0)
     }
 }
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */
