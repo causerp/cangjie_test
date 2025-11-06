@@ -19,6 +19,7 @@ common class B<T> {
         return item
     }
     func f2(item: T) { f(item) }
+    common func f3(item: T) { println("f3"); f(item) }
 }
 
 common class C<T> where T <: I {} 
@@ -31,16 +32,16 @@ common class D<T> where T <: I {}
 // (CJNATIVE and Darwin)RUN-EXEC-PIPE-0: DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:./p && %run %output 2>&1 | compare %f
 package cmp
 
-platform class A<T> {}
+platform class A<R> {}
 
-platform class B<T> {
-    platform func f(item: T): T {
+platform class B<R> {
+    platform func f(item: R): R {
       item
     }
 }
 
-platform class C<T> where T <: SuperI  {}
-platform class D<T> {}
+platform class C<R> where R <: SuperI  {}
+platform class D<R> {}
 
 extend String <: I {}
 extend Int <: I {}
@@ -50,6 +51,7 @@ main(): Unit {
     let b = B<Int>()
     println(b.f(111))
     println(b.f2(222))
+    println(b.f3(333))
     let _ = C<String>()
     let _ = D<String>()
 }
@@ -57,4 +59,6 @@ main(): Unit {
 /* SCAN
 111
 222
+f3
+333
 */
