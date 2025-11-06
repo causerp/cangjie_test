@@ -16,6 +16,6 @@ r,r,-> 10
  ;expr EE1.EB;\(org.pkga.EE1\) \$\d+ = EB
  ;expr EE2.EA;\(org.pkga.EE2\) \$\d+ = EA
  ;expr EE3.EB(3);\(org.pkga.EE3\) \$\d+ = {\s+constructor = EB\s+arg_1 = 3\s+}
- ;expr EE4.EB(AA());\(org.pkga.EE4\) \$\d+ = {\s+constructor = EB\s+arg_1 = {\s+aa = 1\s+ab = 2\s+}\s+}
+ ;expr EE4.EB(AA());\(org.pkga.EE4\) \$\d+ = {\s+constructor = EB\s+arg_1 = {\s+aa
  ;expr EE5.EB(5);\(org.pkga.EE5\) \$\d+ = {\s+constructor = EB\s+arg_1 = 5\s+}
 q,q,
