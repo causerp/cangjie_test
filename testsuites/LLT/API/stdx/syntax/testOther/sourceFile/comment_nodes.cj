@@ -53,3 +53,18 @@ func f5() {
 
 main() // comment belong to paramterList
 {}
+
+
+// line comment1
+extend<T> A<T> /* block comment1 */ where T <: I1 {
+    public func foo() {}
+    // line comment2
+    public mut prop _prop: Int64 {
+        /* block comment2 */
+        get( /** document comment1 */ ) { 0 /** document comment2 */}
+
+        set(/* block comment3 */ v) {
+            // line comment3
+        }
+    }
+} // line comment4
