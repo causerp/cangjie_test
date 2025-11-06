@@ -163,11 +163,6 @@ API/stdx/fuzz/test_u64.cj
 compiler/Plugins/IRCheck/FoundError/default.cj
 compiler/Plugins/IRCheck/FoundError/found_error.cj
 
-## syntax testcases (parseFile/CJ_ParseFile/catched unhandled SIGABRT (Aborted) from native frame)
-API/stdx/syntax/testParseDir/test_parseDir.cj
-API/stdx/syntax/testDiags/test_diag_error.cj
-API/stdx/syntax/testDiags/test_diag_error_and_warning.cj
-
 # should be fixed
 API/std/runtime/test_signal.cj
 API/std/runtime/test_signal_unregister.cj
