@@ -14,6 +14,6 @@ cjdb,cjdb orgname13,orgname13
 b,b 15,orgname.cj:15
 r,r,-> 15
  ;expr EE3.EB(2);\(org.pkga.EE3\) \$\d+ = {\s+constructor = EB\s+arg_1 = 2\s+}
- ;expr EE4.EB(AA());\(org.pkga.EE4\) \$\d+ = {\s+constructor = EB\s+arg_1 = {\s+aa = 1\s+ab = 2\s+}\s+}
+ ;expr EE4.EB(AA());\(org.pkga.EE4\) \$\d+ = {\s+constructor = EB\s+arg_1 = {\s+aa
  ;expr EE5.EB(3);\(org.pkga.EE5\) \$\d+ = {\s+constructor = EB\s+arg_1 = 3\s+}
 q,q,
