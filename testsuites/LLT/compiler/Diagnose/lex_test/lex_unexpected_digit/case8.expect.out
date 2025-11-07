@@ -8,6 +8,13 @@ error: unexpected digit '9' in octal
    | 
    # note: octal may only contain digit within 0~7
 
+error: cannot start a(n) float literal with '0'
+  ==> case8.cj:14:21:
+   | 
+14 |     "cangjie ${0o19.12 012.a} ${0b12}"
+   |                        ^ unexpected digit(s)
+   | 
+
 error: unexpected digit '2' in binary
   ==> case8.cj:14:33:
    | 
@@ -18,4 +25,4 @@ error: unexpected digit '2' in binary
    | 
    # note: binary may only contain digit within 0~1
 
-2 errors generated, 2 errors printed.
+3 errors generated, 3 errors printed.
