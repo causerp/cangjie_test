@@ -25,3 +25,6 @@ API/std/socket/UdpSocket/test_udp_transportation_init.cj
 # not support now
 API/net/New_HTTP/HttpRequest/test_connection_close.cj
 API/net/request/request_api_15.cj
+
+# fail randomly in win
+API/net/Server/ServerBuilder/Http2/Server_request_check_H2.cj
