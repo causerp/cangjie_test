@@ -34,6 +34,17 @@ experimental = true
   package-option = { "dep" = "dep/target/release/dep/big/product/dep/dep.cjo" }
   path-option = ["dep/target/release/dep/big/product/dep"]
 
+[target.aarch64-unknown-linux-gnu]
+  compile-option = "-O1"
+
+[target.aarch64-unknown-linux-gnu.bin-dependencies]
+  package-option = { "dep" = "dep/target/release/dep/big/product/dep/dep.cjo" }
+  path-option = ["dep/target/release/dep/big/product/dep"]
+
+[target.aarch64-unknown-linux-gnu.debug.bin-dependencies]
+  package-option = { "dep" = "dep/target/release/dep/big/product/dep/dep.cjo" }
+  path-option = ["dep/target/release/dep/big/product/dep"]
+
 [target.x86_64-w64-mingw32]
   compile-option = "-O1"
 
