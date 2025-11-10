@@ -126,6 +126,18 @@ main(param1: Int64, param2: Int64): Int64 {
     }
 
     @TestCase
+    func testBlockInit() {
+        let varDecl = parseText("var a = 1").node.getOrThrow()
+        let funcDecl = parseText("func foo(a: Int64)").node.getOrThrow()
+        let block = Block([varDecl, funcDecl])
+        @Expect(block.toString(), ##"{
+    var a = 1
+    func foo(a: Int64)
+}"##)
+        @Expect(block.nodes.size, 2)
+    }
+
+    @TestCase
     func testFileToString() {
         let node = parseFile("main_decl.cj")
         let input = String.fromUtf8(File.readFrom("main_decl.cj"))
