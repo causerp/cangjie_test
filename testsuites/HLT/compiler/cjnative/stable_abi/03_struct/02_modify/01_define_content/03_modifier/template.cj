@@ -95,3 +95,7 @@ public struct S11 {
     }
 }
 
+public func f(){
+    var a = S10().getX() + S4().getX() + S5().getX() + S7().getX() + S6().getX() + S9().getX()
+    return a
+}

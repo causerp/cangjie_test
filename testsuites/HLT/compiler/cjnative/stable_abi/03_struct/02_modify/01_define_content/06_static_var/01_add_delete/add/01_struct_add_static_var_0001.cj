@@ -55,3 +55,13 @@ public struct Rectangle1 {
         return width
     }
 }
+
+public func f(){
+    var a = Rectangle.height
+    if(a == 300){
+        return 0
+    }else{
+        return 1
+    }
+
+}

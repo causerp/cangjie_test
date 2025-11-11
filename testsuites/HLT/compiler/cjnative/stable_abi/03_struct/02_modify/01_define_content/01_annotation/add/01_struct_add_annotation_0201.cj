@@ -50,6 +50,7 @@ public struct S1 {
 }
 
 // struct类型S2虽然无public修饰，模块外不可见，但也会参与下游模块的编译过程。原因在于S2用于定义S3中的x成员变量类型，产生依赖
+
 struct S2 {
     let x: Int64 = 0
 }
@@ -139,4 +140,9 @@ public struct S13 {
 
     static const x = S12()
 
+}
+
+public func f(){
+    var a = S4().getX()
+    return a
 }

@@ -96,3 +96,12 @@ public struct Rectangle3 {
         return a9
     }
 }
+
+public func f(){
+    var a = Rectangle3.a9
+    if(a == 20){
+        return 0
+    }else{
+        return 1
+    }
+}

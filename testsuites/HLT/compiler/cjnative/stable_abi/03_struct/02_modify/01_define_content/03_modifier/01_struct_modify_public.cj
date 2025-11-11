@@ -116,3 +116,7 @@ struct S11 {
         return x
     }
 }
+
+public func f(){
+    return 0
+}

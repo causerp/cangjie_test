@@ -70,7 +70,6 @@ protected struct S5 {
     }
 }
 
-
 struct S6 {
     let x: Int64 = 0
 
@@ -95,8 +94,7 @@ public struct S8 {
     }
 }
 
-
-private struct S9 {
+struct S9 {
     let x: Int64 = 0
 
     public func getX(): Int64 {
@@ -104,8 +102,7 @@ private struct S9 {
     }
 }
 
-
-protected struct S10 {
+struct S10 {
     let x: Int64 = 0
 
     public func getX(): Int64 {
@@ -119,4 +116,9 @@ public struct S11 {
     public func getX(): Int64 {
         return x
     }
+}
+
+public func f(){
+    var a = S4().getX() + S5().getX() + S7().getX()
+    return a
 }

@@ -23,12 +23,11 @@
 // EXEC: %mv test_stable_abi.cjo old.cjo
 // EXEC: %compiler %cmp_opt %compile_dylib_opt %f -o libstable_abi.%dylib_suffix
 
-// ASSERT: scan Incompatible!
-// ASSERT: scan-1 [API/ABI] Deleted public member function of struct visible outside the module.
-// ASSERT: scan-1 [API/ABI] Deleted interfaces that struct implemented.
-// ASSERT: scan-not [API]
-// ASSERT: scan-not [ABI]
-// ASSERT: scan-2 [API/ABI]
+// TEST ABI Compatibility
+// RUN-EXEC: %run %run_opt %output %run_args
+// TEST API Compatibility
+// EXEC: %compiler %cmp_opt main.cj %cmp_stable_abi_dylib -o %output
+// RUN-EXEC: %run %run_opt %output %run_args
 
 package test_stable_abi
 
@@ -49,7 +48,7 @@ interface Subtractable {
 }
 
 interface Multiplicable {
-    func add(other: Int64): Int64
+    func mul(other: Int64): Int64
 }
 
 public struct MyInt <: Addable & Subtractable {
@@ -65,7 +64,7 @@ public struct MyInt <: Addable & Subtractable {
 }
 
 
-struct MyInt1 <: Addable  {
+struct MyInt1 <: Addable {
     var value = 0
     public func add(other: Int64): Int64 {
         value + other
@@ -73,12 +72,15 @@ struct MyInt1 <: Addable  {
 
 }
 
-struct S2 <: Addable {
+struct S2 <: Addable & Subtractable  {
     var value = 0
-    public const init() {}
 
     public func add(other: Int64): Int64 {
         value + other
+    }
+
+    public func sub(other: Int64): Int64 {
+        value - other
     }
 
 }
@@ -164,4 +166,17 @@ public struct MyInt4 <: Addable & Subtractable {
         return x.value
     }
 
+}
+
+public func assert<T>(expected:T, actual:T) : Unit where T <: Equatable<T> & ToString{
+    if(expected == actual){
+    }else{
+        throw Exception("${expected} != ${actual}")
+    }
+}
+
+public func check(){
+    var s2 = MyInt1()
+    assert(s2.add(1), 1)
+    return 0
 }

@@ -45,7 +45,6 @@ public class Version {
 }
 // struct类型S1是public修饰，模块外可见，会参与下游模块的编译过程
 
-
 public struct S1 {
     let x: Int64 = 0
 
@@ -148,4 +147,6 @@ public struct S13 {
 
 }
 
-
+public func f(){
+    return 0
+}

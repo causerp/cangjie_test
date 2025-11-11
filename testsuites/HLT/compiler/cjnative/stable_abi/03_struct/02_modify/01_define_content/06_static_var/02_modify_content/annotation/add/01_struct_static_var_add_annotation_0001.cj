@@ -42,7 +42,6 @@ public class Version {
 }
 
 
-
 public struct Rectangle {
     static let width = 10
 
@@ -75,7 +74,7 @@ public struct Rectangle1 {
 
 public struct Rectangle2 {
     static let width = 10
-     @Version["1.4"]
+    @Version["1.4"]
     static public let a8 = 20
     static let a9 = 200
     public func getWidth(): Int64{
@@ -94,4 +93,8 @@ public struct Rectangle3 {
     public const func getWidth(): Int64{
         return a9
     }
+}
+
+public func f(){
+    return 0
 }

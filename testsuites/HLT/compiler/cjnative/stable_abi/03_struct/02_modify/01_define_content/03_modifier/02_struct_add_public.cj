@@ -118,3 +118,8 @@ public struct S11 {
         return x
     }
 }
+
+public func f(){
+    var a = S10().getX()
+    return a
+}

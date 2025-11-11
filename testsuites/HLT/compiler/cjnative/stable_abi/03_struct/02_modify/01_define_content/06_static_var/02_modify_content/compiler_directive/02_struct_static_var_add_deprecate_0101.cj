@@ -33,6 +33,7 @@
 // 基于 @Deprecated 的参数条件，当前struct在下游模块中不可用
 package test_stable_abi
 
+
 public struct Rectangle {
     static let width = 10
     static let a1 = 20
@@ -103,4 +104,8 @@ public struct Rectangle5 {
     public const func getWidth(): Int64{
         return a9
     }
+}
+
+public func f(){
+    return 0
 }

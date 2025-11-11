@@ -34,6 +34,7 @@
 // modify operation: modify @Deprecated: error -> warning
 package test_stable_abi
 
+
 public struct Rectangle {
     static let width = 10
     static let a1 = 20
@@ -90,6 +91,7 @@ public struct Rectangle4 {
         return a9
     }
 }
+
 public struct Rectangle5 {
     static let width = 10
     @Deprecated["this value is deprecated", strict: true] static const a9 = 20
@@ -102,5 +104,14 @@ public struct Rectangle5 {
     @Deprecated["this value is deprecated", strict: true]
     public const func getWidth(): Int64{
         return a9
+    }
+}
+
+public func f(){
+    var a = Rectangle.a5
+    if(a == 20){
+        return 0
+    }else{
+        return 1
     }
 }

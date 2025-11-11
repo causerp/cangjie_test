@@ -141,3 +141,8 @@ public struct S13 {
     static const x = S12()
 
 }
+
+public func f(){
+    var a = S2().x
+    return a
+}

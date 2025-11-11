@@ -143,5 +143,7 @@ public struct S13 {
 
 }
 
-
-
+public func f(){
+    var a = S10().x
+    return a
+}

@@ -117,3 +117,8 @@ public struct S11 {
         return x
     }
 }
+
+public func f(){
+    var a = S4().getX() + S5().getX() + S7().getX()
+    return a
+}

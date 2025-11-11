@@ -93,3 +93,7 @@ public struct Rectangle3 {
         return a9
     }
 }
+
+public func f(){
+    return 0
+}

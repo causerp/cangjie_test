@@ -113,6 +113,7 @@ struct S10 {
 public struct S11 {
     let x: S10 = S10()
 
+    @Frozen
     public func getX(): Int64 {
         return x.x
     }
@@ -136,6 +137,7 @@ struct S13 {
 public struct S14 {
     let x: S13 = S13()
 
+    @Frozen
     public func getX(): Int64 {
         return x.x
     }
@@ -184,7 +186,6 @@ public struct S20 {
         return x.x
     }
 }
-
 
 @Deprecated["this struct is deprecated", strict: true]
 struct S21 {
@@ -239,4 +240,9 @@ public struct S26 {
 @Deprecated["this struct is deprecated", strict: false]
 struct S27 {
     let x: Int64 = 0
+}
+
+public func f(){
+    var a = S17().x
+    return a
 }

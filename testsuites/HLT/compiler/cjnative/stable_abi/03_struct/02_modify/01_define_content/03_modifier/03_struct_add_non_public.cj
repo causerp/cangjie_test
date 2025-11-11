@@ -120,3 +120,8 @@ public struct S11 {
         return x
     }
 }
+
+public func f(){
+    var a = S6().getX() + S9().getX() + S10().getX()
+    return a
+}

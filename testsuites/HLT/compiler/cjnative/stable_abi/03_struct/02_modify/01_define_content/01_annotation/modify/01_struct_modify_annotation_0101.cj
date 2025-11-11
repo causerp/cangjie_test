@@ -148,3 +148,6 @@ public struct S13 {
 
 }
 
+public func f() {
+    return 0
+}

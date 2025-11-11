@@ -52,7 +52,7 @@ interface Subtractable {
 }
 
 interface Multiplicable {
-    func add(other: Int64): Int64
+    func mul(other: Int64): Int64
 }
 
 public struct MyInt <: Addable & Subtractable {
@@ -68,17 +68,19 @@ public struct MyInt <: Addable & Subtractable {
 }
 
 
-struct MyInt1 <: Addable  {
+struct MyInt1 <: Subtractable & Addable  {
     var value = 0
     public func add(other: Int64): Int64 {
         value + other
     }
 
+    public func sub(other: Int64): Int64 {
+        value - other
+    }
 }
 
-struct S2 <: Subtractable & Addable {
+struct S2 <: Addable & Subtractable  {
     var value = 0
-    public const init() {}
 
     public func add(other: Int64): Int64 {
         value + other
@@ -173,5 +175,17 @@ public struct MyInt4 <: Addable & Subtractable {
 
 }
 
+public func assert<T>(expected:T, actual:T) : Unit where T <: Equatable<T> & ToString{
+    if(expected == actual){
+    }else{
+        throw Exception("${expected} != ${actual}")
+    }
+}
 
+public func check(){
+    var s2 = MyInt1()
 
+    assert(s2.add(1), 1)
+    assert(s2.sub(0), 0)
+    return 0
+}

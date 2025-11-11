@@ -34,6 +34,7 @@
 // 删除不带public修饰符的静态成员变量
 package test_stable_abi
 
+
 public struct Rectangle {
     let width = 10
 
@@ -50,4 +51,8 @@ public struct Rectangle1 {
     public func getWidth(): Int64{
         return width
     }
+}
+
+public func f(){
+    return 0
 }

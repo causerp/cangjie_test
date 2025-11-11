@@ -42,13 +42,13 @@ public struct S1 {
 }
 
 // struct类型S2虽然无public修饰，模块外不可见，但也会参与下游模块的编译过程。原因在于S2用于定义S3中的x成员变量类型，产生依赖
-@Deprecated["this struct is deprecated", strict: false]
+@Deprecated["this struct is deprecated", strict: true]
 struct S2 {
     let x: Int64 = 0
 }
 
 
-@Deprecated["this struct is deprecated", strict: false]
+@Deprecated["this struct is deprecated", strict: true]
 public struct S3 {
     let x: S2 = S2()
 
@@ -110,6 +110,7 @@ struct S10 {
 public struct S11 {
     let x: S10 = S10()
 
+    @Frozen
     public func getX(): Int64 {
         return x.x
     }
@@ -124,15 +125,16 @@ public struct S12 {
     }
 }
 
-@Deprecated["this struct is deprecated", strict: true]
+@Deprecated["this struct is deprecated", strict: false]
 struct S13 {
     let x: Int64 = 0
 }
 
-@Deprecated["this struct is deprecated", strict: true]
+@Deprecated["this struct is deprecated", strict: false]
 public struct S14 {
     let x: S13 = S13()
 
+    @Frozen
     public func getX(): Int64 {
         return x.x
     }
@@ -235,4 +237,8 @@ public struct S26 {
 @Deprecated["this struct is deprecated", strict: false]
 struct S27 {
     let x: Int64 = 0
+}
+
+public func f(){
+    return 0
 }

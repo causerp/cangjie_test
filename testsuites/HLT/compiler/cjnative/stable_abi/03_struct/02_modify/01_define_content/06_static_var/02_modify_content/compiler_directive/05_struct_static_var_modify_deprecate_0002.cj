@@ -108,3 +108,12 @@ public struct Rectangle5 {
         return a9
     }
 }
+
+public func f(){
+    var a = Rectangle5.a10
+    if(a == 202){
+        return 0
+    }else{
+        return 1
+    }
+}

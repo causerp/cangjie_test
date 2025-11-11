@@ -102,7 +102,7 @@ struct S9 {
     }
 }
 
-public struct S10 {
+struct S10 {
     let x: Int64 = 0
 
     public func getX(): Int64 {
@@ -116,4 +116,9 @@ public struct S11 {
     public func getX(): Int64 {
         return x
     }
+}
+
+public func f(){
+    var a = S4().getX() + S5().getX() + S7().getX() 
+    return a
 }

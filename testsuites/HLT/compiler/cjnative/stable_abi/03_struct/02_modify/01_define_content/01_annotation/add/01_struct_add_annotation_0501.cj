@@ -114,7 +114,6 @@ public struct S9 {
     }
 }
 
-
 @Version["1.1"]
 struct S10 {
     let x: Int64 = 0
@@ -145,3 +144,7 @@ public struct S13 {
 
 }
 
+public func f(){
+    var a = S10().x
+    return a
+}
