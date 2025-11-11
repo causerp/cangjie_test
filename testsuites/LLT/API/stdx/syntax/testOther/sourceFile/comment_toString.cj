@@ -27,3 +27,5 @@ func foo<T>(/** document comment1 */ a: T, /** document comment2 */ b!: Int64 = 
 
     return (0, a)
 } // line comment3
+
+@M1/* block comment1 */ [/* block comment2 */expr] /* block comment3 */var a = 1 // line comment1
