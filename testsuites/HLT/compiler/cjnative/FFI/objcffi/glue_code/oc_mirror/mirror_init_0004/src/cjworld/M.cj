@@ -12,7 +12,7 @@ import objc.lang.*
 
 @ObjCMirror
 public open class M {
-    public init(a: Int64)
+    public init(a: Int64, b:Int64)
 }
 
 
