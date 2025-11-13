@@ -6,24 +6,14 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
  
-// ASSERT: scan Compatible!
+import test_stable_abi.*
 
-package test_stable_abi
-
-
-public struct Rectangle {
-    let width = 10
-    static let a1 = 20
-
-    public func getWidth(): Int64{
-        return width
+main() {
+    if (f() != 30) {
+        return 1
     }
 
-    static func geta(): Int64 {
-        return 0
-    }
-}
-
-public func f(){
     return 0
 }
+
+
