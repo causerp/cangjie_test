@@ -6,6 +6,7 @@
 import stdx.syntax.*
 import std.fs.*
 import std.collection.ArrayList
+import std.reflect.*
 
 @Test
 class Test {
@@ -252,6 +253,73 @@ enum E1 {
         @Assert(enumDecl.superTyAnnotations.size, 0)
         @Assert(enumDecl.annotations.size, 1)
         @Assert(enumDecl.annotations[0].toString(), ##"@Deprecated["aaa"]"##)
+    }
+
+    @TestCase
+    func testDecl08() {
+        let enumDecl = (decls[8] as EnumDecl).getOrThrow()
+        let nodes = enumDecl.body.memberDecls
+        var constructor = (nodes[0] as EnumConstructor).getOrThrow()
+        @Expect(constructor.name, "EnumA")
+        @Expect(constructor.paramTyAnnotations.size, 0)
+        @Expect(constructor.toString(), """
+@Deprecated["EnumA"]
+    EnumA""")
+
+        var decl = (nodes[1] as MacroExpandDecl).getOrThrow()
+        @Expect(decl.calleeMacro.toString(), "EnumField")
+        @Expect(decl.macroAttrs.toString(),  ##""EnumB""##)
+        match (decl.macroInputs) {
+            case WithoutParens(v) =>
+                @Expect(v is EnumConstructor)
+                @Expect(v.toString(), "EnumB")
+            case _ => @FailExpect("kind wrong")
+        }
+        @Expect(decl.toString(), """
+@EnumField["EnumB"]
+    EnumB""")
+        @Expect(decl.toTokens().toString(), """
+@EnumField["EnumB"]
+EnumB""")
+        var pos = decl.getAtPos()
+        @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([45, 7, 45, 8]).toArray())
+        pos = decl.getLSquarePos().getOrThrow()
+        @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([45, 17, 45, 18]).toArray())
+        pos = decl.getRSquarePos().getOrThrow()
+        @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([45, 25, 45, 26]).toArray())
+        @Expect(decl.getLParenPos().isNone())
+        @Expect(decl.getRParenPos().isNone())
+        
+        pos = decl.nodePos
+        @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([45, 7, 46, 10]).toArray())
+    let info: TypeInfo = TypeInfo.of(nodes[4])
+    println(nodes[4])
+    println(info)
+
+        constructor = (nodes[4] as EnumConstructor).getOrThrow()
+        @Expect(constructor.name, "EnumE")
+        @Expect(constructor.paramTyAnnotations.size, 2)
+        @Expect(constructor.toString(), """
+@!EnumField[v: "EnumE"]
+    EnumE(a, b)""")
+
+        decl = (nodes[5] as MacroExpandDecl).getOrThrow()
+        @Expect(decl.calleeMacro.toString(), "EnumField")
+        @Expect(decl.macroAttrs.toString(),  ##"v: "EnumF""##)
+        match (decl.macroInputs) {
+            case WithoutParens(v) =>
+                @Expect(v is EnumConstructor)
+                @Expect(v.toString(), """
+@!EnumField[v: "EnumF"]
+    EnumF(a, b)""")
+            case _ => @FailExpect("kind wrong")
+        }
+        @Expect(decl.toString(), """
+@!EnumField
+    @EnumField[v: "EnumF"]
+    @!EnumField[v: "EnumF"]
+    EnumF(a, b)""")
+
     }
 
     @TestCase
