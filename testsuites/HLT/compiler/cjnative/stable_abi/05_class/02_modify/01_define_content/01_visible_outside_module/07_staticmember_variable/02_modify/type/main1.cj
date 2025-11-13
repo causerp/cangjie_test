@@ -8,19 +8,11 @@
 
 import test_stable_abi.*
 
-main() {
-    let f1 = Father1()
-    let f2 = Father2()
-    let c1 = Son1()
-    let c2 = Son2()
-
-    if (c1.f1() == 100 && c2.f2() == 1001) {
-    } else {
-        return 1
-    }
-    if (c1 is Father1) {
-    } else {
-        return 1
-    }
+main(): Unit {
+    let c = CC()
+    assert((CC.a1 as Int64).getOrThrow(), 1)
+    assert((CC.a2 as Int64).getOrThrow(), 2)
+    assert((CC.a3 as Int64).getOrThrow(), 3)
+    assert(CC.c1 is Father, true)
     checker()
 }
