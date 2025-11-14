@@ -33,6 +33,7 @@
 // test struct: delete @Deprecated
 package test_stable_abi
 
+
 public struct Rectangle {
     static let width = 10
     static let a1 = 20
@@ -102,5 +103,20 @@ public struct Rectangle5 {
     @Deprecated["this value is deprecated", strict: true]
     public const func getWidth(): Int64{
         return a9
+    }
+}
+
+public func f(){
+    var a = Rectangle.a2
+    var b = Rectangle.a1
+    var c = Rectangle2.a7
+    var d = Rectangle.a3
+    var e = Rectangle.a4
+    var f = Rectangle4.a9
+    var g = Rectangle.a5
+    if(a == 20 && b == 20 && c == 20 && d == 20 && e == 20 && f ==20 && g == 20){
+        return 0
+    }else{
+        return 1
     }
 }

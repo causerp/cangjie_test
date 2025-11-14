@@ -93,3 +93,13 @@ public struct Rectangle3 {
         return a9
     }
 }
+
+public func f(){
+    var a = Rectangle.a1
+    var b = Rectangle1.a7
+    if(a == 20 && b == 20){
+    return 0
+    }else{
+        return 1
+    }
+}

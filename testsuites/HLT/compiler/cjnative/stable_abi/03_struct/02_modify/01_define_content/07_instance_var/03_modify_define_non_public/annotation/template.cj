@@ -10,20 +10,22 @@
 
 package test_stable_abi
 
-
-public struct Rectangle {
-    let width = 10
-    static let a1 = 20
-
-    public func getWidth(): Int64{
-        return width
-    }
-
-    static func geta(): Int64 {
-        return 0
+@Annotation
+public class Version {
+    let code: String
+    const init(code: String) {
+        this.code = code
     }
 }
 
+public struct Rectangle {
+    let a1 = 10
+    @Version["1.1"]
+    let a2 = 20
+
+}
+
 public func f(){
-    return 0
+    var a = Rectangle().a1 + Rectangle().a2
+    return a
 }

@@ -43,16 +43,12 @@ public struct S1 {
 
 struct S2 {
     let x: Int64 = 0
-}
-
-
-public struct S3 {
-    let x: S2 = S2()
 
     public func getX(): Int64 {
-        return x.x
+        return x
     }
 }
+
 
 internal struct S4 {
     let x: Int64 = 0
@@ -69,7 +65,6 @@ protected struct S5 {
         return x
     }
 }
-
 
 struct S6 {
     let x: Int64 = 0
@@ -95,8 +90,7 @@ public struct S8 {
     }
 }
 
-
-private struct S9 {
+struct S9 {
     let x: Int64 = 0
 
     public func getX(): Int64 {
@@ -105,18 +99,7 @@ private struct S9 {
 }
 
 
-protected struct S10 {
-    let x: Int64 = 0
-
-    public func getX(): Int64 {
-        return x
-    }
-}
-
-public struct S11 {
-    let x: Int64 = 0
-
-    public func getX(): Int64 {
-        return x
-    }
+public func f(){
+    var a = S2().getX() + S4().getX() + S5().getX() + S7().getX() + S6().getX() + S9().getX()
+    return a
 }

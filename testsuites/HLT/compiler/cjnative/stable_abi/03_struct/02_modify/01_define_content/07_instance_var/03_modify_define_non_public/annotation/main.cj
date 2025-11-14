@@ -9,7 +9,7 @@
 import test_stable_abi.*
 
 main() {
-    if (S1().getX() != 0 || f() != 0 ) {
+    if (f() != 30) {
         return 1
     }
 
