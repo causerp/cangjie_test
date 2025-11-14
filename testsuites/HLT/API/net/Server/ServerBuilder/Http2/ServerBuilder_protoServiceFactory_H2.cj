@@ -12,9 +12,9 @@
 // RUN-EXEC-PIPE-0: %run_stdx %output %run_utest_opt %run_args 2>&1 | compare %f
 
 import stdx.net.http.*
-import stdx.crypto.kit.*
+////import stdx.crypto.kit.*
 import stdx.crypto.keys.*
-import stdx.net.tls.common.*
+//import stdx.net.tls.common.*
 import std.unittest.*
 import std.unittest.testmacro.*
 import std.sync.*

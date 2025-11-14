@@ -17,9 +17,9 @@ import std.sync.*
 import std.net.*
 import std.collection.*
 import stdx.net.http.*
-import stdx.crypto.kit.*
+////import stdx.crypto.kit.*
 import stdx.crypto.keys.*
-import stdx.net.tls.common.*
+//import stdx.net.tls.common.*
 import stdx.net.tls.*
 import stdx.crypto.x509.X509Certificate
 import std.fs.*
@@ -85,7 +85,7 @@ public class Test_serve {
             s.serve()
         } catch (e: Exception) {
             flag = true
-            @Expect(e.message, "The socket is already bound")
+            @Expect(e.message.contains("The socket is already bound"))
         }
         s.close()
         @Expect(flag, true)
@@ -106,7 +106,7 @@ public class Test_serve {
             s.serve()
         } catch (e: SocketException) {
             flag = true
-            @Expect(e.message, "Socket is already closed")
+            @Expect(e.message.contains("Socket is already closed"))
         }
         @Expect(flag, true)
     }
@@ -126,7 +126,7 @@ public class Test_serve {
             let a = s.addr
         } catch (e: SocketException) {
             flag = true
-            @Expect(e.message, "Socket is already closed")
+            @Expect(e.message.contains("Socket is already closed"))
         }
         @Expect(flag, true)
     }

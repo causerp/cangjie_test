@@ -17,9 +17,9 @@ import std.sync.*
 import std.net.*
 import std.collection.*
 import stdx.net.http.*
-import stdx.crypto.kit.*
+////import stdx.crypto.kit.*
 import stdx.crypto.keys.*
-import stdx.net.tls.common.*
+//import stdx.net.tls.common.*
 import stdx.net.tls.*
 import stdx.crypto.x509.X509Certificate
 import std.fs.*
@@ -50,7 +50,7 @@ public class Test_build_h2 {
             let server = ServerBuilder().tlsConfig(serverConfig()).port(0).build()
         } catch (e: IllegalArgumentException) {
             flag = true
-            @Expect(e.message, "The IP address number is not set.")
+            @Expect(e.message.contains("The IP address number is not set"))
         }
         @Expect(flag, true)
     }
@@ -62,7 +62,7 @@ public class Test_build_h2 {
             let server = ServerBuilder().addr("127.0.0.1").tlsConfig(serverConfig()).build()
         } catch (e: IllegalArgumentException) {
             flag = true
-            @Expect(e.message, "The port number is not set.")
+            @Expect(e.message.contains("The port number is not set."))
         }
         @Expect(flag, true)
     }

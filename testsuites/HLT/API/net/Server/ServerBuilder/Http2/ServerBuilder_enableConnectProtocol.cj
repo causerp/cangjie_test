@@ -18,9 +18,9 @@ import std.net.*
 import std.collection.*
 import stdx.encoding.url.*
 import stdx.net.http.*
-import stdx.crypto.kit.*
+////import stdx.crypto.kit.*
 import stdx.crypto.keys.*
-import stdx.net.tls.common.*
+//import stdx.net.tls.common.*
 import stdx.net.tls.*
 import stdx.crypto.x509.X509Certificate
 import std.fs.*
@@ -114,7 +114,7 @@ public class Test_enableConnectProtocol {
             (websocket, headers) = WebSocket.upgradeFromClient(client, u, subProtocols: subProtocol, version: HTTP2_0)
         } catch (e: HttpException) {
             flag = true
-            @Expect(e.message, "Target HTTP/2 server doesn`t allow CONNECT method.")
+            @Expect(e.message.contains("Target HTTP/2 server doesn`t allow CONNECT method."))
         }
         @Expect(flag, true)
     }

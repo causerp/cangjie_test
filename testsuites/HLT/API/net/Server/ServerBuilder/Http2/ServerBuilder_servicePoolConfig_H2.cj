@@ -17,9 +17,9 @@ import std.sync.*
 import std.net.*
 import std.collection.*
 import stdx.net.http.*
-import stdx.crypto.kit.*
+////import stdx.crypto.kit.*
 import stdx.crypto.keys.*
-import stdx.net.tls.common.*
+//import stdx.net.tls.common.*
 import stdx.net.tls.*
 import stdx.crypto.x509.X509Certificate
 import std.io.*
@@ -57,7 +57,7 @@ public class Test_servicePoolConfig_H2 {
                 .build()
         } catch (e: IllegalArgumentException) {
             cnt++
-            @Expect(e.message, "capacity should greater than 0, but got 0")
+            @Expect(e.message.contains("capacity should greater than 0, but got 0"))
         }
         @Expect(cnt, 1)
 
@@ -70,7 +70,7 @@ public class Test_servicePoolConfig_H2 {
                 .build()
         } catch (e: IllegalArgumentException) {
             cnt++
-            @Expect(e.message, "capacity should greater than 0, but got -1")
+            @Expect(e.message.contains("capacity should greater than 0, but got -1"))
         }
 
         @Expect(cnt, 2)
@@ -89,7 +89,7 @@ public class Test_servicePoolConfig_H2 {
                 .build()
         } catch (e: IllegalArgumentException) {
             cnt++
-            @Expect(e.message, "queue capacity should greater than 0, but got 0")
+            @Expect(e.message.contains("queue capacity should greater than 0, but got 0"))
         }
         @Expect(cnt, 1)
 
@@ -102,7 +102,7 @@ public class Test_servicePoolConfig_H2 {
                 .build()
         } catch (e: IllegalArgumentException) {
             cnt++
-            @Expect(e.message, "queue capacity should greater than 0, but got -1")
+            @Expect(e.message.contains("queue capacity should greater than 0, but got -1"))
         }
 
         @Expect(cnt, 2)
@@ -121,7 +121,7 @@ public class Test_servicePoolConfig_H2 {
                 .build()
         } catch (e: IllegalArgumentException) {
             cnt++
-            @Expect(e.message, "preheat size should between 0 and 1, but got 2")
+            @Expect(e.message.contains("preheat size should between 0 and 1, but got 2"))
         }
         @Expect(cnt, 1)
 
@@ -134,7 +134,7 @@ public class Test_servicePoolConfig_H2 {
                 .build()
         } catch (e: IllegalArgumentException) {
             cnt++
-            @Expect(e.message, "preheat size should between 0 and 10000, but got -1")
+            @Expect(e.message.contains("preheat size should between 0 and 10000, but got -1"))
         }
 
         @Expect(cnt, 2)

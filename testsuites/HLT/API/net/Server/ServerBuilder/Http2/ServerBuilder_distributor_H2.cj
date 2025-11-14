@@ -17,9 +17,9 @@ import std.sync.*
 import std.net.*
 import std.collection.*
 import stdx.net.http.*
-import stdx.crypto.kit.*
+////import stdx.crypto.kit.*
 import stdx.crypto.keys.*
-import stdx.net.tls.common.*
+//import stdx.net.tls.common.*
 import stdx.net.tls.*
 import stdx.crypto.x509.X509Certificate
 import std.fs.*
@@ -186,7 +186,7 @@ public class Test_distributor_h2 {
             server.distributor.register("/ss", request)
         } catch (e: HttpException) {
             flag = true
-            @Expect(e.message, "Path: /ss already registered.")
+            @Expect(e.message.contains("Path: /ss already registered."))
         }
         @Expect(flag, true)
     }

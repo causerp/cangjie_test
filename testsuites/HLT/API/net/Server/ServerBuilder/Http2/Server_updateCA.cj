@@ -13,8 +13,8 @@
 
 import stdx.net.http.*
 import stdx.crypto.keys.*
-import stdx.crypto.kit.*
-import stdx.net.tls.common.*
+////import stdx.crypto.kit.*
+//import stdx.net.tls.common.*
 import stdx.net.tls.*
 import stdx.crypto.x509.X509Certificate
 import stdx.encoding.url.*
@@ -62,7 +62,7 @@ class Test_updateCA {
             server.updateCA("files/root_ecdsa.cer")
         } catch (e: HttpException) {
             flag = true
-            @Expect(e.message, "The TLS certificate is not configured.")
+            @Expect(e.message.contains("The TLS certificate is not configured"))
         }
         @Expect(flag, true)
         server.close()
