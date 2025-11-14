@@ -315,7 +315,7 @@ extend A {}"#)
     }
 
     @TestCase
-    func testCommentInit() {
+    func testCommentInit01() {
         let returnExpr = ((decls[10] as FuncDecl).getOrThrow().body.getOrThrow().nodes[0] as ReturnExpr).getOrThrow()
         let binaryExpr = (returnExpr.retVal.getOrThrow() as BinaryExpr).getOrThrow()
         let rhs = binaryExpr.rhs
@@ -325,6 +325,14 @@ extend A {}"#)
         @Expect(comment.content, "/* comment belong to 5 */")
         var pos = comment.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 1, 1, 26]).toArray())
+    }
+
+    @TestCase
+    func testCommentInit02() {
+        let comment = Comment(##"// comment"##)
+        @Expect(comment.content, "// comment")
+        @AssertThrows[Exception](Comment(##"// comment
+        "##))
     }
 
     @TestCase

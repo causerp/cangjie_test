@@ -358,6 +358,13 @@ private struct MyStruct<A> {
     }
 
     @TestCase
+    func testAnnotationIdentifier() {
+        let annotations = decls[2].annotations
+        @Expect(annotations.size, 2)
+        @AssertThrows[Exception](Annotation(annotations[0].arguments, "*&(%)", annotations[0].opKind))
+    }
+
+    @TestCase
     func testFileToString() {
         let node = parseFile("annotation.cj")
         let input = String.fromUtf8(File.readFrom("annotation.cj"))
