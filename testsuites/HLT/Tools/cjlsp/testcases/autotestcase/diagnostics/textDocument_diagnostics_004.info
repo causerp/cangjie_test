@@ -18,5 +18,5 @@ Req#
 {"jsonrpc": "2.0", "method": "exit", "params": {}}
 
 Rev#
-{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"category":85,"code":85,"message":"global/static variable 'testvar4' is used before initialization during initializing 'testvar4'","range":{"end":{"character":13,"line":2},"start":{"character":12,"line":2}},"severity":1,"source":"Cangjie"},{"category":689,"code":689,"message":"variable 'testvar4' is used before being defined","range":{"end":{"character":20,"line":2},"start":{"character":12,"line":2}},"severity":1,"source":"Cangjie"}],"uri":"diagnosticsTest/src/var_error/diag_002.cj"}}
+{"jsonrpc":"2.0","method":"textDocument/publishDiagnostics","params":{"diagnostics":[{"category":72,"code":72,"message":"global/static variable 'testvar4' is used before initialization during initializing 'y'","range":{"end":{"character":13,"line":2},"start":{"character":12,"line":2}},"severity":1,"source":"Cangjie"},{"category":659,"code":659,"message":"variable 'testvar4' is used before being defined","range":{"end":{"character":20,"line":2},"start":{"character":12,"line":2}},"severity":1,"source":"Cangjie"}],"uri":"diagnosticsTest/src/var_error/diag_002.cj"}}
 
