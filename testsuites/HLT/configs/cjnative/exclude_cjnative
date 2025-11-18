@@ -11,10 +11,12 @@ API/std/os/env/test_getArgs/test_getArgs_005/test_getArgs_005.cj
 API/std/unittest/mock/test_mock_extend_cjnative.cj
 
 # need fanzihan sync code
+API/net/Client/Client/Client_send.cj
 API/net/Client/ClientBuilder/Http1/ClientBuilder_autoRedirect.cj
 API/net/Client/ClientBuilder/Http1/ClientBuilder_poolSize.cj
 API/net/Client/ClientBuilder/Http2
 API/net/New_HTTP/HttpRequest/test_connection_close.cj
+API/net/New_HTTP/HttpRequest/test_method_01.cj
 API/net/Server/ServerBuilder/Http2
 API/net/TLS_new/tls_certificate_01.cj
 API/net/TLS_new/tls_certificate_02.cj
