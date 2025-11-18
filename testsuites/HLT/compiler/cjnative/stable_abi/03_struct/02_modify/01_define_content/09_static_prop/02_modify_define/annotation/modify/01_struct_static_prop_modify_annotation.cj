@@ -64,9 +64,12 @@ public struct S1{
     static var a = 20
 
     @Version["1.2"]
-    public static prop getb1: Int64 {
+    public static mut prop getb1: Int64 {
         get() {
             a
+        }
+        set(value) {
+            a = value
         }
     }
     @Version["2.2"]
@@ -80,15 +83,17 @@ public struct S1{
     }
 
     @Frozen
-    @Version["2.2"]
     public func getgeta(){
         return geta
     }
 
     @Version["3.2"]
-    static prop getb2: Int64 {
+    static mut prop getb2: Int64 {
         get() {
             a
+        }
+        set(value) {
+            a = value
         }
     }
 }
@@ -121,5 +126,13 @@ public struct S2{
         get() {
             a
         }
+    }
+}
+
+public func f(){
+    if(S1.geta == 20 && S1.getb2 == 20){
+        return 0
+    }else{
+        return 1
     }
 }

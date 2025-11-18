@@ -11,7 +11,7 @@
   @Scene: delete
   @Visibility: used in public @Frozen declare
   @Object: struct static prop
-  @Behavior: delete non public static properties
+  @Behavior: delete public static properties
   @Expect: api incompatible & abi incompatible
 */
 // LEVEL: 1
@@ -34,7 +34,6 @@
 // test struct: delete non public static properties
 // 删除带public修饰符的静态属性
 package test_stable_abi
-
 
 public struct Rectangle {
     let width = 10
@@ -60,11 +59,14 @@ public struct S1{
         get() {
             a
         }
-    }
-   
+    } 
 
     @Frozen
     public func getgeta(){
         return getb
     }
+}
+
+public func f(){
+    return 0
 }

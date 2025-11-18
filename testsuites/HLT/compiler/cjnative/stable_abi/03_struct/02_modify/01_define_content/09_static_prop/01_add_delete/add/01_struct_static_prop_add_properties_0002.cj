@@ -60,7 +60,6 @@ public struct S1{
             a
         }
     }
-    
     public static mut prop geta: Int64 {
         get() {
             a
@@ -82,5 +81,13 @@ public struct S1{
         set(value) {
             a = value
         }
+    }
+}
+
+public func f(){
+    if(S1.getc == 20){
+        return 0
+    }else{
+        return 1
     }
 }

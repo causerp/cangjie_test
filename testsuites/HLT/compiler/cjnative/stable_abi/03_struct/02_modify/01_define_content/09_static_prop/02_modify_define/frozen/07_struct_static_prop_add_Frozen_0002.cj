@@ -9,7 +9,7 @@
 /*
   @No: 3.2.1.9.2.7
   @Scene: add
-  @Visibility: non public
+  @Visibility: public
   @Object: struct static prop
   @Behavior: add @Frozen
   @Expect: api compatible & abi compatible
@@ -44,11 +44,9 @@ public struct Rectangle {
     @Frozen
     public static mut prop geta: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
@@ -56,11 +54,9 @@ public struct Rectangle {
     @Frozen
     static mut prop getb: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
@@ -69,9 +65,12 @@ public struct Rectangle {
 public struct S1{
     static var a = 20
     @Frozen
-    public static prop getb: Int64 {
+    public static mut prop getb: Int64 {
         get() {
             a
+        }
+        set(value) {
+            a = value
         }
     }
 
@@ -87,5 +86,13 @@ public struct S1{
     @Frozen
     public func getgeta(){
         return geta
+    }
+}
+
+public func f(){
+    if(Rectangle.getb == 20 && S1.geta == 20){
+        return 0
+    }else{
+        return 1
     }
 }

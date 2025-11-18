@@ -42,110 +42,90 @@ public struct Rectangle {
 
     public static mut prop geta1: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
     static mut prop geta2: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
     public static mut prop geta3: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
-    internal static mut prop geta4: Int64 {
+    private static mut prop geta4: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
-    protected static mut prop geta5: Int64 {
+    internal static mut prop geta5: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
     static mut prop geta6: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
-    private static mut prop geta7: Int64 {
+    protected static mut prop geta7: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
     public static mut prop geta8: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
-    private static mut prop geta9: Int64 {
+    static mut prop geta9: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
-    protected static mut prop geta10: Int64 {
+    static mut prop geta10: Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
@@ -203,7 +183,6 @@ public struct S1{
         getf
     }
 
-
     public static prop getc: Int64 {
         get() {
             c
@@ -220,4 +199,8 @@ public struct S1{
     public func f4(){
         getd
     }
+}
+
+public func check(){
+    return 0
 }

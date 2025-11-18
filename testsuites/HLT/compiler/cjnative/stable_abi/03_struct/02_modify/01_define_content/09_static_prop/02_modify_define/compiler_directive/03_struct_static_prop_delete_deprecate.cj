@@ -42,22 +42,18 @@ public struct Rectangle {
     }
     static mut prop geta1:Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
     public static mut prop geta2:Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
@@ -76,14 +72,15 @@ public struct Rectangle {
         return getb
     }
 
-
-    public static prop getc: Int64 {
+    public static mut prop getc: Int64 {
         get() {
             a
         }
+        set(value) {
+            a = value
+        }
     }
 
-    @Deprecated["this function is deprecated", strict: false]
     static mut prop getd: Int64 {
         get() {
             a
@@ -99,20 +96,24 @@ public struct Rectangle {
     }
 
     @Deprecated["this function is deprecated", strict: false]
-    public static prop gete: Int64 {
+    public static mut prop gete: Int64 {
         get() {
             a
         }
-    }
-
-    @Deprecated["this function is deprecated", strict: true]
-    public static prop geth: Int64 {
-        get() {
-            a
+        set(value) {
+            a = value
         }
     }
 
-    @Deprecated["this function is deprecated", strict: true]
+    public static mut prop geth: Int64 {
+        get() {
+            a
+        }
+        set(value) {
+            a = value
+        }
+    }
+
     static mut prop getf: Int64 {
         get() {
             a
@@ -123,8 +124,15 @@ public struct Rectangle {
     }
 
     @Frozen
-    @Deprecated["this function is deprecated", strict: true]
     public func getgetf(){
         return getf
+    }
+}
+
+public func f(){
+    if(Rectangle.getb == 10 && Rectangle.getd == 10 && Rectangle.geth == 10 && Rectangle.getf == 10){
+        return 0
+    }else{
+        return 1
     }
 }

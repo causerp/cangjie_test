@@ -78,3 +78,7 @@ public struct Rectangle {
     }
 }
 
+public func check(){
+    return 0
+}
+

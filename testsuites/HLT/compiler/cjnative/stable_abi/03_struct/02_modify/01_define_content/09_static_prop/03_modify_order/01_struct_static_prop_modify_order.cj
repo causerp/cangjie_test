@@ -34,9 +34,8 @@
 package test_stable_abi
 
 public struct S {
-
     static let width = 10
-    static var a = 0
+    static var a = 20
    
 
     public func getWidth(): Int64{
@@ -57,6 +56,11 @@ public struct S {
         get() { a }
         set(value) { a = value }
     }
+}
 
-   
+public func f(){
+    if(S.p3 == 20){
+        return 0
+    }
+    return 1
 }

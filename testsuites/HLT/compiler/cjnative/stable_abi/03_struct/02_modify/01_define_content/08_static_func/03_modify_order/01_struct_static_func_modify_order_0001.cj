@@ -43,13 +43,13 @@ public struct Rectangle {
         return width
     }
 
-    
-    static func getc(): Int64 {
-        return 0
+    static func gete(): Int64 {
+        return a1
     }
+    
 
     public static func geta(): Int64{
-        return 0
+        return a1
     }
 
     @Frozen
@@ -58,9 +58,15 @@ public struct Rectangle {
         return c
     }
 
-    static func gete(): Int64 {
-        return 0
+    static func getc(): Int64 {
+        return 30
     }
+}
 
-
+public func f(){
+    if(Rectangle.geta() == 20 && Rectangle.getc() == 30 && Rectangle.gete() == 20){
+        return 0
+    }else{
+        return 1
+    }
 }
