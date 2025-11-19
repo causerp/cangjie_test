@@ -39,6 +39,7 @@ public struct Rectangle {
     public func getWidth(): Int64{
         return width
     }
+
     func geta1() {
         return 0
     }
@@ -73,5 +74,9 @@ public struct Rectangle {
         let x = geta3()
         return x
     }
+}
+
+public func check(){
+    return 0
 }
 

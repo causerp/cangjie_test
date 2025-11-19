@@ -42,16 +42,16 @@ public struct S1 {
 
     @OverflowThrowing
     static public func geta1() {
-        return 0
+        return 1
     }
 
     static public func geta2() {
-        return 0
+        return 2
     }
 
     @OverflowWrapping
     static public func geta3() {
-        return 0
+        return 3
     }
 }
 
@@ -62,7 +62,6 @@ struct S2 {
 
 public struct S3 {
     let x: S2 = S2()
-
     
     public func getX(): Int64 {
         return x.x

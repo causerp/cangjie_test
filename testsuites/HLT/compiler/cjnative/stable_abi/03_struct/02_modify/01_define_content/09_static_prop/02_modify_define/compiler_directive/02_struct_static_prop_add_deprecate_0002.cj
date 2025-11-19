@@ -42,22 +42,18 @@ public struct Rectangle {
     }
     static mut prop geta1:Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
 
     public static mut prop geta2:Int64 {
         get() {
-            println("get")
             a
         }
         set(value) {
-            println("set")
             a = value
         }
     }
@@ -79,9 +75,12 @@ public struct Rectangle {
     }
 
     @Deprecated["this function is deprecated", strict: false]
-    public static prop getc: Int64 {
+    public static mut prop getc: Int64 {
         get() {
             a
+        }
+        set(value) {
+            a = value
         }
     }
 
@@ -101,16 +100,22 @@ public struct Rectangle {
     }
 
     @Deprecated["this function is deprecated", strict: false]
-    public static prop gete: Int64 {
+    public static mut prop gete: Int64 {
         get() {
             a
+        }
+        set(value) {
+            a = value
         }
     }
 
      @Deprecated["this function is deprecated", strict: true]
-    public static prop geth: Int64 {
+    public static mut prop geth: Int64 {
         get() {
             a
+        }
+        set(value) {
+            a = value
         }
     }
 
@@ -129,4 +134,8 @@ public struct Rectangle {
     public func getgetf(){
         return getf
     }
+}
+
+public func f(){
+    return 0
 }

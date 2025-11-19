@@ -61,13 +61,12 @@ public struct Rectangle {
         return c
     }
 
-
     static func gete(): Int64 {
         return 0
     }
 
      @Frozen
-    static func getf() {
+    public static func getf() {
         let c = gete()
         return c
     }
@@ -75,9 +74,16 @@ public struct Rectangle {
     static func getg() {
         return 0
     }
-    
  
     public static func geth() {
         return 0
+    }
+}
+
+public func f(){
+    if(Rectangle.getg() == 0 && Rectangle.gete() == 0 && Rectangle.geta() == 0 && Rectangle.getc() == 0){
+        return 0
+    }else{
+        return 1
     }
 }

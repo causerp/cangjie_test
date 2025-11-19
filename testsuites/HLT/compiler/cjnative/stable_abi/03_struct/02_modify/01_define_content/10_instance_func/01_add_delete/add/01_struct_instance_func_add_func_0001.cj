@@ -52,3 +52,10 @@ public struct Rectangle {
     }
 }
 
+public func f(){
+    if(Rectangle().getb() == 0){
+        return 0
+    }
+    return 1
+}
+

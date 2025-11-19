@@ -217,3 +217,7 @@ struct S5 {
         return a4
     }
 }
+
+public func check(){
+    return 0
+}

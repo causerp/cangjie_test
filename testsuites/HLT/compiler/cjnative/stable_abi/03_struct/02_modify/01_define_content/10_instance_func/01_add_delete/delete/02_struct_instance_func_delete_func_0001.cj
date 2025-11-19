@@ -38,7 +38,11 @@ public struct Rectangle {
     static let a1 = 20
 
     func geta(): Int64 {
-        return 0
+        return a1
     }
+}
+
+public func f(){
+        return 0
 }
 

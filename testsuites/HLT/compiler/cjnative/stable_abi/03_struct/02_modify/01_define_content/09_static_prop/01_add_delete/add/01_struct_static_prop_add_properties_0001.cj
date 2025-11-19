@@ -83,3 +83,11 @@ public struct S1{
         return geta
     }
 }
+
+public func f(){
+    if(Rectangle.getb == 20){
+        return 0
+    }else{
+        return 1
+    }
+}

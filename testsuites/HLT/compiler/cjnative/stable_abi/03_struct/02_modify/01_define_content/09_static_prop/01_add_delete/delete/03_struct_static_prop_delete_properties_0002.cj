@@ -65,3 +65,7 @@ public struct S1{
         return geta
     }
 }
+
+public func f(){
+    return 0
+}
