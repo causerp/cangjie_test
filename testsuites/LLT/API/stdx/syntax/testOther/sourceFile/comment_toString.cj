@@ -29,3 +29,12 @@ func foo<T>(/** document comment1 */ a: T, /** document comment2 */ b!: Int64 = 
 } // line comment3
 
 @M1/* block comment1 */ [/* block comment2 */expr] /* block comment3 */var a = 1 // line comment1
+
+func a() {
+    return match (litKind) {
+        case TokenKind.BOOL_LITERAL => FieldType()
+        case TokenKind.RUNE_LITERAL => FieldType()
+        case _ => ()
+        // TODO
+    }
+}
