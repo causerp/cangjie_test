@@ -91,6 +91,18 @@ class Test {
     }
 
     @TestCase
+    func testGenericConstraintsInit02() {
+        let decl = (decls[2] as FuncDecl).getOrThrow()
+        let gcs = decl.genericConstraints.getOrThrow()
+        let genericConstraints = GenericConstraints(gcs.constraints)
+        @Expect(genericConstraints.constraints.size, 2)
+        @Expect(genericConstraints.toString(), "where T1 <:ToString & Equatable<Int32>, T2 <: ToString")
+
+        let gc1 = genericConstraints.constraints[0]
+        @AssertThrows[Exception](GenericConstraint(gc1.typeArgument, []))
+    }
+
+    @TestCase
     func testFileToString() {
         let node = parseFile("generic_constraints.cj")
         let input = String.fromUtf8(File.readFrom("generic_constraints.cj"))
