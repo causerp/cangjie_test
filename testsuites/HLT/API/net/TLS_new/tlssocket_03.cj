@@ -105,8 +105,7 @@ class Test_tlssocketconf_03 {
             tlsServer.handshake()
             @Expect(tlsServer.serverCertificate == X509Certificate.decodeFromPem(pemser))
             let pem1 = String.fromUtf8(readToEnd(File("./data/end_rsa.cer", Read)))
-            @Expect((tlsServer.peerCertificate.getOrThrow[0].encodeToDer().body.toString(),
-	        X509Certificate.decodeFromPem(pem1)[0].encodeToDer().body.toString())
+            @Expect(tlsServer.peerCertificate.getOrThrow()[0].encodeToDer().body.toString(), X509Certificate.decodeFromPem(pem1)[0].encodeToDer().body.toString())
         }
         spawn {
             startServerHandshake()
@@ -119,14 +118,14 @@ class Test_tlssocketconf_03 {
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem1))
         let pem = String.fromUtf8(readToEnd(File("./data/end_rsa.cer", Read)))
         let keyPem = String.fromUtf8(readToEnd(File("./data/end_rsa_private_key.pem", Read)))
-        clientConf.certificate = (X509Certificate.decodeFromPem(pem), PrivateKey.decodeFromPem(keyPem))
+        clientConf.clientCertificate = (X509Certificate.decodeFromPem(pem), PrivateKey.decodeFromPem(keyPem))
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
         let result = tlsClient.handshake()
         let pemser1 = String.fromUtf8(readToEnd(File("./data/end_ecdsa.cer", Read)))
         @Expect(tlsClient.clientCertificate.getOrThrow() == X509Certificate.decodeFromPem(pem))
-        @Expect((tlsClient.peerCertificate.getOrThrow()[0].encodeToDer().body.toString(), X509Certificate.decodeFromPem(pemser1)[0].encodeToDer().body.toString())
+        @Expect(tlsClient.peerCertificate.getOrThrow()[0].encodeToDer().body.toString(), X509Certificate.decodeFromPem(pemser1)[0].encodeToDer().body.toString())
         sleep(Duration.millisecond * 1000)
         tlsClient.close()
         tcpClient.close()

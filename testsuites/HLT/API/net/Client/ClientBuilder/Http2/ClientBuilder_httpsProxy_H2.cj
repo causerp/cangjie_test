@@ -32,6 +32,7 @@ import std.convert.*
 
 var client: Client = unsafe { zeroValue<Client>() }
 var server: Server = unsafe { zeroValue<Server>() }
+var proxy: Server = unsafe { zeroValue<Server>() }
 
 public func serverConfig(): TlsServerConfig {
     let pem0 = String.fromUtf8(readToEnd(File("./files/end_rsa.cer", Read)))
@@ -70,8 +71,10 @@ func startProxy(): Unit {
         {
             ctx =>
             let buf = Array<UInt8>(1024, repeat: 0)
-            let len = ctx.request.body.read(buf)
-            let req = HttpRequestBuilder().url(ctx.request.url).method(ctx.request.method).version(HTTP2_0).setHeaders(ctx.request.headers).body(buf[..len]).build()
+            var len = ctx.request.body.read(buf)
+            let req = 
+                HttpRequestBuilder().url(ctx.request.url).method(ctx.request.method).version(HTTP2_0).setHeaders(
+                ctx.request.headers).body(buf[..len]).build()
             let c = ClientBuilder().tlsConfig(clientConfig()).build()
             let resp = c.send(req)
             len = resp.body.read(buf)
@@ -139,15 +142,14 @@ public class Test_httpsProxy {
             let res = client.send(request)
         } catch (e: Exception) {
             flag = true
-            @Expect(e.message.contains("Failed to resolve address abc.")
+            @Expect(e.message.contains("Failed to resolve address abc"))
         }
         @Expect(flag, true)
     }
 
     @TestCase
     func testProxy(): Unit {
-        let port1 = (proxyServerSocket.localAddress as IPSocketAddress)?.port ?? 0
-        client = ClientBuilder().httpsProxy("http://127.0.0.1:${port1}").tlsConfig(clientConfig()).build()
+        client = ClientBuilder().httpsProxy("http://127.0.0.1:${proxy.port}").tlsConfig(clientConfig()).build()
         let req =
             HttpRequestBuilder().url("https://127.0.0.1:${server.port}/proxy").version(HTTP2_0).body("hello proxys").
         build()
