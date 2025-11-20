@@ -18,6 +18,6 @@ public struct S {
 
 @ObjCMirror
 public open class M {
-    public var s: S
+    public var s: ObjCPointer<S>
     public init()
 }

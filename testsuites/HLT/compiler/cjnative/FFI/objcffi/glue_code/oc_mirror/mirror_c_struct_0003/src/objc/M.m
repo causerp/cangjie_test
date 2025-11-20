@@ -12,8 +12,9 @@
 
 - (id)init {
     if (self = [super init]) {
-        s.x = 1;
-        s.y = 1;
+        self->s = calloc(1, sizeof(S));
+        self->s->x = 1;
+        self->s->y = 1;
     }
     return self;
 }

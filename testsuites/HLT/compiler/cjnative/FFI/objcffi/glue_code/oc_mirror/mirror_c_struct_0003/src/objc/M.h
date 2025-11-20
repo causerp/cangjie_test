@@ -16,7 +16,7 @@ typedef struct {
 @interface M : NSObject
 {
     @public
-    S s;
+    S* s;
 }
 
 - (id)init;
