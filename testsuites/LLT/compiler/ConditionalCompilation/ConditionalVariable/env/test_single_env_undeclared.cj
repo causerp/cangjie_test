@@ -5,15 +5,11 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // ERRCHECK:%compiler %cmp_opt %n.cj -o %output
-// ASSERT: scan builtin condition 'os' do not support 'Linuxs', supported listed: 'Windows Linux macOS iOS'
-// ASSERT: scan builtin condition 'backend' do not support 'cjnativegc', supported listed: 'cjnative'
+// (not OHOS)ASSERT: scan undeclared identifier 'mc'
 
 package b
 
-@When[os == "Linuxs"]
-class mc {}
-
-@When[backend == "cjnativegc"]
+@When[env == "ohos"]
 class mc {}
 
 main(): Int64 {
