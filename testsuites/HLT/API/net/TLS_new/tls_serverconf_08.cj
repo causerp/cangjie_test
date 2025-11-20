@@ -46,7 +46,6 @@ class Test_tlsserverconf_08 {
         let pemser = String.fromUtf8(readToEnd(File("./data/end_ecdsa.cer", Read)))
         let keypemser = String.fromUtf8(readToEnd(File("./data/end_ecdsa_private_key.pem", Read)))
         var serverConf = TlsServerConfig(X509Certificate.decodeFromPem(pemser), PrivateKey.decodeFromPem(keypemser))
-        serverConf.supportedVersions = [V1_2, V1_3]
         var tcpServer = TcpServerSocket(bindAt: 0)
         tcpServer.bind()
         port.store((tcpServer.localAddress as IPSocketAddress)?.port ?? 0)
@@ -72,8 +71,7 @@ class Test_tlsserverconf_08 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem))
-        clientConf.supportedVersions = [V1_2, V1_3]
-        var lastSession: ?TlsClientSession = None
+        var lastSession: ?TlsSession = None
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
@@ -81,7 +79,6 @@ class Test_tlsserverconf_08 {
         tlsClient.read(Array<Byte>(3, repeat: 0))
         let clientSession = (result.session.getOrThrow() as TlsClientSession).getOrThrow()
         @Expect(tlsClient.session.getOrThrow().toString().contains("TlsSession("))
-        lastSession = clientSession
         tlsClient.close()
         tcpClient.close()
         tlsser.getOrThrow().close()
@@ -100,7 +97,7 @@ class Test_tlsserverconf_08 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem))
-        var lastSession: ?TlsClientSession = None
+        var lastSession: ?TlsSession = None
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
@@ -108,7 +105,6 @@ class Test_tlsserverconf_08 {
         tlsClient.read(Array<Byte>(3, repeat: 0))
         let clientSession = (result.session.getOrThrow() as TlsClientSession).getOrThrow()
         @Expect(tlsClient.session.getOrThrow().toString().contains("TlsSession("))
-        lastSession = clientSession
         sleep(Duration.millisecond * 100)
         tlsClient.close()
         tcpClient.close()
@@ -133,7 +129,7 @@ class Test_tlsserverconf_08 {
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
             tlsser = Option<TlsSocket>.Some(tlsServer)
             let result = tlsServer.handshake()
-            @Expect(tlsServer.session.None)
+            @Expect(tlsServer.session, None)
             tlsServer.close()
         }
         spawn {
@@ -145,13 +141,12 @@ class Test_tlsserverconf_08 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem))
-        var lastSession: ?TlsClientSession = None
+        var lastSession: ?TlsSession = None
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: lastSession, clientConfig: clientConf)
         let result = tlsClient.handshake()
         tlsClient.read(Array<Byte>(3, repeat: 0))
-        lastSession = (result.session.getOrThrow() as TlsClientSession).getOrThrow()
         @Expect(tlsClient.session.getOrThrow().toString().contains("TlsSession("))
         sleep(Duration.millisecond * 100)
         tlsClient.close()
@@ -177,7 +172,7 @@ class Test_tlsserverconf_08 {
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
             tlsser = Option<TlsSocket>.Some(tlsServer)
             let result = tlsServer.handshake()
-            @Expect(tlsServer.session.None)
+            @Expect(tlsServer.session, None)
             tlsServer.close()
         }
         spawn {
@@ -189,13 +184,12 @@ class Test_tlsserverconf_08 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem))
-        var lastSession: ?TlsClientSession = None
+        var lastSession: ?TlsSession = None
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: lastSession, clientConfig: clientConf)
         let result = tlsClient.handshake()
         tlsClient.read(Array<Byte>(3, repeat: 0))
-        lastSession = (result.session.getOrThrow() as TlsClientSession).getOrThrow()
         @Expect(tlsClient.session.getOrThrow().toString().contains("TlsSession("))
         sleep(Duration.millisecond * 100)
         tlsClient.close()
@@ -221,7 +215,7 @@ class Test_tlsserverconf_08 {
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
             tlsser = Option<TlsSocket>.Some(tlsServer)
             let result = tlsServer.handshake()
-            @Expect(tlsServer.session.None)
+            @Expect(tlsServer.session, None)
             tlsServer.close()
         }
         spawn {
@@ -233,14 +227,12 @@ class Test_tlsserverconf_08 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem))
-        var lastSession: ?TlsClientSession = None
+        var lastSession: ?TlsSession = None
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: lastSession, clientConfig: clientConf)
         let result = tlsClient.handshake()
         tlsClient.read(Array<Byte>(3, repeat: 0))
-        lastSession = (result.session.getOrThrow() as TlsClientSession).getOrThrow()
-        println("session is ${lastSession}")
          @Expect(tlsClient.session.getOrThrow().toString().contains("TlsSession("))
         sleep(Duration.millisecond * 100)
         tlsClient.close()
