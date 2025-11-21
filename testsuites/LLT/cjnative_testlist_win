@@ -79,3 +79,6 @@ API/stdx/fuzz/fuzzer_main.cj
 API/stdx/fuzz/fuzzer_main_dp.cj
 API/stdx/fuzz/test_u32.cj
 API/stdx/fuzz/test_u64.cj
+# 930: dev merge main
+API\stdx\crypto\x509\x509_test.cj
+API\stdx\logger\logger_test.cj
