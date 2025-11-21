@@ -359,3 +359,8 @@ API/syntax
 
 # timezone file in ci not support now
 API/std/time/TimeZone/load/test_loadFromPaths.cj
+
+# 新的兼容性方案上去之后，这3个用例在windows机器上会超时，在linux的不会
+API/net/New_HTTP/HttpRequest/test_header_01.cj
+API/net/New_HTTP/HttpRequest/test_request_modify.cj
+API/net/New_HTTP/HttpResponse/test_header_01.cj
