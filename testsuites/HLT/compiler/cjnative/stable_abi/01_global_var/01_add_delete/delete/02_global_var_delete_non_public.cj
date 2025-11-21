@@ -33,3 +33,7 @@ package test_stable_abi
 
 // test global var: delete global var
 public var global_var_02: Int64 = 0
+
+public func f(){
+    return 0
+}

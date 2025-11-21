@@ -37,3 +37,7 @@ public struct S {
         a = 30
     }
 }
+
+public func f(){
+    return S.a - 30
+}

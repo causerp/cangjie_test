@@ -35,3 +35,7 @@ public struct S {
     public var a = 1
     public init(a1!: Int64 = 0) { a = a1 }
 }
+
+public func f(){
+        return 0
+}

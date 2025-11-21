@@ -45,7 +45,7 @@ public struct S {
 
     @Version["2.1"]
     public S(b: Int64, let height: Int64) {
-        a = b
+        a = b + height
     }
 
     public func getWidth(): Int64 {

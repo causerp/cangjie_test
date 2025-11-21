@@ -124,3 +124,7 @@ struct S5{
     protected let c:A = B()
     private let d:A = B()
 }
+
+public func check(){
+    return 0
+}

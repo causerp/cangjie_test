@@ -35,5 +35,14 @@ public struct S {
     public var a = 1
     public init(a1!: Int64 = 0) { a = a1 }
     public init(a1: Int64, a2: Int64) { a = a1 + a2 }
-    init(a1: Int64, a2: UInt64) { a = a1 }
+    init(a1: Int64, a2: Int64, a3:Int64) { a = a1 + a2 + a3 }
+}
+
+public func f(){
+    var s1 = S(1, 2)
+    var s2 = S(3, 4, 5)
+    if(s1.a == 3 && s2.a == 12){
+      return 0
+    }
+    return 1
 }

@@ -25,11 +25,15 @@
 
 // ASSERT: scan Incompatible!
 // ASSERT: scan-1 [ABI] Changed member function's annotation of struct visible outside the module. Frozen deleted.
-// ASSERT: scan-not [API]
 // ASSERT: scan-1 [ABI]
+// ASSERT: scan-not [API]
 // ASSERT: scan-not [API/ABI]
 
-// test struct: delete @Frozen with member function
+// TEST API Compatibility
+// EXEC: %compiler %cmp_opt main.cj %cmp_stable_abi_dylib -o %output
+// RUN-EXEC: %run %run_opt %output %run_args
+
+// test struct: delete @Frozen
 package test_stable_abi
 
 public struct Rectangle {

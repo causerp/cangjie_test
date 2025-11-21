@@ -39,14 +39,13 @@ public class Version {
     }
 }
 
-
 public struct S {
     public var a = 1
     public let width = 10
 
     @Version["1.1"]
     public S(b: Int64, let height: Int64) {
-        a = b
+        a = b + height
     }
 
     public func getWidth(): Int64 {

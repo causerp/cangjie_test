@@ -37,5 +37,9 @@ package test_stable_abi
 
 public struct S {
     public var a = 1
-    public S(var a1!: Int64 = 2) { a1 }
+    public S(var a1!: Int64 = 2) { a = a1 }
+}
+
+public func f(){
+    return S(a1:2).a - 2
 }

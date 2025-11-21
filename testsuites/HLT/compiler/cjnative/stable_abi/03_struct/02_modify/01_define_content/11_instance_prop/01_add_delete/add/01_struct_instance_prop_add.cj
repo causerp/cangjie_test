@@ -38,3 +38,10 @@ public struct S {
         set(value) { a = value }
     }
 }
+
+public func f(){
+  if(S().p1 == 0){
+    return 0
+  }
+  return 1
+}
