@@ -61,6 +61,3 @@ compiler/CJMP/objc/sema/objc_impl_illegal_missing_foreigname_method.cj
 
 # unittest
 API/std/unittest/new_bench/bench_explicit_gc.cj
-
-# cjdb
-Tools/cjdb/datacom/lambda/lldb_lambda_05.info
