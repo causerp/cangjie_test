@@ -16,18 +16,23 @@
 // (CJNATIVE and not Windows) RUN-EXEC-PIPE: %cd %n/out && ./main 2>& 1 | compare %f
 
 /* SCAN-IN
-in oc main, creates instance impl in Cangjie!
+in oc main, creates override instance in Cangjie!
 A init()
+ObjC: AA.init()
+A sayHello()
 A hello()
+ObjC: AA.hello()
+ObjC: AA.foo(1)
 A foo(Int64): get 1
 A foo(Int64, Int64): get 2, 3
+ObjC: AA.foo(2)
+A foo(Int64): get 2
 in oc main, ObjC call cangjie instance func: r0: 1, r1: 5!
 A sfoo(Int64): get 1
 A sfoo(Int64, Int64): get 2, 3
-in oc main, ObjC call cangjie static func: r2: 1, r3: 5!A init(Int64)
-A fooRetA(Int64)
-A init()
-A fooParamA(A)
-A fooRetA(Int64)
-A fooParamB(B)
+A sfoo(Int64): get 2
+in oc main, ObjC call cangjie static func: r2: 1, r3: 5!
+ObjC: BB.init()
+Base hello()
+ObjC: BB.hello()
 */
