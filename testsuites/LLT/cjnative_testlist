@@ -47,7 +47,6 @@ Tools/cjdb/datacom/generic/generic_interface_base05.info
 Tools/cjdb/datacom/expr/interface2.info
 Tools/cjdb/datacom/generic/generic_interface_nonimplements_generic_multi2.info
 Tools/cjdb/datacom/expr/unittest.info
-Tools/cjdb/datacom/lambda/lldb_lambda_05.info
 
 # Re-enable after updating the strace
 API/std/socket/redesign/syscalls/tcp_bind_to_device.cj
