@@ -224,3 +224,5 @@ Tools/cjdb/datacom/within_watchpoint/lldb_within_watchpoint059.info
 Tools/cjdb/datacom/within_watchpoint/lldb_within_watchpoint060.info
 Tools/cjdb/datacom/within_watchpoint/lldb_within_watchpoint061.info
 Tools/cjdb/datacom/lambda/lldb_lambda_05.info
+
+API/std/io/file/File_create_03.cj

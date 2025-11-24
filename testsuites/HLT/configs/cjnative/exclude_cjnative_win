@@ -366,3 +366,5 @@ API/net/New_HTTP/HttpRequest/test_request_modify.cj
 API/net/New_HTTP/HttpResponse/test_header_01.cj
 
 Tools/cjdb/datacom/lambda/lldb_lambda_05.info
+
+API/std/io/file/File_create_03.cj
