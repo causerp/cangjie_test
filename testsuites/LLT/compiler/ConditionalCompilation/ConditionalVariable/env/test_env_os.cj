@@ -4,16 +4,18 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// ERRCHECK:%compiler %cmp_opt %n.cj -o %output
-// ASSERT: scan builtin condition 'os' do not support 'Linuxs', supported listed: 'Windows Linux macOS iOS'
-// ASSERT: scan builtin condition 'backend' do not support 'cjnativegc', supported listed: 'cjnative'
+// EXEC:%compiler %cmp_opt %n.cj -o %output
+// EXEC:%run %run_opt %output %run_args
 
 package b
 
-@When[os == "Linuxs"]
+@When[os == "Linux" && env == "gnu"]
 class mc {}
 
-@When[backend == "cjnativegc"]
+@When[os == "Linux" && env == "ohos"]
+class mc {}
+
+@When[env == "" && os == "macOS"]
 class mc {}
 
 main(): Int64 {
