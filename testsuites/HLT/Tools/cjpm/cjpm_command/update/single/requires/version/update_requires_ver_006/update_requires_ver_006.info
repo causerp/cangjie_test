@@ -9,4 +9,4 @@
 // LEVEL: 2
 // DEPENDENCE: ../%n
 // ERRCHECK:cd %n && %cjpm update
-// ASSERT: regex the 'version' field '1.0.[/|\\]' in 'dependencies' field at .[/|\\]cjpm.toml is wrong, the example is '1.0.0'
+// ASSERT: regex Error: path of src directory 'src' in .*[/|\\]b[/|\\]cjpm\.toml does not exist
