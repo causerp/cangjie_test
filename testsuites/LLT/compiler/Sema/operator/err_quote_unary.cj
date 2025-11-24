@@ -6,25 +6,21 @@
 
 // ERRCHECK: %compiler %cmp_opt %f -o %output
 
+import std.ast.*
+
 main() {
     quote($(-""))
 }
 
 /* SCAN
-error: import 'std.ast' to use the 'quote' expression
-  ==> err_quote_unary.cj:10:5:
-   | 
-10 |     quote($(-""))
-   |     ^^^^^^^^^^^^^ 
-   | 
-
 error: invalid unary operator '-' on type 'Struct-String'
-  ==> err_quote_unary.cj:10:13:
+  ==> err_quote_unary.cj:12:13:
    | 
-10 |     quote($(-""))
+12 |     quote($(-""))
    |             ^^^ 
    | 
    # note: you may want to implement 'operator func -()' for type 'Struct-String'
 
-2 errors generated, 2 errors printed.
+1 error generated, 1 error printed.
 */
+ 
