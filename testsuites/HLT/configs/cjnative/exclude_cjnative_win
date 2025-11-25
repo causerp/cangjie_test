@@ -358,5 +358,6 @@ compiler/cli/Option/pgo/pgo_005.cj
 Regression/External/I4AZMP.cj
 
 API/net/TLS_new/tls_serverconf_08.cj
+API/net/Client/Client/Client_send.cj
 
 

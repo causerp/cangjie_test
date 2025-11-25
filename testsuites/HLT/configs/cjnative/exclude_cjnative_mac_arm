@@ -18,3 +18,4 @@ API/std/reflect/cjnative/findAnnotation/test_getAllAnnotations.cj
 API/std/socket/UdpSocket/test_udp_transportation_init.cj
 
 API/net/TLS_new/tls_serverconf_08.cj
+API/net/Client/Client/Client_send.cj
