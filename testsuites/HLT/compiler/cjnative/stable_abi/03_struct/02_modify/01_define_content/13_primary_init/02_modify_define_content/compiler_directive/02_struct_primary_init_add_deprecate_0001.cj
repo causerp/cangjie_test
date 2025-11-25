@@ -43,7 +43,6 @@ public struct S {
         a = b
     }
 
-
     public func getWidth(): Int64 {
         return width
     }
@@ -82,4 +81,8 @@ public struct S5 {
     public S5(b: Int64, let height: Int64) {
         a = b
     }
+}
+
+public func f(){
+    return 0
 }

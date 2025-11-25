@@ -46,3 +46,7 @@ public struct S {
         set(value) { a = value }
     }
 }
+
+public func f(){
+    return S().p3 - 10
+}

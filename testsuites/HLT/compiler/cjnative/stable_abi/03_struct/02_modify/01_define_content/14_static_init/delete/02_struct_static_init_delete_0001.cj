@@ -34,3 +34,7 @@ package test_stable_abi
 public struct S {
     public static var a = 10
 }
+
+public func f(){
+    return S.a - 10
+}

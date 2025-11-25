@@ -35,3 +35,7 @@ package test_stable_abi
 func global_func_01() { 0 }
 public func global_func_02() { global_func_01() }
 func global_func_03() { 0 }
+
+public func f(){
+    return global_func_03()
+}

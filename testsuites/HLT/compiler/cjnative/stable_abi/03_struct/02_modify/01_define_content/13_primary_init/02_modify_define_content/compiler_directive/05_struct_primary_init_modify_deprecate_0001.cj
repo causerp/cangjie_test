@@ -78,3 +78,7 @@ public struct S5 {
         a = b
     }
 }
+
+public func f(){
+    return S3(1, 0).a -1
+}

@@ -34,6 +34,7 @@ package test_stable_abi
 
 public struct Rectangle {
     static let width = 10
+    let a = 20
 
     public const init() {}
 
@@ -42,51 +43,51 @@ public struct Rectangle {
     }
 
     public func geta1() {
-        return 0
+        return a
     }
 
     mut func geta2() {
-        return 0
+        return a
     }
 
     public func geta3() {
-        return 0
+        return a
     }
 
     private func geta4() {
-        return 0
+        return a
     }
 
     internal func geta5() {
-        return 0
+        return a
     }
 
     func geta6() {
-        return 0
+        return a
     }
 
     protected func geta7() {
-        return 0
+        return a
     }
 
     public func geta8() {
-        return 0
+        return a
     }
 
     func geta9() {
-        return 0
+        return a
     }
 
     func geta10() {
-        return 0
+        return a
     }
 
     unsafe public func geta11() {
-        return 0
+        return a
     }
 
     public mut func geta12() {
-        return 0
+        return a
     }
 
     @Frozen
@@ -96,7 +97,7 @@ public struct Rectangle {
     }
 
     const func geta14() {
-        return 0
+        return a
     }
 
     public const func geta15() {
@@ -105,7 +106,7 @@ public struct Rectangle {
     }
 
     mut func geta16() {
-        return 0
+        return a
     }
 
     @Frozen

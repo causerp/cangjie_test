@@ -120,3 +120,7 @@ struct S5{
     protected let c:C = C()
     private let d:C = C()
 }
+
+public func check(){
+    return 0
+}

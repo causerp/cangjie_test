@@ -35,3 +35,7 @@ package test_stable_abi
 var global_var_01: Int64 = 0
 public var global_var_02: Int64 = global_var_01
 public var global_var_03: Int64 = 0
+
+public func f(){
+  return global_var_03
+}

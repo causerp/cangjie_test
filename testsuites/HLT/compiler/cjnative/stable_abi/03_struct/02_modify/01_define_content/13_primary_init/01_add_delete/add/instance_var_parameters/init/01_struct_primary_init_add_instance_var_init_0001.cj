@@ -40,3 +40,7 @@ public struct S {
     public init() { a = 0; a2 = 0 }
     public S(a1: Int64, var a2!: Int64 = 2) { a = a1 + a2 }
 }
+
+public func f(){
+    return S(1, a2:2).a - 3
+}

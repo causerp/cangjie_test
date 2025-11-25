@@ -33,3 +33,7 @@ package test_stable_abi
 
 // test global func: delete global func
 public func global_func_02() { 0 }
+
+public func f(){
+    return 0
+}

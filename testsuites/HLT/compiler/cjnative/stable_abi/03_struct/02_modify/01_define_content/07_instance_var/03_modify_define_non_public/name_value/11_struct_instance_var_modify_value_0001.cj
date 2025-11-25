@@ -121,3 +121,17 @@ struct S5{
     protected let c:A = B()
     private let d:A = B()
 }
+
+public func assert<T>(expected:T, actual:T) : Unit where T <: Equatable<T> & ToString{
+    if(expected == actual){
+    }else{
+        throw Exception("${expected} != ${actual}")
+    }
+}
+
+public func check(){
+    assert(Rectangle1().a1, 200)
+    assert(Rectangle1().a2, 300)
+    assert(Rectangle1().a3, 400)
+    return 0
+}

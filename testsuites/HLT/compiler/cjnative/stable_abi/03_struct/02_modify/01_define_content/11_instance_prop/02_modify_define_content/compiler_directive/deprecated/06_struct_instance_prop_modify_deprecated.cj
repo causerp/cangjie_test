@@ -49,3 +49,7 @@ public struct S {
         set(value) { a = value }
     }
 }
+
+public func f(){
+    return 0
+}

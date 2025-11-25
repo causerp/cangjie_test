@@ -61,3 +61,7 @@ public func global_func_02() {
 public func global_func_03() {
     global_var_01
 }
+
+public func f(){
+    return 0
+}
