@@ -297,7 +297,7 @@ public class Test_autoRedirect {
             let res_true = client_Redirec_true.get("http://127.0.0.1:${serve.port}/dd")
         } catch (e: HttpException) {
             flag = true
-            @Expect(e.message.contains("redirect loop exceed 10 times"))
+            @Expect(e.message.contains("Redirect loop exceed 10 times"))
         }
         @Expect(flag, true)
     }

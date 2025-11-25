@@ -59,17 +59,17 @@ class Test_tlssocket_10 {
             var tcpServerAccept = tcpServer.accept()
             var tlsServer = TlsSocket.server(tcpServerAccept, sessionContext: None, serverConfig: serverConf)
             tlsServer.handshake()
-            @Expect(tlsServer.certificate == X509Certificate.decodeFromPem(pemser))
-            serverConf.certificate = (
-                X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))).map({c => c}),
+            @Expect(tlsServer.serverCertificate == X509Certificate.decodeFromPem(pemser))
+            serverConf.serverCertificate = (
+                X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))),
                 PrivateKey.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa_private_key.pem")))
             )
             var tcpServerAccept1 = tcpServer.accept()
-            var tlsServer1 = TlsSocket.server(tcpServerAccept1, session: None, serverConfig: serverConf)
+            var tlsServer1 = TlsSocket.server(tcpServerAccept1, sessionContext: None, serverConfig: serverConf)
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
             tlsser = Option<TlsSocket>.Some(tlsServer)
             tlsServer1.handshake()
-            @Expect(tlsServer1.certificate == X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))))
+            @Expect(tlsServer1.serverCertificate == X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))))
         }
         spawn {
             startServerHandshake()
@@ -79,7 +79,7 @@ class Test_tlssocket_10 {
         }
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
-        clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
+        clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem))
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
@@ -87,7 +87,7 @@ class Test_tlssocket_10 {
         sleep(Duration.millisecond * 600)
         let pem1 = String.fromUtf8(readToEnd(File("./data/root_rsa.cer", Read)))
         var clientConf1 = TlsClientConfig()
-        clientConf1.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem1).map({c => c}))
+        clientConf1.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem1))
         var tcpClient1 = TcpSocket("127.0.0.1", port.load())
         tcpClient1.connect()
         var tlsClient1 = TlsSocket.client(tcpClient1, session: None, clientConfig: clientConf1)
@@ -112,12 +112,12 @@ class Test_tlssocket_10 {
             var tcpServerAccept = tcpServer.accept()
             var tlsServer = TlsSocket.server(tcpServerAccept, sessionContext: None, serverConfig: serverConf)
             tlsServer.handshake()
-            serverConf.certificate = (
-                X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))).map({c => (c as Certificate).getOrThrow()}),
+            serverConf.serverCertificate = (
+                X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))),
                 PrivateKey.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa_private_key.pem")))
             )
             var tcpServerAccept1 = tcpServer.accept()
-            var tlsServer1 = TlsSocket.server(tcpServerAccept1, session: None, serverConfig: serverConf)
+            var tlsServer1 = TlsSocket.server(tcpServerAccept1, sessionContext: None, serverConfig: serverConf)
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
             tlsser = Option<TlsSocket>.Some(tlsServer)
             try {
@@ -172,8 +172,8 @@ class Test_tlssocket_10 {
             var tcpServerAccept = tcpServer.accept()
             var tlsServer = TlsSocket.server(tcpServerAccept, sessionContext: None, serverConfig: serverConf)
             tlsServer.handshake()
-            serverConf.certificate = (
-                X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))).map({c => (c as Certificate).getOrThrow()}),
+            serverConf.serverCertificate = (
+                X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))),
                 PrivateKey.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa_private_key.pem")))
             )
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
@@ -218,8 +218,8 @@ class Test_tlssocket_10 {
             var tcpServerAccept = tcpServer.accept()
             var tlsServer = TlsSocket.server(tcpServerAccept, sessionContext: None, serverConfig: serverConf)
             tlsServer.handshake()
-            serverConf.certificate = (
-                X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))).map({c => (c as Certificate).getOrThrow()}),
+            serverConf.serverCertificate = (
+                X509Certificate.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa.cer"))),
                 PrivateKey.decodeFromPem(String.fromUtf8(File.readFrom("./data/end_rsa_private_key.pem")))
             )
             tcpser = Option<TcpServerSocket>.Some(tcpServer)

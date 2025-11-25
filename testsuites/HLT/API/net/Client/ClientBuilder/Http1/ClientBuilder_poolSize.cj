@@ -77,7 +77,7 @@ public class Test_poolSize {
             let client = ClientBuilder().poolSize(0).build()
         } catch (e: Exception) {
             flag = true
-            @Expect(e.message.contains("The poolSize must > 0"))
+            @Expect(e.message.contains("The poolSize must be greater than 0"))
         }
         @Expect(flag, true)
     }
@@ -89,7 +89,7 @@ public class Test_poolSize {
             let client = ClientBuilder().poolSize(-1).build()
         } catch (e: Exception) {
             flag = true
-            @Expect(e.message.contains("The poolSize must > 0"))
+            @Expect(e.message.contains("The poolSize must be greater than 0"))
         }
         @Expect(flag, true)
     }
