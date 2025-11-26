@@ -64,6 +64,7 @@ class Test_tlsclientconf_03 {
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
+        tlsClient.handshake()
         match (tlsClient.tlsVersion) {
             case V1_2 => sum1 += 1
             case V1_3 => sum1 += 3

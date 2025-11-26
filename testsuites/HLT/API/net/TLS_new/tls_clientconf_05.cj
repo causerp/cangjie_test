@@ -63,12 +63,12 @@ class Test_tlsclientconf_05 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
-        clientConf.serverName = None
+        clientConf.domain = None
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
         let result = tlsClient.handshake()
-        @Expect(tlsClient.domain, None, "")
+        @Expect(tlsClient.domain, None)
         tlsClient.close()
         tcpClient.close()
         tlsser.getOrThrow().close()
@@ -87,12 +87,12 @@ class Test_tlsclientconf_05 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
-        clientConf.serverName = ""
+        clientConf.domain = ""
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
         let result = tlsClient.handshake()
-        @Expect(tlsClient.domain, None, "")
+        @Expect(tlsClient.domain, None)
         tlsClient.close()
         tcpClient.close()
         tlsser.getOrThrow().close()
@@ -111,12 +111,12 @@ class Test_tlsclientconf_05 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
-        clientConf.serverName = "www.example.com"
+        clientConf.domain = "www.example.com"
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
         let result = tlsClient.handshake()
-        @Expect(tlsClient.domain, None, "www.example.com")
+        @Expect(tlsClient.domain, "www.example.com")
         tlsClient.close()
         tcpClient.close()
         tlsser.getOrThrow().close()
@@ -136,7 +136,7 @@ class Test_tlsclientconf_05 {
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
         try {
-            clientConf.serverName = "\0"
+            clientConf.domain = "\0"
         } catch (e: IllegalArgumentException) {
             @Expect(e.message.contains("contain null character"))
             sum += 1
@@ -146,7 +146,7 @@ class Test_tlsclientconf_05 {
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
         let result = tlsClient.handshake()
-        @Expect(tlsClient.domain, None, "")
+        @Expect(tlsClient.domain, None)
         tlsClient.close()
         tcpClient.close()
         tlsser.getOrThrow().close()

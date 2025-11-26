@@ -123,7 +123,7 @@ class Test_tlsserverconf_05 {
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
             tlsser = Option<TlsSocket>.Some(tlsServer)
             let result = tlsServer.handshake()
-            @Expect(result.alpnProtocol, "h2")
+            @Expect(tlsServer.alpnProtocolName, "h2")
         }
         spawn {
             startServerHandshake()
@@ -134,12 +134,12 @@ class Test_tlsserverconf_05 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
-        clientConf.supportedAlpnProtocols = ["h2", "http/1.1"]
+        clientConf.alpnProtocolsList = ["h2", "http/1.1"]
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
         let result = tlsClient.handshake()
-        @Expect(result.alpnProtocol, "h2")
+        @Expect(tlsClient.alpnProtocolName, "h2")
         sleep(Duration.millisecond * 1000)
         tlsClient.close()
         tcpClient.close()
@@ -164,7 +164,7 @@ class Test_tlsserverconf_05 {
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
             tlsser = Option<TlsSocket>.Some(tlsServer)
             let result = tlsServer.handshake()
-            @Expect(result.alpnProtocol, "http/1.1")
+            @Expect(tlsServer.alpnProtocolName, "http/1.1")
         }
         spawn {
             startServerHandshake()
@@ -175,12 +175,12 @@ class Test_tlsserverconf_05 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
-        clientConf.supportedAlpnProtocols = ["h2", "http/1.1"]
+        clientConf.alpnProtocolsList = ["h2", "http/1.1"]
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
         let result = tlsClient.handshake()
-        @Expect(result.alpnProtocol, "http/1.1")
+        @Expect(tlsClient.alpnProtocolName, "http/1.1")
         sleep(Duration.millisecond * 1000)
         tlsClient.close()
         tcpClient.close()
@@ -222,7 +222,7 @@ class Test_tlsserverconf_05 {
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
         try {
-            clientConf.supportedAlpnProtocols = ["\0"]
+            clientConf.alpnProtocolsList = ["\0"]
         } catch (e: IllegalArgumentException) {
             @Expect(e.message.contains("contain null character"))
             sum += 1
@@ -256,7 +256,7 @@ class Test_tlsserverconf_05 {
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
             tlsser = Option<TlsSocket>.Some(tlsServer)
             let result = tlsServer.handshake()
-            @Expect(result.alpnProtocol, "zps")
+            @Expect(tlsServer.alpnProtocolName, "zps")
         }
         spawn {
             startServerHandshake()
@@ -267,12 +267,12 @@ class Test_tlsserverconf_05 {
         let pem = String.fromUtf8(readToEnd(File("./data/root_ecdsa.cer", Read)))
         var clientConf = TlsClientConfig()
         clientConf.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
-        clientConf.supportedAlpnProtocols = ["zps","http/1.1","h2"]
+        clientConf.alpnProtocolsList = ["zps","http/1.1","h2"]
         var tcpClient = TcpSocket("127.0.0.1", port.load())
         tcpClient.connect()
         var tlsClient = TlsSocket.client(tcpClient, session: None, clientConfig: clientConf)
         let result = tlsClient.handshake()
-        @Expect(result.alpnProtocol, "zps")
+        @Expect(tlsClient.alpnProtocolName, "zps")
         sleep(Duration.millisecond * 100)
         tlsClient.close()
         tcpClient.close()

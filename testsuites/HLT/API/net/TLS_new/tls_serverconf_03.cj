@@ -15,7 +15,7 @@ import std.net.*
 import std.fs.*
 import stdx.net.tls.*
 //import stdx.net.tls.common.*
-import stdx.crypto.x509.{X509Certificate,PrivateKey}
+import stdx.crypto.x509.{X509Certificate,X509Exception,PrivateKey}
 //import stdx.crypto.common.*
 //import stdx.crypto.keys.*
 import std.sync.*
