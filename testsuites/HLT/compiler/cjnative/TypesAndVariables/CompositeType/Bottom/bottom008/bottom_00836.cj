@@ -16,6 +16,7 @@ class A<T> {
     }
 }
 
+// func test():Int64 = A<Bool>.test(return 0,return 1) // type infer?
 
 func test(): Int64 {
     A<Bool>.test(return 0, return 1)
@@ -25,4 +26,4 @@ main(): Int64 {
     return test()
 }
 // ASSERT: scan chir_dce_unused_variable
-// ASSERT: scan chir2_dce_unreachable_expression
+// ASSERT: scan chir_dce_unreachable_expression_hint

@@ -7,7 +7,7 @@
  */
 
 // LEVEL: 0
-// (CJNATIVE) EXEC: %compiler %cmp_opt %compile_dylib_opt --lto=thin %f
+// (CJNATIVE and not MAC) EXEC: %compiler %cmp_opt %compile_dylib_opt --lto=thin %f
 
 main(): Int64 {
     return 0

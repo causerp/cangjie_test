@@ -17,4 +17,4 @@ main() {
         * 2 + 2
 }
 // ASSERT: scan parse_nl_warning
-// ASSERT: scan chir2_dce_unreachable_expression
+// ASSERT: scan chir_dce_unreachable_expression_hint

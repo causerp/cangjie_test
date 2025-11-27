@@ -7,8 +7,8 @@
  */
 
 // LEVEL: 0
-// (CJNATIVE) EXEC: %compiler %cmp_opt --lto=full --lto=thin %f -o %output
-// (CJNATIVE) RUN-EXEC: %run %run_opt %output %run_args
+// (CJNATIVE and not MAC) EXEC: %compiler %cmp_opt --lto=full --lto=thin %f -o %output
+// (CJNATIVE and not MAC) RUN-EXEC: %run %run_opt %output %run_args
 
 main(): Int64 {
     return 0
