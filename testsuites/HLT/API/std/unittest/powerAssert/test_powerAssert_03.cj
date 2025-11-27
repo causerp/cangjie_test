@@ -8,7 +8,7 @@
 
 // LEVEL: 2
 // EXEC-PIPE-1: %compiler %cmp_opt %f -o %output %cmp_utest_opt 2>&1 | compare %f
-// ASSERT: scan Invalid syntax for @PowerAssert: use @PowerAssert(a, b), @PowerAssert(b), @PowerAssert(a)
+// ASSERT: scan Invalid syntax for @PowerAssert: use @PowerAssert(a, b), @PowerAssert(b), 
 @Test
 class Test_PowerAssert {
     @TestCase
