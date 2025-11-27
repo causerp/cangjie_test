@@ -48,5 +48,18 @@ error: cannot use mutable function on immutable value
    |     is immutable
    | 
 
-1 error generated, 1 error printed.
+error: cannot assign to immutable value
+  ==> mut_function_09.cj:22:9:
+   | 
+22 |         t1.t0 += 1
+   |         ^^^^^^^^^^ 
+   | 
+note: property 't1' is immutable
+  ==> mut_function_09.cj:14:14:
+   | 
+14 |     mut prop t1: S0 {
+   |              ^^ 
+   | 
+
+2 errors generated, 2 errors printed.
 */
