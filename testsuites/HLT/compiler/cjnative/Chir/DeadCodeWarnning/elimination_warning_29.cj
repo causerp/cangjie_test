@@ -22,4 +22,4 @@ struct A {
 
 main() {
 }
-// ASSERT: scan chir2_dce_unreachable_expression
+// ASSERT: scan chir_dce_unreachable_expression_hint

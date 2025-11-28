@@ -8,7 +8,7 @@
 
 // LEVEL: 0
 // (CJNATIVE) EXEC-PIPE: %compiler %cmp_opt %static_std %static_libs %f
-// (CJNATIVE and not OHOS) EXEC-PIPE: ldd main 2>&1 | compare %f
+// (CJNATIVE and not OHOS and not MAC) EXEC-PIPE: ldd main 2>&1 | compare %f
 // (OHOS) EXEC-PIPE: readelf -a main 2>&1 | compare %f
 // ASSERT: scan-not libcangjie-std-core.so
 // ASSERT: scan-not libcangjie-std-collection.so

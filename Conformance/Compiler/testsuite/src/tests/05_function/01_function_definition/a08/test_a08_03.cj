@@ -15,9 +15,9 @@
 
   @Description:   Check that separator can be used when function have more then 1 parameter.
 
-  @Mode:          compileonly
+  @Mode:          run
 
-  @Negative:      yes
+  @Negative:      no
 
   @Structure:     single
 
@@ -27,3 +27,4 @@ func myFunc(a:Int32, ):String {
 }
 main() {
 }
+

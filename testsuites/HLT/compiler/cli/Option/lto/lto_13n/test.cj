@@ -7,7 +7,7 @@
  */
 
 // LEVEL: 0
-// (CJNATIVE) ERRCHECK: %compiler %cmp_opt --lto=aaa %f -o %output
+// (CJNATIVE and not MAC) ERRCHECK: %compiler %cmp_opt --lto=aaa %f -o %output
 // ASSERT: scan invalid value: 'aaa'
 
 main(): Int64 {

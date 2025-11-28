@@ -20,4 +20,4 @@ func test(): Option<Int64> {
 main(): Int64 {
     return test() ?? 1
 }
-// ASSERT: scan chir2_dce_unreachable_expression
+// ASSERT: scan chir_dce_unreachable_expression_hint
