@@ -6,7 +6,7 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 // EXEC: %compiler %cmp_opt %enableO2 -o %n.%suffix %f %cmp_utest_opt
-// RUN-EXEC-PIPE: %export cjHeapSize=4gb && %run %run_opt %output %run_utest_opt %run_args --bench --no-color | compare %f
+// RUN-EXEC-PIPE: %export cjHeapSize=16gb && %run %run_opt %output %run_utest_opt %run_args --bench --no-color | compare %f
 // ASSERT: scan PASSED: 2
 
 import std.unittest.*
@@ -14,6 +14,7 @@ import std.unittest.testmacro.*
 import std.time.*
 import std.runtime.*
 import std.collection.*
+
 
 var counter: Float64 = 0.0
 var prevGC = 0
@@ -24,6 +25,10 @@ class TestNoGcRunning <: Measurement {
     let result: Float64 = 0.0
 
     public func setup() {
+        if (prevGC == 0) {
+            // doing it here and not in BeforeAll to exclude warmup
+            prevGC = getGCCount()
+        }
         @Assert(!isGCRunning())
     }
 
@@ -35,61 +40,54 @@ class TestNoGcRunning <: Measurement {
 
 @Test
 @Configure[
-    minDuration: Duration.nanosecond, 
+    minDuration: Duration.second * 0.3, 
     warmup: 10,
-    minBatches: 40,
-    explicitGC: Light
+    minBatches: 200,
 ]
-class BenchGCLight {
-    @BeforeAll
-    func before() {
-        prevGC = getGCCount()
-    } 
+@Measure[TestNoGcRunning()]
+class BenchGCAutoDisabled {
 
     @Bench
     func foo() {
-        for (i in 0..1000000) {
-            o = ArrayList<Int64>(8)
+        for (i in 0..100000) {
+            counter += blackBox(1.0)
         }
-        counter += 1.0
     }
 
     @AfterAll
     func after() {
         let diff = getGCCount() - prevGC
         println(diff)
-        @Assert(diff >= 35) 
-        @Assert(diff <= 60)
+        @Assert(diff <= 10)
+        prevGC = 0
     }
 }
+
+
 
 @Test
 @Configure[
-    minDuration: Duration.nanosecond, 
+    minDuration: Duration.second * 0.3, 
     warmup: 10,
-    minBatches: 40,
-    explicitGC: Heavy
+    minBatches: 200,
+    explicitGC: Disabled
 ]
 @Measure[TestNoGcRunning()]
-class BenchGCWait {
-    @BeforeAll
-    func before() {
-        prevGC = getGCCount()
-    } 
+class BenchGCDisabled {
 
     @Bench
     func foo() {
-        for (i in 0..1000000) {
-            o = ArrayList<Int64>(8)
+        for (i in 0..100000) {
+            counter += blackBox(1.0)
         }
-        counter += 1.0
+        o = ArrayList<Int64>(8)
     }
 
     @AfterAll
     func after() {
         let diff = getGCCount() - prevGC
         println(diff)
-        @Assert(diff >= 45 && diff <= 60)
+        @Assert(diff <= 10)
+        prevGC = 0
     }
 }
-
