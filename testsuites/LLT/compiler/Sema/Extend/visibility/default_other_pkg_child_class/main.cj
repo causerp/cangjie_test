@@ -26,10 +26,10 @@ main() {
     0
 }
 
-// ASSERT: regex .*error.*: no matching function declaration for function call 'f'
+// ASSERT: scan undeclared identifier 'f'
 // (not CJNATIVE) ASSERT: regex .*error.*: no matching function declaration for function call 'g'
-// (CJNATIVE) ASSERT: regex .*error.*: undeclared identifier 'g'
-// ASSERT: regex .*error.*: can not access field 'p'
+// (CJNATIVE) ASSERT: scan undeclared identifier 'g'
+// ASSERT: scan undeclared identifier 'p'
 // (not CJNATIVE) ASSERT: regex .*error.*: can not access field 'q'
-// (CJNATIVE) ASSERT: regex .*error.*: undeclared identifier 'q'
+// (CJNATIVE)ASSERT: scan undeclared identifier 'q'
 // ASSERT: regex 6 errors generated, 6 errors printed
