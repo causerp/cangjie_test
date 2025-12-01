@@ -104,7 +104,7 @@ class Test_CustomVerify {
 
 
     @TestCase
-    func test_ServerVerifyDisabled_With_ClinetSuccess(): Unit {
+    func test_ServerVerifyDisabled_With_ClientSuccess(): Unit {
         let serverCertificate = String.fromUtf8(readToEnd(File("./data/end_ecdsa.pem", Read)))
         let serverPrivateKey = String.fromUtf8(readToEnd(File("./data/end_ecdsa_private_key.pem", Read)))
         var serverTlsConfig = TlsServerConfig(X509Certificate.decodeFromPem(serverCertificate),
@@ -143,7 +143,7 @@ class Test_CustomVerify {
     }
 
     @TestCase
-    func test_ServerVerifyDisabled_With_ClinetFail(): Unit {
+    func test_ServerVerifyDisabled_With_ClientFail(): Unit {
         let serverCertificate = String.fromUtf8(readToEnd(File("./data/end_ecdsa.pem", Read)))
         let serverPrivateKey = String.fromUtf8(readToEnd(File("./data/end_ecdsa_private_key.pem", Read)))
         var serverTlsConfig = TlsServerConfig(X509Certificate.decodeFromPem(serverCertificate),
@@ -193,7 +193,7 @@ class Test_CustomVerify {
     }
 
     @TestCase
-    func test_ServerVerifyOptional_With_ClinetSuccess(): Unit {
+    func test_ServerVerifyOptional_With_ClientSuccess(): Unit {
         let serverCertificate = String.fromUtf8(readToEnd(File("./data/end_ecdsa.pem", Read)))
         let serverPrivateKey = String.fromUtf8(readToEnd(File("./data/end_ecdsa_private_key.pem", Read)))
         var serverTlsConfig = TlsServerConfig(X509Certificate.decodeFromPem(serverCertificate),
@@ -232,7 +232,7 @@ class Test_CustomVerify {
     }
 
     @TestCase
-    func test_ServerVerifyRequireed_With_ClinetSuccess(): Unit {
+    func test_ServerVerifyRequireed_With_ClientSuccess(): Unit {
         let serverCertificate = String.fromUtf8(readToEnd(File("./data/end_ecdsa.pem", Read)))
         let serverPrivateKey = String.fromUtf8(readToEnd(File("./data/end_ecdsa_private_key.pem", Read)))
         var serverTlsConfig = TlsServerConfig(X509Certificate.decodeFromPem(serverCertificate),
