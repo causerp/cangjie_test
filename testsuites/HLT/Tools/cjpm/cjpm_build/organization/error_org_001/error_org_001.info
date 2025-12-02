@@ -7,6 +7,6 @@
 // LEVEL: 1
 // DEPENDENCE: ../%n
 // EXEC: cd %n && %cjpm build -V 2>&1 | compare %f
-// (not Windows)ASSERT: scan Error: the 'name' field '1_cj_demo_1::test' in ./cjpm.toml is wrong, the example is 'cjDemo'
-// (Windows)ASSERT: scan Error: the 'name' field '1_cj_demo_1::test' in .\cjpm.toml is wrong, the example is 'cjDemo'
+// (not Windows)ASSERT: scan Error: the 'organization' field '1_cj_demo_1' in 'package' field at ./cjpm.toml is wrong, the example is 'cjOrg'
+// (Windows)ASSERT: scan Error: the 'organization' field '1_cj_demo_1' in 'package' field at .\cjpm.toml is wrong, the example is 'cjOrg'
 // ASSERT: scan Error: cjpm build failed
