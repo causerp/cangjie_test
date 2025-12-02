@@ -5,9 +5,11 @@
  *
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
+ 
+// LEVEL: 0
 // DEPENDENCE: ./data
 // EXEC: %compiler %import-cangjie-stdx  %cmp_opt %cmp_utest_opt -o %n.%suffix %f
-// RUN-EXEC: %run %run_opt %n.%suffix %run_utest_opt %run_args
+// RUN-EXEC: %run_stdx %n.%suffix %run_utest_opt %run_args
 
 import std.net.*
 import std.fs.*
