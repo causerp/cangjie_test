@@ -4,8 +4,4 @@
 # 
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-control-flow-bogus obf_me::main()
-control-flow-flatten obf_me::main()
-obf-const obf_me::main()
-obf-layout obf_me::main()
-
+lion = "targe_0"
