@@ -17,5 +17,5 @@ test#
 cjdb,cjdb --no-use-colors cross_platform022,cross_platform022
 b,b cross_platform022.cj:12,cross_platform022.cj:12
 r,r,-> 12
-s,s,test_plat.cj:18
+s,s,test_plat.cj:20
 q,q,
