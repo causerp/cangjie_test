@@ -9,7 +9,7 @@
 package mp
 
 public platform struct A {
-    public platform A(a: Int64) {
+    public platform init(a: Int64) {
         this.a = a
     }
 }
