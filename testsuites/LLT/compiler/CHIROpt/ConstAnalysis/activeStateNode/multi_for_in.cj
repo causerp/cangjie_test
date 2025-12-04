@@ -5,8 +5,10 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // LEVEL: 0
-// EXEC-PIPE-0: %frontendCompiler %debugCHIROpt %disableCodegen  -Woff all %f -o %n.%suffix 2>&1 | compare %f
-// ASSERT: scan [ConstAnalysis] The const value of Add at [47,13] has been set to 2
+// (DEBUG_OPTION)EXEC-PIPE-0: %compiler %debugCHIROpt -Woff all %f -o %n.%suffix 2>&1 | compare %f
+// (DEBUG_OPTION)EXEC-PIPE-0: %run %run_opt %output
+// ASSERT: scan [ConstAnalysis] The const value of Add at [50,13] has been set to 2
+// ASSERT: scan [ConstAnalysis] The const value of GT at [51,9] has been set to false
 
 var array1: Array<Int8> = [1, 2, 3, 4, 5]
 var array2: Array<Int16> = [1, 2, 3, 4, 5]
@@ -44,288 +46,295 @@ func f1() {
     if (a[0].a == 0) {
         return
     }
-    let b = a[1] + 1
-    for (i in array1) {
-        if (i % 2 == 0) {
-            continue
-        }
+    let x = 1
+    let b = x + 1
+    if (b > 3) {
+        return
     }
-    for (i in array2) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array3) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array4) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array5) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array6) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array7) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array8) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array9) {
-        if (i > 3.0) {
-            break
-        }
-    }
-    for (i in array10) {
-        if (i > 3.0) {
-            break
-        }
-    }
-    for (i in array11) {
-        if (i > 3.0) {
-            break
-        }
-    }
-    for (i in array12) {
-        if (i == false) {
-            break
-        }
-    }
-    for (i in array13) {
-        if (i.size == 10) {
-            throw Exception("is a Exception")
-        }
-    }
-    for (i in array14) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array15) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array16) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array17) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in array18) {
-        if (i > 50.0) {
-            continue
-        }
-    }
-    for (i in array19) {
-        if (i.size == 100) {
-            continue
-        }
-    }
-    for (i in 1..100) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 1..100 : 1) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 1..100 : 4) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 100..1 : -1) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 100..1 : -4) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 1..=100) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 1..=100 : 1) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 1..=100 : 4) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 100..=1 : -1) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 100..=1 : -4) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (i in 1..100 where i % 3 == 0) {
-        if (i % 2 == 0) {
-            continue
-        }
-    }
-    for (_ in 1..100) {
-        let tmp = 1
-        if (tmp > 10) {
-            break
-        }
-    }
-
-    for (i in array1) {
-        if (i % 2 == 0) {
-            continue
+    var y = 1
+    if (array4[1] == 1000) {
+        for (i in array1) {
+            if (i % 2 == 0) {
+                continue
+            }
         }
         for (i in array2) {
             if (i % 2 == 0) {
                 continue
             }
-            for (i in array3) {
+        }
+        for (i in array3) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array4) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array5) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array6) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array7) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array8) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array9) {
+            if (i > 3.0) {
+                break
+            }
+        }
+        for (i in array10) {
+            if (i > 3.0) {
+                break
+            }
+        }
+        for (i in array11) {
+            if (i > 3.0) {
+                break
+            }
+        }
+        for (i in array12) {
+            if (i == false) {
+                break
+            }
+        }
+        for (i in array13) {
+            if (i.size == 10) {
+                throw Exception("is a Exception")
+            }
+        }
+        for (i in array14) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array15) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array16) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array17) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in array18) {
+            if (i > 50.0) {
+                continue
+            }
+        }
+        for (i in array19) {
+            if (i.size == 100) {
+                continue
+            }
+        }
+        for (i in 1..100) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 1..100 : 1) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 1..100 : 4) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 100..1 : -1) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 100..1 : -4) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 1..=100) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 1..=100 : 1) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 1..=100 : 4) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 100..=1 : -1) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 100..=1 : -4) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (i in 1..100 where i % 3 == 0) {
+            if (i % 2 == 0) {
+                continue
+            }
+        }
+        for (_ in 1..100) {
+            let tmp = 1
+            if (tmp > 10) {
+                break
+            }
+        }
+
+        for (i in array1) {
+            if (i % 2 == 0) {
+                continue
+            }
+            for (i in array2) {
                 if (i % 2 == 0) {
                     continue
                 }
-                for (i in array4) {
+                for (i in array3) {
                     if (i % 2 == 0) {
                         continue
                     }
-                    for (i in array5) {
+                    for (i in array4) {
                         if (i % 2 == 0) {
                             continue
                         }
-                        for (i in array6) {
+                        for (i in array5) {
                             if (i % 2 == 0) {
                                 continue
                             }
-                            for (i in array7) {
+                            for (i in array6) {
                                 if (i % 2 == 0) {
                                     continue
                                 }
-                                for (i in array8) {
+                                for (i in array7) {
                                     if (i % 2 == 0) {
                                         continue
                                     }
-                                    for (i in array9) {
-                                        if (i > 3.0) {
-                                            break
+                                    for (i in array8) {
+                                        if (i % 2 == 0) {
+                                            continue
                                         }
-                                        for (i in array10) {
+                                        for (i in array9) {
                                             if (i > 3.0) {
                                                 break
                                             }
-                                            for (i in array11) {
+                                            for (i in array10) {
                                                 if (i > 3.0) {
                                                     break
                                                 }
-                                                for (i in array12) {
-                                                    if (i == false) {
+                                                for (i in array11) {
+                                                    if (i > 3.0) {
                                                         break
                                                     }
-                                                    for (i in array13) {
-                                                        if (i.size == 10) {
-                                                            throw Exception("is a Exception")
+                                                    for (i in array12) {
+                                                        if (i == false) {
+                                                            break
                                                         }
-                                                        for (i in array14) {
-                                                            if (i % 2 == 0) {
-                                                                continue
+                                                        for (i in array13) {
+                                                            if (i.size == 10) {
+                                                                throw Exception("is a Exception")
                                                             }
-                                                            for (i in array15) {
+                                                            for (i in array14) {
                                                                 if (i % 2 == 0) {
                                                                     continue
                                                                 }
-                                                                for (i in array16) {
+                                                                for (i in array15) {
                                                                     if (i % 2 == 0) {
                                                                         continue
                                                                     }
-                                                                    for (i in array17) {
+                                                                    for (i in array16) {
                                                                         if (i % 2 == 0) {
                                                                             continue
                                                                         }
-                                                                        for (i in array18) {
-                                                                            if (i > 50.0) {
+                                                                        for (i in array17) {
+                                                                            if (i % 2 == 0) {
                                                                                 continue
                                                                             }
-                                                                            for (i in array19) {
-                                                                                if (i.size == 100) {
+                                                                            for (i in array18) {
+                                                                                if (i > 50.0) {
                                                                                     continue
                                                                                 }
-                                                                                for (i in 1..100) {
-                                                                                    if (i % 2 == 0) {
+                                                                                for (i in array19) {
+                                                                                    if (i.size == 100) {
                                                                                         continue
                                                                                     }
-                                                                                    for (i in 1..100 : 1) {
+                                                                                    for (i in 1..100) {
                                                                                         if (i % 2 == 0) {
                                                                                             continue
                                                                                         }
-                                                                                        for (i in 1..100 : 4) {
+                                                                                        for (i in 1..100 : 1) {
                                                                                             if (i % 2 == 0) {
                                                                                                 continue
                                                                                             }
-                                                                                            for (i in 100..1 : -1) {
+                                                                                            for (i in 1..100 : 4) {
                                                                                                 if (i % 2 == 0) {
                                                                                                     continue
                                                                                                 }
-                                                                                                for (i in 100..1 : -4) {
+                                                                                                for (i in 100..1 : -1) {
                                                                                                     if (i % 2 == 0) {
                                                                                                         continue
                                                                                                     }
-                                                                                                    for (i in 1..=100) {
+                                                                                                    for (i in 100..1 : -4) {
                                                                                                         if (i % 2 == 0) {
                                                                                                             continue
                                                                                                         }
-                                                                                                        for (i in 1..=100 : 1) {
+                                                                                                        for (i in 1..=100) {
                                                                                                             if (i % 2 == 0) {
                                                                                                                 continue
                                                                                                             }
-                                                                                                            for (i in 1..=100 : 4) {
+                                                                                                            for (i in 1..=100 : 1) {
                                                                                                                 if (i % 2 == 0) {
                                                                                                                     continue
                                                                                                                 }
-                                                                                                                for (i in 100..=1 : -1) {
+                                                                                                                for (i in 1..=100 : 4) {
                                                                                                                     if (i % 2 == 0) {
                                                                                                                         continue
                                                                                                                     }
-                                                                                                                    for (i in 100..=1 : -4) {
+                                                                                                                    for (i in 100..=1 : -1) {
                                                                                                                         if (i % 2 == 0) {
                                                                                                                             continue
                                                                                                                         }
-                                                                                                                        for (i in 1..100 where i % 3 == 0) {
+                                                                                                                        for (i in 100..=1 : -4) {
                                                                                                                             if (i % 2 == 0) {
                                                                                                                                 continue
                                                                                                                             }
-                                                                                                                            for (_ in 1..100) {
-                                                                                                                                let tmp = 1
-                                                                                                                                if (tmp > 10) {
-                                                                                                                                    break
+                                                                                                                            for (i in 1..100 where i % 3 == 0) {
+                                                                                                                                if (i % 2 == 0) {
+                                                                                                                                    continue
+                                                                                                                                }
+                                                                                                                                for (_ in 1..100) {
+                                                                                                                                    let tmp = 1
+                                                                                                                                    if (tmp > 10) {
+                                                                                                                                        break
+                                                                                                                                    }
                                                                                                                                 }
                                                                                                                             }
                                                                                                                         }
@@ -357,6 +366,12 @@ func f1() {
                 }
             }
         }
+    }
+    if (array4[2] == 100) {
+        y = 2
+    }
+    if (y == 2) {
+        throw Exception()
     }
     return
 }
