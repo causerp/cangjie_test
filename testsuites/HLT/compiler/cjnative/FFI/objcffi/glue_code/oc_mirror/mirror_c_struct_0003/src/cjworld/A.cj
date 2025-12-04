@@ -15,11 +15,11 @@ public class A <: M {
     public init() {}
     public open func foo() {
         var m = M()
-        println("in cangjie foo, ${m.s.x + m.s.y}")
+        println("in cangjie foo, ${m.s.read().x + m.s.read().y}")
         var s = S()
         s.x = 2
         s.y = 2
-        m.s = s
-        println("in cangjie foo, ${m.s.x + m.s.y}")
+        m.s.write(s)
+        println("in cangjie foo, ${m.s.read().x + m.s.read().y}")
     }
 }
