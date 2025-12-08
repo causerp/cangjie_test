@@ -6,13 +6,10 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-#import <Foundation/Foundation.h>
+#import "M.h"
 
-@protocol I
-@optional
-- (void)f;
-@end
-
-@interface M : NSObject <I>
-- (id)init;
+@implementation M
+- (id)init {
+    return [super init];
+}
 @end

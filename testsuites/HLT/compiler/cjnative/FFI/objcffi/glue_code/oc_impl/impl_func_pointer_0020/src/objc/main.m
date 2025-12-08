@@ -6,13 +6,14 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
+#import "A.h"
 #import <Foundation/Foundation.h>
 
-@protocol I
-@optional
-- (void)f;
-@end
-
-@interface M : NSObject <I>
-- (id)init;
-@end
+int main(int argc, char** argv) {
+    @autoreleasepool {
+        A* a = [[A alloc] init];
+        [a f1: a->fptr];
+        [a f2];
+    }
+    return 0;
+}

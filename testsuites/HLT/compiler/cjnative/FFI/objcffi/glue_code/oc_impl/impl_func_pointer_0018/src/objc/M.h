@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol I
-@optional
-- (void)f;
-@end
-
-@interface M : NSObject <I>
+@interface M : NSObject
 - (id)init;
 @end
