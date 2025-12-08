@@ -15,8 +15,10 @@ import stdx.syntax.*
 @Test[
     body in [
         Body([]),
-        Body([(parseText("static var a = 1").node.getOrThrow() as VarDecl).getOrThrow(),
-        (parseText("mut func foo(): ?(Int64, Int64) { None }").node.getOrThrow() as FuncDecl).getOrThrow()])
+        Body([(parseText("mut func foo(): ?(Int64, Int64) { None }").node.getOrThrow() as FuncDecl).getOrThrow(),
+    ],  
+    constructor in [  
+        [(parseText("enum A { Enum(B) }").node.getOrThrow() as EnumDecl).getOrThrow().body.memberDecls[0] as EnumConstructor).getOrThrow()]
     ],
     genericConstraints in [
         None,
@@ -56,12 +58,11 @@ import stdx.syntax.*
 */"##)]
     ]
 ]
-func test_EnumDecl_Init_01(body: Body, genericConstraints: Option<GenericConstraints>, genericParams: Array<GenericParam>,
+func test_EnumDecl_Init_01(body: Body, constructor: Array<EnumConstructor>, enericConstraints: Option<GenericConstraints>, genericParams: Array<GenericParam>,
         isNonExhaustive: Bool, name: String, superTyAnnotations: Array<TypeAnnotation>, annotations: Array<Annotation>,
         modifiers: Array<Modifier>, comments: Array<Comment>): Unit {
-    let EnumDecl = EnumDecl(body, genericConstraints, genericParams, isNonExhaustive, name, superTyAnnotations, annotations: annotations,
+    let EnumDecl = EnumDecl(body, constructor, genericConstraints, genericParams, isNonExhaustive, name, superTyAnnotations, annotations: annotations,
         modifiers: modifiers, comments: comments)
     println(EnumDecl.toString())
     println()
 }
-// 构造器？
