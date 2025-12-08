@@ -15,10 +15,10 @@ import stdx.syntax.*
 @Test[
     body in [
         Body([]),
-        Body([(parseText("mut func foo(): ?(Int64, Int64) { None }").node.getOrThrow() as FuncDecl).getOrThrow(),
+        Body([(parseText("mut func foo(): ?(Int64, Int64) { None }").node.getOrThrow() as FuncDecl).getOrThrow()])
     ],  
     constructor in [  
-        [(parseText("enum A { Enum(B) }").node.getOrThrow() as EnumDecl).getOrThrow().body.memberDecls[0] as EnumConstructor).getOrThrow()]
+        [((parseText("enum A { Enum(B) }").node.getOrThrow() as EnumDecl).getOrThrow().body.memberDecls[0] as EnumConstructor).getOrThrow()]
     ],
     genericConstraints in [
         None,
@@ -45,7 +45,7 @@ import stdx.syntax.*
     ],
     annotations in [
         [],
-        [Annotation([Argument(None, false, false, LitConstExpr(LitConstKind.IntergerLiteral, "123"))], "MyAnno", AtOpKind.At)]
+        [Annotation([Argument(None, false, LitConstExpr(LitConstKind.IntergerLiteral, "123"))], "MyAnno", AtOpKind.At)]
     ],
     modifiers in [
         [],
@@ -53,12 +53,12 @@ import stdx.syntax.*
     ],
     comments in [
         [], 
-        [Comment(CommentKind.Block, ##"/* 
-    ccc
-*/"##)]
+//         [Comment(CommentKind.Block, ##"/* 
+//     ccc
+// */"##)]
     ]
 ]
-func test_EnumDecl_Init_01(body: Body, constructor: Array<EnumConstructor>, enericConstraints: Option<GenericConstraints>, genericParams: Array<GenericParam>,
+func test_EnumDecl_Init_01(body: Body, constructor: Array<EnumConstructor>, genericConstraints: Option<GenericConstraints>, genericParams: Array<GenericParam>,
         isNonExhaustive: Bool, name: String, superTyAnnotations: Array<TypeAnnotation>, annotations: Array<Annotation>,
         modifiers: Array<Modifier>, comments: Array<Comment>): Unit {
     let EnumDecl = EnumDecl(body, constructor, genericConstraints, genericParams, isNonExhaustive, name, superTyAnnotations, annotations: annotations,

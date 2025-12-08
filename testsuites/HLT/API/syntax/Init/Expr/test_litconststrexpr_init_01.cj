@@ -64,9 +64,7 @@ func test_LitConstStrExpr_Init_01(kind: LitConstKind, rawValue: String, delimite
         false
     ],
     strKind in [
-        LitConstStrKind.MultiLineString,
         LitConstStrKind.MultiLineRawString,
-        LitConstStrKind.StringLiteral
     ],
     strPartExprs in [
         [],

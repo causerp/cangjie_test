@@ -19,7 +19,7 @@ import stdx.syntax.*
         (parseText("mut func foo(): ?(Int64, Int64) { None }").node.getOrThrow() as FuncDecl).getOrThrow()])
     ],
     genericConstraints in [
-        None,
+        None
        // GenericConstraints([GenericConstraint(CompositeType("T", [], []), [CompositeType("I1", [], [])])]),
     ],
     genericParams in [
@@ -69,11 +69,11 @@ func test_ClassDecl_Init_01(body: Body, genericConstraints: Option<GenericConstr
     ],
     genericConstraints in [
        // None,
-        GenericConstraints([GenericConstraint(CompositeType("T", [], []), [CompositeType("I1", [], [])])]),
+        GenericConstraints([GenericConstraint(CompositeType("T", [], []), [CompositeType("I1", [], [])])])
     ],
     genericParams in [
         [],
-        (parseText("class A1<T> {}").node.getOrThrow() as ClassDecl).getOrThrow().genericParams,
+        (parseText("class A1<U> {}").node.getOrThrow() as ClassDecl).getOrThrow().genericParams,
         // (parseText("class A1<T, U> {}").node.getOrThrow() as ClassDecl).getOrThrow().genericParams,
         // [GenericParam("T")]
     ],

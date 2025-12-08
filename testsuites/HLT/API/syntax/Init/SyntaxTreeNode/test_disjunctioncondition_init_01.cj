@@ -25,7 +25,7 @@ import stdx.syntax.*
         [Comment(##"/* 
 a 
 */"##)],
-        [Comment( "//1"), Comment("// 2")]
+        [Comment("//1"), Comment("// 2")]
     ]
 ]
 func test_DisjunctionCondition_Init_01(cond: Array<ConjunctionCondition>, comments: Array<Comment>): Unit {
