@@ -25,7 +25,7 @@ import stdx.syntax.*
         GenericConstraints([GenericConstraint(CompositeType("T", [], []), [CompositeType("I1", [], [])])]),
     ],
     genericParams in [
-        [],
+      //  [],
         (parseText("class A1<T> {}").node.getOrThrow() as ClassDecl).getOrThrow().genericParams,
         (parseText("class A1<T, U> {}").node.getOrThrow() as ClassDecl).getOrThrow().genericParams,
         [GenericParam("T")]

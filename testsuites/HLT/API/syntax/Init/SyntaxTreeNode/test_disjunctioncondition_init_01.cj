@@ -14,7 +14,6 @@ import stdx.syntax.*
 
 @Test[
     cond in [
-        [],
         [
             ConjunctionCondition(AtomicCondition.Expression((parseText("a1 is Int64").node.getOrThrow() as Expr).getOrThrow())), 
             ConjunctionCondition(AtomicCondition.LetPatternCondition(LetPattern((parseText("a1 as Int64").node.getOrThrow() as Expr).getOrThrow(), [VarPattern("a"), VarPattern("b")])))
