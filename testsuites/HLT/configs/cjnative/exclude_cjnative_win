@@ -433,6 +433,7 @@ API/syntax/Init/Decl/test_propdecl_init_01.cj
 API/syntax/Init/Decl/test_propgetterorsetter_init_01.cj
 API/syntax/Init/Pattern/test_typepattern_init_01.cj
 API/syntax/Init/Expr/test_lambda_init_01.cj
+API/syntax/Init/SyntaxTreeNode/test_comment_init_01.cj
 API/syntax/parseFunc/parseDir/parse/parsedir_001.cj
 API/syntax/parseFunc/parseDir/path/parsedir_path_001.cj
 API/syntax/parseFunc/parseFile/parse/parsefile_001.cj
