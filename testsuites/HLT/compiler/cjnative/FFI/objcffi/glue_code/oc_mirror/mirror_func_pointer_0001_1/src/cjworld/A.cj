@@ -10,9 +10,11 @@ package cjworld
 
 import objc.lang.*
 
-public interface I1 {
-    public func f(): Unit
-}
-public interface I2 {
-    public func f(a: I1): Unit
+@ObjCImpl
+public class A <: M {
+    public init() {}
+    public open func f() {
+        var m = M()
+        m.fptr.call()
+    }
 }
