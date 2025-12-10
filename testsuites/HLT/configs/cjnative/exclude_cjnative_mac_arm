@@ -216,3 +216,8 @@ compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_id_0001/
 API/std/io/file/File_create_03.cj
 API/std/fs/file/linux/test_linux_file_no_permission.cj
 API/std/io/StringReader/StringReader_readln_13_01.cj
+
+# MacOS does not support reflect yet, these test cases for compatibility require reflect so disabled for now.
+compiler/cjnative/stable_abi/package_name
+compiler/cjnative/stable_abi/add_instance_member_variable
+compiler/cjnative/stable_abi/add_virtual_function
