@@ -41,7 +41,6 @@ extend<T> A<T> /* block comment1 */ where T <: I1 {
             // line comment3
         }
     }
-    
 } // line comment4"##)
 
     var _decl: ClassDecl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
@@ -57,7 +56,6 @@ extend<T> A<T> /* block comment1 */ where T <: I1 {
             // line comment3
         }
     }
-    
 } // line comment4"##)
 
 }
