@@ -9,8 +9,16 @@
 // EXEC-PIPE-1: %compiler %cmp_opt %f -o %output 2>&1 | compare %f
 // ASSERT: scan sema_assignment_of_member_variable_cannot_use_this_or_super
 
+open class Z {
+    
+}
+
 open class A {
     let x: A
+    // 通过实例函数间接使用
+    func getX(): A {
+        this.x
+    }
     public A(x: A) {
         this.x = x
     }
@@ -18,7 +26,7 @@ open class A {
 
 class B <: A {
     public B() {
-        super(this.x)
+        super(this.getX())
     }
 }
 
