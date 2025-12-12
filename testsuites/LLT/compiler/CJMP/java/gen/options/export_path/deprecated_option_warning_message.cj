@@ -3,11 +3,9 @@
 // with Runtime Library Exception.
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
-
-// (CJNATIVE and not Windows) EXEC: %compiler %cmp_opt %f -o %output %compile_shared_lib_opt %import_java_interop -L.
-// (CJNATIVE and not Windows) EXEC: %ls  | compare %f
-// (CJNATIVE and not Windows) ASSERT: regex-not M.java
-// (CJNATIVE and not Windows) ASSERT: regex A.java
+ 
+// (CJNATIVE and not Windows) EXEC: %compiler %cmp_opt %f -o %output --output-javagen-dir=./test %compile_shared_lib_opt %import_java_interop -L.
+// ASSERT: scan warning: --output-javagen-dir option is deprecated, it will be removed in future. Use --export-java-path instead.
 
 package cjworld.theworld
 

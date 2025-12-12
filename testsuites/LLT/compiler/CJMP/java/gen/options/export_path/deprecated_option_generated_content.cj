@@ -3,11 +3,14 @@
 // with Runtime Library Exception.
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
-
-// (CJNATIVE and not Windows) EXEC: %compiler %cmp_opt %f -o %output %compile_shared_lib_opt %import_java_interop -L.
-// (CJNATIVE and not Windows) RUN-EXEC-PIPE: %cat ./A.java | compare %f
-
+ 
+// (CJNATIVE and not Windows) EXEC: %compiler %cmp_opt %f -o %output --output-javagen-dir=./test %compile_shared_lib_opt %import_java_interop -L.
+// (CJNATIVE and not Windows) RUN-EXEC-PIPE: %cat ./test/A.java | compare %f
+ 
 /* SCAN-IN
+package cjworld.theworld;
+
+
 import static cangjie.lang.LibraryLoader.loadLibrary;
 import cangjie.lang.internal.$$NativeConstructorMarker;
 
@@ -18,19 +21,7 @@ public class A extends M {
 
     long self;
 
-    public long getT() {
-        return getTImpl(this.self);
-    }
-
-    public native long getTImpl(long self);
-
-    public void setT(long t) {
-        setTImpl(this.self, t);
-    }
-
-    public native void setTImpl(long self, long t);
-
-    public A() {
+    A() {
         super();
         self = initCJObject();
     }
@@ -65,7 +56,7 @@ public class A extends M {
 }
 
 */
-
+ 
 package cjworld.theworld
 
 import interoplib.interop.*
@@ -74,19 +65,12 @@ import java.lang.JObject
 @JavaMirror["M"]
 public open class M {
     init()
-    init(x: Int)
-    init(x: Int, y: Int)
 }
 
 @JavaImpl["A"]
 public class A <: M {
-    private var a: Int64 = 1
-    mut prop t: Int64 {
-        get() {
-            return a
-        }
-        set(x) {
-            a = x
-        }
+    init() {
+        super()
+        println("Hello from Cangjie!")
     }
 }
