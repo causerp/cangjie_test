@@ -11,8 +11,10 @@
 
 open class A {
     let x: A
-    func getX(): A {
-        this.x
+    prop xx: A {
+        get() {
+            this.x
+        }
     }
     public A(x: A) {
         this.x = x
@@ -21,8 +23,8 @@ open class A {
 
 class B <: A {
     public B() {
-        // 访问实例成员函数
-        super(this.getX())
+        // 通过实例属性间接使用
+        super(this.xx)
     }
 }
 

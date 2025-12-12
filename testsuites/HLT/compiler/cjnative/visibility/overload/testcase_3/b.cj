@@ -5,15 +5,11 @@
  *
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
-
 package a
 
-private class A {}
+import a.sub.foo
 
-public class C {
-    private let a = A()
-}
-
-main(): Unit {
-    
+// 未定义foo，直接使用import而来的foo
+func wrapperB(p: Int64): Unit {
+    foo(p)
 }

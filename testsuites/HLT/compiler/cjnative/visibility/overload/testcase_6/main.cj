@@ -5,15 +5,10 @@
  *
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
-
 package a
 
-private class A {}
-
-public class C {
-    private let a = A()
-}
-
 main(): Unit {
-    
+    wrapperA(1)
+    wrapperB(2)
+    wrapperC(3)
 }

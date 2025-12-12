@@ -8,12 +8,13 @@
 
 package a
 
-private class A {}
+import a.sub.foo
 
-public class C {
-    private let a = A()
+// import而来的函数foo由于与以下函数foo函数签名相同而被shadow，预期调用以下foo
+private func foo(p: Int64): Unit {
+    println("a.p, ${p}")
 }
 
-main(): Unit {
-    
+func wrapperA(p: Int64): Unit {
+    foo(p)
 }

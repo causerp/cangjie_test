@@ -5,15 +5,20 @@
  *
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
-
 package a
 
-private class A {}
-
-public class C {
-    private let a = A()
+private func foo(p: Int64): Unit {
+    println("b.p, ${p}")
 }
 
-main(): Unit {
-    
+private func foo(p: Bool): Unit {
+    println("a.p, ${p}")
+}
+
+internal func foo(p: String, p1: String): Unit {
+    println("a.p, ${p}, ${p1}")
+}
+
+func wrapperB(p: Int64): Unit {
+    foo(p)
 }

@@ -9,26 +9,26 @@
 // EXEC-PIPE-1: %compiler %cmp_opt %f -o %output 2>&1 | compare %f
 // ASSERT: scan sema_assignment_of_member_variable_cannot_use_this_or_super
 
-open class A {
-    let x: A
-    func getX(): A {
-        this.x
-    }
-    public A(x: A) {
-        this.x = x
+// 多级继承
+open class Z {
+    let x: Int64 = 123
+}
+
+open class A <: Z {
+    let ax: Int64
+    public A(x: Int64) {
+        this.ax = x
     }
 }
 
 class B <: A {
     public B() {
-        // 访问实例成员函数
-        super(this.getX())
+        super(this.x)
     }
 }
 
 main(): Int64 {
     let b = B()
     let a = b.x
-    let aa = a.x
     return 0
 }

@@ -10,25 +10,21 @@
 // ASSERT: scan sema_assignment_of_member_variable_cannot_use_this_or_super
 
 open class A {
-    let x: A
-    func getX(): A {
-        this.x
-    }
-    public A(x: A) {
+    let x: Int64
+    public A(x: Int64) {
         this.x = x
     }
 }
 
 class B <: A {
     public B() {
-        // 访问实例成员函数
-        super(this.getX())
+        // 隐式使用到this表达式
+        super(2 + x)
     }
 }
 
 main(): Int64 {
     let b = B()
     let a = b.x
-    let aa = a.x
     return 0
 }

@@ -8,12 +8,18 @@
 
 package a
 
-private class A {}
-
-public class C {
-    private let a = A()
+private func foo(p: Int64): Unit {
+    println("a.p, ${p}")
 }
 
-main(): Unit {
-    
+private func foo(p: Bool): Unit {
+    println("a.p, ${p}")
+}
+
+public func foo(p: String): Unit {
+    println("a.p, ${p}")
+}
+
+func wrapperA(p: Int64): Unit {
+    foo(p)
 }

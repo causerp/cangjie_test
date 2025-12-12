@@ -6,14 +6,8 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-package a
+package a.sub
 
-private class A {}
-
-public class C {
-    private let a = A()
-}
-
-main(): Unit {
-    
+public func foo(p: Int64): Unit {
+    println("a.sub.p, ${p}")
 }
