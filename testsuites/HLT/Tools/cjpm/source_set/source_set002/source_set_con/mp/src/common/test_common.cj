@@ -10,7 +10,7 @@
 features {}
 package mp
 
-@When[cjc_version >= "0.60.4"]
+@When[cjc_version >= "0.0.1"]
 public common func f1(): Int64
 
 public common func f2(): Int64
