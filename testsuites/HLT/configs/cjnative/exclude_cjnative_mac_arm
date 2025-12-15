@@ -4,6 +4,7 @@
 #
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
+Tools/cjdb/
 Tools/cjdb/datacom/ArrayList/arraylist_test_017.info
 Tools/cjdb/datacom/C_FFI/viewVariables_CFunc_07.info
 Tools/cjdb/datacom/lambda/lldb_lambda_05.info
