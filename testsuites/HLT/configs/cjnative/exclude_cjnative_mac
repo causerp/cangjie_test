@@ -45,10 +45,10 @@ API/syntax/Init/Decl/test_propdecl_init_01.cj
 API/syntax/Init/Decl/test_propgetterorsetter_init_01.cj
 API/syntax/Init/Pattern/test_typepattern_init_01.cj
 API/syntax/Init/Expr/test_lambda_init_01.cj
-API/syntax/parseTokens/Expr/CallExpr/parseTokens_CallExpr_01.cj
-API/syntax/parseTokens/Decl/ClassDecl/parseTokens_ClassDecl_01.cj
-API/syntax/parseFile/path/parsefile_path_008n.cj
-API/syntax/parseDir/parse/parsedir_001.cj
+API/syntax/parseFunc/parseTokens/Expr/CallExpr/parseTokens_CallExpr_01.cj
+API/syntax/parseFunc/parseTokens/Decl/ClassDecl/parseTokens_ClassDecl_01.cj
+API/syntax/parseFunc/parseFile/path/parsefile_path_008n.cj
+API/syntax/parseFunc/parseDir/parse/parsedir_001.cj
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
 
 # timezone file in ci not support now
