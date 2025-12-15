@@ -150,7 +150,6 @@ compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_c_struct_0004/
 compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_interface_0006/
 compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_interface_0007/
 compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_interface_0008/
-compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_subtyping_0004/
 # todo: super()
 compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_init_0005/
 compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_init_0006/

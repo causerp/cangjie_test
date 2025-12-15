@@ -6,31 +6,13 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-#import "I1.h"
-#import "I2.h"
+#import "A.h"
 #import <Foundation/Foundation.h>
-
-@interface M1 : NSObject <I1>
-@end
-@interface M2 : NSObject <I2>
-@end
-
-@implementation M1
-- (void)f {
-    printf("in oc f\n");
-}
-@end
-@implementation M2
-- (void)f:(I1)a {
-    [a f];
-}
-@end
 
 int main(int argc, char** argv) {
     @autoreleasepool {
-        id<I1> a1 = [[M1 alloc] init];
-        id<I2> a2 = [[M2 alloc] init];
-        [a2 f: a1];
+        A* a = [[A alloc] init];
+        [a f];
     }
     return 0;
 }
