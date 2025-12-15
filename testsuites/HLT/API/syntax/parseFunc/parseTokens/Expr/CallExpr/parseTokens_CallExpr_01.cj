@@ -27,18 +27,18 @@ func test_CallExpr_01() {
     let res_4 = parseTokens(_quote_4)
 
     var expr_1: CallExpr = (res_1.node.getOrThrow() as CallExpr).getOrThrow()
-    @Expect(expr_1.toString(), ##"foo  < Int64 >()"##)
-    @Expect(expr_1.callee.toString(), ##"foo  < Int64 >"##)
+    @Expect(expr_1.toString(), ##"foo < Int64 >()"##)
+    @Expect(expr_1.callee.toString(), ##"foo < Int64 >"##)
     @Expect(expr_1.arguments.toString(), "[]")
 
     var expr_2: CallExpr = (res_2.node.getOrThrow() as CallExpr).getOrThrow()
-    @Expect(expr_2.toString(), ##"foo  < Int64 >((a, b))"##)
-    @Expect(expr_2.callee.toString(), ##"foo  < Int64 >"##)
+    @Expect(expr_2.toString(), ##"foo < Int64 >((a, b))"##)
+    @Expect(expr_2.callee.toString(), ##"foo < Int64 >"##)
     @Expect(expr_2.arguments.toString(), "[(a, b)]")
 
     var expr_3: CallExpr = (res_3.node.getOrThrow() as CallExpr).getOrThrow()
-    @Expect(expr_3.toString(), ##"foo  < Int64 >(x, b: y)"##)
-    @Expect(expr_3.callee.toString(), ##"foo  < Int64 >"##)
+    @Expect(expr_3.toString(), ##"foo < Int64 >(x, b: y)"##)
+    @Expect(expr_3.callee.toString(), ##"foo < Int64 >"##)
     @Expect(expr_3.arguments.toString(), "[x, b: y]")
 
     var expr_4: CallExpr = (res_4.node.getOrThrow() as CallExpr).getOrThrow()
