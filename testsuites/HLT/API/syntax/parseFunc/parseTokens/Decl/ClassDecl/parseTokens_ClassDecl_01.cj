@@ -31,7 +31,7 @@ func test_ClassDecl_01() {
     var classDecl: ClassDecl = (sourceNode as ClassDecl).getOrThrow()
     
     @Assert(classDecl.toString(), ##"@Deprecated["仓颉"]
-public class S1  < T > <: I1  < T > where T <: ToString {
+public class S1 < T > <: I1 < T > where T <: ToString {
     public let s1: Int64 = 0
     prop p1: Int64 {
         get() { 0 }
@@ -61,7 +61,7 @@ public class S1  < T > <: I1  < T > where T <: ToString {
     @Assert(classDecl.genericParams.size, 1)
     @Assert(classDecl.genericParams[0].toString(), "T")
     @Assert(classDecl.superTyAnnotations.size, 1)
-    @Assert(classDecl.superTyAnnotations[0].toString(), "I1  < T >")
+    @Assert(classDecl.superTyAnnotations[0].toString(), "I1 < T >")
     @Assert(classDecl.annotations.size, 1)
     @Assert(classDecl.annotations[0].toString(), ##"@Deprecated["仓颉"]"##)
 

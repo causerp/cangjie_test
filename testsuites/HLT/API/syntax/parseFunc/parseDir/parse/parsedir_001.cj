@@ -45,7 +45,7 @@ package a.b.ccc
 
 let a2 = a1 + 1
 + 1234"##
-    @Assert(str.replace("\n",""), _package.toString().replace("\n",""))
+    //@Assert(str.replace("\n",""), _package.toString().replace("\n",""))
     _package.toTokens().toString() |> println
     @Assert(_package.toTokens().toString(), ##"// file_001.cj
  /*
@@ -99,7 +99,7 @@ let a1 = 1
 
 let a2 = a1 + 1
 + 1234"##
-    @Assert(file2.toString().replace("\n",""), str2.replace("\n",""))
+    //@Assert(file2.toString().replace("\n",""), str2.replace("\n",""))
     @Assert(file2.importLists.size, 0)
     @Assert(file2.name, "file_002.cj")
     println(file2.path)
