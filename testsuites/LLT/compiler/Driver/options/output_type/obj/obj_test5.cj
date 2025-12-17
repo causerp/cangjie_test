@@ -5,7 +5,5 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // DEPENDENCE: obj_main.cj
-// EXEC: %compiler obj_main.cj --output-type=obj -o main.o --experimental
-// EXEC: %compiler main.o -lcangjie-std-core --experimental -o %output
-// EXEC: %output %run_args | compare %f
-// ASSERT: scan Hello cangjie!
+// EXEC-PIPE: %compiler obj_main.cj --compile-target=exe -o main.o --experimental 2>&1 | compare %f
+// ASSERT: scan --compile-target only takes effect when --output-type=obj, this option will be ignored in other scenarios
