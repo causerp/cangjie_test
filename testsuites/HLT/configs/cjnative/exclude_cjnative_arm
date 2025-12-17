@@ -30,7 +30,6 @@ API/syntax/API/Expr/MemberAccess/parse_MemberAccess_02.cj
 API/syntax/API/Expr/MemberAccess/parse_MemberAccess_03.cj                                         
 API/syntax/API/Expr/SubscriptExpr/parse_SubscriptExpr_02.cj                                       
 API/syntax/API/Expr/TryCatch/parse_TryCatch_05.cj                                                 
-API/syntax/API/Expr/WhileExpr/parse_WhileExpr_02.cj                                               
 API/syntax/API/SyntaxTreeNode/Comment/parse_Inner_Comment_06.cj                                   
 API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_07n.cj                                  
 API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_08n.cj                                  
