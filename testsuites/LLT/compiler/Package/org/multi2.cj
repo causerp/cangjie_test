@@ -4,15 +4,9 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 // LEVEL 0
-// DEPENDENCE: import.pkg.cj
-// EXEC: %compiler import.pkg.cj %compile_lib_opt
-// EXEC: %compiler %f libb@a.%lib_extension -o %output
-// RUN-EXEC: %run %run_opt %output %run_args
+// EXEC: %compiler %f %diag_json 2>&1 | compare %f
+import org1::{org2::a}
+main() {}
 
-package a::c
-import a::b.foo
-import a::b.bar 
-
-main() {
-    bar(1)-foo()
-}
+// ASSERT: scan-1 parse_expected_right_delimiter
+// ASSERT: scan-1 parse_expected_character
