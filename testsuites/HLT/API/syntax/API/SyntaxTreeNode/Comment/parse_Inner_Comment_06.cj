@@ -43,7 +43,7 @@ extend<T> A<T> /* block comment1 */ where T <: I1 {
     }
 } // line comment4"##)
 
-    var _decl: ClassDecl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
+    var _decl: ExtendDecl = (sourcefile.topLevelDecls[0] as ExtendDecl).getOrThrow()
     @Assert(_decl.toString(), ##"// line comment1
 extend<T> A<T> /* block comment1 */ where T <: I1 {
     public func foo() {}
