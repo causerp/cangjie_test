@@ -25,45 +25,15 @@ Tools/cjdb/datacom/within_watchpoint/lldb_within_watchpoint055.info
 Tools/cjlsp/testcases/autotestcase/deprecated/textDocument_completion_018.info
 
 # syntax will be supported in future
-API/syntax/API/Decl/ExtendDecl/parse_ExtendDecl_02.cj                                                   
-API/syntax/API/Decl/ExtendDecl/parse_ExtendDecl_03.cj                                                    
-API/syntax/API/Decl/ExtendDecl/parse_ExtendDecl_04.cj                                                    
-API/syntax/API/Decl/ExtendDecl/parse_ExtendDecl_05.cj                                                    
-API/syntax/API/Decl/MacroDecl/parse_MacroDecl_03.cj                                                  
-API/syntax/API/Decl/PropDecl/parse_PropDecl_04.cj                                                    
-API/syntax/API/Decl/PropDecl/parse_PropDecl_05.cj                                                    
-API/syntax/API/Decl/StaticInit/parse_StaticInit_05.cj                                                
-API/syntax/API/Decl/TypeAlias/parse_TypeAlias_03.cj                                                  
-API/syntax/API/Decl/TypeAlias/parse_TypeAlias_04.cj                                                  
-API/syntax/API/Expr/Lambda/parse_Lambda_02.cj                                                     
-API/syntax/API/Expr/Lambda/parse_Lambda_03.cj                                                     
-API/syntax/API/Expr/MemberAccess/parse_MemberAccess_02.cj                                         
-API/syntax/API/Expr/MemberAccess/parse_MemberAccess_03.cj                                         
-API/syntax/API/Expr/SubscriptExpr/parse_SubscriptExpr_02.cj                                       
-API/syntax/API/Expr/TryCatch/parse_TryCatch_05.cj                                                 
-API/syntax/API/SyntaxTreeNode/Comment/parse_Inner_Comment_06.cj                                   
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_07n.cj                                  
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_08n.cj                                  
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_09n.cj                                  
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_10n.cj                                  
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_11n.cj                                  
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_12n.cj                                  
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_13n.cj                                  
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_14n.cj                                  
-API/syntax/API/SyntaxTreeNode/StrInterPolationContent/parse_StrInterPolationContent_09n.cj                                                  
-API/syntax/API/SyntaxTreeNode/StrInterPolationContent/parse_StrInterPolationContent_10n.cj                                                  
-API/syntax/API/SyntaxTreeNode/StrInterPolationContent/parse_StrInterPolationContent_13n.cj                                                  
-API/syntax/API/SyntaxTreeNode/StrInterPolationContent/parse_StrInterPolationContent_14n.cj
+API/syntax/API/SyntaxTreeNode/Comment/parse_Inner_Comment_06.cj                                                                     
 API/syntax/Init/Decl/test_propdecl_init_01.cj
 API/syntax/Init/Decl/test_propgetterorsetter_init_01.cj
 API/syntax/Init/Pattern/test_typepattern_init_01.cj
 API/syntax/Init/Expr/test_lambda_init_01.cj
-API/syntax/parseTokens/Expr/CallExpr/parseTokens_CallExpr_01.cj
-API/syntax/parseTokens/Decl/ClassDecl/parseTokens_ClassDecl_01.cj
-API/syntax/parseFile/path/parsefile_path_008n.cj
-API/syntax/parseFunc/parseDir/parse/parsedir_001.cj
-API/syntax/parseFunc/parseTokens/Decl/ClassDecl/parseTokens_ClassDecl_01.cj
 API/syntax/parseFunc/parseTokens/Expr/CallExpr/parseTokens_CallExpr_01.cj
+API/syntax/parseFunc/parseTokens/Decl/ClassDecl/parseTokens_ClassDecl_01.cj
+API/syntax/parseFunc/parseFile/path/parsefile_path_008n.cj
+API/syntax/parseFunc/parseDir/parse/parsedir_001.cj
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
 
 # timezone file in ci not support now
