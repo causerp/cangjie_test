@@ -9,6 +9,6 @@
 package mp
 
 public platform class A {
-    public platform A(){}
+    public platform init(){}
     public platform init(a: Int64){}
 }

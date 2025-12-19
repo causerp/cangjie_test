@@ -9,7 +9,7 @@
 package mp
 
 public common class A {
-    public common A() {}
+    public common init() {}
     public common init(a: Int64) {}
     public common init(a:Int64,b:Int64){}
     public common init(a:Int64,b:Float64) {

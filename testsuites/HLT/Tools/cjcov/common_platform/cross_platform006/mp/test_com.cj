@@ -10,5 +10,5 @@ package mp
 
 public common struct A {
     public var a: Int64 = 1
-    public common A(a: Int64)
+    public common init(a: Int64)
 }
