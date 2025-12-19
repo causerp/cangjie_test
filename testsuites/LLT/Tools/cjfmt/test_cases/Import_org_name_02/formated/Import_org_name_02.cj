@@ -4,13 +4,13 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package org :: import_org_name
+package `org`::import_org_name
 
-import org::UI.  Foundation.* //ABC
-import org::  test.bottomContent // ABC
+import `org`::UI.Foundation.* //ABC
+import `org`::test.bottomContent // ABC
 import test.*
-import org  ::{cjDemo1, cjDemo2}
-import org::cjDemo3.    {aaa, bbb, ccc} // ABC
+import org::{cjDemo1, cjDemo2}
+import org::cjDemo3.{aaa, bbb, ccc} // ABC
 
 public class listState07 <: State {
   var list: Array<MyClass07>

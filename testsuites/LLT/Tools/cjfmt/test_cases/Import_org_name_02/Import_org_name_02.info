@@ -4,16 +4,6 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-extend Int64 {
-    func foo() {
-        0
-    }
-}
-
-main() {
-    if (true) {
-        return 0x1.foo()
-    } else {
-        return 0X1.foo()
-    }
-}
+// DEPENDENCE: ../%n
+// EXEC: cd %n/uilang && cjfmt -f ./Import_org_name_02.cj %tonull
+// EXEC: %diff %n/formated/Import_org_name_02.cj %n/uilang/Import_org_name_02.cj
