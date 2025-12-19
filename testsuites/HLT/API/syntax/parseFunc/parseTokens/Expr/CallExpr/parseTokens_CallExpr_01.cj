@@ -47,7 +47,7 @@ func test_CallExpr_01() {
     @Expect(expr_4.arguments.toString(), "[length(a.b)]")
 
     var pos = expr_1.getLParenPos()
-    @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [1i32, 15i32, 1i32, 16i32])
+    @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [1i32, 14i32, 1i32, 15i32])
     pos = expr_1.getRParenPos()
-    @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [1i32, 16i32, 1i32, 17i32])
+    @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [1i32, 15i32, 1i32, 16i32])
 }

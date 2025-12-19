@@ -25,8 +25,6 @@ compiler/cjnative/stable_abi/06_interface/02_modify/01_define_content/02_compile
 compiler/cjnative/stable_abi/interface/modify/funcmemeber_property/modify/compiler_directive/interface_add_java.cj
 
 # syntax will be supported in future                                                                                                                                                                                                
-API/syntax/parseFunc/parseTokens/Expr/CallExpr/parseTokens_CallExpr_01.cj
-API/syntax/parseFunc/parseTokens/Decl/ClassDecl/parseTokens_ClassDecl_01.cj
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
 
 # timezone file in ci not support now

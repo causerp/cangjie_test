@@ -8,8 +8,6 @@
 Tools/cjlsp/testcases/autotestcase/deprecated/textDocument_completion_018.info
 
 # syntax will be supported in future
-API/syntax/parseFunc/parseTokens/Expr/CallExpr/parseTokens_CallExpr_01.cj
-API/syntax/parseFunc/parseTokens/Decl/ClassDecl/parseTokens_ClassDecl_01.cj
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
 
 # timezone file in ci not support now
