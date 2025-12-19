@@ -4,11 +4,15 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// (CJNATIVE and not Windows) EXEC-PIPE-1: %frontendCompiler %cmp_opt %diag_json %f -o %output %compile_shared_lib_opt 2>& 1 | compare %f
-// ASSERT: scan parse_objc_impl_cannot_be_open
+// (CJNATIVE and not Windows) EXEC-PIPE-0: %frontendCompiler %dump-parse %cmp_opt %f -o %output %compile_shared_lib_opt
+// ASSERT: scan-not error
+
+import objc.lang.*
 
 @ObjCMirror
-open class M {}
+open class M {
+    init()
+}
 
 @ObjCImpl
 open class I <: M {}

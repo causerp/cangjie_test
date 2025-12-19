@@ -8,12 +8,14 @@ package cjworld
 
 import objc.lang.*
 
-@ObjCMirror
-public open class M {
-    @ForeignName["initWithB:"]
-    init(b: Bool)
-    @ForeignName["initWithM:andB:"]
-    init(m: M, b: Bool)
-    @ForeignName["initWithA:andM:"]
-    init(a: M, m: M)
+
+@ObjCImpl
+public class A <: M {
+    public init() {
+        println("cj: A()")
+        let a0 = A1()
+        let a1 = A1(true)
+        let a2 = A1(false, M())
+        let a3 = A1(100500)
+    }
 }

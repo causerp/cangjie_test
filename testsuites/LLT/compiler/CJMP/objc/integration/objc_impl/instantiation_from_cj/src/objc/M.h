@@ -4,16 +4,11 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package cjworld
+#import <Foundation/Foundation.h>
 
-import objc.lang.*
+@interface M : NSObject
 
-@ObjCMirror
-public open class M {
-    @ForeignName["initWithB:"]
-    init(b: Bool)
-    @ForeignName["initWithM:andB:"]
-    init(m: M, b: Bool)
-    @ForeignName["initWithA:andM:"]
-    init(a: M, m: M)
-}
+- (id)init;
+- (id)initWithA:(BOOL)a;
+
+@end

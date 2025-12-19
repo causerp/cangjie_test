@@ -8,12 +8,9 @@ package cjworld
 
 import objc.lang.*
 
-@ObjCMirror
-public open class M {
-    @ForeignName["initWithB:"]
-    init(b: Bool)
-    @ForeignName["initWithM:andB:"]
-    init(m: M, b: Bool)
-    @ForeignName["initWithA:andM:"]
-    init(a: M, m: M)
+@ObjCImpl
+class A1 <: A {
+    public init() {
+        println("cj: A1()")
+    }
 }

@@ -4,16 +4,15 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package cjworld
+#import "A.h"
+#import "A1.h"
+#import <Foundation/Foundation.h>
 
-import objc.lang.*
 
-@ObjCMirror
-public open class M {
-    @ForeignName["initWithB:"]
-    init(b: Bool)
-    @ForeignName["initWithM:andB:"]
-    init(m: M, b: Bool)
-    @ForeignName["initWithA:andM:"]
-    init(a: M, m: M)
+int main(int argc, char** argv) {
+    @autoreleasepool {
+        A* a = [[A alloc] init];
+        A1* a1 = [[A1 alloc] init];
+    }
+    return 0;
 }
