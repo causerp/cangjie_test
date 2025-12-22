@@ -4,16 +4,23 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package cjworld
+// (CJNATIVE and not Windows) EXEC-PIPE-0: %compiler %cmp_opt %f -o %output %compile_shared_lib_opt %import_objc_interop 2>& 1 | compare %f
+
+// ASSERT: scan-not error
 
 import objc.lang.*
 
+@ObjCImpl
+public class K <: N {
+    init() {}
+}
+
+@ObjCImpl
+public open class N <: M {
+    init() {}
+}
+
 @ObjCMirror
 public open class M {
-    @ForeignName["initWithB:"]
-    init(b: Bool)
-    @ForeignName["initWithM:andB:"]
-    init(m: M, b: Bool)
-    @ForeignName["initWithA:andM:"]
-    init(a: M, m: M)
+    init()
 }

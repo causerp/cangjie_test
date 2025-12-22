@@ -4,16 +4,16 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package cjworld
+#import "M.h"
 
-import objc.lang.*
+@implementation M
 
-@ObjCMirror
-public open class M {
-    @ForeignName["initWithB:"]
-    init(b: Bool)
-    @ForeignName["initWithM:andB:"]
-    init(m: M, b: Bool)
-    @ForeignName["initWithA:andM:"]
-    init(a: M, m: M)
+- (id)init {
+    if (self = [super init]) {
+        printf("objc: [M init]\n");
+    }
+
+    return self;
 }
+
+@end
