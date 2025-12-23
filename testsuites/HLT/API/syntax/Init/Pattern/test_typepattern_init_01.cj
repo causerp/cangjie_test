@@ -36,4 +36,5 @@ func test_TypePattern_Init_01(subPattern: Pattern, patternType: TypeAnnotation, 
     println(TypePattern.toString())
     println()
 }
+
 }
