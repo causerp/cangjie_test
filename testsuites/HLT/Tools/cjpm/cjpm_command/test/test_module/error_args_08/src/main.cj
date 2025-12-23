@@ -6,8 +6,19 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 1
-// DEPENDENCE: ../%n
-// EXEC: cd %n && %cjpm test --module123 "" -V 2>&1 | compare %f
-// ASSERT: scan Error: invalid path '' for 'cjpm test'
-// ASSERT: scan Error: cjpm test failed
+package test
+
+internal import pro0.zoo.*
+internal import test.koo.*
+
+main(): Int64 {
+    let res = z + k
+    println(res)
+    let res2 = concatM("a", "b")
+    println(res2)
+    return 0
+}
+
+public func concatM(s1: String, s2: String): String {
+    return s1 + s2
+}

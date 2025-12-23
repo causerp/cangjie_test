@@ -6,8 +6,16 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 1
-// DEPENDENCE: ../%n
-// EXEC: cd %n && %cjpm test --module123 "" -V 2>&1 | compare %f
-// ASSERT: scan Error: invalid path '' for 'cjpm test'
-// ASSERT: scan Error: cjpm test failed
+package test.koo
+
+internal import std.unittest.*
+import std.unittest.testmacro.*
+
+@Test
+public class TestK {
+    @TestCase
+    func sayhi(): Unit {
+        @Assert(concatk("1", "2"), "12")
+        @Assert(concatk("1", "3"), "13")
+    }
+}

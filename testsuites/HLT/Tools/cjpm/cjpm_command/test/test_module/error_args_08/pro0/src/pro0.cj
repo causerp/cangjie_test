@@ -6,8 +6,4 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 1
-// DEPENDENCE: ../%n
-// EXEC: cd %n && %cjpm test --module123 "" -V 2>&1 | compare %f
-// ASSERT: scan Error: invalid path '' for 'cjpm test'
-// ASSERT: scan Error: cjpm test failed
+package pro0
