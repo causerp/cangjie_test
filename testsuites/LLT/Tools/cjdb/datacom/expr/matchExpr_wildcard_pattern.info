@@ -9,8 +9,8 @@
 // EXEC: python3 cjdb_test.py %n.info %n %run_env
 
 test#
-cjdb,cjdb matchExpr_com1,matchExpr_com1
-b,b 20,matchExpr_com1.cj:20
-r,r,-> 20
- ,expr match (c) {case Green => "Green" case  Yellow(_)  => "Blue" case Red  => "red" case _  => "red"},\(std.core.String\) \$\d+ = "Blue"
+cjdb,cjdb matchExpr_wildcard_pattern,matchExpr_wildcard_pattern
+b,b 19,matchExpr_wildcard_pattern.cj:19
+r,r,-> 19
+ ,expr match (c) {case Green => " Green  " case Blue  => "Blue" case _  => " red or Yellow "},\(std.core.String\) \$\d+ = " red or Yellow "
 q,q,

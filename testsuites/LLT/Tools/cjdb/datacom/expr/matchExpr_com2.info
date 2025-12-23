@@ -9,8 +9,8 @@
 // EXEC: python3 cjdb_test.py %n.info %n %run_env
 
 test#
-cjdb,cjdb matchExpr_com1,matchExpr_com1
-b,b 20,matchExpr_com1.cj:20
-r,r,-> 20
- ,expr match (c) {case Green => "Green" case  Yellow(_)  => "Blue" case Red  => "red" case _  => "red"},\(std.core.String\) \$\d+ = "Blue"
+cjdb,cjdb matchExpr_com2,matchExpr_com2
+b,b 19,matchExpr_com2.cj:19
+r,r,-> 19
+ :expr match (yearTuple) {case ((Year("Allen"), "Allen"), (Year("def"), 80)) => 0 case (_, _) => 1}:\(Int64\) \$\d+ = 0
 q,q,

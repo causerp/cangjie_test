@@ -9,8 +9,11 @@
 // EXEC: python3 cjdb_test.py %n.info %n %run_env
 
 test#
-cjdb,cjdb matchExpr_com1,matchExpr_com1
-b,b 20,matchExpr_com1.cj:20
-r,r,-> 20
- ,expr match (c) {case Green => "Green" case  Yellow(_)  => "Blue" case Red  => "red" case _  => "red"},\(std.core.String\) \$\d+ = "Blue"
+cjdb,cjdb matchExpr_enum_option,matchExpr_enum_option
+b,b 28,matchExpr_enum_option.cj:28
+r,r,-> 28
+ ,expr match (v1) {case Some(v) => v  case None => 0 },\(Int64\) \$\d+ = 100
+ ,expr match (v2) {case Some(v) => v  case None => UInt64(0)},\(UInt64\) \$\d+ = 100
+ ,expr match (v3) {case Some(v) => v  case None => 1.1},\(Float64\) \$\d+ = 1.2
+ ,expr match (v7) {case Some(v) => v  case None => 2 },\(Int64\) \$\d+ = 2
 q,q,

@@ -4,13 +4,13 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// DEPENDENCE:  ../../cjdb_test.py ../../basecase/expr/%n.cj
+// DEPENDENCE:  ../../cjdb_test.py ../../basecase/expr/match_expr/%n.cj
 // EXEC: %compiler %cmp_opt %enableCompileDebug %n.cj -o %n
 // EXEC: python3 cjdb_test.py %n.info %n %run_env
 
 test#
-cjdb,cjdb matchExpr_type_patern,matchExpr_type_patern
-b,b 29,matchExpr_type_patern.cj:29
-r,r,-> 29
- ,expr match (normalPt) {case _: Point => normalPt.x * normalPt.y case _ => 0},\(Int64\) \$\d+ = 50
+cjdb,cjdb matchExpr_binding_pattern2,matchExpr_binding_pattern2
+b,b 14,matchExpr_binding_pattern2.cj:14
+r,r,-> 14
+ ,expr match(a) {case b => "${b[2]}" case _ => ""},\(std.core.String\) \$\d+ = "2"
 q,q,
