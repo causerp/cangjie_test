@@ -62,4 +62,5 @@ class test_02{
 func test_VArrayType_Init_02(elementType: TypeAnnotation, size: Int64, comments: Array<Comment>): Unit {
     @AssertThrows[Exception](VArrayType(elementType, size, comments: comments))
 }
+
 }
