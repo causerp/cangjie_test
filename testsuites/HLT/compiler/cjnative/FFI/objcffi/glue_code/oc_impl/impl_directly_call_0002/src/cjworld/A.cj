@@ -7,15 +7,18 @@
  */
  
 package cjworld
- 
+
 import objc.lang.*
 
-@ObjCMirror
-public open class M {
-    @ForeignName["init"]
-    public init()
-    @ForeignName["initWithA:"]
-    public init(a: Int64)
+@ObjCImpl
+public class A <: M {
+    public init() {
+        super()
+        super.f()
+    }
+    public init(a: Int64) {
+        super(a)
+        super.f()
+        println("in cj A, ${a}")
+    }
 }
-
-

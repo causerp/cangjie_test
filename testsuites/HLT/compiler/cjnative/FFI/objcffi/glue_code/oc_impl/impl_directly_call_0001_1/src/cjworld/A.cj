@@ -7,15 +7,24 @@
  */
  
 package cjworld
- 
+
 import objc.lang.*
 
-@ObjCMirror
-public open class M1 {
-    @ForeignName["init:"]
-    public init()
-    @ForeignName["foo:"]
-    public open func foo(a: Bool): Bool
+@ObjCImpl
+public open class A <: M {
+    public init() {}
+    public init(a: Int64) {
+        println("in cj A, ${a}")
+    }
 }
 
-
+@ObjCImpl
+public class B <: A {
+    public init() {
+        this(1)
+        this.f()
+    }
+    public init(a: Int64) {
+        println("in cj B, ${a}")
+    }
+}
