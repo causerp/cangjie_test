@@ -14,5 +14,6 @@ API/std/process/darwin
 API/std/process/unix
 API/std/time/
 compiler/Diagnose/PlatformRelated
+compiler/Driver/PlatformRelated
 
 [EXCLUDE-TEST-CASE]
