@@ -8,19 +8,14 @@
 // EXEC-0: %compiler %noColor --experimental c/c.cj --output-type=chir --output-dir ./c
 package cmp
 
-
-public common class A {
-    public init(_: Int64) {}
+common sealed abstract class A {
+    public init() {}
 }
 
 // SEPARATE-FILE: p/p.cj
-// EXEC-PIPE-1: %compiler %diag_json --experimental p/p.cj c/cmp.chir --common-part-cjo=./c/cmp.cjo --output-type=dylib  --output-dir ./p  2>&1 | compare %f
-// ASSERT: scan parse_illegal_modifier_in_scope
+// EXEC-0: %compiler %diag_json --experimental p/p.cj c/cmp.chir --common-part-cjo=./c/cmp.cjo --output-type=dylib --output-dir ./p 2>&1 | compare %f
+// ASSERT: scan sema_platform_has_different_modifier
 package cmp
 
-// Need report error
-public platform class A {
-    public A(platform var a: Int64) {}
-}
-
+platform public open abstract class A {}
 
