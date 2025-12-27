@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ImportMulti_02() {
     let res = parseFile("./ImportMulti_02.cj")
     var diags = res.diags
@@ -33,4 +35,5 @@ func test_ImportMulti_02() {
             @Assert(_import_1.prefixes, ["std", "time"])
         case _ => throw Exception("parse Type wrong!")
     }
+}
 }

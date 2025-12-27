@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_VarPattern_01() {
     let res = parseFile("./VarPattern_01.cj")
     var diags = res.diags
@@ -26,4 +28,5 @@ func test_VarPattern_01() {
     var expr_1: VarPattern = (_decl.pattern as VarPattern).getOrThrow()
     @Expect(expr_1.toString(), "x_1")
     @Assert(expr_1.name, "x_1")
+}
 }

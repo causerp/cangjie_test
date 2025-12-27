@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ImportAlias_01() {
     let res = parseFile("./ImportAlias_01.cj")
     var diags = res.diags
@@ -37,4 +39,5 @@ func test_ImportAlias_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [9i32, 10i32, 9i32, 12i32])
     pos = import1.getIdentifierPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [9i32, 8i32, 9i32, 9i32])
+}
 }

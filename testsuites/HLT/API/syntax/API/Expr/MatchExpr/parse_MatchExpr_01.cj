@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MatchExpr_01() {
     let res = parseFile("./MatchExpr_01.cj")
     var diags = res.diags
@@ -73,4 +75,5 @@ func test_MatchExpr_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 5i32, 10i32, 10i32])
     @Assert(expr_1.getSelectorLParenPos().isNone())
     @Assert(expr_1.getSelectorRParenPos().isNone())
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ImportList_03() {
     let res = parseFile("./ImportList_03.cj")
     var diags = res.diags
@@ -86,4 +88,5 @@ protected import a.a.a._a.a.a.a.a.a._a.a.a.a"##))
         case _ => @Assert(false)
     }
     @Expect(import_4.toString(), ##"protected import a.a.a._a.a.a.a.a.a._a.a.a.a"##)
+}
 }

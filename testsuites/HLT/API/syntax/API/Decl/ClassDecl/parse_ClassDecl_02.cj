@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ClassDecl_02() {
     let res = parseFile("./ClassDecl_02.cj")
     var diags = res.diags
@@ -428,4 +430,5 @@ func test_ClassDecl_02() {
         return 13
     }
 }"##)
+}
 }

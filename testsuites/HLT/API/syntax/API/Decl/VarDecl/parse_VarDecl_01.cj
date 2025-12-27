@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_VarDecl_01() {
     let res = parseFile("./VarDecl_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -65,4 +67,5 @@ protected const c: Int64 = 1"##))
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [11i32, 18i32, 11i32, 19i32])
     pos = vardecl_3.getVarKindKeyWordPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [11i32, 11i32, 11i32, 16i32])
+}
 }

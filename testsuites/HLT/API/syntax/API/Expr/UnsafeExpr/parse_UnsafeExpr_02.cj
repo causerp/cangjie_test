@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_UnsafeExpr_02() {
     let res = parseFile("./UnsafeExpr_02.cj")
     var diags = res.diags
@@ -37,4 +39,5 @@ func test_UnsafeExpr_02() {
         let str = LibC.mallocString("abc")
         str.free()
     }"##)
+}
 }

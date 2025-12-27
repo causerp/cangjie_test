@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ContinueExpr_01() {
     let res = parseFile("./ContinueExpr_01.cj")
     var diags = res.diags
@@ -28,4 +30,5 @@ func test_ContinueExpr_01() {
     var _expr = (maindecl.body.nodes[0] as ForInExpr).getOrThrow()
     @Assert(_expr.body.nodes[0] is ContinueExpr)
     @Assert((_expr.body.nodes[0] as ContinueExpr).getOrThrow().toString(), "continue")
+}
 }

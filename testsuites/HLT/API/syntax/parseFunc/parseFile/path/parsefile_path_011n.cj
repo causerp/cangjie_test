@@ -15,9 +15,12 @@ import std.fs.*
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_filepath_011() {
     let fileinfo = FileInfo("./file001.cj")
     fileinfo.setReadable(false)
     let e = @AssertThrows[Exception](parseFile("./file001.cj"))
     @Assert(e.message, "IOException: The file is not readable.")
+}
 }

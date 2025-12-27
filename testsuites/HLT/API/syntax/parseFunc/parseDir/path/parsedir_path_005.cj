@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_dirpath_005() {
     let res = parsePackage("./dir002")
     var diags = res.diags
@@ -51,4 +53,5 @@ public func foo2() {
     @Assert(_package.isMacroPkg, false)
     @Assert(_package.name, "dir001")
     @Assert(_package.srcFile.size, 2)
+}
 }

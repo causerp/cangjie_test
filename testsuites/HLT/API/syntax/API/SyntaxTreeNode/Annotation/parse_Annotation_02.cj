@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_Annotation_02() {
     let res = parseFile("./Annotation_02.cj")
 
@@ -28,4 +30,5 @@ foreign func rand0(): Int32"##))
     @Assert(anno_1.toString(), ##"@CallingConv[CDECL]"##)
     @Assert(anno_1.arguments.toString(), ##"[CDECL]"##)
     @Assert(anno_1.identifier.toString(), ##"CallingConv"##)
+}
 }

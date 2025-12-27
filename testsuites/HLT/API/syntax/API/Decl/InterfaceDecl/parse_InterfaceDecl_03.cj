@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_InterfaceDecl_03() {
     let res = parseFile("./InterfaceDecl_03.cj")
     var diags = res.diags
@@ -39,4 +41,5 @@ func test_InterfaceDecl_03() {
     @Assert(interfaceDecl.superTyAnnotations[1].toString(), "I3<T>")
     @Assert(interfaceDecl.annotations.size, 0)
     @Assert(interfaceDecl.modifiers.toString(), ##"[protected]"##)
+}
 }

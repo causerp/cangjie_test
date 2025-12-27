@@ -11,10 +11,12 @@
 // (CJNATIVE and not OHOS and not iOS) EXEC: %compiler %import-cangjie-stdx %cmp_opt %f -o %output %cmp_utest_opt
 // (CJNATIVE and not OHOS and not iOS) RUN-EXEC: %run_stdx %output %run_utest_opt %run_args
 
-// 当前前端缺少信息
+// 当前前�缺少信息
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_Annotation_03() {
     let res = parseFile("./Annotation_03.cj")
 
@@ -36,4 +38,5 @@ func test_Annotation_03() {
     @Assert(anno_2.toString(), ##"@Attribute["Binding"]"##)
     @Assert(anno_2.arguments.toString(), ##"["Binding"]"##)
     @Assert(anno_2.identifier.toString(), ##"Attribute"##)
+}
 }

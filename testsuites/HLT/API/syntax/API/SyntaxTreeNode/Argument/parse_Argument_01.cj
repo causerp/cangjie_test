@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_Argument_01() {
     let res = parseFile("./Argument_01.cj")
 
@@ -69,4 +71,5 @@ func test_Argument_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [13i32, 9i32, 13i32, 10i32])
     pos = arg_5.getInoutKeyWordPos().getOrThrow()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [14i32, 9i32, 14i32, 14i32])
+}
 }

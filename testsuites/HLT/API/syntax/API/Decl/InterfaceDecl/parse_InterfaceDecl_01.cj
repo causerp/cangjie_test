@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_InterfaceDecl_01() {
     let res = parseFile("./InterfaceDecl_01.cj")
     var diags = res.diags
@@ -65,4 +67,5 @@ public interface I1 < T > <: S1 < T > where T <: I2 < T > {
     @Assert(interfaceDecl.getSuperTyAnnotationsBitAndsPos().size == 0, true)
     pos = interfaceDecl.getUpperBoundPos().getOrThrow()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 24i32, 10i32, 26i32])
+}
 }

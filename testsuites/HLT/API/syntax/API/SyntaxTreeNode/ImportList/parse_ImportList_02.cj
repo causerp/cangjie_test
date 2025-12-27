@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ImportList_02() {
     let res = parseFile("./ImportList_02.cj")
     var diags = res.diags
@@ -54,4 +56,5 @@ public import {
     std.fs as fileSystem,
     std.io.*,
 }"##)
+}
 }

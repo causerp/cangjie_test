@@ -13,8 +13,10 @@
 
 import stdx.syntax.*
 
-// sema 阶段报错不拦截
+// sema 阶�报错不拦截
 @Test
+class test_01{
+    @TestCase
 func test_MatchCase_09() {
     let res = parseFile("./MatchCase_09.cj")
     var diags = res.diags
@@ -43,4 +45,5 @@ func test_MatchCase_09() {
     @Assert(case_1.patterns[0].toString(), "x: Int64")
     @Assert(case_1.patterns[1] is TypePattern)
     @Assert(case_1.patterns[1].toString(), "y: String")
+}
 }

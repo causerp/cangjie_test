@@ -15,6 +15,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_FuncDecl_08() {
     let res = parseFile("./FuncDecl_08.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -34,4 +36,5 @@ func test_FuncDecl_08() {
     @Assert(funcdecl_1.retTyAnnotation.getOrThrow().toString(), "Unit")
     @Assert(funcdecl_1.modifiers.toString(), "[unsafe]")
     @Assert(funcdecl_1.annotations.toString(), ##"[]"##)
+}
 }

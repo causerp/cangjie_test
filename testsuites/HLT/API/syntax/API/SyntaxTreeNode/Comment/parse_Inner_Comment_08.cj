@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_Inner_Comment_08() {
     let res = parseFile("./Inner_Comment_08.cj")
     var diags = res.diags
@@ -41,4 +43,5 @@ class A {}"##)
 class A {}"##)
 
 
+}
 }

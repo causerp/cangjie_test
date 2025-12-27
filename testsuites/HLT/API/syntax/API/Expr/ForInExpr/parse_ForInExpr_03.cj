@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ForInExpr_03() {
     let res = parseFile("./ForInExpr_03.cj")
     var diags = res.diags
@@ -37,4 +39,5 @@ func test_ForInExpr_03() {
     @Assert(expr_1.expr.toString(), ##"0..=-100:2"##)
     @Assert(expr_1.pattern is WildcardPattern)
     @Assert(expr_1.patternGuard.isNone())
+}
 }

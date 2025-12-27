@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_SynchronizedExpr_01() {
     let res = parseFile("./SynchronizedExpr_01.cj")
     var diags = res.diags
@@ -51,4 +53,5 @@ func test_SynchronizedExpr_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [12i32, 19i32, 12i32, 20i32])
     pos = expr_2.getSynchronizedKeyWordPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [12i32, 5i32, 12i32, 17i32])
+}
 }

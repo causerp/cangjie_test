@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_StructDecl_01() {
     let res = parseFile("./StructDecl_01.cj")
     var diags = res.diags
@@ -34,4 +36,5 @@ func test_StructDecl_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [9i32, 1i32, 9i32, 7i32])
     @Assert(structDecl.getSuperTyAnnotationsBitAndsPos().size == 0, true)
     @Assert(structDecl.getUpperBoundPos().isNone(), true)
+}
 }

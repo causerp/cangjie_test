@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_GenericConstraint_01() {
     let res = parseFile("./GenericConstraint_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -42,4 +44,5 @@ func test_GenericConstraint_01() {
     @Assert([posList[0].beginLine, posList[0].beginColumn, posList[0].endLine, posList[0].endColumn], [9i32, 54i32, 9i32, 55i32])
     pos = gc_1.getUpperBoundPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [9i32, 42i32, 9i32, 44i32])
+}
 }

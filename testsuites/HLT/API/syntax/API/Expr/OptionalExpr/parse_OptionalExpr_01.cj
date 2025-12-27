@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_OptionalExpr_01() {
     let res = parseFile("./OptionalExpr_01.cj")
     var diags = res.diags
@@ -41,4 +43,5 @@ func test_OptionalExpr_01() {
     @Expect(expr_3.base.toString(), ##"a()?"##)
     var pos = (expr_3.base as OptionalExpr).getOrThrow().getQuestionPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [12i32, 8i32, 12i32, 9i32])
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_TypeConvExpr_01() {
     let res = parseFile("./TypeConvExpr_01.cj")
     var diags = res.diags
@@ -49,4 +51,5 @@ func test_TypeConvExpr_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [12i32, 10i32, 12i32, 11i32])
     pos = expr_3.getRParenPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [12i32, 26i32, 12i32, 27i32])
+}
 }

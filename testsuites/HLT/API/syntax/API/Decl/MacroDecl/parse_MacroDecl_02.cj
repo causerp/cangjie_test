@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MacroDecl_02() {
     let res = parseFile("./MacroDecl_02.cj")
     var diags = res.diags
@@ -39,4 +41,5 @@ public macro M1(input: Tokens, tok: Tokens) {
     @Assert(_decl.modifiers.toString(), ##"[public]"##)
     @Assert(_decl.params.params.toString(), "[input: Tokens, tok: Tokens]")
     @Assert(_decl.retTyAnnotation.isNone())
+}
 }

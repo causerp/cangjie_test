@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_TryCatch_03() {
     let res = parseFile("./TryCatch_03.cj")
     var diags = res.diags
@@ -54,4 +56,5 @@ func test_TryCatch_03() {
     @Assert(expr.catchPatterns[1].toString(), "_")
     @Assert(expr.finallyBlock.isNone())
     @Assert(expr.resourceSpec.size, 0)
+}
 }

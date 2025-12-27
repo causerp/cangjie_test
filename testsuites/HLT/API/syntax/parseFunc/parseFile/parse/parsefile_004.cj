@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_file_004() {
     let res = parseFile("./file004.cj")
     var diags = res.diags
@@ -27,3 +29,4 @@ func test_file_004() {
     @Assert(sourcefile.topLevelDecls.size, 0)
 }
 
+}

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ParameterList_01() {
     let res = parseFile("./ParameterList_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -65,4 +67,5 @@ public func func_4(_param : Int64) {}"##))
     @Assert([Pos_4.beginLine, Pos_4.beginColumn, Pos_4.endLine, Pos_4.endColumn], [14i32, 19i32, 14i32, 20i32])
     Pos_4 = p4.getParamsRParenPos().getOrThrow()
     @Assert([Pos_4.beginLine, Pos_4.beginColumn, Pos_4.endLine, Pos_4.endColumn], [14i32, 34i32, 14i32, 35i32])
+}
 }

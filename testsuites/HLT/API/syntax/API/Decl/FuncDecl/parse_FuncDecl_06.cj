@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_FuncDecl_06() {
     let res = parseFile("./FuncDecl_06.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -34,4 +36,5 @@ func test_FuncDecl_06() {
     @Assert(funcdecl_1.retTyAnnotation.isNone())
     @Assert(funcdecl_1.modifiers.toString(), "[]")
     @Assert(funcdecl_1.annotations.toString(), ##"[@Deprecated["a"]]"##)
+}
 }

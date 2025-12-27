@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MatchCase_15() {
     let res = parseFile("./MatchCase_15.cj")
     var diags = res.diags
@@ -45,4 +47,5 @@ func test_MatchCase_15() {
     @Assert(case_1.patterns[1].toString(), "(\"Bob\", y)")
     @Assert(case_1.patterns[2] is VarOrEnumPattern)
     @Assert(case_1.patterns[2].toString(), "x")
+}
 }

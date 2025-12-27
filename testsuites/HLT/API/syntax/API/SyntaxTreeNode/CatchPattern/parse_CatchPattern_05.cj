@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_CatchPattern_05() {
     let res = parseFile("./CatchPattern_05.cj")
     var diags = res.diags
@@ -28,4 +30,5 @@ func test_CatchPattern_05() {
     var expr: TryCatch = (mainDecl.body.nodes[0] as TryCatch).getOrThrow()
     @Assert(expr.catchPatterns.size, 1)
     @Assert(expr.catchPatterns[0].pattern is WildcardPattern)
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_LambdaParam_01() {
     let res = parseFile("./LambdaParam_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -83,4 +85,5 @@ func test_LambdaParam_01() {
     @Assert([Pos_5.beginLine, Pos_5.beginColumn, Pos_5.endLine, Pos_5.endColumn], [14i32, 7i32, 14i32, 8i32])
     Pos_5 = p5.getTypeAnnotationColonPos().getOrThrow()
     @Assert([Pos_5.beginLine, Pos_5.beginColumn, Pos_5.endLine, Pos_5.endColumn], [14i32, 8i32, 14i32, 9i32])
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ParenType_01() {
     let res = parseFile("./ParenType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -37,4 +39,5 @@ var a: (()-> Unit) = foo"##))
     @Assert([Pos_2.beginLine, Pos_2.beginColumn, Pos_2.endLine, Pos_2.endColumn], [10i32, 8i32, 10i32, 9i32])
     Pos_2 = type_2.getRParenPos()
     @Assert([Pos_2.beginLine, Pos_2.beginColumn, Pos_2.endLine, Pos_2.endColumn], [10i32, 18i32, 10i32, 19i32])
+}
 }

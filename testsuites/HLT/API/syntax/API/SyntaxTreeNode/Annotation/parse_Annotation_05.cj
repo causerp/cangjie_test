@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_Annotation_05() {
     let res = parseFile("./Annotation_05.cj")
 
@@ -47,4 +49,5 @@ func test_Annotation_05() {
     var posList = anno_3.getCommasPos()
     @Assert(posList.size == 1, true)
     @Assert([posList[0].beginLine, posList[0].beginColumn, posList[0].endLine, posList[0].endColumn], [11i32, 18i32, 11i32, 19i32])
+}
 }

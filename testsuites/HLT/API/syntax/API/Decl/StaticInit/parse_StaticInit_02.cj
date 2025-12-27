@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_StaticInit_02() {
     let res = parseFile("./StaticInit_02.cj")
     var diags = res.diags
@@ -30,4 +32,5 @@ func test_StaticInit_02() {
     @Assert(staticInit.toString(), ##"static init() { var a = 1 }"##)
     @Assert(staticInit.body.nodes.size, 1)
     @Assert(staticInit.body.nodes[0] is VarDecl)
+}
 }

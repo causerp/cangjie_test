@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_Modifier_01() {
     let res = parseFile("./Modifier_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -25,4 +27,5 @@ func test_Modifier_01() {
         case Sealed => ()
         case _ => @Assert(false)
     }
+}
 }

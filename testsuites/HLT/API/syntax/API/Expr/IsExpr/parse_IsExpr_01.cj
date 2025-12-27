@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_IsExpr_01() {
     let res = parseFile("./IsExpr_01.cj")
     var diags = res.diags
@@ -47,4 +49,5 @@ func test_IsExpr_01() {
 
     var pos = expr_1.getIsKeyWordPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 11i32, 10i32, 13i32])
+}
 }

@@ -15,6 +15,8 @@ import std.fs.*
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_dirpath_002() {
     let path_str = canonicalize("./dir001").toString()
     println(path_str)
@@ -54,4 +56,5 @@ public func foo2() {
     @Assert(_package.isMacroPkg, false)
     @Assert(_package.name, "dir001")
     @Assert(_package.srcFile.size, 2)
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MacroExpandParam_02() {
     let res = parseFile("./MacroExpandParam_02.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -54,4 +56,5 @@ func test_MacroExpandParam_02() {
         case WithParens(Tokens) => @Expect(Tokens.toString(), ##"c!: Int64 = 1"##)
         case _ => @Assert(false)
     }
+}
 }

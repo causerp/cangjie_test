@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_CompositeType_02() {
     let res = parseFile("./CompositeType_02.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -48,4 +50,5 @@ var a2: CFunc<(CPointer<Int8>) -> Unit> = A()"##))
     Pos_2 = type_2.getRAnglePos().getOrThrow()
     @Assert([Pos_2.beginLine, Pos_2.beginColumn, Pos_2.endLine, Pos_2.endColumn], [10i32, 39i32, 10i32, 40i32])
     @Assert(type_2.getCommasPos().size, 0)
+}
 }

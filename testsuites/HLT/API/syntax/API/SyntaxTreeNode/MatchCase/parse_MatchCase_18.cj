@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MatchCase_18() {
     let res = parseFile("./MatchCase_18.cj")
     var diags = res.diags
@@ -77,4 +79,5 @@ func test_MatchCase_18() {
     @Assert(case_4.patterns[0].toString(), "Year(y)")
     @Assert(case_4.patterns[1] is EnumPattern)
     @Assert(case_4.patterns[1].toString(), "Month(y, m)")
+}
 }

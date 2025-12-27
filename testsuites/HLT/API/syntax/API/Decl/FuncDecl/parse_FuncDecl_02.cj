@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_FuncDecl_02() {
     let res = parseFile("./FuncDecl_02.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -80,4 +82,5 @@ func test_FuncDecl_02() {
     @Assert(funcdecl_3.retTyAnnotation.getOrThrow() is AtomicType)
     @Assert(funcdecl_3.modifiers.toString(), "[mut]")
     @Assert(funcdecl_3.annotations.toString(), "[]")
+}
 }

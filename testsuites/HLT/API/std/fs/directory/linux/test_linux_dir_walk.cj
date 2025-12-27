@@ -149,7 +149,7 @@ class Test_Dir_Iterators_Lists {
                     try {
                         call_api(path)
                     } catch (e: FSException) {
-                        @Expect(e.message.contains("Failed to get number of subFiles in directory"))
+                        @Expect(e.message.contains("Failed to obtain members in the directory"))
                         sum += 1
                     }
                 }

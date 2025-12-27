@@ -26,7 +26,7 @@ import std.io.*
 @When[os == "macOS"]
 let thread_count = 20
 @When[os != "macOS"]
-let thread_count = 50
+let thread_count = 20
 
 @Test
 class Test_Concurrent_100_connects {

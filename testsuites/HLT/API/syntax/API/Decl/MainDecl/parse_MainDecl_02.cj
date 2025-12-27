@@ -11,10 +11,12 @@
 // (CJNATIVE and not OHOS and not iOS) EXEC: %compiler %import-cangjie-stdx %cmp_opt %f -o %output %cmp_utest_opt
 // (CJNATIVE and not OHOS and not iOS) RUN-EXEC: %run_stdx %output %run_utest_opt %run_args
 
-// 根据spec不应当支持unsafe maindecl，当前支持
+// 根据spec不应当支持unsafe maindecl，当前支�
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MainDecl_02() {
     let res = parseFile("./MainDecl_02.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -25,4 +27,5 @@ func test_MainDecl_02() {
     @Assert(mainDecl.params.params[0].toString(), "args: Array<String>")
     @Assert(mainDecl.retTyAnnotation.isNone())
     @Assert(mainDecl.modifiers.toString(), "[]")
+}
 }

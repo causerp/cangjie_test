@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_TypeAlias_02() {
     let res = parseFile("./TypeAlias_02.cj")
     var diags = res.diags
@@ -49,4 +51,5 @@ type Int<T> = Int32"##))
     @Assert(typeAlias_4.aliasName, "Int")
     @Assert(typeAlias_4.originalTyAnnotation.toString(), "Int32")
     @Assert(typeAlias_4.typeParameters.toString(), "[T]")
+}
 }

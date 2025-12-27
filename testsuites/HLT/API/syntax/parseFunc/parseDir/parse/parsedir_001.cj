@@ -17,6 +17,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_dir_001() {
     let res = parsePackage("./dir001")
     var diags = res.diags
@@ -143,4 +145,5 @@ let a2 = a1 + 1
     @Assert(_pkgHeader.isMacroPkg, false)
     @Assert(_pkgHeader.packageNameIdentifiers, ["a", "b", "ccc"])
     @Assert(file2.topLevelDecls.size, 1)
+}
 }

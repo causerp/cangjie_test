@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_CompositeType_01() {
     let res = parseFile("./CompositeType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -70,4 +72,5 @@ var a4: p1.A = A()"##))
     @Assert(type_4.getLAnglePos().isNone(), true)
     @Assert(type_4.getRAnglePos().isNone(), true)
     @Assert(type_4.getCommasPos().size, 0)
+}
 }
