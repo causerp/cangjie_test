@@ -24,7 +24,7 @@ import stdx.crypto.keys.*
 import std.io.*
 
 @When[os == "macOS"]
-let thread_count = 20
+let thread_count = 15
 @When[os != "macOS"]
 let thread_count = 20
 
