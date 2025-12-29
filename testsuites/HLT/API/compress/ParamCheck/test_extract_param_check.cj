@@ -9,6 +9,7 @@
 // LEVEL: 1
 // DEPENDENCE: test_example.tar.gz, test_example.tar, test_example, test_example.zip, no_permission, no_permission.tar.gz
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt %f -o %output %cmp_utest_opt
+// EXEC: ls -l
 // RUN-EXEC: %run_stdx %output %run_utest_opt %run_args
 
 import std.fs.*
@@ -71,6 +72,14 @@ class test_TarGzip_extract_param {
         f1.setWritable(false)
         f2.setReadable(false)
         f2.setWritable(false)
+        let resultf1 = f1.setReadable(false)
+        let resultf2 = f1.setWritable(false)
+        let resultf3 = f2.setReadable(false)
+        let resultf4 = f2.setWritable(false)
+        println("resultf1---------------------------${resultf1}")
+        println("resultf2---------------------------${resultf2}")
+        println("resultf3---------------------------${resultf3}")
+        println("resultf4---------------------------${resultf4}")
     }
 
     // 测试 String, String, Bool 参数的解压函数的参数检查
