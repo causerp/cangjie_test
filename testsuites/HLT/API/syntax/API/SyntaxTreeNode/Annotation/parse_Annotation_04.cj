@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_Annotation_04() {
     let res = parseFile("./Annotation_04.cj")
 
@@ -35,4 +37,5 @@ func test_Annotation_04() {
     @Assert(anno_2.toString(), ##"@When [backend == "cjnative"]"##)
     @Assert(anno_2.arguments.toString(), ##"[backend == "cjnative"]"##)
     @Assert(anno_2.identifier.toString(), ##"When"##)
+}
 }

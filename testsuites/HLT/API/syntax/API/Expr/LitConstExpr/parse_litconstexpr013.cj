@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_litconstexpr_013() {
     let res = parseFile("./litconstexpr013.cj")
     var diags = res.diags
@@ -37,4 +39,5 @@ func test_litconstexpr_013() {
         case LitConstKind.StringLiteral => ()
         case _ => @Assert(false)
     }
+}
 }

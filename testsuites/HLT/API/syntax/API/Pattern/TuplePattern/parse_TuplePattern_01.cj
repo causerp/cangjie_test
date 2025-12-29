@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_TuplePattern_01() {
     let res = parseFile("./TuplePattern_01.cj")
     var diags = res.diags
@@ -58,4 +60,5 @@ func test_TuplePattern_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [13i32, 14i32, 13i32, 15i32])
     pos = pattern_3.getRParenPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [13i32, 28i32, 13i32, 29i32])
+}
 }

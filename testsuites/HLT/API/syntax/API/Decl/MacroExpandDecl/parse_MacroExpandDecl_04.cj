@@ -15,6 +15,8 @@ import std.ast.Tokens
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MacroExpandDecl_04() {
     let res = parseFile("./MacroExpandDecl_04.cj")
     var diags = res.diags
@@ -90,4 +92,5 @@ extend C1 <: C2 {
 }"##)
         case _ => @Assert(false)
     }
+}
 }

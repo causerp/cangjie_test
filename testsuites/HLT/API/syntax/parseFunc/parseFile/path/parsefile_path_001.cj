@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_filepath_001() {
     let res = parseFile("./file001.cj")
     var diags = res.diags
@@ -31,4 +33,5 @@ main() {
     return a
 }"##
    // @Assert(sourcefile.toString().replace("\n",""), str.replace("\n",""))
+}
 }

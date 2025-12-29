@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_BreakExpr_01() {
     let res = parseFile("./BreakExpr_01.cj")
     var diags = res.diags
@@ -28,4 +30,5 @@ func test_BreakExpr_01() {
     var _expr = (maindecl.body.nodes[0] as ForInExpr).getOrThrow()
     @Assert(_expr.body.nodes[0] is BreakExpr)
     @Assert((_expr.body.nodes[0] as BreakExpr).getOrThrow().toString(), "break")
+}
 }

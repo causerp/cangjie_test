@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_StructDecl_05() {
     let res = parseFile("./StructDecl_05.cj")
     var diags = res.diags
@@ -71,4 +73,5 @@ func test_StructDecl_05() {
     @Assert(structDecl.superTyAnnotations[0].toString(), "I1")
     @Assert(structDecl.superTyAnnotations[1].toString(), "I2")
     @Assert(structDecl.annotations.size, 0)
+}
 }

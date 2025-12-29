@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ReturnExpr_01() {
     let res = parseFile("./ReturnExpr_01.cj")
     var diags = res.diags
@@ -30,4 +32,5 @@ func test_ReturnExpr_01() {
     @Expect(expr_1.retVal.isNone())
     var pos = expr_1.getReturnKeyWordPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 5i32, 10i32, 11i32])
+}
 }

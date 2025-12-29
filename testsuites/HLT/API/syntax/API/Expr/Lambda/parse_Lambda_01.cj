@@ -13,8 +13,10 @@
 
 import stdx.syntax.*
 
-// ; 暂不支持
+// ; 暂不��
 @Test
+class test_01{
+    @TestCase
 func test_Lambda_01() {
     let res = parseFile("./Lambda_01.cj")
     var diags = res.diags
@@ -109,4 +111,5 @@ func test_Lambda_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 5i32, 10i32, 6i32])
     pos = expr_1.getRCurlPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 10i32, 10i32, 11i32])
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_CatchPattern_01() {
     let res = parseFile("./CatchPattern_01.cj")
     var diags = res.diags
@@ -42,4 +44,5 @@ func test_CatchPattern_01() {
     @Assert(posList.size == 0, true)
     var pos = _expr.getColonPos().getOrThrow()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 20i32, 10i32, 21i32])
+}
 }

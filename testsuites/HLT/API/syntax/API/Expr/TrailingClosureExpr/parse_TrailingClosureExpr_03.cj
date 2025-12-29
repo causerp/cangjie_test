@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_TrailingClosureExpr_03() {
     let res = parseFile("./TrailingClosureExpr_03.cj")
     var diags = res.diags
@@ -30,4 +32,5 @@ func test_TrailingClosureExpr_03() {
     @Assert(expr_1.arguments.toString(), "[a: 1]")
     @Expect(expr_1.callee.toString(), ##"g"##)
     @Assert(expr_1.trailingLambdaExpr.toString(), ##"{a: Int64, b: Int64 => a+ b}"##)
+}
 }

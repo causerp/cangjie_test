@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_EnumDecl_01() {
     let res = parseFile("./EnumDecl_01.cj")
     var diags = res.diags
@@ -88,4 +90,5 @@ enum E1 {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [11i32, 47i32, 11i32, 50i32])
     @Assert(enumDecl.getSuperTyAnnotationsBitAndsPos().size == 0, true)
     @Assert(enumDecl.getUpperBoundPos().isNone(), true)
+}
 }

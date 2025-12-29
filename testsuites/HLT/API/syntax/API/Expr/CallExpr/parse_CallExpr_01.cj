@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_CallExpr_01() {
     let res = parseFile("./CallExpr_01.cj")
     var diags = res.diags
@@ -52,4 +54,5 @@ func test_CallExpr_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 15i32, 10i32, 16i32])
     pos = expr_1.getRParenPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 16i32, 10i32, 17i32])
+}
 }

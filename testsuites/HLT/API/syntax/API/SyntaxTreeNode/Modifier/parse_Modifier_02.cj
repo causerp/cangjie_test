@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_Modifier_02() {
     let res = parseFile("./Modifier_02.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -25,4 +27,5 @@ func test_Modifier_02() {
     var decl_1 = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
     @Assert(decl_1.body.memberDecls[0].modifiers.toString(), "[internal, override, mut]")
     @Assert(decl_1.body.memberDecls[1].modifiers.toString(), "[private, redef, static]")
+}
 }

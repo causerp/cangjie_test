@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_StrInterpolationContent_11() {
     let res = parseFile("./StrInterPolationContent_11.cj")
     var diags = res.diags
@@ -25,4 +27,5 @@ func test_StrInterpolationContent_11() {
     var varDecl: VarDecl = (sourcefile.topLevelDecls[0] as VarDecl).getOrThrow()
     var expr: LitConstStrExpr = (varDecl.initializer.getOrThrow() as LitConstStrExpr).getOrThrow()
     @Assert(expr.strPartExprs.size, 0)
+}
 }

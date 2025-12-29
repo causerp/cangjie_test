@@ -15,8 +15,10 @@ import std.fs.*
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_dirpath_004() {
-    let path_str = "./aaaaa/bbbbb/cccccc/dddddd/eeee/ffffff/ddddddd/ffffff/dddddd/ffffff/ddddd/仓颉/aaaa/dddd/"
+    let path_str = "./aaaaa/bbbbb/cccccc/dddddd/eeee/ffffff/ddddddd/ffffff/dddddd/ffffff/ddddd/仓�/aaaa/dddd/"
     Directory.create(path_str, recursive: true)
     rename("./dir001", to: path_str, overwrite: true)
     let res = parsePackage(path_str)
@@ -55,4 +57,5 @@ public func foo2() {
     @Assert(_package.isMacroPkg, false)
     @Assert(_package.name, "dir001")
     @Assert(_package.srcFile.size, 2)
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_WildcardPattern_01() {
     let res = parseFile("./WildcardPattern_01.cj")
     var diags = res.diags
@@ -25,4 +27,5 @@ func test_WildcardPattern_01() {
     var _decl: VarDecl = (sourcefile.topLevelDecls[0] as VarDecl).getOrThrow()
     var expr_1: WildcardPattern = (_decl.pattern as WildcardPattern).getOrThrow()
     @Assert(expr_1.toString(), "_")
+}
 }

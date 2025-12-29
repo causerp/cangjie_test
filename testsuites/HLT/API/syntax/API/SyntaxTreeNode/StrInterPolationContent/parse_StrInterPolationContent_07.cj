@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_StrInterpolationContent_07() {
     let res = parseFile("./StrInterPolationContent_07.cj")
     var diags = res.diags
@@ -30,4 +32,5 @@ func test_StrInterpolationContent_07() {
             @Assert(strIPC.interpolationBlock.toString(), ##"{0i32}"##)
         case _ => @Assert(false)
     }
+}
 }

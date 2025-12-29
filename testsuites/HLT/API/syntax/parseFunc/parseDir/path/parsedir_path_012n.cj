@@ -15,11 +15,14 @@ import std.fs.*
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_dirpath_012() {
     let fileinfo = FileInfo("./dir002")
     fileinfo.setReadable(false)
     @Expect(fileinfo.canRead(), false)
     let e = @AssertThrows[Exception](parsePackage("./dir002"))
-    @Assert(e.message.contains("IOException: Failed to get number of subFiles in directory"))
+    @Assert(e.message.contains("IOException: Failed to obtain members in the directory"))
     fileinfo.setReadable(true)
+}
 }

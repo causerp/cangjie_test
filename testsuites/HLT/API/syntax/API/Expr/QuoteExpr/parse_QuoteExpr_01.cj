@@ -15,6 +15,8 @@ import std.ast.Tokens
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_QuoteExpr_01() {
     let res = parseFile("./QuoteExpr_01.cj")
     var diags = res.diags
@@ -109,4 +111,5 @@ func test_QuoteExpr_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 5i32, 10i32, 10i32])
     pos = expr_1.getRParenPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 11i32, 10i32, 12i32])
+}
 }

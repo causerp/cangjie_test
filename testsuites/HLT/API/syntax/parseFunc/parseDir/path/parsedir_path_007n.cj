@@ -14,7 +14,10 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_dirpath_007() {
     let e = @AssertThrows[Exception](parsePackage("./dir001/a1.cj"))
     @Assert(e.message.contains("IOException: The input path `./dir001/a1.cj` is not a directory"))
+}
 }

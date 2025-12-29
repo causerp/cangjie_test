@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_StructDecl_08() {
     let res = parseFile("./StructDecl_08.cj")
     var diags = res.diags
@@ -66,4 +68,5 @@ struct S1 <: I1 & I2 {
     @Assert(structDecl.superTyAnnotations[1].toString(), "I2")
     @Assert(structDecl.annotations.size, 1)
     @Assert(structDecl.annotations[0].toString(), ##"@Deprecated["aaa", strict: false]"##)
+}
 }

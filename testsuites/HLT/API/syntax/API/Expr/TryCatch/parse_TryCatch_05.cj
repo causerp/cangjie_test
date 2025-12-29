@@ -14,8 +14,11 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_TryCatch_05() {
     let file= parseFile("./TryCatch_05.cj")
     @Expect(file.node.isNone())
     @Expect(file.diags.size > 0)
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_AtomicType_01() {
     let res = parseFile("./AtomicType_01.cj")
     var diags = res.diags
@@ -35,4 +37,5 @@ func test_AtomicType_01() {
         case ThisType => ()
         case _ => @Assert(false)
     }
+}
 }

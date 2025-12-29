@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_EnumDecl_02() {
     let res = parseFile("./EnumDecl_02.cj")
     var diags = res.diags
@@ -68,4 +70,5 @@ public enum E1<T> <: I1<T> & I2 where T <: ToString{
     @Assert(enumDecl.superTyAnnotations[1].toString(), ##"I2"##)
     @Assert(enumDecl.annotations.size, 1)
     @Assert(enumDecl.annotations[0].toString(), ##"@Deprecated["aaa", strict: true]"##)
+}
 }

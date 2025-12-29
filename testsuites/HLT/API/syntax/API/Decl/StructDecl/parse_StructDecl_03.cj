@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_StructDecl_03() {
     let res = parseFile("./StructDecl_03.cj")
     var diags = res.diags
@@ -73,4 +75,5 @@ public struct a_b<T, U> <: S1<T, U> where T <: ToString, U <: ToString{
     @Assert(structDecl.superTyAnnotations[0].toString(), "S1<T, U>")
     @Assert(structDecl.annotations.size, 1)
     @Assert(structDecl.annotations[0].toString(), ##"@When[ backend == "linux" ]"##)
+}
 }

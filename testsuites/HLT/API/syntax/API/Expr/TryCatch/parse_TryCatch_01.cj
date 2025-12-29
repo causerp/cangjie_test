@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_TryCatch_01() {
     let res = parseFile("./TryCatch_01.cj")
     var diags = res.diags
@@ -63,4 +65,5 @@ func test_TryCatch_01() {
     @Assert(expr.getResourceSpecRParenPos().isNone())
     pos = expr.getTryKeyWordPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 5i32, 10i32, 8i32])
+}
 }

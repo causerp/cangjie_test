@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_AssignExpr_01() {
     let res = parseFile("./AssignExpr_01.cj")
     var diags = res.diags
@@ -107,4 +109,5 @@ func test_AssignExpr_01() {
 
     var pos = expr_1.getAssignOpPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 8i32, 10i32, 9i32])
+}
 }

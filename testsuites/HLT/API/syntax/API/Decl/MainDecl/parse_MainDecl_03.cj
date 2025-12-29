@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MainDecl_03() {
     let res = parseFile("./MainDecl_03.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -25,4 +27,5 @@ func test_MainDecl_03() {
     @Assert(mainDecl.params.params.size, 0)
     @Assert(mainDecl.retTyAnnotation.isNone())
     @Assert(mainDecl.modifiers.toString(), "[]")
+}
 }

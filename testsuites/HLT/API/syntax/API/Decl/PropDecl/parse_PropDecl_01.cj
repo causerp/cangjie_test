@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_PropDecl_01() {
     let res = parseFile("./PropDecl_01.cj")
     var diags = res.diags
@@ -71,4 +73,5 @@ func test_PropDecl_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [13i32, 5i32, 13i32, 6i32])
     pos = prop_1.getTyAnnotationColonPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 30i32, 10i32, 31i32])
+}
 }

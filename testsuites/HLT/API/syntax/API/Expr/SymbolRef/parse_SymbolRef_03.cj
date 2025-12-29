@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_SymbolRef_03() {
     let res = parseFile("./SymbolRef_03.cj")
     var diags = res.diags
@@ -31,4 +33,5 @@ func test_SymbolRef_03() {
     @Assert(expr_2.name, "foo")
     @Assert(expr_2.typeArguments.size, 2)
     @Assert(expr_2.typeArguments.toString(), "[T, U]")
+}
 }

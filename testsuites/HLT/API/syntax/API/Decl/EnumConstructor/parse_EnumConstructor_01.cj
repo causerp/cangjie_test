@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_EnumConstructor_01() {
     let res = parseFile("./EnumConstructor_01.cj")
     var diags = res.diags
@@ -111,4 +113,5 @@ func test_EnumConstructor_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [15i32, 10i32, 15i32, 11i32])
     pos = c_6.getParamsRParenPos().getOrThrow()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [15i32, 34i32, 15i32, 35i32])
+}
 }

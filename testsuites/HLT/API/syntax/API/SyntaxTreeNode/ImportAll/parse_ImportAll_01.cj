@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ImportAll_01() {
     let res = parseFile("./ImportAll_01.cj")
     var diags = res.diags
@@ -30,4 +32,5 @@ func test_ImportAll_01() {
     var import1 = sourcefile.importLists[0].contents as ImportAll
     var pos = import1.getOrThrow().getMulPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [9i32, 10i32, 9i32, 11i32])
+}
 }

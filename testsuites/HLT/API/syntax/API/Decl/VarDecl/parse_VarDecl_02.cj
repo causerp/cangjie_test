@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_VarDecl_02() {
     let res = parseFile("./VarDecl_02.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -67,4 +69,5 @@ func test_VarDecl_02() {
     @Assert(vardecl_3.tyAnnotation.isSome())
     @Assert(vardecl_3.tyAnnotation.getOrThrow() is AtomicType)
     @Assert(vardecl_3.pattern is VarPattern)
+}
 }

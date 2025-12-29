@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_GenericParam_01() {
     let res = parseFile("./GenericParam_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -28,4 +30,5 @@ func test_GenericParam_01() {
     @Assert(classDecl.genericParams[0].name, "T")
     @Assert(classDecl.genericParams[0].toTokens().toString(), "T")
     @Assert(classDecl.genericParams[1].name, "U")
+}
 }

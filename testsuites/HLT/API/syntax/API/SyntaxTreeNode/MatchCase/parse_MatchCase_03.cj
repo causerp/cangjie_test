@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MatchCase_03() {
     let res = parseFile("./MatchCase_03.cj")
     var diags = res.diags
@@ -41,4 +43,5 @@ func test_MatchCase_03() {
     @Assert(case_1.patterns.size, 1)
     @Assert(case_1.patterns[0] is ConstPattern)
     @Assert(case_1.patterns[0].toString(), "true")
+}
 }

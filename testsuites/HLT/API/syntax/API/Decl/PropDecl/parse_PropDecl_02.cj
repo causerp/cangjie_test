@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_PropDecl_02() {
     let res = parseFile("./PropDecl_02.cj")
     var diags = res.diags
@@ -45,4 +47,5 @@ func test_PropDecl_02() {
     @Assert(prop_2.tyAnnotation.toString(), "R")
     @Assert(prop_2.tyAnnotation is CompositeType)
     @Assert(prop_2.isMut, false)
+}
 }

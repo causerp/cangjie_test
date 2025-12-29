@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_PropDecl_03() {
     let res = parseFile("./PropDecl_03.cj")
     var diags = res.diags
@@ -66,4 +68,5 @@ func test_PropDecl_03() {
     @Assert(prop_2.isMut)
     @Assert(prop_2.modifiers.toString(), "[internal, static, mut]")
     @Assert(prop_2.annotations.toString(), ##"[@Deprecated["a"], @Frozen]"##)
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_FuncType_01() {
     let res = parseFile("./FuncType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -146,4 +148,5 @@ var a6: (a: (A) -> Unit, b: (Int64) -> Unit) -> (A, () -> Unit) = foo6"##))
     @Assert([Pos_6.beginLine, Pos_6.beginColumn, Pos_6.endLine, Pos_6.endColumn], [14i32, 9i32, 14i32, 10i32])
     Pos_6 = type_6.getRParenPos()
     @Assert([Pos_6.beginLine, Pos_6.beginColumn, Pos_6.endLine, Pos_6.endColumn], [14i32, 44i32, 14i32, 45i32])
+}
 }

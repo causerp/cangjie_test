@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MacroDecl_01() {
     let res = parseFile("./MacroDecl_01.cj")
     var diags = res.diags
@@ -46,4 +48,5 @@ func test_MacroDecl_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 8i32, 10i32, 13i32])
     pos = _decl.getRetTyAnnotationColonPos().getOrThrow()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 31i32, 10i32, 32i32])
+}
 }

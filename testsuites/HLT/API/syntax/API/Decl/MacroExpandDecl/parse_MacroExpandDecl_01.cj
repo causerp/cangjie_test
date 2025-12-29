@@ -15,6 +15,8 @@ import std.ast.Tokens
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MacroExpandDecl_01() {
     let res = parseFile("./MacroExpandDecl_01.cj")
     var diags = res.diags
@@ -79,4 +81,5 @@ var a = b"##)
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [9i32, 23i32, 9i32, 24i32])
     pos = decl_1.getRSquarePos().getOrThrow()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [9i32, 12i32, 9i32, 13i32])
+}
 }

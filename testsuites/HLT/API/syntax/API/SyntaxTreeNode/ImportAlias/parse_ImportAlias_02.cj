@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ImportAlias_02() {
     let res = parseFile("./ImportAlias_02.cj")
     var diags = res.diags
@@ -29,4 +31,5 @@ func test_ImportAlias_02() {
             @Assert(x.aliasName, "x1")
         case _ => throw Exception("parse Type wrong!")
     }
+}
 }

@@ -13,8 +13,10 @@
 
 import stdx.syntax.*
 
-// 注释暂不支持
+// 注释暂不��
 @Test
+class test_01{
+    @TestCase
 func test_WhileExpr_02() {
     let res = parseFile("./WhileExpr_02.cj")
     var diags = res.diags
@@ -39,4 +41,5 @@ func test_WhileExpr_02() {
         break
     }"##)
     @Assert(expr_1.condition.toString(), ##"let a <- 1 && a > 0"##)
+}
 }

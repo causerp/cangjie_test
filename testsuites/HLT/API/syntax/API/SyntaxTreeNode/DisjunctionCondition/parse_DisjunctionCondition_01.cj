@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_DisjunctionCondition_01() {
     let res = parseFile("./DisjunctionCondition_01.cj")
     var diags = res.diags
@@ -35,4 +37,5 @@ func test_DisjunctionCondition_01() {
 
     var posList = condition.getOrsPos()
     @Assert(posList.size == 0, true)
+}
 }

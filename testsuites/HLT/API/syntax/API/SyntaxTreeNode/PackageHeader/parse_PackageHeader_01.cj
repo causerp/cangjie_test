@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_PackageHeader_01() {
     let res = parseFile("./PackageHeader_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -52,4 +54,5 @@ func test_PackageHeader_01() {
     @Assert([posList[10].beginLine, posList[10].beginColumn, posList[10].endLine, posList[10].endColumn], [9i32, 42i32, 9i32, 43i32])
     @Assert(pkgHeader.getPackageName(), "k")
     @Assert(pkgHeader.getParentPackageName(), "a.b.c.d.e.f.g.h.i.j")
+}
 }

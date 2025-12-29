@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_EnumDecl_06() {
     let res = parseFile("./EnumDecl_06.cj")
     var diags = res.diags
@@ -51,4 +53,5 @@ func test_EnumDecl_06() {
     @Assert(enumDecl.superTyAnnotations[0].toString(), ##"I1"##)
     @Assert(enumDecl.superTyAnnotations[1].toString(), ##"I2"##)
     @Assert(enumDecl.annotations.size, 0)
+}
 }

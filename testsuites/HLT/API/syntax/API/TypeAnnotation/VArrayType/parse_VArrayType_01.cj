@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_VArrayType_01() {
     let res = parseFile("./VArrayType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -52,4 +54,5 @@ var a: VArray<UInt64, $5> = [1,2,3,4,5]"##))
     @Assert([Pos_2.beginLine, Pos_2.beginColumn, Pos_2.endLine, Pos_2.endColumn], [10i32, 25i32, 10i32, 26i32])
     Pos_2 = type_2.getVArrayPos()
     @Assert([Pos_2.beginLine, Pos_2.beginColumn, Pos_2.endLine, Pos_2.endColumn], [10i32, 8i32, 10i32, 14i32])
+}
 }

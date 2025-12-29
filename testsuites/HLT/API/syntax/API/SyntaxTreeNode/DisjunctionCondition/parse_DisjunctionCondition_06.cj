@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_DisjunctionCondition_06() {
     let res = parseFile("./DisjunctionCondition_06.cj")
     var diags = res.diags
@@ -34,4 +36,5 @@ func test_DisjunctionCondition_06() {
     @Assert(condition.cond[0].toString(), ##"!(a > 1) && b > 2"##)
     @Assert(condition.cond[1].toString(), ##"c > 3 && c > 4"##)
     @Assert(condition.cond[2].toString(), ##"(d > 5 || let a <- 1 && true)"##)
+}
 }

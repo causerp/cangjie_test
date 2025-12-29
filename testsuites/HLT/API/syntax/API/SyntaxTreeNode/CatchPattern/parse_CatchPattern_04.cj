@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_CatchPattern_04() {
     let res = parseFile("./CatchPattern_04.cj")
     var diags = res.diags
@@ -37,4 +39,5 @@ func test_CatchPattern_04() {
         case _ => @Assert(false)
     }
     @Assert(_expr.pattern.toString(), "e")
+}
 }

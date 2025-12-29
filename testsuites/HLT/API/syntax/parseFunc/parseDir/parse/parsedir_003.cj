@@ -15,6 +15,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_dir_003() {
     let res = parsePackage("./dir003")
     var diags = res.diags
@@ -65,4 +67,5 @@ let a2 = a1 + 1 + 1234"##
     @Assert(file2.path.contains("file_002.cj"))
     @Assert(file2.pkgHeader.isNone())
     @Assert(file2.topLevelDecls.size, 1)
+}
 }

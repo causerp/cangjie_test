@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_ForInExpr_01() {
     let res = parseFile("./ForInExpr_01.cj")
     var diags = res.diags
@@ -50,4 +52,5 @@ func test_ForInExpr_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 38i32, 10i32, 39i32])
     pos = expr_1.getWhereKeyWordPos().getOrThrow()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 22i32, 10i32, 27i32])
+}
 }

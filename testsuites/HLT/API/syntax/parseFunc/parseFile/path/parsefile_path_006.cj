@@ -14,7 +14,10 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_filepath_006() {
     let e = @AssertThrows[Exception](parseFile("./file"))
     @Assert(e.message, "IOException: The file extension of the source file must be 'cj'.")
+}
 }

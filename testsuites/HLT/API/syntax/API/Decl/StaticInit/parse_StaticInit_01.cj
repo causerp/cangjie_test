@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_StaticInit_01() {
     let res = parseFile("./StaticInit_01.cj")
     var diags = res.diags
@@ -39,4 +41,5 @@ func test_StaticInit_01() {
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 17i32, 10i32, 18i32])
     pos = staticInit.getStaticKeyWordPos()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 5i32, 10i32, 11i32])
+}
 }

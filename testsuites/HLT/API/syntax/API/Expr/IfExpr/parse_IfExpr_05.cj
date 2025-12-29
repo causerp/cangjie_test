@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_IfExpr_05() {
     let res = parseFile("./IfExpr_05.cj")
     var diags = res.diags
@@ -31,4 +33,5 @@ func test_IfExpr_05() {
     @Assert(expr_1.condition.toString(), ##"(let a <- true) || true"##)
     @Assert(expr_1.elseBlock.isNone())
     @Assert(expr_1.elseIf.isNone())
+}
 }

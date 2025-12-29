@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_MacroExpandParam_01() {
     let res = parseFile("./MacroExpandParam_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -85,4 +87,5 @@ func test_MacroExpandParam_01() {
     @Assert(param_2.getRParenPos().isNone(), true)
     pos = param_2.getRSquarePos().getOrThrow()
     @Assert([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], [10i32, 44i32, 10i32, 45i32])
+}
 }

@@ -14,6 +14,8 @@
 import stdx.syntax.*
 
 @Test
+class test_01{
+    @TestCase
 func test_VarDecl_03() {
     let res = parseFile("./VarDecl_03.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
@@ -30,4 +32,5 @@ func test_VarDecl_03() {
     @Assert(vardecl_1.tyAnnotation.isNone())
     @Assert(vardecl_1.pattern is VarPattern)
     @Assert(vardecl_1.annotations.toString(), ##"[@Deprecated["a"]]"##)
+}
 }
