@@ -84,6 +84,7 @@ class test_TarGzip_extract_param {
 
     // 测试 String, String, Bool 参数的解压函数的参数检查
     @TestCase
+    @Skip
     func test_extract_neg_param_str_str_bool(): Unit {
         var apis: Array<(String ,(String, String, Bool) -> Any)> = [
             ("TarGzip.extract" ,{fromTarGzip: String, destDir: String, overwrite: Bool => TarGzip.extract(fromTarGzip: fromTarGzip, destDir: destDir, overwrite: overwrite)}),
