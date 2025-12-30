@@ -4,6 +4,11 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// DEPENDENCE: ../%n
-// EXEC: cd %n && %cjpm build 2>&1 | compare %f
-// ASSERT: scan cjpm build success
+package dep
+
+public let depStr = "dep"
+
+main(): Int64 {
+    println("hello world")
+    return 0
+}
