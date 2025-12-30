@@ -7,12 +7,15 @@
 // SEPARATE-FILE: c/c.cj
 // EXEC-0: %compiler %noColor --experimental c/c.cj --output-type=chir --output-dir ./c
 package cmp
-
-common public enum RGBColor {
-    | Red(UInt8) | Green(UInt8) | Blue(UInt8)
+public common enum A{
+    | RED | BLUE
+  common func foo():Unit{}
 }
 
 // SEPARATE-FILE: p/p.cj
-// EXEC-PIPE-0: %compiler %diag_json --experimental p/p.cj c/cmp.chir --common-part-cjo=./c/cmp.cjo --output-type=dylib
+// EXEC-PIPE-1: %compiler %diag_json --experimental p/p.cj c/cmp.chir --common-part-cjo=./c/cmp.cjo --output-type=dylib 2>&1 | compare %f
+// ASSERT: scan sema_not_matched
 package cmp
-
+public platform enum A{
+    | RED 
+}
