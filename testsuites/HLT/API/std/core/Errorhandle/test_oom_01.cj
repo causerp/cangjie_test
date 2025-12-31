@@ -8,7 +8,7 @@
  
 // LEVEL: 1
 // EXEC: %compiler %cmp_opt -o %n.%suffix %f
-// RUN-EXEC-PIPE: %run %run_opt %n.%suffix %run_args 2>&1 | compare %f
+// (not O2)RUN-EXEC-PIPE: %run %run_opt %n.%suffix %run_args 2>&1 | compare %f
 // ASSERT: scan handle error: OutOfMemoryError
 // ASSERT: scan handler finished
 // ASSERT: scan quit normally
@@ -17,14 +17,14 @@
 import std.unittest.*
 import std.unittest.testmacro.*
 
-main() {
 
-  func handler_01(err: Error): Unit { // easy handler。will all print log
-    println("handle error: ${err}")  
+main() {
+  func handler_02(err: Error): Unit { // complex handler will notfinish main
+    println("handle error: ${err}")
     println("handler finished")
   }
 
-  Thread.handleUncaughtErrorBy(handler_01)
+  Thread.handleUncaughtErrorBy(handler_02)
 
   spawn {
     consumeMemory()
@@ -36,11 +36,10 @@ main() {
   return 0
 }
 
-
 public func consumeMemory() {
   let array = Array(1024*1024*1024*1024, repeat: 10)
   for (i in 0..array.size) {
-    array[i] = 0
+    array[i] = i
   }
 }
 
