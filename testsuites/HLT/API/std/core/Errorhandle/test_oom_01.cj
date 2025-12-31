@@ -19,12 +19,13 @@ import std.unittest.testmacro.*
 
 
 main() {
-  func handler_02(err: Error): Unit { // complex handler will notfinish main
-    println("handle error: ${err}")
+
+  func handler_01(err: Error): Unit { // easy handler。will all print log
+    println("handle error: ${err}")  
     println("handler finished")
   }
 
-  Thread.handleUncaughtErrorBy(handler_02)
+  Thread.handleUncaughtErrorBy(handler_01)
 
   spawn {
     consumeMemory()
@@ -35,6 +36,7 @@ main() {
 
   return 0
 }
+
 
 public func consumeMemory() {
   let array = Array(1024*1024*1024*1024, repeat: 10)
