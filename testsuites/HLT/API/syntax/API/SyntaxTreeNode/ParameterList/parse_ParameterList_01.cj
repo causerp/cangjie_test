@@ -19,7 +19,7 @@ class test_01{
 func test_ParameterList_01() {
     let res = parseFile("./ParameterList_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"const func func_1() {}
+    @Expect(sourcefile.toString().replace("\r","").contains(##"const func func_1() {}
 public func func_2(a: Int64) {}
 public func func_3(c: Int64, d: String, f: Int64): Int64 {
     return c + f
@@ -41,7 +41,7 @@ public func func_4(_param : Int64) {}"##))
 
     var funcdecl_3: FuncDecl = (sourcefile.topLevelDecls[2] as FuncDecl).getOrThrow()
     var p3: ParameterList = (funcdecl_3.params as ParameterList).getOrThrow()
-    @Assert(funcdecl_3.toString(), ##"public func func_3(c: Int64, d: String, f: Int64): Int64 {
+    @Assert(funcdecl_3.toString().replace("\r",""), ##"public func func_3(c: Int64, d: String, f: Int64): Int64 {
     return c + f
 }"##)
     @Assert(p3.params.size, 3)

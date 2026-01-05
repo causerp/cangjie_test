@@ -22,7 +22,7 @@ func test_StrInterpolationContent_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"var a: Int64 = 1
+    @Assert(sourcefile.toString().replace("\r","").contains(##"var a: Int64 = 1
 var _a: String = "cangjie: ${a}""##))
 
     var varDecl: VarDecl = (sourcefile.topLevelDecls[1] as VarDecl).getOrThrow()

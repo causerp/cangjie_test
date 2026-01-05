@@ -23,7 +23,7 @@ func test_Inner_Comment_09() {
 
     let sourcefile: SourceFile = res.node.getOrThrow()
     sourcefile.toString() |> println
-    @Assert(sourcefile.toString(), ##"/*
+    @Assert(sourcefile.toString().replace("\r",""), ##"/*
  * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
  * This source file is part of the Cangjie project, licensed under Apache-2.0
  * with Runtime Library Exception.
@@ -85,7 +85,7 @@ main(/* block comment1 */ args: Array<String>) // line comment1
 }"##)
 
     var _decl: MainDecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
-    @Assert(_decl.toString(), ##"main(/* block comment1 */ args: Array<String>) // line comment1
+    @Assert(_decl.toString().replace("\r",""), ##"main(/* block comment1 */ args: Array<String>) // line comment1
 {
     match(ff()) { // line comment2
         case (x, /* block comment1 */y) where x < 10 => println("x") // line comment3

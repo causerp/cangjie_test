@@ -22,7 +22,7 @@ func test_CatchPattern_05() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     try {} catch (_) {}
 }"##))
 

@@ -19,7 +19,7 @@ class test_01{
 func test_CompositeType_02() {
     let res = parseFile("./CompositeType_02.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"var a1: CFunc<() -> Unit> = A()
+    @Expect(sourcefile.toString().replace("\r","").contains(##"var a1: CFunc<() -> Unit> = A()
 var a2: CFunc<(CPointer<Int8>) -> Unit> = A()"##))
 
     @Assert(sourcefile.nodePos.beginLine, 1)

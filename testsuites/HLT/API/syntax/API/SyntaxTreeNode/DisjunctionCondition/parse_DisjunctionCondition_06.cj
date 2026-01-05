@@ -22,7 +22,7 @@ func test_DisjunctionCondition_06() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     if (!(a > 1) && b > 2 || c > 3 && c > 4 || (d > 5 || let a <- 1 && true)) {}
 }"##))
 

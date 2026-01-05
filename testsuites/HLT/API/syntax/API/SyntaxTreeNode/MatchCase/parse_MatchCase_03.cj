@@ -22,7 +22,7 @@ func test_MatchCase_03() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     match(false) {
         case true => ()
         case _ => throw Exception()

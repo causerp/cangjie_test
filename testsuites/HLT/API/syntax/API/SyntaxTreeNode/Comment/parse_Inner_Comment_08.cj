@@ -23,7 +23,7 @@ func test_Inner_Comment_08() {
 
     let sourcefile: SourceFile = res.node.getOrThrow()
     sourcefile.toString() |> println
-    @Assert(sourcefile.toString().replace("/r",""), ##"/*
+    @Assert(sourcefile.toString().replace("\r",""), ##"/*
  * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
  * This source file is part of the Cangjie project, licensed under Apache-2.0
  * with Runtime Library Exception.
@@ -37,7 +37,7 @@ func test_Inner_Comment_08() {
 class A {}"##)
 
     var _decl: ClassDecl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
-    @Assert(_decl.toString(), ##"@Deprecated["1234", /* block comment1 */ strict: false] // line comment1
+    @Assert(_decl.toString().replace("\r",""), ##"@Deprecated["1234", /* block comment1 */ strict: false] // line comment1
 // line comment2
 @!Anno1["1234"] // line comment3
 class A {}"##)

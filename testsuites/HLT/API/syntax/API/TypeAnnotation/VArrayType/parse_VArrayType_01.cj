@@ -19,7 +19,7 @@ class test_01{
 func test_VArrayType_01() {
     let res = parseFile("./VArrayType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"var a: VArray<Int64, $0> = VArray<Int64, $0>({ i => i })
+    @Expect(sourcefile.toString().replace("\r","").contains(##"var a: VArray<Int64, $0> = VArray<Int64, $0>({ i => i })
 var a: VArray<UInt64, $5> = [1,2,3,4,5]"##))
 
     var decl_1: VarDecl = (sourcefile.topLevelDecls[0] as VarDecl).getOrThrow()

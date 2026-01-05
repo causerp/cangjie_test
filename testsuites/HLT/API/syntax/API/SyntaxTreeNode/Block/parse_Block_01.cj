@@ -19,13 +19,13 @@ class test_01{
 func test_Block_01() {
     let res = parseFile("./Block_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"func foo(){
+    @Assert(sourcefile.toString().replace("\r","").contains(##"func foo(){
     { => 100}()
 }"##))
 
     var funcdecl_1 = (sourcefile.topLevelDecls[0] as FuncDecl).getOrThrow()
     let block = funcdecl_1.body.getOrThrow()
-    @Assert(block.toString(), ##"{
+    @Assert(block.toString().replace("\r",""), ##"{
     { => 100}()
 }"##)
     @Assert(block.nodes.size, 1)

@@ -22,7 +22,7 @@ func test_DisjunctionCondition_05() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     if (let 10 | 20 <- 10) {}
 }"##))
 

@@ -22,7 +22,7 @@ func test_MatchCase_19() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     match(xxx) {
         case Date.Year(y) => ()
         case Date.Hour(y, m, d, h) => ()

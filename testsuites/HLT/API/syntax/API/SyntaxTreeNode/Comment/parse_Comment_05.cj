@@ -22,7 +22,7 @@ func test_Comment_05() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"//////line comment
+    @Assert(sourcefile.toString().replace("\r","").contains(##"//////line comment
 
 /* /* block comment */ */
 
@@ -61,7 +61,7 @@ comment_5
     @Assert(comment_2.content, ##"/* /* block comment */ */"##)
 
     var comment_3: Comment = sourcefile.comments[3]
-    @Assert(comment_3.toString(), ##"/**
+    @Assert(comment_3.toString().replace("\r",""), ##"/**
 /**
 document comment
 */
@@ -70,7 +70,7 @@ document comment
         case CommentKind.Document => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_3.content, ##"/**
+    @Assert(comment_3.content.replace("\r",""), ##"/**
 /**
 document comment
 */
@@ -85,7 +85,7 @@ document comment
     @Assert(comment_4.content, ##"/* // comment_4 */"##)
 
     var comment_5: Comment = sourcefile.comments[5]
-    @Assert(comment_5.toString(), ##"/*
+    @Assert(comment_5.toString().replace("\r",""), ##"/*
 /*
 /*
 comment_5
@@ -96,7 +96,7 @@ comment_5
         case CommentKind.Block => ()
         case _ => @Expect(false)
     }
-    @Assert(comment_5.content, ##"/*
+    @Assert(comment_5.content.replace("\r",""), ##"/*
 /*
 /*
 comment_5

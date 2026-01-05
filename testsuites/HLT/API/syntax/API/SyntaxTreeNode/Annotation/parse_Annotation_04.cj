@@ -21,7 +21,7 @@ func test_Annotation_04() {
 
     let sourcefile: SourceFile = res.node.getOrThrow()
     sourcefile.toString() |> println
-    @Expect(sourcefile.toString().contains(##"@When[os == "Linux"] var a = 1
+    @Expect(sourcefile.toString().replace("\r","").contains(##"@When[os == "Linux"] var a = 1
 @When [backend == "cjnative"] var a = 1"##))
 
     var decl_1: VarDecl = (sourcefile.topLevelDecls[0] as VarDecl).getOrThrow()

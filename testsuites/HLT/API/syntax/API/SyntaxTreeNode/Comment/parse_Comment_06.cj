@@ -22,7 +22,7 @@ func test_Comment_06() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"// aaa //bbb
+    @Assert(sourcefile.toString().replace("\r","").contains(##"// aaa //bbb
 // c 
 
 /* ddd */
@@ -68,14 +68,14 @@ fffffff
     @Assert(comment_4.content, ##"/*eee*/"##)
 
     var comment_5: Comment = sourcefile.comments[5]
-    @Assert(comment_5.toString(), ##"/**
+    @Assert(comment_5.toString().replace("\r",""), ##"/**
 fffffff
 */"##)
     match (comment_5.kind) {
         case CommentKind.Document => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_5.content, ##"/**
+    @Assert(comment_5.content.replace("\r",""), ##"/**
 fffffff
 */"##)
 

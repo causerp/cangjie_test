@@ -22,7 +22,7 @@ func test_comment_package_01() {
     @Assert(diags.size, 0)
 
     let _package: Package = res.node.getOrThrow()
-    @Assert(_package.toString(), ##"// Comment_01.cj
+    @Assert(_package.toString().replace("\r",""), ##"// Comment_01.cj
 /*
  * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
  * This source file is part of the Cangjie project, licensed under Apache-2.0
@@ -67,7 +67,7 @@ class A {}"##)
 // single line comment
 
 main() {}"##
-    @Assert(file1.toString().replace("\n",""), str1.replace("\n",""))
+    @Assert(file1.toString().replace("\n","").replace("\r",""), str1.replace("\n",""))
     @Assert(file1.importLists.size, 0)
     @Assert(file1.name, "Comment_01.cj")
     println(file1.path)
@@ -92,7 +92,7 @@ package default
 
 class A {}"##
     file2.toString() |> println
-    @Assert(file2.toString().replace("\n",""), str2.replace("\n",""))
+    @Assert(file2.toString().replace("\n","").replace("\r",""), str2.replace("\n",""))
     @Assert(file2.importLists.size, 0)
     @Assert(file2.name, "Comment_02.cj")
     println(file2.path)

@@ -22,7 +22,7 @@ func test_ImportMulti_06() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"import std.a.b.c.d.{
+    @Assert(sourcefile.toString().replace("\r","").contains(##"import std.a.b.c.d.{
     time,
     fs as fileSystem,
     io.*,

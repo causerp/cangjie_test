@@ -22,7 +22,7 @@ func test_ImportList_03() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"protected import a.b.c.d.e.f.g as a_b_c_d_e_f_g
+    @Expect(sourcefile.toString().replace("\r","").contains(##"protected import a.b.c.d.e.f.g as a_b_c_d_e_f_g
 protected import {
     std.time000.*,
 }
@@ -58,7 +58,7 @@ protected import a.a.a._a.a.a.a.a.a._a.a.a.a"##))
         case ModifierKind.Protected => ()
         case _ => @Assert(false)
     }
-    @Expect(import_2.toString(), ##"protected import {
+    @Expect(import_2.toString().replace("\r",""), ##"protected import {
     std.time000.*,
 }"##)
 
@@ -71,7 +71,7 @@ protected import a.a.a._a.a.a.a.a.a._a.a.a.a"##))
         case ModifierKind.Protected => ()
         case _ => @Assert(false)
     }
-    @Expect(import_3.toString(), ##"protected import std.a.b.c.d.{
+    @Expect(import_3.toString().replace("\r",""), ##"protected import std.a.b.c.d.{
     time,
     fs as fileSystem,
     io.*,

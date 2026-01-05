@@ -19,7 +19,7 @@ class test_01{
 func test_PrefixType_01() {
     let res = parseFile("./PrefixType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"var a: ?A = A()
+    @Expect(sourcefile.toString().replace("\r","").contains(##"var a: ?A = A()
 var a: ???A = A()
 var a: ?(A, B) = A()
 var a: ?(A) = A()"##))

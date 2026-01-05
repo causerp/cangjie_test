@@ -19,7 +19,7 @@ class test_01{
 func test_Modifier_02() {
     let res = parseFile("./Modifier_02.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"open class C1 <: C2 {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"open class C1 <: C2 {
     internal override mut func foo() {}
     private redef static func goo() {}
 }"##))

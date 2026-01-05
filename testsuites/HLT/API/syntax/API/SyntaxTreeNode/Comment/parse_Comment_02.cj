@@ -22,7 +22,7 @@ func test_Comment_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"/* multi line comment */
+    @Assert(sourcefile.toString().replace("\r","").contains(##"/* multi line comment */
 
 /** doc comment */
 

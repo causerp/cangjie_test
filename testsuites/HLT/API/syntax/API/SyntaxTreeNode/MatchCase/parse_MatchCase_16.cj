@@ -22,7 +22,7 @@ func test_MatchCase_16() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     match(xxx) {
         case opt: Point where (opt.x < 0 && opt.y > 2.0) || opt.x < -10 => println("case opt: Point => ()")
     }
