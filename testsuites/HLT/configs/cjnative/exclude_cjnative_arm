@@ -4,16 +4,13 @@
 #
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-
-# sema error, should be fixed later.
-API/std/os/process/test_getgroups/test_getgroups_001/test_getgroups_001.cj
 # testcase is not correct.
 Tools/cjlsp/testcases/autotestcase/deprecated/textDocument_completion_018.info
 
 # testcase should be fixed.
 Tools/cjdb/datacom/C_FFI/viewVariables_Cstring_002.info
 
-# syntax will be supported in future
+# issue 198: syntax rewriter not support
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
 
 API/std/io/file/File_create_03.cj

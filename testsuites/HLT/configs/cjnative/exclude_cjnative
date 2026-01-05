@@ -4,8 +4,6 @@
 #
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-# sema error, should be fixed later.
-API/std/os/process/test_getgroups/test_getgroups_001/test_getgroups_001.cj
 # testcase is not correct.
 Tools/cjlsp/testcases/autotestcase/deprecated/textDocument_completion_018.info
 
@@ -23,7 +21,7 @@ compiler/cjnative/stable_abi/06_interface/02_modify/01_define_content/02_compile
 compiler/cjnative/stable_abi/06_interface/02_modify/01_define_content/02_compiler_directive/java/06_interface_Java_delete.cj
 compiler/cjnative/stable_abi/interface/modify/funcmemeber_property/modify/compiler_directive/interface_add_java.cj
 
-# syntax will be supported in future                                                                                                                                                                                                
+# issue 198: syntax rewriter not support                                                                                                                                                                                                
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
 
 # fail in ci env

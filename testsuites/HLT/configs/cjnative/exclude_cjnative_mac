@@ -10,7 +10,7 @@ Tools/cjlsp/testcases/autotestcase/deprecated/textDocument_completion_018.info
 # old jffi can only be run with cjvm.
 compiler/cjnative/FFI/jffi
 
-# syntax will be supported in future
+# issue 198: syntax rewriter not support
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
 
 Tools/cjdb/datacom/lambda/lldb_lambda_05.info
