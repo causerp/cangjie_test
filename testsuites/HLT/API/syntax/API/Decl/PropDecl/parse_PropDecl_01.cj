@@ -22,7 +22,7 @@ func test_PropDecl_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"public interface I1 <: S1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"public interface I1 <: S1 {
     public static mut prop p1: Int64 {
         get() {0}
         set(v) {}
@@ -37,11 +37,11 @@ func test_PropDecl_01() {
     @Assert(interfaceDecl.body.memberDecls.size, 2)
     let prop_1 = (interfaceDecl.body.memberDecls[0] as PropDecl).getOrThrow()
     let prop_2 = (interfaceDecl.body.memberDecls[1] as PropDecl).getOrThrow()
-    @Assert(prop_1.toString(), ##"public static mut prop p1: Int64 {
+    @Assert(prop_1.toString().replace("\r",""), ##"public static mut prop p1: Int64 {
         get() {0}
         set(v) {}
     }"##)
-    @Assert(prop_1.toTokens().toString(), ##"public static mut prop p1: Int64 {
+    @Assert(prop_1.toTokens().toString().replace("\r",""), ##"public static mut prop p1: Int64 {
     get() { 0 }
     set(v) { }
 }"##)
@@ -53,7 +53,7 @@ func test_PropDecl_01() {
     @Assert(prop_1.tyAnnotation is AtomicType)
     @Assert(prop_1.isMut)
 
-    @Assert(prop_2.toString(), ##"public static prop p2: R {
+    @Assert(prop_2.toString().replace("\r",""), ##"public static prop p2: R {
         get() { R() }
     }"##)
     @Assert(prop_2.name, "p2")

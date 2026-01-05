@@ -22,14 +22,14 @@ func test_EnumDecl_06() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"enum a_b <: I1 & I2 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"enum a_b <: I1 & I2 {
     A1(T, T)
     | B1 (T, U) |
     C1(U, U) | D1((Int64, Int64))
 }"##))
 
     var enumDecl: EnumDecl = (sourcefile.topLevelDecls[0] as EnumDecl).getOrThrow()
-    @Expect(enumDecl.toString(), ##"enum a_b <: I1 & I2 {
+    @Expect(enumDecl.toString().replace("\r",""), ##"enum a_b <: I1 & I2 {
     A1(T, T)
     | B1 (T, U) |
     C1(U, U) | D1((Int64, Int64))

@@ -22,7 +22,7 @@ func test_StructDecl_08() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"@Deprecated["aaa", strict: false]
+    @Expect(sourcefile.toString().replace("\r","").contains(##"@Deprecated["aaa", strict: false]
 struct S1 <: I1 & I2 {
     public static const s1: Int64 = 0
     prop p1: Int64 {
@@ -35,7 +35,7 @@ struct S1 <: I1 & I2 {
 }"##))
 
     var structDecl: StructDecl = (sourcefile.topLevelDecls[0] as StructDecl).getOrThrow()
-    @Assert(structDecl.toString(), ##"@Deprecated["aaa", strict: false]
+    @Assert(structDecl.toString().replace("\r",""), ##"@Deprecated["aaa", strict: false]
 struct S1 <: I1 & I2 {
     public static const s1: Int64 = 0
     prop p1: Int64 {
@@ -50,13 +50,13 @@ struct S1 <: I1 & I2 {
     @Assert(structDecl.body.memberDecls[0] is VarDecl)
     @Assert(structDecl.body.memberDecls[0].toString(), ##"public static const s1: Int64 = 0"##)
     @Assert(structDecl.body.memberDecls[1] is PropDecl)
-    @Assert(structDecl.body.memberDecls[1].toString(), ##"prop p1: Int64 {
+    @Assert(structDecl.body.memberDecls[1].toString().replace("\r",""), ##"prop p1: Int64 {
         get() { 0 }
     }"##)
     @Assert(structDecl.body.memberDecls[2] is FuncDecl)
     @Assert(structDecl.body.memberDecls[2].toString(), ##"public init() {}"##)
     @Assert(structDecl.body.memberDecls[3] is FuncDecl)
-    @Assert(structDecl.body.memberDecls[3].toString(), ##"func foo(a: T): T {
+    @Assert(structDecl.body.memberDecls[3].toString().replace("\r",""), ##"func foo(a: T): T {
         return a
     }"##)
 

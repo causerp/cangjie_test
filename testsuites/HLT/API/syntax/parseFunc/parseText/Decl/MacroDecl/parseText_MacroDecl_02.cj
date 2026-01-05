@@ -24,11 +24,11 @@ public macro M1(input: Tokens, tok: Tokens) {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var _decl: MacroDecl = (sourceNode as MacroDecl).getOrThrow()
-    @Assert(_decl.toString(), ##"@Deprecated["a"]
+    @Assert(_decl.toString().replace("\r",""), ##"@Deprecated["a"]
 public macro M1(input: Tokens, tok: Tokens) {
     input + tok
 }"##)
-    @Assert(_decl.body.toString(), ##"{
+    @Assert(_decl.body.toString().replace("\r",""), ##"{
     input + tok
 }"##)
     @Assert(_decl.name, "M1")

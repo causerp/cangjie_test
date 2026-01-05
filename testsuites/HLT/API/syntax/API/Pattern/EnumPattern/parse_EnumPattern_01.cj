@@ -22,7 +22,7 @@ func test_EnumPattern_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     match (a) {
         case E1.A0 | E1.B0 => ()
         case E1.A0(1) => ()

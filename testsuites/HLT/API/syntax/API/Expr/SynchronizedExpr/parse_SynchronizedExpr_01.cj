@@ -22,7 +22,7 @@ func test_SynchronizedExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     synchronized(m) {
     }
     synchronized(m) {
@@ -32,17 +32,17 @@ func test_SynchronizedExpr_01() {
 
     var mainDecl: MainDecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
     var expr_1: SynchronizedExpr = (mainDecl.body.nodes[0] as SynchronizedExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"synchronized(m) {
+    @Assert(expr_1.toString().replace("\r",""), ##"synchronized(m) {
     }"##)
-    @Assert(expr_1.block.toString(), ##"{
+    @Assert(expr_1.block.toString().replace("\r",""), ##"{
     }"##)
     @Assert(expr_1.structuredMutex.toString(), "m")
 
     var expr_2: SynchronizedExpr = (mainDecl.body.nodes[1] as SynchronizedExpr).getOrThrow()
-    @Assert(expr_2.toString(), ##"synchronized(m) {
+    @Assert(expr_2.toString().replace("\r",""), ##"synchronized(m) {
         foo()
     }"##)
-    @Assert(expr_2.block.toString(), ##"{
+    @Assert(expr_2.block.toString().replace("\r",""), ##"{
         foo()
     }"##)
     @Assert(expr_2.structuredMutex.toString(), "m")

@@ -23,10 +23,10 @@ func test_MacroDecl_01() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var _decl: MacroDecl = (sourceNode as MacroDecl).getOrThrow()
-    @Assert(_decl.toString(), ##"public macro M1(input: Tokens): Tokens {
+    @Assert(_decl.toString().replace("\r",""), ##"public macro M1(input: Tokens): Tokens {
     input
 }"##)
-    @Assert(_decl.body.toString(), ##"{
+    @Assert(_decl.body.toString().replace("\r",""), ##"{
     input
 }"##)
     @Assert(_decl.name, "M1")

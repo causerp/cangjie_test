@@ -22,7 +22,7 @@ func test_EnumDecl_03() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"protected enum E1<T, U> <: S1<T, U> {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"protected enum E1<T, U> <: S1<T, U> {
     A1 | B1(Int64) | C1(T) | D1(U, T)
     mut prop p1: ?T {
         get() { none }
@@ -32,7 +32,7 @@ func test_EnumDecl_03() {
 }"##))
 
     var enumDecl: EnumDecl = (sourcefile.topLevelDecls[0] as EnumDecl).getOrThrow()
-    @Expect(enumDecl.toString(), ##"protected enum E1<T, U> <: S1<T, U> {
+    @Expect(enumDecl.toString().replace("\r",""), ##"protected enum E1<T, U> <: S1<T, U> {
     A1 | B1(Int64) | C1(T) | D1(U, T)
     mut prop p1: ?T {
         get() { none }
@@ -51,7 +51,7 @@ func test_EnumDecl_03() {
     @Assert(enumDecl.body.memberDecls[3].toString(), ##"D1(U, T)"##)
 
     @Assert(enumDecl.body.memberDecls[4] is PropDecl)
-    @Assert(enumDecl.body.memberDecls[4].toString(), ##"mut prop p1: ?T {
+    @Assert(enumDecl.body.memberDecls[4].toString().replace("\r",""), ##"mut prop p1: ?T {
         get() { none }
         set(v) {}
     }"##)

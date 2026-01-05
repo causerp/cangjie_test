@@ -22,7 +22,7 @@ func test_StaticInit_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"class Class_C1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"class Class_C1 {
     static init() {}
 }"##))
 

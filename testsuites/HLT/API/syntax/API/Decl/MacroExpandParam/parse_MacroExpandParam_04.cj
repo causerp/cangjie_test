@@ -19,7 +19,7 @@ class test_01{
 func test_MacroExpandParam_04() {
     let res = parseFile("./MacroExpandParam_04.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"class C1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"class C1 {
     private C1(@M1 (var c: Int64), @M1 [x: Int64](public var d!: ?Int64), @M1[abcd](private let e!: R = R())) {
     }
 }"##))
@@ -27,7 +27,7 @@ func test_MacroExpandParam_04() {
     var _decl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
 
     var funcdecl_1 = (_decl.body.memberDecls[0] as FuncDecl).getOrThrow()
-    @Expect(funcdecl_1.toString(), ##"private C1(@M1 (var c: Int64), @M1 [x: Int64](public var d!: ?Int64), @M1[abcd](private let e!: R = R())) {
+    @Expect(funcdecl_1.toString().replace("\r",""), ##"private C1(@M1 (var c: Int64), @M1 [x: Int64](public var d!: ?Int64), @M1[abcd](private let e!: R = R())) {
     }"##)
     @Assert(funcdecl_1.params.params.size, 3)
     let param_1: MacroExpandParam = (funcdecl_1.params.params[0] as MacroExpandParam).getOrThrow()

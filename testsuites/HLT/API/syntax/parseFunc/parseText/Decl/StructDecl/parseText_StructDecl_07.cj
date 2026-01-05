@@ -24,7 +24,7 @@ struct s1<T> <: I1<T> & I2<T> & I3<T> {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var structDecl: StructDecl = (sourceNode as StructDecl).getOrThrow()
-    @Expect(structDecl.toString(), ##"@!Anno1
+    @Expect(structDecl.toString().replace("\r",""), ##"@!Anno1
 @!Anno1
 struct s1<T> <: I1<T> & I2<T> & I3<T> {
 }"##)

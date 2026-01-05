@@ -22,7 +22,7 @@ func test_EnumDecl_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"@Deprecated["aaa"]
+    @Expect(sourcefile.toString().replace("\r","").contains(##"@Deprecated["aaa"]
 enum E1 {
     A1 | B1 | C1(Int64) | D1(Int64, String) | ...
     prop p1: Int64 {
@@ -32,7 +32,7 @@ enum E1 {
 }"##))
 
     var enumDecl: EnumDecl = (sourcefile.topLevelDecls[0] as EnumDecl).getOrThrow()
-    @Expect(enumDecl.toString(), ##"@Deprecated["aaa"]
+    @Expect(enumDecl.toString().replace("\r",""), ##"@Deprecated["aaa"]
 enum E1 {
     A1 | B1 | C1(Int64) | D1(Int64, String) | ...
     prop p1: Int64 {
@@ -40,7 +40,7 @@ enum E1 {
     }
     func foo() {}
 }"##)
-    @Expect(enumDecl.toTokens().toString(), ##"@Deprecated["aaa"]
+    @Expect(enumDecl.toTokens().toString().replace("\r",""), ##"@Deprecated["aaa"]
 enum E1 {
     A1 | B1 | C1(Int64) | D1(Int64, String) | ...
     prop p1: Int64 {
@@ -59,7 +59,7 @@ enum E1 {
     @Assert(enumDecl.body.memberDecls[3].toString(), ##"D1(Int64, String)"##)
 
     @Assert(enumDecl.body.memberDecls[4] is PropDecl)
-    @Assert(enumDecl.body.memberDecls[4].toString(), ##"prop p1: Int64 {
+    @Assert(enumDecl.body.memberDecls[4].toString().replace("\r",""), ##"prop p1: Int64 {
         get() {0}
     }"##)
     @Assert(enumDecl.body.memberDecls[5] is FuncDecl)

@@ -22,13 +22,13 @@ func test_StructDecl_07() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"@!Anno1
+    @Expect(sourcefile.toString().replace("\r","").contains(##"@!Anno1
 @!Anno1
 struct s1<T> <: I1<T> & I2<T> & I3<T> {
 }"##))
 
     var structDecl: StructDecl = (sourcefile.topLevelDecls[0] as StructDecl).getOrThrow()
-    @Expect(structDecl.toString(), ##"@!Anno1
+    @Expect(structDecl.toString().replace("\r",""), ##"@!Anno1
 @!Anno1
 struct s1<T> <: I1<T> & I2<T> & I3<T> {
 }"##)

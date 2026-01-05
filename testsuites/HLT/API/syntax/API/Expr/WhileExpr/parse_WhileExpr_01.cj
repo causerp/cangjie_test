@@ -22,7 +22,7 @@ func test_WhileExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     while(a >= 0u32) {
         b
     }
@@ -30,10 +30,10 @@ func test_WhileExpr_01() {
 
     var mainDecl: MainDecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
     var expr_1: WhileExpr = (mainDecl.body.nodes[0] as WhileExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"while(a >= 0u32) {
+    @Assert(expr_1.toString().replace("\r",""), ##"while(a >= 0u32) {
         b
     }"##)
-    @Assert(expr_1.body.toString(), ##"{
+    @Assert(expr_1.body.toString().replace("\r",""), ##"{
         b
     }"##)
     @Assert(expr_1.condition.toString(), ##"a >= 0u32"##)

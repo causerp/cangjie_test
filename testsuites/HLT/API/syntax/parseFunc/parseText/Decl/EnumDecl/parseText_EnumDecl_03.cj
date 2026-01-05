@@ -29,7 +29,7 @@ func test_EnumDecl_03() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
     var enumDecl: EnumDecl = (sourceNode as EnumDecl).getOrThrow()
 
-    @Expect(enumDecl.toString(), ##"protected enum E1<T, U> <: S1<T, U> {
+    @Expect(enumDecl.toString().replace("\r",""), ##"protected enum E1<T, U> <: S1<T, U> {
     A1 | B1(Int64) | C1(T) | D1(U, T)
     mut prop p1: ?T {
         get() { none }

@@ -55,7 +55,7 @@ func test_QuoteExpr_01() {
         case _ => @Assert(false)
     }
     var expr_4: QuoteExpr = (res_4.node.getOrThrow() as QuoteExpr).getOrThrow()
-    @Expect(expr_4.toString(), ##"quote(
+    @Expect(expr_4.toString().replace("\r",""), ##"quote(
     arr = $(intList)
     x = $(float)
     s = $(str)

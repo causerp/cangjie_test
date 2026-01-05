@@ -22,7 +22,7 @@ func test_MatchExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     match {
         case true => ()
         case a >= b => a + b
@@ -32,7 +32,7 @@ func test_MatchExpr_01() {
 
     var maindecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
     var expr_1 = (maindecl.body.nodes[0] as MatchExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"match {
+    @Assert(expr_1.toString().replace("\r",""), ##"match {
         case true => ()
         case a >= b => a + b
         case _ => ()

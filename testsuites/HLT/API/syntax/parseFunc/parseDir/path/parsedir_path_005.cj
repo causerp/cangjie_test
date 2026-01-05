@@ -37,13 +37,13 @@ public func foo2() {
     return foo1()
 }"##
     @Assert(_package.toString().contains("a1.cj"))
-    @Assert(_package.toString().contains(##"package dir001
+    @Assert(_package.toString().replace("\r","").contains(##"package dir001
 
 public func foo1() {
     return a1
 }"##))
     @Assert(_package.toString().contains("b1.cj"))
-    @Assert(_package.toString().contains(##"package dir001
+    @Assert(_package.toString().replace("\r","").contains(##"package dir001
 
 public let b1 = a2
 

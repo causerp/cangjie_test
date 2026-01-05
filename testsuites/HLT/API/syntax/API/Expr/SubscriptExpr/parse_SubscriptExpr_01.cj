@@ -22,7 +22,7 @@ func test_SubscriptExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     a[0]
     a.b[a]
     a.b.c[a..b:2]

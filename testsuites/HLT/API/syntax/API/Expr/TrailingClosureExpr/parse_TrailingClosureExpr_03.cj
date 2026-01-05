@@ -22,7 +22,7 @@ func test_TrailingClosureExpr_03() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     g(a: 1) {a: Int64, b: Int64 => a+ b}
 }"##))
 

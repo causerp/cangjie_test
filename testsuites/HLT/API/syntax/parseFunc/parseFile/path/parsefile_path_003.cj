@@ -33,6 +33,6 @@ main() {
     let a = foo<Int64>(0)
     return a
 }"##
-    @Assert(sourcefile.toString().contains(str))
+    @Assert(sourcefile.toString().replace("\r","").contains(str))
 }
 }

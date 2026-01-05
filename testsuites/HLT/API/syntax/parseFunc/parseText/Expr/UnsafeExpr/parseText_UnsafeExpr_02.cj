@@ -24,11 +24,11 @@ func test_UnsafeExpr_02() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var expr_1: UnsafeExpr = (sourceNode as UnsafeExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"unsafe {
+    @Assert(expr_1.toString().replace("\r",""), ##"unsafe {
         let str = LibC.mallocString("abc")
         str.free()
     }"##)
-    @Assert(expr_1.block.toString(), ##"{
+    @Assert(expr_1.block.toString().replace("\r",""), ##"{
         let str = LibC.mallocString("abc")
         str.free()
     }"##)

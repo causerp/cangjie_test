@@ -25,14 +25,14 @@ func test_FuncDecl_05() {
     let res_1 = parseText(str_1)
     var funcdecl_1 = (res_1.node.getOrThrow() as FuncDecl).getOrThrow()
 
-    @Expect(funcdecl_1.toString(), ##"func foo<T>(a: T) {
+    @Expect(funcdecl_1.toString().replace("\r",""), ##"func foo<T>(a: T) {
     func goo() {
         return 1
     }
     goo()
 }"##)
     @Assert(funcdecl_1.body.isSome())
-    @Assert(funcdecl_1.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_1.body.getOrThrow().toString().replace("\r",""), ##"{
     func goo() {
         return 1
     }
@@ -52,11 +52,11 @@ func test_FuncDecl_05() {
     @Assert(funcdecl_1.annotations.toString(), "[]")
 
     var funcdecl_2 = (funcdecl_1.body.getOrThrow().nodes[0] as FuncDecl).getOrThrow()
-    @Expect(funcdecl_2.toString(), ##"func goo() {
+    @Expect(funcdecl_2.toString().replace("\r",""), ##"func goo() {
         return 1
     }"##)
     @Assert(funcdecl_2.body.isSome())
-    @Assert(funcdecl_2.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_2.body.getOrThrow().toString().replace("\r",""), ##"{
         return 1
     }"##)
     @Assert(funcdecl_2.genericConstraints.isNone())

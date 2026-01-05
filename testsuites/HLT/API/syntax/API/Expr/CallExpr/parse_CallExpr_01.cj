@@ -22,7 +22,7 @@ func test_CallExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     foo<Int64>()
     foo<Int64>((a, b))
     foo<Int64>(x, b: y)

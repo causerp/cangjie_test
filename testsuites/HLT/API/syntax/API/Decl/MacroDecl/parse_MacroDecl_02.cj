@@ -22,18 +22,18 @@ func test_MacroDecl_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"macro package define
+    @Expect(sourcefile.toString().replace("\r","").contains(##"macro package define
 @Deprecated["a"]
 public macro M1(input: Tokens, tok: Tokens) {
     input + tok
 }"##))
 
     var _decl: MacroDecl = (sourcefile.topLevelDecls[0] as MacroDecl).getOrThrow()
-    @Assert(_decl.toString(), ##"@Deprecated["a"]
+    @Assert(_decl.toString().replace("\r",""), ##"@Deprecated["a"]
 public macro M1(input: Tokens, tok: Tokens) {
     input + tok
 }"##)
-    @Assert(_decl.body.toString(), ##"{
+    @Assert(_decl.body.toString().replace("\r",""), ##"{
     input + tok
 }"##)
     @Assert(_decl.name, "M1")

@@ -22,7 +22,7 @@ func test_PropDecl_03() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"public class CCC{
+    @Expect(sourcefile.toString().replace("\r","").contains(##"public class CCC{
     @Deprecated["a"]
     private static prop p1: ?Int64 {
         get() { Some(0) }
@@ -40,7 +40,7 @@ func test_PropDecl_03() {
     @Assert(classDecl.body.memberDecls.size, 2)
     let prop_1 = (classDecl.body.memberDecls[0] as PropDecl).getOrThrow()
     let prop_2 = (classDecl.body.memberDecls[1] as PropDecl).getOrThrow()
-    @Assert(prop_1.toString(), ##"@Deprecated["a"]
+    @Assert(prop_1.toString().replace("\r",""), ##"@Deprecated["a"]
     private static prop p1: ?Int64 {
         get() { Some(0) }
     }"##)
@@ -53,7 +53,7 @@ func test_PropDecl_03() {
     @Assert(prop_1.modifiers.toString(), "[private, static]")
     @Assert(prop_1.annotations.toString(), ##"[@Deprecated["a"]]"##)
 
-    @Expect(prop_2.toString(), ##"@Deprecated["a"]
+    @Expect(prop_2.toString().replace("\r",""), ##"@Deprecated["a"]
     @Frozen
     internal static mut prop p2: ?T {
         get() { none }

@@ -22,7 +22,7 @@ func test_ReturnExpr_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     return if (a) {b} else {b}
 }"##))
 

@@ -44,7 +44,7 @@ protected type YY = Float64"##
     @Assert(typeAlias_2.modifiers.toString(), "[public]")
     @Assert(typeAlias_2.annotations.toString(), "[]")
 
-    @Assert(typeAlias_3.toString(), ##"@Deprecated["aaa"]
+    @Assert(typeAlias_3.toString().replace("\r",""), ##"@Deprecated["aaa"]
 protected type YY = Float64"##)
     @Assert(typeAlias_3.aliasName, "YY")
     @Assert(typeAlias_3.originalTyAnnotation.toString(), "Float64")

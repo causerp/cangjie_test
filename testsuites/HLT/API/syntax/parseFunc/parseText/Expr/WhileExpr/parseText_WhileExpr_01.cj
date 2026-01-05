@@ -23,10 +23,10 @@ func test_WhileExpr_01() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var expr_1: WhileExpr = (sourceNode as WhileExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"while(a >= 0u32) {
+    @Assert(expr_1.toString().replace("\r",""), ##"while(a >= 0u32) {
     b
 }"##)
-    @Assert(expr_1.body.toString(), ##"{
+    @Assert(expr_1.body.toString().replace("\r",""), ##"{
     b
 }"##)
     @Assert(expr_1.condition.toString(), ##"a >= 0u32"##)

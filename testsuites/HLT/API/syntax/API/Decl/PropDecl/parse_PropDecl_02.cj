@@ -22,7 +22,7 @@ func test_PropDecl_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"public interface I1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"public interface I1 {
     public mut prop p1: Int64
     public prop p2: R
 }"##))

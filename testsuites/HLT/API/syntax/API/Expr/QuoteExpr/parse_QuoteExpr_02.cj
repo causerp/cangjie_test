@@ -24,7 +24,7 @@ func test_QuoteExpr_02() {
 
     let sourcefile: SourceFile = res.node.getOrThrow()
     sourcefile.toString() |> println
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     quote((x))
     quote(quote(x))
     quote($(quote(x)))

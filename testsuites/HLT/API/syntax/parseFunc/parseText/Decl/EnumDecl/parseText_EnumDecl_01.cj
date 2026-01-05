@@ -29,7 +29,7 @@ func test_EnumDecl_01() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
     var enumDecl: EnumDecl = (sourceNode as EnumDecl).getOrThrow()
 
-    @Expect(enumDecl.toString(), ##"@Deprecated["aaa"]
+    @Expect(enumDecl.toString().replace("\r",""), ##"@Deprecated["aaa"]
 enum E1 {
     A1 | B1 | C1(Int64) | D1(Int64, String) | ...
     prop p1: Int64 {

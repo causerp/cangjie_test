@@ -23,7 +23,7 @@ func test_MacroExpandDecl_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"@p1.M1[tok1](var a = 1)
+    @Expect(sourcefile.toString().replace("\r","").contains(##"@p1.M1[tok1](var a = 1)
 @M1[a: tok1, b: tok2]
 var a = [1]
 @M_A_B(var a = 1)
@@ -41,7 +41,7 @@ var a = b"##))
     }
 
     var decl_2: MacroExpandDecl = (sourcefile.topLevelDecls[1] as MacroExpandDecl).getOrThrow()
-    @Assert(decl_2.toString(), ##"@M1[a: tok1, b: tok2]
+    @Assert(decl_2.toString().replace("\r",""), ##"@M1[a: tok1, b: tok2]
 var a = [1]"##)
     @Assert(decl_2.calleeMacro.toString(), "M1")
     @Assert(decl_2.macroAttrs.toString(), "a: tok1, b: tok2")
@@ -60,7 +60,7 @@ var a = [1]"##)
     }
 
     var decl_4: MacroExpandDecl = (sourcefile.topLevelDecls[3] as MacroExpandDecl).getOrThrow()
-    @Assert(decl_4.toString(), ##"@M1
+    @Assert(decl_4.toString().replace("\r",""), ##"@M1
 var a = b"##)
     @Assert(decl_4.calleeMacro.toString(), "M1")
     @Assert(decl_4.macroAttrs.toString(), "")

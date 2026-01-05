@@ -19,7 +19,7 @@ class test_01{
 func test_VarDecl_02() {
     let res = parseFile("./VarDecl_02.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"class C1<T> {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"class C1<T> {
     static let v1: Int64
     public var v2: T
     internal static const v3: Int64 = if (true) {1} else {0}

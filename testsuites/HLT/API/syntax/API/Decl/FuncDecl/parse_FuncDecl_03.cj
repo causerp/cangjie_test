@@ -19,7 +19,7 @@ class test_01{
 func test_FuncDecl_03() {
     let res = parseFile("./FuncDecl_03.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"class Point {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"class Point {
     public init (a: Int64, b!: Int64) {
         x = a
         y = b
@@ -36,12 +36,12 @@ func test_FuncDecl_03() {
     var _decl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
 
     var funcdecl_1 = (_decl.body.memberDecls[0] as FuncDecl).getOrThrow()
-    @Assert(funcdecl_1.toString(), ##"public init (a: Int64, b!: Int64) {
+    @Assert(funcdecl_1.toString().replace("\r",""), ##"public init (a: Int64, b!: Int64) {
         x = a
         y = b
     }"##)
     @Assert(funcdecl_1.body.isSome())
-    @Assert(funcdecl_1.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_1.body.getOrThrow().toString().replace("\r",""), ##"{
         x = a
         y = b
     }"##)
@@ -60,11 +60,11 @@ func test_FuncDecl_03() {
     @Assert(funcdecl_1.annotations.toString(), "[]")
 
     var funcdecl_2 = (_decl.body.memberDecls[1] as FuncDecl).getOrThrow()
-    @Assert(funcdecl_2.toString(), ##"public operator func -(): Point {
+    @Assert(funcdecl_2.toString().replace("\r",""), ##"public operator func -(): Point {
         Point(-x, -y)
     }"##)
     @Assert(funcdecl_2.body.isSome())
-    @Assert(funcdecl_2.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_2.body.getOrThrow().toString().replace("\r",""), ##"{
         Point(-x, -y)
     }"##)
     @Assert(funcdecl_2.genericConstraints.isNone())
@@ -81,11 +81,11 @@ func test_FuncDecl_03() {
     @Assert(funcdecl_2.annotations.toString(), "[]")
 
     var funcdecl_3 = (_decl.body.memberDecls[2] as FuncDecl).getOrThrow()
-    @Assert(funcdecl_3.toString(), ##"public operator func +(right: Point): Point {
+    @Assert(funcdecl_3.toString().replace("\r",""), ##"public operator func +(right: Point): Point {
         Point(this.x + right.x, this.y + right.y)
     }"##)
     @Assert(funcdecl_3.body.isSome())
-    @Assert(funcdecl_3.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_3.body.getOrThrow().toString().replace("\r",""), ##"{
         Point(this.x + right.x, this.y + right.y)
     }"##)
     @Assert(funcdecl_3.genericConstraints.isNone())

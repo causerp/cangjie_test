@@ -19,11 +19,11 @@ class test_01{
 func test_GenericParam_01() {
     let res = parseFile("./GenericParam_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"internal class C1<T, U> <: I1<U> & I2<T, U> & I3<T> where T <: I1<T> & I3<T> , U<: I2<T, T> {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"internal class C1<T, U> <: I1<U> & I2<T, U> & I3<T> where T <: I1<T> & I3<T> , U<: I2<T, T> {
 }"##))
 
     var classDecl: ClassDecl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
-    @Assert(classDecl.toString(), ##"internal class C1<T, U> <: I1<U> & I2<T, U> & I3<T> where T <: I1<T> & I3<T> , U<: I2<T, T> {
+    @Assert(classDecl.toString().replace("\r",""), ##"internal class C1<T, U> <: I1<U> & I2<T, U> & I3<T> where T <: I1<T> & I3<T> , U<: I2<T, T> {
 }"##)
 
     @Assert(classDecl.genericParams.size, 2)

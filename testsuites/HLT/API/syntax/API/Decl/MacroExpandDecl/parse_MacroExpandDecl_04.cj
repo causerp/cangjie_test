@@ -23,7 +23,7 @@ func test_MacroExpandDecl_04() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"@p1.M1[tok1](extend C1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"@p1.M1[tok1](extend C1 {
     public func foo(a: Int64) {}
 })
 @M1[a: tok1, b: tok2]
@@ -39,26 +39,26 @@ extend C1 <: C2 {
 }"##))
 
     var decl_1: MacroExpandDecl = (sourcefile.topLevelDecls[0] as MacroExpandDecl).getOrThrow()
-    @Expect(decl_1.toString(), ##"@p1.M1[tok1](extend C1 {
+    @Expect(decl_1.toString().replace("\r",""), ##"@p1.M1[tok1](extend C1 {
     public func foo(a: Int64) {}
 })"##)
     @Assert(decl_1.calleeMacro.toString(), "p1.M1")
     @Assert(decl_1.macroAttrs.toString(), "tok1")
     match (decl_1.macroInputs) {
-        case WithParens(Tokens) => @Expect(Tokens.toString(), ##"extend C1 {
+        case WithParens(Tokens) => @Expect(Tokens.toString().replace("\r",""), ##"extend C1 {
     public func foo(a: Int64) { }
 }"##)
         case _ => @Assert(false)
     }
 
     var decl_2: MacroExpandDecl = (sourcefile.topLevelDecls[1] as MacroExpandDecl).getOrThrow()
-    @Expect(decl_2.toString(), ##"@M1[a: tok1, b: tok2]
+    @Expect(decl_2.toString().replace("\r",""), ##"@M1[a: tok1, b: tok2]
 extend<T, U> C1<T, U> <: I1 & C2<T> where T <: I1 & I2, U <: I3 {
 }"##)
     @Assert(decl_2.calleeMacro.toString(), "M1")
     @Assert(decl_2.macroAttrs.toString(), "a: tok1, b: tok2")
     match (decl_2.macroInputs) {
-        case WithoutParens(Decl) => @Expect(Decl.toString(), ##"extend<T, U> C1<T, U> <: I1 & C2<T> where T <: I1 & I2, U <: I3 {
+        case WithoutParens(Decl) => @Expect(Decl.toString().replace("\r",""), ##"extend<T, U> C1<T, U> <: I1 & C2<T> where T <: I1 & I2, U <: I3 {
 }"##)
         case _ => @Assert(false)
     }
@@ -73,7 +73,7 @@ extend<T, U> C1<T, U> <: I1 & C2<T> where T <: I1 & I2, U <: I3 {
     }
 
     var decl_4: MacroExpandDecl = (sourcefile.topLevelDecls[3] as MacroExpandDecl).getOrThrow()
-    @Expect(decl_4.toString(), ##"@M1
+    @Expect(decl_4.toString().replace("\r",""), ##"@M1
 
 extend C1 <: C2 {
     func foo() {
@@ -85,7 +85,7 @@ extend C1 <: C2 {
     match (decl_4.macroInputs) {
         case WithoutParens(Decl) =>
             @Assert(Decl is ExtendDecl)
-            @Assert(Decl.toString(), ##"extend C1 <: C2 {
+            @Assert(Decl.toString().replace("\r",""), ##"extend C1 <: C2 {
     func foo() {
         return 100
     }

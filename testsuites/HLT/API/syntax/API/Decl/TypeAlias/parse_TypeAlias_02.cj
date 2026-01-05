@@ -22,7 +22,7 @@ func test_TypeAlias_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"type Class1<V> = GenericClassA<Int64, V>
+    @Expect(sourcefile.toString().replace("\r","").contains(##"type Class1<V> = GenericClassA<Int64, V>
 type Class2<Value, V> = GenericClassB<Int64, V>
 type Class3<Value, V> = GenericClassC<V>
 type Int<T> = Int32"##))

@@ -22,7 +22,7 @@ func test_TypeConvExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     Int64(Int64(a))
     UInt64({ => 10}())
     UInt8((Int8(a), b)[0])

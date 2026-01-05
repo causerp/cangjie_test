@@ -22,7 +22,7 @@ func test_StaticInit_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"struct Struct_C1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"struct Struct_C1 {
     static init() { var a = 1 }
 }"##))
 

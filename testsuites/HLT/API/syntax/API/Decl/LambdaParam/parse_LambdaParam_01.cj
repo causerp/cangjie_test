@@ -19,7 +19,7 @@ class test_01{
 func test_LambdaParam_01() {
     let res = parseFile("./LambdaParam_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main(){
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main(){
     { => 42 }
     { x => x + 1 }
     { x: Int64 => x + 1 }

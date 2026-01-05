@@ -31,7 +31,7 @@ func test_StructDecl_05() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var structDecl: StructDecl = (sourceNode as StructDecl).getOrThrow()
-    @Expect(structDecl.toString(), ##"protected struct MyStruct<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z> <: I1 & I2  where T <: I1<T> & I2<T> {
+    @Expect(structDecl.toString().replace("\r",""), ##"protected struct MyStruct<A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z> <: I1 & I2  where T <: I1<T> & I2<T> {
     public var s1: T
     mut prop p1: ?Int64 {
         get() { None }
@@ -46,14 +46,14 @@ func test_StructDecl_05() {
     @Assert(structDecl.body.memberDecls[0] is VarDecl)
     @Assert(structDecl.body.memberDecls[0].toString(), ##"public var s1: T"##)
     @Assert(structDecl.body.memberDecls[1] is PropDecl)
-    @Assert(structDecl.body.memberDecls[1].toString(), ##"mut prop p1: ?Int64 {
+    @Assert(structDecl.body.memberDecls[1].toString().replace("\r",""), ##"mut prop p1: ?Int64 {
         get() { None }
         set(v) {}
     }"##)
     @Assert(structDecl.body.memberDecls[2] is FuncDecl)
     @Assert(structDecl.body.memberDecls[2].toString(), ##"public MyStruct(a: T) { s1 = a }"##)
     @Assert(structDecl.body.memberDecls[3] is FuncDecl)
-    @Assert(structDecl.body.memberDecls[3].toString(), ##"func foo<S>(a!: T): T {
+    @Assert(structDecl.body.memberDecls[3].toString().replace("\r",""), ##"func foo<S>(a!: T): T {
         return a
     }"##)
 

@@ -23,7 +23,7 @@ func test_MacroExpandExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     @M1 @M2(foo())
     @M1[a: T, b: U](a = b)
     @M1(if (a) {b} else {c})
@@ -64,7 +64,7 @@ func test_MacroExpandExpr_01() {
     }
 
     var expr_4: MacroExpandExpr = (mainDecl.body.nodes[3] as MacroExpandExpr).getOrThrow()
-    @Expect(expr_4.toString(), ##"@pkg1.pkg2.M1[aaaaaa](
+    @Expect(expr_4.toString().replace("\r",""), ##"@pkg1.pkg2.M1[aaaaaa](
         a ** b
     )"##)
     @Assert(expr_4.calleeMacro.toString(), "pkg1.pkg2.M1")

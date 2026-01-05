@@ -22,7 +22,7 @@ func test_ForInExpr_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     for ((k, v) in map) {
         count++
     }
@@ -30,10 +30,10 @@ func test_ForInExpr_02() {
 
     var mainDecl: MainDecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
     var expr_1: ForInExpr = (mainDecl.body.nodes[0] as ForInExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"for ((k, v) in map) {
+    @Assert(expr_1.toString().replace("\r",""), ##"for ((k, v) in map) {
         count++
     }"##)
-    @Assert(expr_1.body.toString(), ##"{
+    @Assert(expr_1.body.toString().replace("\r",""), ##"{
         count++
     }"##)
     @Assert(expr_1.expr.toString(), ##"map"##)

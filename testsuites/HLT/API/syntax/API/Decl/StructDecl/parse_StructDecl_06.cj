@@ -22,11 +22,11 @@ func test_StructDecl_06() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"internal struct s1<T> <: I1 & I2<T> & I3 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"internal struct s1<T> <: I1 & I2<T> & I3 {
 }"##))
 
     var structDecl: StructDecl = (sourcefile.topLevelDecls[0] as StructDecl).getOrThrow()
-    @Expect(structDecl.toString(), ##"internal struct s1<T> <: I1 & I2<T> & I3 {
+    @Expect(structDecl.toString().replace("\r",""), ##"internal struct s1<T> <: I1 & I2<T> & I3 {
 }"##)
     @Assert(structDecl.body.memberDecls.size, 0)
 

@@ -31,9 +31,9 @@ func test_litconstexpr_013() {
     var maindecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
     var litconstexpr = (maindecl.body.nodes[0] as LitConstExpr).getOrThrow()
     //toString()
-    @Assert(litconstexpr.toString(), "'''\nHello,\nCangjie Lang'''" )
+    @Assert(litconstexpr.toString().replace("\r",""), "'''\nHello,\nCangjie Lang'''" )
     //rawValue
-    @Assert(litconstexpr.rawValue, "Hello,\nCangjie Lang" )
+    @Assert(litconstexpr.rawValue.replace("\r",""), "Hello,\nCangjie Lang" )
     //kind
     match (litconstexpr.kind) {
         case LitConstKind.StringLiteral => ()
