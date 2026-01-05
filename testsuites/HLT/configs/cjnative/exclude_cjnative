@@ -8,8 +8,7 @@
 API/std/os/process/test_getgroups/test_getgroups_001/test_getgroups_001.cj
 # testcase is not correct.
 Tools/cjlsp/testcases/autotestcase/deprecated/textDocument_completion_018.info
-# will be fixed in future.
-API/SyntaxTreeNode/Annotation/parse_Annotation_03.cj
+
 # pffi should run with Python-ffi version
 API/std/ffi/Python
 # old jffi can only be run with cjvm.
@@ -26,9 +25,6 @@ compiler/cjnative/stable_abi/interface/modify/funcmemeber_property/modify/compil
 
 # syntax will be supported in future                                                                                                                                                                                                
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
-
-# timezone file in ci not support now
-API/std/time/TimeZone/load/test_loadFromPaths.cj
 
 # fail in ci env
 API/std/socket/UdpSocket/test_udp_transportation_init.cj
