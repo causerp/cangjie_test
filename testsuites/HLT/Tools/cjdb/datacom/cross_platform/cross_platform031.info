@@ -18,7 +18,7 @@ cjdb,cjdb --no-use-colors cross_platform031,cross_platform031
 b,b cross_platform031.cj:12,cross_platform031.cj:12
 r,r,-> 12
 s,s,test_plat.cj:12
-finish,finish,
+finish,finish,-> 12
 n,n,-> 13
 p,p a,\(Int64\) \$[\d] = 10
 q,q,

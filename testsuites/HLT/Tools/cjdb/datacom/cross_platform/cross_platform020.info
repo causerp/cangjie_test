@@ -23,7 +23,7 @@ p,p a,\(Int64\) \$[\d] = 1
 finish,finish,cross_platform020.cj:13
 n,n,-> 14
 s,s,test_plat.cj:20
-finish,finish,
+finish,finish,-> 14
 n,n,-> 15
 s,s,test_com.cj:12
 q,q,

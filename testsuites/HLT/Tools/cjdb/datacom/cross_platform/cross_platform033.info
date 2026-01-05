@@ -20,10 +20,10 @@ b,b cross_platform033.cj:15,cross_platform033.cj:15
 r,r,-> 13
 s,s,test_com.cj:14
 finish,finish,cross_platform033.cj:13
-c,c,
+c,c,-> 15
 s,s,test_com.cj:20
 finish,finish,cross_platform033.cj:15
-n,n,
+n,n,-> 16
 p,p b1,\(Int32\) \$[\d] = 1
 p,p b2,\(Int32\) \$[\d] = 2
 q,q,
