@@ -4,12 +4,9 @@
 #
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-# sema error, should be fixed later.
-API/std/os/process/test_getgroups/test_getgroups_001/test_getgroups_001.cj
 # testcase is not correct.
 Tools/cjlsp/testcases/autotestcase/deprecated/textDocument_completion_018.info
-# will be fixed in future.
-API/SyntaxTreeNode/Annotation/parse_Annotation_03.cj
+
 # pffi should run with Python-ffi version
 API/std/ffi/Python
 # old jffi can only be run with cjvm.
@@ -24,11 +21,8 @@ compiler/cjnative/stable_abi/06_interface/02_modify/01_define_content/02_compile
 compiler/cjnative/stable_abi/06_interface/02_modify/01_define_content/02_compiler_directive/java/06_interface_Java_delete.cj
 compiler/cjnative/stable_abi/interface/modify/funcmemeber_property/modify/compiler_directive/interface_add_java.cj
 
-# syntax will be supported in future                                                                                                                                                                                                
+# issue 198: syntax rewriter not support                                                                                                                                                                                                
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
-
-# timezone file in ci not support now
-API/std/time/TimeZone/load/test_loadFromPaths.cj
 
 # fail in ci env
 API/std/socket/UdpSocket/test_udp_transportation_init.cj

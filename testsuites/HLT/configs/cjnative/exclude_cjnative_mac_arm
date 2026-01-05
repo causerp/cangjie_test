@@ -24,11 +24,8 @@ Tools/cjdb/datacom/within_watchpoint/lldb_within_watchpoint055.info
 # testcase is not correct.
 Tools/cjlsp/testcases/autotestcase/deprecated/textDocument_completion_018.info
 
-# syntax will be supported in future
+# issue 198: syntax rewriter not support
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
-
-# timezone file in ci not support now
-API/std/time/TimeZone/load/test_loadFromPaths.cj
 
 # fail in ci env
 API/std/socket/UdpSocket/test_udp_transportation_init.cj
