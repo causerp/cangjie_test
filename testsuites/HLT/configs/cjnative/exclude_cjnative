@@ -49,3 +49,15 @@ Tools/cjdb/datacom/optional_chaining_expression/optional_chaining_expression028.
 Tools/cjdb/datacom/optional_chaining_expression/optional_chaining_expression037.info
 Tools/cjdb/datacom/optional_chaining_expression/optional_chaining_expression043.info
 Tools/cjdb/datacom/optional_chaining_expression/optional_chaining_expression046.info
+
+# https://gitcode.com/Cangjie/cangjie_compiler/issues/442
+compiler/cjnative/Packages/org_name/import_decl/backtick_in_org_name_0.cj
+compiler/cjnative/Packages/org_name/import_decl/backtick_in_org_name_1.cj
+
+# https://gitcode.com/Cangjie/cangjie_compiler/issues/443
+compiler/cjnative/Packages/org_name/import_decl/invalid_colon_0.cj
+compiler/cjnative/Packages/org_name/package_decl/invalid_colon_0.cj
+compiler/cjnative/Packages/org_name/package_decl/invalid_colon_1.cj
+compiler/cjnative/Packages/org_name/package_decl/no_package_name_0.cj
+compiler/cjnative/Packages/org_name/package_decl/no_package_name_1.cj
+compiler/cjnative/Packages/org_name/package_decl/no_package_name_2.cj
