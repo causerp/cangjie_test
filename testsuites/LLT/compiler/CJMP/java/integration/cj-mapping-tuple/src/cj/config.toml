@@ -9,6 +9,6 @@ GenericTypeStrategy = "Partial"
 excluded_apis = [
 ]
 tuple_configuration = [
-    "(Int8, Int16, Int32, Int64, UInt16, Float32, Float64, Bool)",
+    "(Int8, Int16, Int32, Int, UInt16, Float32, Float64, Bool)",
     "(Int32, Int64)"
 ]
