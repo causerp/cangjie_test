@@ -22,7 +22,7 @@ func test_Comment_04() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().replace("\r","").contains(##"// 仓���，�
+    @Assert(sourcefile.toString().replace("\r","").contains(##"// 仓颉语言，😊
 
 /* ....
 line1
@@ -60,12 +60,12 @@ line3
     @Assert(sourcefile.comments.size, 4)
 
     var comment_1: Comment = sourcefile.comments[1]
-    @Assert(comment_1.toString().replace("\r",""), ##"// 仓���，�"##)
+    @Assert(comment_1.toString().replace("\r",""), ##"// 仓颉语言，😊"##)
     match (comment_1.kind) {
         case CommentKind.Line => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_1.content.replace("\r",""), ##"// 仓���，�"##)
+    @Assert(comment_1.content.replace("\r",""), ##"// 仓颉语言，😊"##)
 
     var comment_2: Comment = sourcefile.comments[2]
     @Assert(comment_2.toString().replace("\r",""), ##"/* ....

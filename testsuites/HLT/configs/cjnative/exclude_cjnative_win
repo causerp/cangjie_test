@@ -355,28 +355,6 @@ compiler/cli/Option/pgo/pgo_005.cj
 Regression/External/I4AZMP.cj
 
 # syntax will be supported in future
-API/syntax/API/SyntaxTreeNode/Annotation/parse_Annotation_01.cj
-API/syntax/API/SyntaxTreeNode/Argument/parse_Argument_01.cj
-API/syntax/API/SyntaxTreeNode/Body/parse_body_01.cj
-API/syntax/API/SyntaxTreeNode/CatchPattern/parse_CatchPattern_01.cj
-API/syntax/API/SyntaxTreeNode/Comment/parse_Comment_01.cj
-API/syntax/API/SyntaxTreeNode/Comment/parse_Inner_Comment_01.cj
-API/syntax/API/SyntaxTreeNode/Comment/parse_Inner_Comment_02.cj
-API/syntax/API/SyntaxTreeNode/Comment/parse_Inner_Comment_04.cj
-API/syntax/API/SyntaxTreeNode/DisjunctionCondition/parse_DisjunctionCondition_01.cj
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_01.cj
-API/syntax/API/SyntaxTreeNode/ImportList/parse_ImportList_02.cj
-API/syntax/API/SyntaxTreeNode/ImportMulti/parse_ImportMulti_01.cj
-API/syntax/API/SyntaxTreeNode/ImportMulti/parse_ImportMulti_04.cj
-API/syntax/API/SyntaxTreeNode/ImportMulti/parse_ImportMulti_05.cj
-API/syntax/API/SyntaxTreeNode/MatchCase/parse_MatchCase_01.cj
-API/syntax/API/SyntaxTreeNode/MatchCase/parse_MatchCase_08.cj
-API/syntax/API/SyntaxTreeNode/MatchCase/parse_MatchCase_18.cj
-API/syntax/API/SyntaxTreeNode/MatchCase/parse_MatchCase_19.cj
-API/syntax/API/SyntaxTreeNode/StrInterPolationContent/parse_StrInterPolationContent_01.cj
-API/syntax/API/TypeAnnotation/CompositeType/parse_CompositeType_01.cj
-API/syntax/API/TypeAnnotation/CompositeType/parse_CompositeType_02.cj
-API/syntax/API/TypeAnnotation/FuncType/parse_FuncType_01.cj 
 API/syntax/Init/SyntaxTreeNode/test_comment_init_01.cj 
 API/syntax/parseFunc/parseDir/parse/parsedir_001.cj
 API/syntax/parseFunc/parseFile/parse/parsefile_001.cj
