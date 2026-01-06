@@ -24,7 +24,7 @@ func test_MainDecl_01() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var mainDecl = (sourceNode as MainDecl).getOrThrow()
-    @Assert(mainDecl.toString(), ##"main(): Int64 {
+    @Assert(mainDecl.toString().replace("\r", ""), ##"main(): Int64 {
     let a: Int64 = 0
     return a
 }"##)

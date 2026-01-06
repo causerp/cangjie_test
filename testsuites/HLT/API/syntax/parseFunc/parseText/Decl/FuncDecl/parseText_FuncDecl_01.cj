@@ -77,7 +77,7 @@ func test_FuncDecl_01() {
     a
 }"##)
     @Assert(funcdecl_3.body.isSome())
-    @Assert(funcdecl_3.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_3.body.getOrThrow().toString().replace("\r",""), ##"{
     a
 }"##)
     @Assert(funcdecl_3.genericConstraints.isSome())
