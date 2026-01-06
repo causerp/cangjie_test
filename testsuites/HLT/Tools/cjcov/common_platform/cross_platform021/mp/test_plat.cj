@@ -10,9 +10,7 @@ package mp
 
 public platform interface I<T> {}
 
-public platform class C {
-    public platform init() {}
-}
+public platform class C {}
 
 platform extend C <: I<Int64> {
     public platform func f(a: Int64): Int64 {

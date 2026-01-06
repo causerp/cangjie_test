@@ -18,7 +18,7 @@ cjdb,cjdb --no-use-colors cross_platform029,cross_platform029
 b,b cross_platform029.cj:12,cross_platform029.cj:12
 r,r,-> 12
 s,s,test_plat.cj:14
-finish,finish,
+finish,finish,-> 12
 n,n,-> 13
 s,s,test_com.cj:15
 finish,finish,

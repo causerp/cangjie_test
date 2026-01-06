@@ -19,13 +19,13 @@ cjdb,cjdb --no-use-colors cross_platform018,cross_platform018
 b,b cross_platform018.cj:12,cross_platform018.cj:12
 r,r,-> 12
 s,s,test_com.cj:27
-finish,finish,
+finish,finish,-> 12
 n,n,-> 13
 s,s,test_com.cj:21
-finish,finish,
+finish,finish,-> 13
 n,n,-> 14
 s,s,test_com.cj:19
-finish,finish,
+finish,finish,-> 14
 s,s,test_com.cj:30
 finish,finish,
 q,q,
