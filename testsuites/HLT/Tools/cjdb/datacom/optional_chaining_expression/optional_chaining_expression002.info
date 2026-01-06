@@ -19,5 +19,5 @@ r,r,-> 19
 expr,expr r1,\(std.core.Option<Int64>\) \$[\d] = 100
 expr,expr r2,\(std.core.Option<Int64>\) \$[\d] = None
 expr~expr b1?.item~\(std.core.Option<Int64>\) \$[\d] = 100
-expr~expr b2?.item~\(std.core.Option<Int64>\) \$[\d] = 0
+expr~expr b2?.item~\(std.core.Option<Int64>\) \$[\d] = None
 q,q,
