@@ -36,12 +36,12 @@ func test_FuncDecl_03() {
     let res_4 = parseText(str_4)
 
     var funcdecl_1 = (res_1.node.getOrThrow() as FuncDecl).getOrThrow()
-    @Assert(funcdecl_1.toString(), ##"public init (a: Int64, b!: Int64) {
+    @Assert(funcdecl_1.toString().replace("\r",""), ##"public init (a: Int64, b!: Int64) {
         x = a
         y = b
     }"##)
     @Assert(funcdecl_1.body.isSome())
-    @Assert(funcdecl_1.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_1.body.getOrThrow().toString().replace("\r",""), ##"{
         x = a
         y = b
     }"##)
@@ -60,11 +60,11 @@ func test_FuncDecl_03() {
     @Assert(funcdecl_1.annotations.toString(), "[]")
 
     var funcdecl_2 = (res_2.node.getOrThrow() as FuncDecl).getOrThrow()
-    @Assert(funcdecl_2.toString(), ##"public operator func -(): Point {
+    @Assert(funcdecl_2.toString().replace("\r",""), ##"public operator func -(): Point {
         Point(-x, -y)
     }"##)
     @Assert(funcdecl_2.body.isSome())
-    @Assert(funcdecl_2.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_2.body.getOrThrow().toString().replace("\r",""), ##"{
         Point(-x, -y)
     }"##)
     @Assert(funcdecl_2.genericConstraints.isNone())
@@ -81,11 +81,11 @@ func test_FuncDecl_03() {
     @Assert(funcdecl_2.annotations.toString(), "[]")
 
     var funcdecl_3 = (res_3.node.getOrThrow() as FuncDecl).getOrThrow()
-    @Assert(funcdecl_3.toString(), ##"public operator func +(right: Point): Point {
+    @Assert(funcdecl_3.toString().replace("\r",""), ##"public operator func +(right: Point): Point {
         Point(this.x + right.x, this.y + right.y)
     }"##)
     @Assert(funcdecl_3.body.isSome())
-    @Assert(funcdecl_3.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_3.body.getOrThrow().toString().replace("\r",""), ##"{
         Point(this.x + right.x, this.y + right.y)
     }"##)
     @Assert(funcdecl_3.genericConstraints.isNone())

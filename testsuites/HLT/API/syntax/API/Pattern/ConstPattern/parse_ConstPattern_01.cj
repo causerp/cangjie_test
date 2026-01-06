@@ -22,7 +22,7 @@ func test_ConstPattern_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     match(1.0) {
         case 1.0e308 | .123e2f64 | 0x.2p4 => ()
     }

@@ -27,7 +27,7 @@ func test_EnumDecl_06() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
     var enumDecl: EnumDecl = (sourceNode as EnumDecl).getOrThrow()
 
-    @Expect(enumDecl.toString(), ##"enum a_b <: I1 & I2 {
+    @Expect(enumDecl.toString().replace("\r",""), ##"enum a_b <: I1 & I2 {
     A1(T, T)
     | B1 (T, U) |
     C1(U, U) | D1((Int64, Int64))

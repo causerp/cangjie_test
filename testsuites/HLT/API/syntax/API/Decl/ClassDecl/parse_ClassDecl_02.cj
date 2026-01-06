@@ -22,7 +22,7 @@ func test_ClassDecl_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"public class CangjieInvoke <: JObject {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"public class CangjieInvoke <: JObject {
     public let a1 :Any = 1
     public var a2 = 2
 
@@ -227,7 +227,7 @@ func test_ClassDecl_02() {
 }"##))
 
     var classDecl: ClassDecl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
-    @Assert(classDecl.toString(), ##"public class CangjieInvoke <: JObject {
+    @Assert(classDecl.toString().replace("\r",""), ##"public class CangjieInvoke <: JObject {
     public let a1 :Any = 1
     public var a2 = 2
 

@@ -22,7 +22,7 @@ func test_PropGetterOrSetter_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"public interface I1 <: S1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"public interface I1 <: S1 {
     public static mut prop p_1: Int64 {
         get() {0}
         @Deprecated["bbbb"]

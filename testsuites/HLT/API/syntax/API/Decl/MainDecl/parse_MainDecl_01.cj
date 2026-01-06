@@ -19,17 +19,17 @@ class test_01{
 func test_MainDecl_01() {
     let res = parseFile("./MainDecl_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main(): Int64 {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main(): Int64 {
     let a: Int64 = 0
     return a
 }"##))
 
     var mainDecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
-    @Assert(mainDecl.toString(), ##"main(): Int64 {
+    @Assert(mainDecl.toString().replace("\r",""), ##"main(): Int64 {
     let a: Int64 = 0
     return a
 }"##)
-    @Assert(mainDecl.toTokens().toString(), ##"main(): Int64 {
+    @Assert(mainDecl.toTokens().toString().replace("\r",""), ##"main(): Int64 {
     let a: Int64 = 0
     return a
 }"##)

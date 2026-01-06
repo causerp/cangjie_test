@@ -44,7 +44,7 @@ func test_litconststrexpr_007() {
     }
 
     var litconststrexpr_3 = (maindecl.body.nodes[2] as LitConstStrExpr).getOrThrow()
-    @Assert(litconststrexpr_3.toString(), ##""""
+    @Assert(litconststrexpr_3.toString().replace("\r",""), ##""""
 ${x}${y} ${z}""""##)
     @Expect(litconststrexpr_3.rawValue, ##"${x}${y} ${z}"##)
     @Assert(litconststrexpr_3.strPartExprs.size, 4)

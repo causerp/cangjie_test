@@ -20,7 +20,7 @@ func test_VarDecl_01() {
     let res = parseFile("./VarDecl_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
     println(sourcefile.toString())
-    @Assert(sourcefile.toString().contains(##"var a = 1
+    @Assert(sourcefile.toString().replace("\r","").contains(##"var a = 1
 public let b = 1
 protected const c: Int64 = 1"##))
 

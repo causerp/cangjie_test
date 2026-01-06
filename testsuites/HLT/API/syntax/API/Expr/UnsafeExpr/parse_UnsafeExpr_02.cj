@@ -22,7 +22,7 @@ func test_UnsafeExpr_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     unsafe {
         let str = LibC.mallocString("abc")
         str.free()
@@ -31,11 +31,11 @@ func test_UnsafeExpr_02() {
 
     var mainDecl: MainDecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
     var expr_1: UnsafeExpr = (mainDecl.body.nodes[0] as UnsafeExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"unsafe {
+    @Assert(expr_1.toString().replace("\r",""), ##"unsafe {
         let str = LibC.mallocString("abc")
         str.free()
     }"##)
-    @Assert(expr_1.block.toString(), ##"{
+    @Assert(expr_1.block.toString().replace("\r",""), ##"{
         let str = LibC.mallocString("abc")
         str.free()
     }"##)

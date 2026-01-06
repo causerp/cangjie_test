@@ -19,7 +19,7 @@ class test_01{
 func test_FuncDecl_05() {
     let res = parseFile("./FuncDecl_05.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"func foo<T>(a: T) {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"func foo<T>(a: T) {
     func goo() {
         return 1
     }
@@ -27,14 +27,14 @@ func test_FuncDecl_05() {
 }"##))
 
     var funcdecl_1 = (sourcefile.topLevelDecls[0] as FuncDecl).getOrThrow()
-    @Expect(funcdecl_1.toString(), ##"func foo<T>(a: T) {
+    @Expect(funcdecl_1.toString().replace("\r",""), ##"func foo<T>(a: T) {
     func goo() {
         return 1
     }
     goo()
 }"##)
     @Assert(funcdecl_1.body.isSome())
-    @Assert(funcdecl_1.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_1.body.getOrThrow().toString().replace("\r",""), ##"{
     func goo() {
         return 1
     }
@@ -54,11 +54,11 @@ func test_FuncDecl_05() {
     @Assert(funcdecl_1.annotations.toString(), "[]")
 
     var funcdecl_2 = (funcdecl_1.body.getOrThrow().nodes[0] as FuncDecl).getOrThrow()
-    @Expect(funcdecl_2.toString(), ##"func goo() {
+    @Expect(funcdecl_2.toString().replace("\r",""), ##"func goo() {
         return 1
     }"##)
     @Assert(funcdecl_2.body.isSome())
-    @Assert(funcdecl_2.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_2.body.getOrThrow().toString().replace("\r",""), ##"{
         return 1
     }"##)
     @Assert(funcdecl_2.genericConstraints.isNone())

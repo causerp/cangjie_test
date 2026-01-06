@@ -38,7 +38,7 @@ let a1 = 1
 
 let a2 = a1 + 1 + 1234"##
     @Assert(_package.toString().contains("file_001.cj"))
-    @Assert(_package.toString().contains(##"let a1 = 1
+    @Assert(_package.toString().replace("\r","").contains(##"let a1 = 1
 + 1"##))
     @Assert(_package.toString().contains("file_002.cj"))
     @Assert(_package.toString().contains("let a2 = a1 + 1 + 1234"))
@@ -51,7 +51,7 @@ let a2 = a1 + 1 + 1234"##
     let str1 = ##"
 let a1 = 1
 + 1"##
-    @Assert(file1.toString().contains(str1))
+    @Assert(file1.toString().replace("\r","").contains(str1))
     @Assert(file1.importLists.size, 0)
     @Assert(file1.name, "file_001.cj")
     println(file1.path)
@@ -61,7 +61,7 @@ let a1 = 1
 
     let str2 = ##"
 let a2 = a1 + 1 + 1234"##
-    @Assert(file2.toString().contains(str2))
+    @Assert(file2.toString().replace("\r","").contains(str2))
     @Assert(file2.importLists.size, 0)
     @Assert(file2.name, "file_002.cj")
     println(file2.path)

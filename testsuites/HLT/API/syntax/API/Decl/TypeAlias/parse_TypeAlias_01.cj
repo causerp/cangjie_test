@@ -23,7 +23,7 @@ func test_TypeAlias_01() {
 
     let sourcefile: SourceFile = res.node.getOrThrow()
     sourcefile.toString() |> println
-    @Expect(sourcefile.toString().contains(##"type XX = Int64
+    @Expect(sourcefile.toString().replace("\r","").contains(##"type XX = Int64
 public type Point2D = (X1, X2)
 @Deprecated["aaa"]
 protected type YY = Float64"##))
@@ -47,7 +47,7 @@ protected type YY = Float64"##))
     @Assert(typeAlias_2.modifiers.toString(), "[public]")
     @Assert(typeAlias_2.annotations.toString(), "[]")
 
-    @Assert(typeAlias_3.toString(), ##"@Deprecated["aaa"]
+    @Assert(typeAlias_3.toString().replace("\r",""), ##"@Deprecated["aaa"]
 protected type YY = Float64"##)
     @Assert(typeAlias_3.aliasName, "YY")
     @Assert(typeAlias_3.originalTyAnnotation.toString(), "Float64")

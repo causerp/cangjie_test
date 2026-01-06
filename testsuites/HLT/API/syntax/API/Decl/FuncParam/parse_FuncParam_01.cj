@@ -19,7 +19,7 @@ class test_01{
 func test_FuncParam_01() {
     let res = parseFile("./FuncParam_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"class C1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"class C1 {
     private C1(a: Int64, b!: Int64, c!: Int64 = 1, public var d!: ?Int64, private let e!: R = R()) {
     }
 }"##))
@@ -27,7 +27,7 @@ func test_FuncParam_01() {
     var _decl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
 
     var funcdecl_1 = (_decl.body.memberDecls[0] as FuncDecl).getOrThrow()
-    @Expect(funcdecl_1.toString(), ##"private C1(a: Int64, b!: Int64, c!: Int64 = 1, public var d!: ?Int64, private let e!: R = R()) {
+    @Expect(funcdecl_1.toString().replace("\r",""), ##"private C1(a: Int64, b!: Int64, c!: Int64 = 1, public var d!: ?Int64, private let e!: R = R()) {
     }"##)
     @Assert(funcdecl_1.params.params.size, 5)
     let param_1 = (funcdecl_1.params.params[0] as FuncParam).getOrThrow()

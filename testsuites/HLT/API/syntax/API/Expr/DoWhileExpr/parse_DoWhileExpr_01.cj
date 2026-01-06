@@ -22,7 +22,7 @@ func test_DoWhileExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     do {
         print(a)
         break
@@ -31,11 +31,11 @@ func test_DoWhileExpr_01() {
 
     var mainDecl: MainDecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
     var expr_1: DoWhileExpr = (mainDecl.body.nodes[0] as DoWhileExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"do {
+    @Assert(expr_1.toString().replace("\r",""), ##"do {
         print(a)
         break
     } while (b == cc && a > 0)"##)
-    @Assert(expr_1.body.toString(), ##"{
+    @Assert(expr_1.body.toString().replace("\r",""), ##"{
         print(a)
         break
     }"##)

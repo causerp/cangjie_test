@@ -39,7 +39,7 @@ func test_ClassDecl_03() {
     let res = parseText(str)
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
     var classDecl: ClassDecl = (sourceNode as ClassDecl).getOrThrow()
-    @Assert(classDecl.toString(), ##"@When[os == "Linux"]
+    @Assert(classDecl.toString().replace("\r",""), ##"@When[os == "Linux"]
 internal class C1<T, U> <: I1<U> & I2<T, U> & I3<T> where T <: I1<T> & I3<T> , U<: I2<T, T> {
     static let s1: Int64
     static init() {

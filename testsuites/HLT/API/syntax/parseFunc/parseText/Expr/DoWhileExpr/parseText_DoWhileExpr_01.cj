@@ -24,11 +24,11 @@ func test_DoWhileExpr_01() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var expr_1: DoWhileExpr = (sourceNode as DoWhileExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"do {
+    @Assert(expr_1.toString().replace("\r",""), ##"do {
     print(a)
     break
 } while (b == cc && a > 0)"##)
-    @Assert(expr_1.body.toString(), ##"{
+    @Assert(expr_1.body.toString().replace("\r",""), ##"{
     print(a)
     break
 }"##)

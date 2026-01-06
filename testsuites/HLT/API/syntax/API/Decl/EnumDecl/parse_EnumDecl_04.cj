@@ -22,13 +22,13 @@ func test_EnumDecl_04() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"internal enum E1<A, B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z> {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"internal enum E1<A, B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z> {
     | A1 | B1(Int64)
     | C1(T) | D1(U, T)
 }"##))
 
     var enumDecl: EnumDecl = (sourcefile.topLevelDecls[0] as EnumDecl).getOrThrow()
-    @Expect(enumDecl.toString(), ##"internal enum E1<A, B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z> {
+    @Expect(enumDecl.toString().replace("\r",""), ##"internal enum E1<A, B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z> {
     | A1 | B1(Int64)
     | C1(T) | D1(U, T)
 }"##)

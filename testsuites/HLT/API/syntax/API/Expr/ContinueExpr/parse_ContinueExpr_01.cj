@@ -22,7 +22,7 @@ func test_ContinueExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"for (i in arr) {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"for (i in arr) {
         continue
     }"##))
 

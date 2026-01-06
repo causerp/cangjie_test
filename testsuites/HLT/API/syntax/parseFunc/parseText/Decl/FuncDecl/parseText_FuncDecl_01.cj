@@ -46,11 +46,11 @@ func test_FuncDecl_01() {
     @Assert(funcdecl_1.annotations.toString(), "[]")
 
     var funcdecl_2 = (res_2.node.getOrThrow() as FuncDecl).getOrThrow()
-    @Assert(funcdecl_2.toString(), ##"public func func_2(a: Int64, b!: String, c!: Int64 = 0): Int64 {
+    @Assert(funcdecl_2.toString().replace("\r",""), ##"public func func_2(a: Int64, b!: String, c!: Int64 = 0): Int64 {
     return a + c
 }"##)
     @Assert(funcdecl_2.body.isSome())
-    @Assert(funcdecl_2.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_2.body.getOrThrow().toString().replace("\r",""), ##"{
     return a + c
 }"##)
     @Assert(funcdecl_2.genericConstraints.isNone())
@@ -73,7 +73,7 @@ func test_FuncDecl_01() {
     @Assert(funcdecl_2.annotations.toString(), "[]")
 
     var funcdecl_3 = (res_3.node.getOrThrow() as FuncDecl).getOrThrow()
-    @Assert(funcdecl_3.toString(), ##"protected func func_3<T, U>(a: T, b: U): T where T <: I1<T> & I2<T>, U <: I3<U> {
+    @Assert(funcdecl_3.toString().replace("\r",""), ##"protected func func_3<T, U>(a: T, b: U): T where T <: I1<T> & I2<T>, U <: I3<U> {
     a
 }"##)
     @Assert(funcdecl_3.body.isSome())

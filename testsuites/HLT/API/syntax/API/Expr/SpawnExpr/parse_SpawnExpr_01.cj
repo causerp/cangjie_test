@@ -22,7 +22,7 @@ func test_SpawnExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     spawn { add(1, 2) }
     spawn(tc) { => }
 }"##))

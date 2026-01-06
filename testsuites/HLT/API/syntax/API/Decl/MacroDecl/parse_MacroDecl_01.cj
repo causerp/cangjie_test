@@ -22,18 +22,18 @@ func test_MacroDecl_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"public macro M1(input: Tokens): Tokens {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"public macro M1(input: Tokens): Tokens {
     input
 }"##))
 
     var _decl: MacroDecl = (sourcefile.topLevelDecls[0] as MacroDecl).getOrThrow()
-    @Assert(_decl.toString(), ##"public macro M1(input: Tokens): Tokens {
+    @Assert(_decl.toString().replace("\r",""), ##"public macro M1(input: Tokens): Tokens {
     input
 }"##)
-    @Assert(_decl.toTokens().toString(), ##"public macro M1(input: Tokens): Tokens {
+    @Assert(_decl.toTokens().toString().replace("\r",""), ##"public macro M1(input: Tokens): Tokens {
     input
 }"##)
-    @Assert(_decl.body.toString(), ##"{
+    @Assert(_decl.body.toString().replace("\r",""), ##"{
     input
 }"##)
     @Assert(_decl.name, "M1")

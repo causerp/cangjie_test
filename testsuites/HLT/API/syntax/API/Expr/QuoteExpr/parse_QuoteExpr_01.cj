@@ -24,7 +24,7 @@ func test_QuoteExpr_01() {
 
     let sourcefile: SourceFile = res.node.getOrThrow()
     sourcefile.toString() |> println
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     quote()
     quote(a)
     quote(a = b)
@@ -58,7 +58,7 @@ func test_QuoteExpr_01() {
         case _ => @Assert(false)
     }
     var expr_4: QuoteExpr = (mainDecl.body.nodes[3] as QuoteExpr).getOrThrow()
-    @Expect(expr_4.toString(), ##"quote(
+    @Expect(expr_4.toString().replace("\r",""), ##"quote(
     arr = $(intList)
     x = $(float)
     s = $(str)

@@ -22,7 +22,7 @@ func test_InterfaceDecl_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"@Deprecated["aaa"]
+    @Expect(sourcefile.toString().replace("\r","").contains(##"@Deprecated["aaa"]
 public interface I1 <: S1 {
     static mut prop p1: Int64 {
         get() {0}
@@ -32,7 +32,7 @@ public interface I1 <: S1 {
 }"##))
 
     var interfaceDecl: InterfaceDecl = (sourcefile.topLevelDecls[0] as InterfaceDecl).getOrThrow()
-    @Expect(interfaceDecl.toString(), ##"@Deprecated["aaa"]
+    @Expect(interfaceDecl.toString().replace("\r",""), ##"@Deprecated["aaa"]
 public interface I1 <: S1 {
     static mut prop p1: Int64 {
         get() {0}
@@ -42,7 +42,7 @@ public interface I1 <: S1 {
 }"##)
     @Assert(interfaceDecl.body.memberDecls.size, 2)
     @Assert(interfaceDecl.body.memberDecls[0] is PropDecl)
-    @Assert(interfaceDecl.body.memberDecls[0].toString(), ##"static mut prop p1: Int64 {
+    @Assert(interfaceDecl.body.memberDecls[0].toString().replace("\r",""), ##"static mut prop p1: Int64 {
         get() {0}
         set(v) {}
     }"##)

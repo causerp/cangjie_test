@@ -22,7 +22,7 @@ func test_IsExpr_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     fun() is Option<Int64>
     a.b is ??T
     a is (C1, C2)

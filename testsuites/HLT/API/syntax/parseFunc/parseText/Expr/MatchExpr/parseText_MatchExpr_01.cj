@@ -24,7 +24,7 @@ func test_MatchExpr_01() {
     let res = parseText(str)
 
     var expr_1 = (res.node.getOrThrow() as MatchExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"match {
+    @Assert(expr_1.toString().replace("\r",""), ##"match {
     case true => ()
     case a >= b => a + b
     case _ => ()

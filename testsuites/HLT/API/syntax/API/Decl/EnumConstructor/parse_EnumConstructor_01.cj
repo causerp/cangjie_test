@@ -22,7 +22,7 @@ func test_EnumConstructor_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"enum EE<T> {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"enum EE<T> {
     | A0
     | B_C_D
     | A1(Int64)

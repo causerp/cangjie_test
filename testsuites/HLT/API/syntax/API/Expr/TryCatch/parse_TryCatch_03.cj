@@ -22,7 +22,7 @@ func test_TryCatch_03() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"main() {
+    @Assert(sourcefile.toString().replace("\r","").contains(##"main() {
     try {
         a
     } catch (e: Exception | IOException) {
@@ -34,21 +34,21 @@ func test_TryCatch_03() {
 
     var mainDecl: MainDecl = (sourcefile.topLevelDecls[0] as MainDecl).getOrThrow()
     var expr: TryCatch = (mainDecl.body.nodes[0] as TryCatch).getOrThrow()
-    @Assert(expr.toString(), ##"try {
+    @Assert(expr.toString().replace("\r",""), ##"try {
         a
     } catch (e: Exception | IOException) {
         b
     } catch (_) {
         c
     }"##)
-    @Assert(expr.tryBlock.toString(), ##"{
+    @Assert(expr.tryBlock.toString().replace("\r",""), ##"{
         a
     }"##)
     @Assert(expr.catchBlocks.size, 2)
-    @Assert(expr.catchBlocks[0].toString(), ##"{
+    @Assert(expr.catchBlocks[0].toString().replace("\r",""), ##"{
         b
     }"##)
-    @Assert(expr.catchBlocks[1].toString(), ##"{
+    @Assert(expr.catchBlocks[1].toString().replace("\r",""), ##"{
         c
     }"##)
     @Expect(expr.catchPatterns.size, 2)

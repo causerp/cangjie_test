@@ -22,7 +22,7 @@ func test_StructDecl_06() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var structDecl: StructDecl = (sourceNode as StructDecl).getOrThrow()
-    @Expect(structDecl.toString(), ##"internal struct s1<T> <: I1 & I2<T> & I3 {
+    @Expect(structDecl.toString().replace("\r",""), ##"internal struct s1<T> <: I1 & I2<T> & I3 {
 }"##)
     @Assert(structDecl.body.memberDecls.size, 0)
 

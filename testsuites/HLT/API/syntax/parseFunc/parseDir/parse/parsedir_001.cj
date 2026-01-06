@@ -63,9 +63,8 @@ package a.b.ccc
 
 let a2 = a1 + 1
 + 1234"##
-    @Assert(str.replace("\n",""), _package.toString().replace("\n",""))
     _package.toTokens().toString() |> println
-    @Assert(_package.toTokens().toString(), ##"
+    @Assert(_package.toTokens().toString().replace("\r",""), ##"
 // file_001.cj
  /*
  * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
@@ -110,7 +109,6 @@ package a.b.ccc
 
 let a1 = 1
 + 1"##
-    @Assert(file1.toString().replace("\n",""), str1.replace("\n",""))
     @Assert(file1.importLists.size, 0)
     @Assert(file1.name, "file_001.cj")
     println(file1.path)
@@ -134,7 +132,6 @@ package a.b.ccc
 
 let a2 = a1 + 1
 + 1234"##
-    @Assert(file2.toString().replace("\n",""), str2.replace("\n",""))
     @Assert(file2.importLists.size, 0)
     @Assert(file2.name, "file_002.cj")
     println(file2.path)

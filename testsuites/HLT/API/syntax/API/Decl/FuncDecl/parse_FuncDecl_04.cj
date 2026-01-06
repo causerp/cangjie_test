@@ -19,7 +19,7 @@ class test_01{
 func test_FuncDecl_04() {
     let res = parseFile("./FuncDecl_04.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"class C1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"class C1 {
     private C1(a: Int64, b!: Int64, c!: Int64 = 1, public var d!: Int64, private let e!: Int64 = 3) {
     }
 }"##))
@@ -27,10 +27,10 @@ func test_FuncDecl_04() {
     var _decl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
 
     var funcdecl_1 = (_decl.body.memberDecls[0] as FuncDecl).getOrThrow()
-    @Expect(funcdecl_1.toString(), ##"private C1(a: Int64, b!: Int64, c!: Int64 = 1, public var d!: Int64, private let e!: Int64 = 3) {
+    @Expect(funcdecl_1.toString().replace("\r",""), ##"private C1(a: Int64, b!: Int64, c!: Int64 = 1, public var d!: Int64, private let e!: Int64 = 3) {
     }"##)
     @Assert(funcdecl_1.body.isSome())
-    @Assert(funcdecl_1.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_1.body.getOrThrow().toString().replace("\r",""), ##"{
     }"##)
     @Assert(funcdecl_1.genericConstraints.isNone())
     @Assert(funcdecl_1.genericParams.size, 0)

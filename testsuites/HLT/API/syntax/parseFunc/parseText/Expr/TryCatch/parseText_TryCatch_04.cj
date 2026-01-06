@@ -27,14 +27,14 @@ func test_TryCatch_04() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var expr: TryCatch = (sourceNode as TryCatch).getOrThrow()
-    @Assert(expr.toString(), ##"try (input = MyResource(),
+    @Assert(expr.toString().replace("\r",""), ##"try (input = MyResource(),
     output = MyResource()) {
     while (input.hasNextLine()) {
         let lineString = input.readLine()
         output.writeLine(lineString)
     }
 }"##)
-    @Assert(expr.tryBlock.toString(), ##"{
+    @Assert(expr.tryBlock.toString().replace("\r",""), ##"{
     while (input.hasNextLine()) {
         let lineString = input.readLine()
         output.writeLine(lineString)
