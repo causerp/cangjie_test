@@ -20,7 +20,7 @@ func test_Inner_Comment_03() {
     let res = parseFile("./Inner_Comment_03.cj")
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString(), ##"/*
+    @Assert(sourcefile.toString().replace("\r",""), ##"/*
  * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
  * This source file is part of the Cangjie project, licensed under Apache-2.0
  * with Runtime Library Exception.

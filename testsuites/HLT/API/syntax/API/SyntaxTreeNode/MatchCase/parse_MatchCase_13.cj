@@ -22,7 +22,7 @@ func test_MatchCase_13() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     match(("", 90)) {
         case (_, _) => ()
     }

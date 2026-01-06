@@ -20,7 +20,7 @@ func test_Annotation_02() {
     let res = parseFile("./Annotation_02.cj")
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"@CallingConv[CDECL] foreign func rand(): Int32
+    @Expect(sourcefile.toString().replace("\r","").contains(##"@CallingConv[CDECL] foreign func rand(): Int32
 @CallingConv[CDECL]
 foreign func rand0(): Int32"##))
 

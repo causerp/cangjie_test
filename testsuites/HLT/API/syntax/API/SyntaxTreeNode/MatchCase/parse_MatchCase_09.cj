@@ -13,7 +13,7 @@
 
 import stdx.syntax.*
 
-// sema 阶�报错不拦截
+// sema 阶�报错不拦截
 @Test
 class test_01{
     @TestCase
@@ -23,7 +23,7 @@ func test_MatchCase_09() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     match(123) {
         case x: Int64 | y: String => ()
         case _ => throw Exception()

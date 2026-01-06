@@ -11,7 +11,7 @@
 // (CJNATIVE and not OHOS and not iOS) EXEC: %compiler %import-cangjie-stdx %cmp_opt %f -o %output %cmp_utest_opt
 // (CJNATIVE and not OHOS and not iOS) RUN-EXEC: %run_stdx %output %run_utest_opt %run_args
 
-// sema 阶�报错不拦截
+// sema 阶�报错不拦截
 import stdx.syntax.*
 
 @Test
@@ -23,7 +23,7 @@ func test_MatchCase_11() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     match(123) {
         case x | x  => ()
     }

@@ -22,7 +22,7 @@ func test_Inner_Comment_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString(), ##"/*
+    @Assert(sourcefile.toString().replace("\r",""), ##"/*
  * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
  * This source file is part of the Cangjie project, licensed under Apache-2.0
  * with Runtime Library Exception.
@@ -47,55 +47,55 @@ class A  {
     var _decl: ClassDecl = (sourcefile.topLevelDecls[0] as ClassDecl).getOrThrow()
 
     var comment_1: Comment = _decl.comments[0]
-    @Assert(comment_1.toString(), ##"/*
+    @Assert(comment_1.toString().replace("\r",""), ##"/*
     class A
 */"##)
     match (comment_1.kind) {
         case CommentKind.Block => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_1.content, ##"/*
+    @Assert(comment_1.content.replace("\r",""), ##"/*
     class A
 */"##)
 
     var comment_2: Comment = _decl.comments[1]
-    @Assert(comment_2.toString(), ##"/** 
+    @Assert(comment_2.toString().replace("\r",""), ##"/** 
     class A!
 */"##)
     match (comment_2.kind) {
         case CommentKind.Document => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_2.content, ##"/** 
+    @Assert(comment_2.content.replace("\r",""), ##"/** 
     class A!
 */"##)
 
     var comment_3: Comment = _decl.body.memberDecls[0].comments[0]
-    @Assert(comment_3.toString(), ##"/* block comment */"##)
+    @Assert(comment_3.toString().replace("\r",""), ##"/* block comment */"##)
     match (comment_3.kind) {
         case CommentKind.Block => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_3.content, ##"/* block comment */"##)
+    @Assert(comment_3.content.replace("\r",""), ##"/* block comment */"##)
 
     var comment_4: Comment = _decl.body.memberDecls[0].comments[1]
-    @Assert(comment_4.toString(), ##"/*
+    @Assert(comment_4.toString().replace("\r",""), ##"/*
         foo
     */"##)
     match (comment_4.kind) {
         case CommentKind.Block => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_4.content, ##"/*
+    @Assert(comment_4.content.replace("\r",""), ##"/*
         foo
     */"##)
 
     var comment_5: Comment = (_decl.body.memberDecls[0] as FuncDecl).getOrThrow().params.params[0].comments[0]
-    @Assert(comment_5.toString(), ##"/* param a */"##)
+    @Assert(comment_5.toString().replace("\r",""), ##"/* param a */"##)
     match (comment_5.kind) {
         case CommentKind.Block => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_5.content, ##"/* param a */"##)
+    @Assert(comment_5.content.replace("\r",""), ##"/* param a */"##)
 }
 }

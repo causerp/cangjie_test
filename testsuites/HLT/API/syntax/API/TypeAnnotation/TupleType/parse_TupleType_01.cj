@@ -19,7 +19,7 @@ class test_01{
 func test_TupleType_01() {
     let res = parseFile("./TupleType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"var a: (Int64, Int32) = (1, 2)
+    @Expect(sourcefile.toString().replace("\r","").contains(##"var a: (Int64, Int32) = (1, 2)
 var a: (a0: Int64, b0: Int32) = (1, 2)
 var a: (a0: Int64, b0: Unit) = (1, ())
 var a: (Int64, Int64, Int64, Int64, Int64, Int64, Int64) = (1, 2, 3, 4, 5, 6, 7)"##))

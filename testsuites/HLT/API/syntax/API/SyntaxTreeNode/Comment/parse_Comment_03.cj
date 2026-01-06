@@ -22,7 +22,7 @@ func test_Comment_03() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Assert(sourcefile.toString().contains(##"//
+    @Assert(sourcefile.toString().replace("\r","").contains(##"//
 
 // 
 
@@ -59,23 +59,23 @@ func test_Comment_03() {
     @Assert(comment_2.nodePos.endColumn, 4)
 
     var comment_3: Comment = sourcefile.comments[3]
-    @Assert(comment_3.toString(), ##"/* 
+    @Assert(comment_3.toString().replace("\r",""), ##"/* 
 */"##)
     match (comment_3.kind) {
         case CommentKind.Block => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_3.content, ##"/* 
+    @Assert(comment_3.content.replace("\r",""), ##"/* 
 */"##)
 
     var comment_4: Comment = sourcefile.comments[4]
-    @Assert(comment_4.toString(), ##"/**
+    @Assert(comment_4.toString().replace("\r",""), ##"/**
 */"##)
     match (comment_4.kind) {
         case CommentKind.Document => ()
         case _ => @Assert(false)
     }
-    @Assert(comment_4.content, ##"/**
+    @Assert(comment_4.content.replace("\r",""), ##"/**
 */"##)
 
     var comment_5: Comment = sourcefile.comments[5]

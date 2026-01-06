@@ -19,7 +19,7 @@ class test_01{
 func test_FuncType_01() {
     let res = parseFile("./FuncType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"var a1: (a: Int64) -> Unit = foo1
+    @Expect(sourcefile.toString().replace("\r","").contains(##"var a1: (a: Int64) -> Unit = foo1
 var a2: (Int64, Int64) -> B = foo2
 var a3: () -> (A, B) = foo3
 var a4: (a: A, b: B) -> () -> Unit = foo4

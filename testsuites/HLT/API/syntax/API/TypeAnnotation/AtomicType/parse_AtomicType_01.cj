@@ -22,7 +22,7 @@ func test_AtomicType_01() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"class C1 {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"class C1 {
     func foo(): This {
         return this
     }

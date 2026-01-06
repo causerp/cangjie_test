@@ -21,7 +21,7 @@ func test_Annotation_05() {
 
     let sourcefile: SourceFile = res.node.getOrThrow()
     sourcefile.toString() |> println
-    @Expect(sourcefile.toString().contains(##"@!Anno1 var a = 1
+    @Expect(sourcefile.toString().replace("\r","").contains(##"@!Anno1 var a = 1
 @!Anno1[aaaaa] var a = 1
 @!Anno1[a: "abcd", b: 1] var a = 1"##))
 

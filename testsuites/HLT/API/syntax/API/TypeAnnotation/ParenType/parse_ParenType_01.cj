@@ -19,7 +19,7 @@ class test_01{
 func test_ParenType_01() {
     let res = parseFile("./ParenType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"var a: ((Int64, Int8)) = foo
+    @Expect(sourcefile.toString().replace("\r","").contains(##"var a: ((Int64, Int8)) = foo
 var a: (()-> Unit) = foo"##))
 
     var decl_1: VarDecl = (sourcefile.topLevelDecls[0] as VarDecl).getOrThrow()

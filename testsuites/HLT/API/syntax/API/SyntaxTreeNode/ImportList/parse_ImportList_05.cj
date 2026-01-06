@@ -22,7 +22,7 @@ func test_ImportList_05() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"private import a as pkgA
+    @Expect(sourcefile.toString().replace("\r","").contains(##"private import a as pkgA
 private import std.{
     time,
     fs as fileSystem,
@@ -54,7 +54,7 @@ private import a"##))
         case ModifierKind.Private => ()
         case _ => @Assert(false)
     }
-    @Expect(import_2.toString(), ##"private import std.{
+    @Expect(import_2.toString().replace("\r",""), ##"private import std.{
     time,
     fs as fileSystem,
     io.*,

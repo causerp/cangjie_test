@@ -22,7 +22,7 @@ func test_MatchCase_14() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     match(("Allen", 90)) {
         case ("Allen", score) where score <= 100 => ()
     }

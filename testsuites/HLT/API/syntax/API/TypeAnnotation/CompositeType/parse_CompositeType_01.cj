@@ -19,7 +19,7 @@ class test_01{
 func test_CompositeType_01() {
     let res = parseFile("./CompositeType_01.cj")
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"var a1: p1.p0.A<Int64, B> = A()
+    @Expect(sourcefile.toString().replace("\r","").contains(##"var a1: p1.p0.A<Int64, B> = A()
 var a2: A = A()
 var a3: A<Int64> = A()
 var a4: p1.A = A()"##))

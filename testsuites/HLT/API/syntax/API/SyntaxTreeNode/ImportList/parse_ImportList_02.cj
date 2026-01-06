@@ -22,7 +22,7 @@ func test_ImportList_02() {
     @Assert(diags.size, 0)
 
     let sourcefile: SourceFile = res.node.getOrThrow()
-    @Expect(sourcefile.toString().contains(##"public import a.*
+    @Expect(sourcefile.toString().replace("\r","").contains(##"public import a.*
 public import {
     std.time,
     std.fs as fileSystem,
@@ -51,7 +51,7 @@ public import {
         case ModifierKind.Public => ()
         case _ => @Assert(false)
     }
-    @Expect(import_2.toString(), ##"public import {
+    @Expect(import_2.toString().replace("\r",""), ##"public import {
     std.time,
     std.fs as fileSystem,
     std.io.*,

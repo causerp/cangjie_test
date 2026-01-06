@@ -21,7 +21,7 @@ func test_Argument_01() {
 
     let sourcefile: SourceFile = res.node.getOrThrow()
     sourcefile.toString() |> println
-    @Expect(sourcefile.toString().contains(##"main() {
+    @Expect(sourcefile.toString().replace("\r","").contains(##"main() {
     foo(0)
     foo(a: 1)
     foo(b:"1")

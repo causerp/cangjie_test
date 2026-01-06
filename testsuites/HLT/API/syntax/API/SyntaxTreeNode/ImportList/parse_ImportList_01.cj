@@ -23,7 +23,7 @@ func test_ImportList_01() {
 
     let sourcefile: SourceFile = res.node.getOrThrow()
     sourcefile.toString()
-    @Assert(sourcefile.toString().contains(##"public import a.*
+    @Assert(sourcefile.toString().replace("\r","").contains(##"public import a.*
 import A.B.C.D.E.F.G.H.*
 private import a as pkgA
 internal import a.b.c.d.e.f.g as x1
