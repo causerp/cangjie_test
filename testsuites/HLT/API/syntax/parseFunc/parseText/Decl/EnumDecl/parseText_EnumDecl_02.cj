@@ -48,7 +48,7 @@ public enum E1<T> <: I1<T> & I2 where T <: ToString{
     @Assert(enumDecl.body.memberDecls[3].toString(), ##"D1(Int64, T)"##)
 
     @Assert(enumDecl.body.memberDecls[4] is PropDecl)
-    @Assert(enumDecl.body.memberDecls[4].toString(), ##"static prop p1: ?T {
+    @Assert(enumDecl.body.memberDecls[4].toString().replace("\r",""), ##"static prop p1: ?T {
         get() { none }
     }"##)
     @Assert(enumDecl.body.memberDecls[5] is FuncDecl)

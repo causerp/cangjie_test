@@ -224,7 +224,7 @@ func test_ClassDecl_02() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
     var classDecl: ClassDecl = (sourceNode as ClassDecl).getOrThrow()
     classDecl.toString() |> println
-    @Assert(classDecl.toString(), ##"public class CangjieInvoke <: JObject {
+    @Assert(classDecl.toString().replace("\r",""), ##"public class CangjieInvoke <: JObject {
     public let a1: Any = 1
     public var a2 = 2
 

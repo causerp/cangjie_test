@@ -23,7 +23,7 @@ func test_MatchExpr_02() {
     let res = parseTokens(_quote)
 
     var expr_1 = (res.node.getOrThrow() as MatchExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"match(a()) {
+    @Assert(expr_1.toString().replace("\r",""), ##"match(a()) {
     case true =>()
     case _ =>()
 }"##)

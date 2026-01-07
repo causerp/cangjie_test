@@ -24,11 +24,11 @@ func test_WhileExpr_02() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var expr_1: WhileExpr = (sourceNode as WhileExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"while(let a <- 1 && a > 0) {
+    @Assert(expr_1.toString().replace("\r",""), ##"while(let a <- 1 && a > 0) {
     print(a)
     break
 }"##)
-    @Assert(expr_1.body.toString(), ##"{
+    @Assert(expr_1.body.toString().replace("\r",""), ##"{
     print(a)
     break
 }"##)

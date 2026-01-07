@@ -29,7 +29,7 @@ func test_EnumDecl_01() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
     var enumDecl: EnumDecl = (sourceNode as EnumDecl).getOrThrow()
     enumDecl.toString() |> println
-    @Expect(enumDecl.toString(), ##"@Deprecated["aaa"]
+    @Expect(enumDecl.toString().replace("\r",""), ##"@Deprecated["aaa"]
 enum E1 {
     A1 | B1 | C1(Int64) | D1(Int64, String) | ...
     prop p1: Int64 {
@@ -48,7 +48,7 @@ enum E1 {
     @Assert(enumDecl.body.memberDecls[3].toString(), ##"D1(Int64, String)"##)
 
     @Assert(enumDecl.body.memberDecls[4] is PropDecl)
-    @Assert(enumDecl.body.memberDecls[4].toString(), ##"prop p1: Int64 {
+    @Assert(enumDecl.body.memberDecls[4].toString().replace("\r",""), ##"prop p1: Int64 {
         get() { 0 }
     }"##)
     @Assert(enumDecl.body.memberDecls[5] is FuncDecl)

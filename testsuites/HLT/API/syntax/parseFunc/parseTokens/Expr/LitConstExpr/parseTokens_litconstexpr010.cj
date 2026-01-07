@@ -22,9 +22,9 @@ class test_01 {
     
         var litconstexpr = (sourceNode as LitConstExpr).getOrThrow()
         //toString()
-        @Assert(litconstexpr.toString(), "r'a'")
+        @Assert(litconstexpr.toString().replace("\r",""), "r'a'")
         //rawValue
-        @Assert(litconstexpr.rawValue, "a")
+        @Assert(litconstexpr.rawValue.replace("\r",""), "a")
         //kind
         match (litconstexpr.kind) {
             case LitConstKind.RuneLiteral => ()

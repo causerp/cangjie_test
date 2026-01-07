@@ -24,11 +24,11 @@ Cangjie Lang''')
 
     var litconstexpr = (sourceNode as LitConstExpr).getOrThrow()
     //toString()
-    @Assert(litconstexpr.toString(), ##""""
+    @Assert(litconstexpr.toString().replace("\r",""), ##""""
 Hello,
 Cangjie Lang""""##)
     //rawValue
-    @Assert(litconstexpr.rawValue, "Hello,\nCangjie Lang" )
+    @Assert(litconstexpr.rawValue.replace("\r",""), "Hello,\nCangjie Lang" )
     //kind
     match (litconstexpr.kind) {
         case LitConstKind.StringLiteral => ()

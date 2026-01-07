@@ -23,7 +23,7 @@ func test_binaryexpr_007() {
 
     var binaryexpr = (sourceNode as BinaryExpr).getOrThrow()
     //toString()
-    @Assert(binaryexpr.toString(), ##"2.0 **
+    @Assert(binaryexpr.toString().replace("\r",""), ##"2.0 **
 3 ** 2"##)
 
     //lhs

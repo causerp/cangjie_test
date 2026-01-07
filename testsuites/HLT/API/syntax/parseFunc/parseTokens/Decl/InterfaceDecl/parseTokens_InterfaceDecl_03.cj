@@ -22,7 +22,7 @@ func test_InterfaceDecl_03() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var interfaceDecl: InterfaceDecl = (sourceNode as InterfaceDecl).getOrThrow()
-    @Expect(interfaceDecl.toString(), ##"protected interface I1 < T, U > <: I2 & I3 < T > where T <: C1 < T, Int64 >, U <: C2 & C3 < T > & ToString {
+    @Expect(interfaceDecl.toString().replace("\r",""), ##"protected interface I1 < T, U > <: I2 & I3 < T > where T <: C1 < T, Int64 >, U <: C2 & C3 < T > & ToString {
 }"##)
     @Assert(interfaceDecl.body.memberDecls.size, 0)
 

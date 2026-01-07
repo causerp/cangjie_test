@@ -27,21 +27,21 @@ func test_TryCatch_03() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var expr: TryCatch = (sourceNode as TryCatch).getOrThrow()
-    @Assert(expr.toString(), ##"try {
+    @Assert(expr.toString().replace("\r",""), ##"try {
     a
 } catch(e: Exception | IOException) {
     b
 } catch(_) {
     c
 }"##)
-    @Assert(expr.tryBlock.toString(), ##"{
+    @Assert(expr.tryBlock.toString().replace("\r",""), ##"{
     a
 }"##)
     @Assert(expr.catchBlocks.size, 2)
-    @Assert(expr.catchBlocks[0].toString(), ##"{
+    @Assert(expr.catchBlocks[0].toString().replace("\r",""), ##"{
     b
 }"##)
-    @Assert(expr.catchBlocks[1].toString(), ##"{
+    @Assert(expr.catchBlocks[1].toString().replace("\r",""), ##"{
     c
 }"##)
     @Expect(expr.catchPatterns.size, 2)

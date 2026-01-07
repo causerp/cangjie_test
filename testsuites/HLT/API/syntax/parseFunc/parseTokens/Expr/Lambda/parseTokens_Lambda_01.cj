@@ -84,7 +84,7 @@ func test_Lambda_01() {
     @Assert(expr_6.params.params[0].toString(), "_")
 
     var expr_7 = (res_7.node.getOrThrow() as Lambda).getOrThrow()
-    @Assert(expr_7.toString(), ##"{ =>
+    @Assert(expr_7.toString().replace("\r",""), ##"{ =>
     100
     1 + 1
     a + b1
