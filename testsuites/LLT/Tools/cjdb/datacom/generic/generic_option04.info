@@ -4,14 +4,13 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// DEPENDENCE:  ../../cjdb_test.py ../../basecase/expr/%n.cj
-// EXEC: %compiler %cmp_opt %enableCompileDebug %n.cj -o %n
+// DEPENDENCE:  ../../cjdb_test.py ../../basecase/generic/%n.cj
+// EXEC: %compiler %cmp_opt %enableCompileDebug %n.cj -j1 -o %n
 // EXEC: python3 cjdb_test.py %n.info %n %run_env
 
 test#
-cjdb,cjdb interface1,interface1
-b,b 16,interface1.cj:16
-r,r,-> 16
- ,expr ic.fa(),\(Unit\) \$\d+ = ()
- ,expr ic,\(default.B\) \$\d+ = {}
+cjdb,cjdb generic_option04,generic_option04
+b,b 14, generic_option04.cj:14
+r,r,-> 14
+ ,expr f1?{para:Int64 => para+1},\(std.core.Option<Int64>\) \$\d+ = 6
 q,q,
