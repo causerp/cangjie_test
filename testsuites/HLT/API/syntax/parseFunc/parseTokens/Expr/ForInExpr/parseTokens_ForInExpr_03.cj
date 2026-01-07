@@ -23,10 +23,10 @@ func test_ForInExpr_03() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var expr_1: ForInExpr = (sourceNode as ForInExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"for(_ in 0 ..= -100: 2) {
+    @Assert(expr_1.toString().replace("\r",""), ##"for(_ in 0 ..= -100: 2) {
     count ++
 }"##)
-    @Assert(expr_1.body.toString(), ##"{
+    @Assert(expr_1.body.toString().replace("\r",""), ##"{
     count ++
 }"##)
     @Assert(expr_1.expr.toString(), ##"0 ..= -100: 2"##)

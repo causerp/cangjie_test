@@ -45,11 +45,11 @@ func test_FuncDecl_02() {
 
     var funcdecl_2 = (res_2.node.getOrThrow() as FuncDecl).getOrThrow()
     funcdecl_2.toString() |> println
-    @Assert(funcdecl_2.toString(), ##"static func func_2(a: Int64):?Int64 {
+    @Assert(funcdecl_2.toString().replace("\r",""), ##"static func func_2(a: Int64):?Int64 {
     Some(0)
 }"##)
     @Assert(funcdecl_2.body.isSome())
-    @Assert(funcdecl_2.body.getOrThrow().toString(), ##"{
+    @Assert(funcdecl_2.body.getOrThrow().toString().replace("\r",""), ##"{
     Some(0)
 }"##)
     @Assert(funcdecl_2.genericConstraints.isNone())

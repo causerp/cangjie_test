@@ -48,11 +48,11 @@ enum E1 {
     @Assert(enumDecl.body.memberDecls[3].toString(), ##"D1(Int64, String)"##)
 
     @Assert(enumDecl.body.memberDecls[4] is PropDecl)
-    @Assert(enumDecl.body.memberDecls[4].toString(), ##"prop p1: Int64 {
+    @Assert(enumDecl.body.memberDecls[4].toString().replace("\r",""), ##"prop p1: Int64 {
         get() {0}
     }"##)
     @Assert(enumDecl.body.memberDecls[5] is FuncDecl)
-    @Assert(enumDecl.body.memberDecls[5].toString(), ##"func foo() {}"##)
+    @Assert(enumDecl.body.memberDecls[5].toString().replace("\r",""), ##"func foo() {}"##)
 
     @Assert(enumDecl.name, "E1")
     @Assert(enumDecl.isNonExhaustive, true)

@@ -22,9 +22,9 @@ func test_litconstexpr_011() {
 
     var litconstexpr = (sourceNode as LitConstExpr).getOrThrow()
     //toString()
-    @Assert(litconstexpr.toString(), "r'\\u{4f60}'")
+    @Assert(litconstexpr.toString().replace("\r",""), "r'\\u{4f60}'")
     //rawValue
-    @Assert(litconstexpr.rawValue, "\\u{4f60}")
+    @Assert(litconstexpr.rawValue.replace("\r",""), "\\u{4f60}")
     //kind
     match (litconstexpr.kind) {
         case LitConstKind.RuneLiteral => ()

@@ -23,7 +23,7 @@ func test_litconstexpr_001() {
     var litconstruneexpr = (sourceNode as LitConstRuneExpr).getOrThrow()
 
     //toString()
-    @Assert(litconstruneexpr.toString(), "r\'a\'")
+    @Assert(litconstruneexpr.toString().replace("\r",""), "r\'a\'")
 
     //rawValue
     @Assert(litconstruneexpr.rawValue,"a")

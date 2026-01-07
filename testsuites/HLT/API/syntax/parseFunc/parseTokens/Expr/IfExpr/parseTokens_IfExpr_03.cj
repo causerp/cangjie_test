@@ -23,10 +23,10 @@ func test_IfExpr_03() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var expr_1: IfExpr = (sourceNode as IfExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"if(let a <- b && a >= 0) {
+    @Assert(expr_1.toString().replace("\r",""), ##"if(let a <- b && a >= 0) {
     b
 }"##)
-    @Assert(expr_1.ifBlock.toString(), ##"{
+    @Assert(expr_1.ifBlock.toString().replace("\r",""), ##"{
     b
 }"##)
     @Assert(expr_1.condition.toString(), ##"let a <- b && a >= 0"##)

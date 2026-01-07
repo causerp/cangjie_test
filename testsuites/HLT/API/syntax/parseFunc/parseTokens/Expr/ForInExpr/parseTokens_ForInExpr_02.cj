@@ -23,10 +23,10 @@ func test_ForInExpr_02() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var expr_1: ForInExpr = (sourceNode as ForInExpr).getOrThrow()
-    @Assert(expr_1.toString(), ##"for((k, v) in map) {
+    @Assert(expr_1.toString().replace("\r",""), ##"for((k, v) in map) {
     count ++
 }"##)
-    @Assert(expr_1.body.toString(), ##"{
+    @Assert(expr_1.body.toString().replace("\r",""), ##"{
     count ++
 }"##)
     @Assert(expr_1.expr.toString(), ##"map"##)

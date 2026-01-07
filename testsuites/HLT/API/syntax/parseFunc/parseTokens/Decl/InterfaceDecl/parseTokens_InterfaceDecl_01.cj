@@ -26,7 +26,7 @@ public interface I1<T> <: S1<T> where T <: I2<T> {
 
     var interfaceDecl: InterfaceDecl = (sourceNode as InterfaceDecl).getOrThrow()
     interfaceDecl.toString() |> println
-    @Expect(interfaceDecl.toString(), ##"@Deprecated["aaa"]
+    @Expect(interfaceDecl.toString().replace("\r",""), ##"@Deprecated["aaa"]
 public interface I1 < T > <: S1 < T > where T <: I2 < T > {
     mut prop p1: Int64
     func foo(): Int64

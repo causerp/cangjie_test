@@ -32,7 +32,7 @@ func test_MacroDecl_04() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var _decl: MacroDecl = (sourceNode as MacroDecl).getOrThrow()
-    @Expect(_decl.toString(), ##"public macro Prop(input: Tokens): Tokens {
+    @Expect(_decl.toString().replace("\r",""), ##"public macro Prop(input: Tokens): Tokens {
     let v = parseDecl(input)
     @getIdent[ident](input)
     return quote(
@@ -45,7 +45,7 @@ func test_MacroDecl_04() {
     )
 }"##)
     @Assert(_decl.name, "Prop")
-    @Expect(_decl.body.toString(), ##"{
+    @Expect(_decl.body.toString().replace("\r",""), ##"{
     let v = parseDecl(input)
     @getIdent[ident](input)
     return quote(

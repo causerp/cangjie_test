@@ -32,7 +32,7 @@ public struct a_b<T, U> <: S1<T, U> where T <: ToString, U <: ToString{
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var structDecl: StructDecl = (sourceNode as StructDecl).getOrThrow()
-    @Assert(structDecl.toString(), ##"@When[backend == "linux"]
+    @Assert(structDecl.toString().replace("\r",""), ##"@When[backend == "linux"]
 public struct a_b < T, U > <: S1 < T, U > where T <: ToString, U <: ToString {
     public let s1: Int64
     mut prop p1: Int64 {
@@ -48,14 +48,14 @@ public struct a_b < T, U > <: S1 < T, U > where T <: ToString, U <: ToString {
     @Assert(structDecl.body.memberDecls[0] is VarDecl)
     @Assert(structDecl.body.memberDecls[0].toString(), ##"public let s1: Int64"##)
     @Assert(structDecl.body.memberDecls[1] is PropDecl)
-    @Assert(structDecl.body.memberDecls[1].toString(), ##"mut prop p1: Int64 {
+    @Assert(structDecl.body.memberDecls[1].toString().replace("\r",""), ##"mut prop p1: Int64 {
         get() { 0 }
         set(v) { }
     }"##)
     @Assert(structDecl.body.memberDecls[2] is FuncDecl)
     @Assert(structDecl.body.memberDecls[2].toString(), ##"public init() { s1 = 0 }"##)
     @Assert(structDecl.body.memberDecls[3] is FuncDecl)
-    @Assert(structDecl.body.memberDecls[3].toString(), ##"func foo < S >(a: T): T {
+    @Assert(structDecl.body.memberDecls[3].toString().replace("\r",""), ##"func foo < S >(a: T): T {
         return a
     }"##)
 

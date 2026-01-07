@@ -62,23 +62,23 @@ internal class C1<T, U> <: I1<U> & I2<T, U> & I3<T> where T <: I1<T> & I3<T> , U
     @Assert(classDecl.body.memberDecls[0] is VarDecl)
     @Assert(classDecl.body.memberDecls[0].toString(), ##"static let s1: Int64"##)
     @Assert(classDecl.body.memberDecls[1] is StaticInit)
-    @Assert(classDecl.body.memberDecls[1].toString(), ##"static init() {
+    @Assert(classDecl.body.memberDecls[1].toString().replace("\r",""), ##"static init() {
         s1 = 1
     }"##)
     @Assert(classDecl.body.memberDecls[2] is FuncDecl)
     @Assert(classDecl.body.memberDecls[2].toString(), ##"public init(a!: UInt64, b!: Int64 = 0) {}"##)
     @Assert(classDecl.body.memberDecls[3] is FuncDecl)
-    @Assert(classDecl.body.memberDecls[3].toString(), ##"public C1(a: Int64) {
+    @Assert(classDecl.body.memberDecls[3].toString().replace("\r",""), ##"public C1(a: Int64) {
 
     }"##)
     @Assert(classDecl.body.memberDecls[4] is PropDecl)
-    @Assert(classDecl.body.memberDecls[4].toString(), ##"prop p1: Int64 {
+    @Assert(classDecl.body.memberDecls[4].toString().replace("\r","").replace("\r",""), ##"prop p1: Int64 {
         get() { 0 }
     }"##)
     @Assert(classDecl.body.memberDecls[5] is FuncDecl)
     @Assert(classDecl.body.memberDecls[5].toString(), ##"public init() {}"##)
     @Assert(classDecl.body.memberDecls[6] is FuncDecl)
-    @Assert(classDecl.body.memberDecls[6].toString(), ##"func foo<S>(a: T, b: S): T {
+    @Assert(classDecl.body.memberDecls[6].toString().replace("\r",""), ##"func foo<S>(a: T, b: S): T {
         return a
     }"##)
     @Assert(classDecl.body.memberDecls[7] is FuncDecl)

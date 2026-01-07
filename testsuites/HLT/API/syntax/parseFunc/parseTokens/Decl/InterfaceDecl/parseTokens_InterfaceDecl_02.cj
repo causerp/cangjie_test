@@ -28,7 +28,7 @@ public interface I1 <: S1 {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
 
     var interfaceDecl: InterfaceDecl = (sourceNode as InterfaceDecl).getOrThrow()
-    @Expect(interfaceDecl.toString(), ##"@Deprecated["aaa"]
+    @Expect(interfaceDecl.toString().replace("\r",""), ##"@Deprecated["aaa"]
 public interface I1 <: S1 {
     static mut prop p1: Int64 {
         get() { 0 }
@@ -38,7 +38,7 @@ public interface I1 <: S1 {
 }"##)
     @Assert(interfaceDecl.body.memberDecls.size, 2)
     @Assert(interfaceDecl.body.memberDecls[0] is PropDecl)
-    @Assert(interfaceDecl.body.memberDecls[0].toString(), ##"static mut prop p1: Int64 {
+    @Assert(interfaceDecl.body.memberDecls[0].toString().replace("\r",""), ##"static mut prop p1: Int64 {
         get() { 0 }
         set(v) { }
     }"##)

@@ -26,7 +26,7 @@ func test_EnumDecl_05() {
     let sourceNode: SyntaxTreeNode = res.node.getOrThrow()
     var enumDecl: EnumDecl = (sourceNode as EnumDecl).getOrThrow()
 
-    @Expect(enumDecl.toString(), ##"private enum My_Enum < T, U > <: I1 < T > & I2 < T > & I3 < T > where T <: I1 < T >, U <: I2 < T > & I1 < U > {
+    @Expect(enumDecl.toString().replace("\r",""), ##"private enum My_Enum < T, U > <: I1 < T > & I2 < T > & I3 < T > where T <: I1 < T >, U <: I2 < T > & I1 < U > {
     A1(T, T)
     | B1(T, U) |
     C1(U, U) | ...

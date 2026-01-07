@@ -48,7 +48,7 @@ func test_EnumDecl_03() {
     @Assert(enumDecl.body.memberDecls[3].toString(), ##"D1(U, T)"##)
 
     @Assert(enumDecl.body.memberDecls[4] is PropDecl)
-    @Assert(enumDecl.body.memberDecls[4].toString(), ##"mut prop p1: ?T {
+    @Assert(enumDecl.body.memberDecls[4].toString().replace("\r",""), ##"mut prop p1: ?T {
         get() { none }
         set(v) {}
     }"##)
