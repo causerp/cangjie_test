@@ -24,7 +24,7 @@ class test_01{
         Int32Type,
         Int64Type,
         Int8Type,
-        IntnativeType,
+        IntNativeType,
         NothingType,
         RuneType,
         ThisType,
