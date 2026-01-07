@@ -43,8 +43,6 @@ class test_02{
 ]
 func test_Comment_Init_02(pairs: (CommentKind, String)): Unit {
     let (kind, content) = pairs
-    let Comment = Comment(content)
-
-    @AssertThrows[Exception](Comment.toString().replace("\r",""))
+    @AssertThrows[Exception](Comment(content))
 }
 }
