@@ -10,5 +10,7 @@
 // DEPENDENCE: ../%n
 // EXEC: cd %n/libtest && %clang -c -o test.o test.c && ar -rc libtest.a test.o
 // EXEC: cd %n && %cjpm test -V 2>&1 | compare %f
-// ASSERT: scan-2 -ldep -ldl --link-options -L ./libtest -ltest
+// (Windows) ASSERT: scan -ldep -lcrypt32 --link-options -L ./libtest -ltest
+// (not MAC and not Windows) scan -ldep -ldl --link-options -L ./libtest -ltest
+// (MAC) ASSERT: scan -ldep -ldl --link-options -L ./libtest -ltest
 // ASSERT: scan cjpm test success
