@@ -35,7 +35,7 @@ func test_IfExpr_02() {
 }"##)
     @Assert(expr_1.condition.toString(), ##"a"##)
     @Assert(expr_1.elseBlock.isSome())
-    @Assert(expr_1.elseBlock.getOrThrow().toString(), ##"{
+    @Assert(expr_1.elseBlock.getOrThrow().toString().replace("\r",""), ##"{
     c
 }"##)
     @Assert(expr_1.elseIf.isNone())
