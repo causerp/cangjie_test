@@ -400,3 +400,36 @@ compiler/cjnative/Packages/org_name/package_decl/invalid_colon_1.cj
 compiler/cjnative/Packages/org_name/package_decl/no_package_name_0.cj
 compiler/cjnative/Packages/org_name/package_decl/no_package_name_1.cj
 compiler/cjnative/Packages/org_name/package_decl/no_package_name_2.cj
+
+# https://gitcode.com/Cangjie/cangjie_test/issues/212
+compiler/cjnative/Class/Class/superCC/modifier_0008n.cj
+
+# https://gitcode.com/Cangjie/cangjie_test/issues/211
+compiler/cjnative/Packages/cjmp/cjmp_03018/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_03019/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_03020/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_03021/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_03022/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_03023/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_03024/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_04029/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_04038/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_04073/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_04076/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_04077/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_04082/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_04083/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_11037/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_11039/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_13007/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_16007/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_16009/test.cj
+
+# https://gitcode.com/Cangjie/cangjie_test/issues/213
+compiler/cjnative/Generics/new_generics/generics_types/generics_00012.cj
+compiler/cjnative/Generics/new_generics/generics_types/generics_00025.cj
+compiler/cjnative/Generics/new_generics/generics_types/generics_00027.cj
+compiler/cjnative/Generics/new_generics/generics_types/generics_00038.cj
+compiler/cjnative/Generics/new_generics/generics_types/generics_00083.cj
+compiler/cjnative/Generics/new_generics/generics_types/generics_00087.cj
+compiler/cjnative/Generics/new_generics/generics_types/generics_00091.cj
