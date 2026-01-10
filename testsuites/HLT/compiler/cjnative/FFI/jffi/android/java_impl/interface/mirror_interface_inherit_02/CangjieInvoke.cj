@@ -9,7 +9,7 @@
 // LEVEL: 3
 // (Android) DEPENDENCE: com MainInstrumentedTest.java 
 // (Android) EXEC: python3 %java_interop_setup
-// (Android) EXEC: %javac com/*.java %java_interop_template/app/src/main/java/com/hello/world/cangjieinterophelloworld/Logger.java
+// (Android) EXEC: %javac com/*.java %java_interop_template/app/src/main/java/com/example/myapplication/Logger.java
 // (Android) EXEC: %java %java_mirror_gen com.JavaClass
 // (Android) EXEC: %java %java_mirror_gen com.JavaClass_Father
 // (Android) EXEC: %java %java_mirror_gen com.I1

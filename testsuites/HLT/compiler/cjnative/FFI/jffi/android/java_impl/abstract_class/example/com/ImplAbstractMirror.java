@@ -8,7 +8,7 @@
 
 package com;
 
-import com.hello.world.cangjieinterophelloworld.Logger;
+import com.example.myapplication.Logger;
 
 public class ImplAbstractMirror extends AbstractMirror {
   public void abstractFunc() {

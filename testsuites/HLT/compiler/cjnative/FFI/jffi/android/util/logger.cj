@@ -10,7 +10,7 @@ package UNNAMED
 import interoplib.interop.*
 import java.lang.*
 
-@JavaMirror["com.hello.world.cangjieinterophelloworld.Logger"]
+@JavaMirror["com.example.myapplication.Logger"]
 public open class _Logger {
     public static func print(message: JString): Unit
     public static func println(message: JString): Unit
