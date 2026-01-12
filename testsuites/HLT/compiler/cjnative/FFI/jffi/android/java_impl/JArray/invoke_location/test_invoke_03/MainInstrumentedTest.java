@@ -6,7 +6,7 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-package com.hello.world.cangjieinterophelloworld;
+package com.example.myapplication;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +14,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.hello.world.cangjieinterophelloworld.Main;
+import com.example.myapplication.Main;
 
 @RunWith(AndroidJUnit4.class)
 public class MainInstrumentedTest {

@@ -8,7 +8,7 @@
 
 package com;
 
-import com.hello.world.cangjieinterophelloworld.Logger;
+import com.example.myapplication.Logger;
 
 public class JavaSuperClass {
   public JavaSuperClass() {

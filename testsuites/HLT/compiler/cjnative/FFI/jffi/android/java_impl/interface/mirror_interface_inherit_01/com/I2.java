@@ -8,7 +8,7 @@
 
 package com;
 
-import com.hello.world.cangjieinterophelloworld.Logger;
+import com.example.myapplication.Logger;
 
 public interface I2 extends I1 {
   public static int bar() {

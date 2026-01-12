@@ -6,7 +6,7 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-package com.hello.world.cangjieinterophelloworld;
+package com.example.myapplication;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +20,7 @@ public class MainInstrumentedTest {
   public void test00() {
     Main.main(new String[] {});
     StringBuilder sb = new StringBuilder();
-    sb.append("run java\n");
+    sb.append("run java Main\n");
     sb.append("666666仓颉!\n");
     sb.append("hello, 仓颉!\n");
     sb.append("hoo:9\n");

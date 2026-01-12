@@ -5,7 +5,7 @@
  *
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
-package com.hello.world.cangjieinterophelloworld;
+package com.example.myapplication;
 
 import UNNAMED.CangjieInvoke;
 

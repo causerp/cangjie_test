@@ -8,7 +8,7 @@
 
 package com;
 
-import com.hello.world.cangjieinterophelloworld.Logger;
+import com.example.myapplication.Logger;
 
 class SuperClass {
   public byte aByte = 1;

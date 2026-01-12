@@ -6,7 +6,7 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-package com.hello.world.cangjieinterophelloworld;
+package com.example.myapplication;
 
 import static org.junit.Assert.*;
 
@@ -21,8 +21,9 @@ public class MainInstrumentedTest {
     Main.main(new String[] {});
     StringBuilder sb = new StringBuilder();
     sb.append("run java\n");
-    sb.append("out of bounds\n");
-    sb.append("javaclass.aInt[-1]: 0\n");
+    sb.append("javaclass.aInt[0]: 4321\n");
+    sb.append("javaclass.aInt[-1]: Exception: java.lang.ArrayIndexOutOfBoundsException: int[] offset=-1 length=1 src.length=1\n");
+    sb.append("javaclass.aInt[1]: Exception: java.lang.ArrayIndexOutOfBoundsException: int[] offset=1 length=1 src.length=1\n");
     assertEquals(Logger.getLog(), sb.toString());
   }
 }
