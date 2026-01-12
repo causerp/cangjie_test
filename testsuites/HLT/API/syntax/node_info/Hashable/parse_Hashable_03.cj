@@ -14,7 +14,6 @@
 import std.fs.*
 import stdx.syntax.*
 
-// 节点的内容相同，源文件不�
 @Test
 class test_01{
     @TestCase

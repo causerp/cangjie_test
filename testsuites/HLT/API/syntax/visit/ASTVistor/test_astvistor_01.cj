@@ -64,7 +64,7 @@ public class MyVisitor <: ASTVisitor {
 class test_01{
     @TestCase
 func test_ASTVistor_01() {
-    let classdecl = parseText(##"@Deprecated["仓�"]
+    let classdecl = parseText(##"@Deprecated["仓颉"]
 public class S1<T> <: I1<T> where T <: ToString{
     public let s1: Int64 = 0
     prop p1: Int64 {

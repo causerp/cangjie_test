@@ -13,7 +13,6 @@
 
 import stdx.syntax.*
 
-// 节点和从属的父节点各不相�
 @Test
 class test_01{
     @TestCase
