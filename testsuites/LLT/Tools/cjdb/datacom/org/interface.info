@@ -10,8 +10,8 @@
 
 test#
 cjdb,cjdb interface,interface
-b,b 17,interface.cj:17
-r,r,-> 17
+b,b 23,interface.cj:23
+r,r,-> 23
  ;p a1;\(org.default.C1\) \$\d+ = {\s+a = 1\s+}
  ;p a2;\(org.default.C1\) \$\d+ = {\s+a = 1\s+}
  ;locals;\(org.default.C1\) a2 = {\s+a = 1\s+}

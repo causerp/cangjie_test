@@ -4,21 +4,28 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package org::default
+package a_b::default
 
-class C1 <: I1 {
-  var a = 1
-  public func f1():Unit {
-    println("hello")
-  }
+class C1 <: I1{
+    var a = 1
+    public func f1():Unit {
+        println("hello")
+    }
 }
 
-interface I1 {
-  func f1():Unit
+enum E1{
+    AB
+}
+
+interface I1{
+    func f1():Unit
 }
 
 main(){
-  var a1 = C1()
-  var a2:I1 = C1()
-  0
+    var a1 = C1()
+    var a2 = a1.a
+    var a3 = a1.f1()
+    var a4 = E1.AB
+    var a5:I1 = C1()
+    0
 }
