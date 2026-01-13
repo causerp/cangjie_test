@@ -13,7 +13,6 @@
 
 import stdx.syntax.*
 
-// 节点的内容相同，不是来自于同�次解�
 @Test
 class test_01{
     @TestCase

@@ -13,7 +13,6 @@
 
 import stdx.syntax.*
 
-// 节点的内�&源文�&解析方式完全相同
 @Test
 class test_01{
     @TestCase
