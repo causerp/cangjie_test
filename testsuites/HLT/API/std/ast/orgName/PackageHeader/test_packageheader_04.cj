@@ -26,7 +26,7 @@ func test_packageHeader() {
     @AssertThrows[ASTException](_packageHeader.orgSeparator = Token(DOUBLE_COLON))
     _packageHeader.orgName = Token(IDENTIFIER, "orgName")
     // _packageHeader.orgSeparator = Token(DOUBLE_COLON)
-    @Assert(_packageHeader.toTokens().toString(), "macro package orgName :: pkg1.pkg2.pkga\n")
+    @Assert(_packageHeader.toTokens().toString().replace("\r",""), "macro package orgName :: pkg1.pkg2.pkga\n")
 
     @Assert(_packageHeader.accessible.value, "public")
     @Assert(_packageHeader.keywordM.value, "macro")
