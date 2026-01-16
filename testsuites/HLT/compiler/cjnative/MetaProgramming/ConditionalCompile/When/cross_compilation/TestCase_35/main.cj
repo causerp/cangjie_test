@@ -10,26 +10,30 @@
 // Description:
 // DEPENDENCE: main.cj
 // EXEC: %compiler %cmp_opt main.cj -o %output
-// RUN-EXEC-PIPE: %run %run_opt %output %run_args | compare %f
-// (MAC and not OHOS) ASSERT: scan negative
-// (Windows and not OHOS) ASSERT: scan negative
-// (not Windows and not MAC and not OHOS and arm) ASSERT: scan negative
-// (not Windows and not MAC and not OHOS and x86) ASSERT: scan positive
-// (OHOS) ASSERT: scan negative
+// (target_aarch64 & target_mac) RUN-EXEC-3: %run %run_opt %output %run_args
+// (target_x86_64 & target_mac) RUN-EXEC: %run %run_opt %output %run_args
+// (target_aarch64 & target_ios) RUN-EXEC-3: %run %run_opt %output %run_args
+// (target_x86_64 & target_ios) RUN-EXEC-3: %run %run_opt %output %run_args
+// (target_x86_64 & target_win) RUN-EXEC: %run %run_opt %output %run_args
+// (target_aarch64 & target_linux) RUN-EXEC-3: %run %run_opt %output %run_args
+// (target_x86_64 & target_linux) RUN-EXEC: %run %run_opt %output %run_args
+// (target_aarch64 & target_ohos) RUN-EXEC-3: %run %run_opt %output %run_args
+// (target_aarch64 & target_android) RUN-EXEC-3: %run %run_opt %output %run_args
+// (target_x86_64 & target_android) RUN-EXEC: %run %run_opt %output %run_args
 
 public open class P {
-    public open func foo(): Unit {
-        println("negative")
+    public open func foo(): Int64 {
+        3i64
     }
 }
 
 public class S <: P {
-    @When[os == "Linux" && arch == "x86_64" && env != "android"]
-    public func foo(): Unit {
-        println("positive")
+    @When[arch != "aarch64" && env != "simulator"]
+    public func foo(): Int64 {
+        0i64
     }
 }
 
-main(): Unit {
+main(): Int64 {
     S().foo()
 }
