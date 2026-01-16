@@ -1005,6 +1005,56 @@ public func CJImpl_ObjC_cjworld_A_foo9(registryId: RegistryId): Unit {
 }
 
 @C
+public func CJImpl_ObjC_cjworld_A_foo10(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo10()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_foo11(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo11()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_foo12(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo12()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_foo13(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo13()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_foo14(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo14()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_foo15(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo15()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_foo16(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo16()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_foo17(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo17()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_foo18(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo18()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_foo19(registryId: RegistryId): Unit {
+    getFromRegistryById<A>(registryId).foo19()
+}
+
+@C
 public func CJImpl_ObjC_cjworld_A_foo20(registryId: RegistryId): Unit {
     getFromRegistryById<A>(registryId).foo20()
 }
@@ -1282,6 +1332,56 @@ public func CJImpl_ObjC_cjworld_A_fwd_foo8(registryId: RegistryId): Unit {
 @C
 public func CJImpl_ObjC_cjworld_A_fwd_foo9(registryId: RegistryId): Unit {
     getFromRegistryById<A_fwd>(registryId).foo9Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo10(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo10Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo11(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo11Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo12(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo12Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo13(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo13Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo14(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo14Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo15(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo15Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo16(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo16Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo17(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo17Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo18(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo18Impl()
+}
+
+@C
+public func CJImpl_ObjC_cjworld_A_fwd_foo19(registryId: RegistryId): Unit {
+    getFromRegistryById<A_fwd>(registryId).foo19Impl()
 }
 
 @C
