@@ -362,3 +362,7 @@ API/std/time/TimeZone/load/test_loadFromPaths.cj
 
 # 930: dev merge main
 API\std\os\env\test_getArgs\test_getArgs_005\test_getArgs_005.cj
+
+API/std/io/file/File_create_03.cj
+API/std/fs/file/linux/test_linux_file_no_permission.cj
+API/std/io/StringReader/StringReader_readln_13_01.cj
