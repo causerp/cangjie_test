@@ -6,7 +6,7 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 0-core
+// LEVEL: 0
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt %stdx-package %f -o %output
 
 import stdx.actors.*
