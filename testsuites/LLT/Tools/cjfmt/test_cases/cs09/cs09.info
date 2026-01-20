@@ -3,9 +3,7 @@
 // with Runtime Library Exception.
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
-
-@CallingConv[CDECL]
-foreign {
-    func foo1(): Unit
-    func foo2(): Unit
-}
+//
+// DEPENDENCE: ../%n
+// EXEC: cd %n/uilang && cjfmt -f ./cs09.cj %tonull
+// EXEC: %diff %n/formated/cs09.cj %n/uilang/cs09.cj

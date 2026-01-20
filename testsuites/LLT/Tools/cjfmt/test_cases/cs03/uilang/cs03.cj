@@ -4,8 +4,9 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-@CallingConv[CDECL]
-foreign {
-    func foo1(): Unit
-    func foo2(): Unit
-}
+package cjmp
+
+common public func foo1(): Unit
+common public func foo2(a!: Int64): Unit
+common public func foo3(a!: Int64 = 1): Unit
+common public func foo5(a: Int64): Unit { println("hello word") }

@@ -4,8 +4,11 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-@CallingConv[CDECL]
-foreign {
-    func foo1(): Unit
-    func foo2(): Unit
+package cmp
+
+common public enum A {
+    | ELEMENT
+
+    common public func foo(): Unit
+    common private prop p: Int64
 }
