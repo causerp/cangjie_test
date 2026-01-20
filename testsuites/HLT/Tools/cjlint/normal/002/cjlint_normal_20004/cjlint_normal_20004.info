@@ -8,8 +8,8 @@
 
 // LEVEL: 0-core
 // DEPENDENCE: ./src
-// (Windows)EXEC: xcopy %cangjieDir\tools\config .\config /E /I
-// (Windows)EXEC: xcopy %cangjieDir\modules .\modules /E /I
+// (Windows)EXEC: xcopy "%cangjieDir\tools\config" ".\config" /E /I
+// (Windows)EXEC: xcopy "%cangjieDir\modules" ".\modules" /E /I
 // (not Windows)EXEC: %cp -r %cangjieDir/tools/config .
 // (not Windows)EXEC: %cp -r %cangjieDir/modules .
 // EXEC-PIPE: %lint -f ./src 2>&1 -m . -c . 2>&1 | compare %f
