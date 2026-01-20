@@ -23,27 +23,11 @@ import stdx.crypto.keys.*
 import stdx.net.tls.common.*
 import stdx.crypto.x509.X509Certificate
 
-public func serverConfig(protocol: String): TlsServerConfig {
-    let pem0 = String.fromUtf8(readToEnd(File("data/end_rsa.cer", Read)))
-    let pem02 = String.fromUtf8(readToEnd(File("data/end_rsa_private_key.pem", Read)))
-    var tlsConfig = TlsServerConfig(X509Certificate.decodeFromPem(pem0), GeneralPrivateKey.decodeFromPem(pem02))
-    tlsConfig.supportedAlpnProtocols = [protocol]
-    tlsConfig
-}
-
-public func clientConfig(protocol: String): TlsClientConfig {
-    var tlsConfig = TlsClientConfig()
-    let pem = String.fromUtf8(readToEnd(File("data/root_rsa.cer", Read)))
-    tlsConfig.verifyMode = CustomCA(X509Certificate.decodeFromPem(pem).map({c => c}))
-    tlsConfig.supportedAlpnProtocols = [protocol]
-    tlsConfig
-}
-
 var port = UInt16(0)
-var server = ServerBuilder().addr("127.0.0.1").tlsConfig(serverConfig("http/1.1")).port(0).build()
+var server = ServerBuilder().addr("127.0.0.1").port(0).build()
 
 @Test
-class Test_Abort_01 {
+class Test_Abort_02 {
     func startserve():Unit {
         var a: HttpRequestHandler = FuncHandler( { httpContext =>
             let bodyBuf = Array<UInt8>(20000, repeat: 0)
@@ -107,8 +91,7 @@ class Test_Abort_01 {
         while(server.port == 0) {sleep(Duration.millisecond)}
         port = server.port
 
-        func startClient(request: HttpRequest) {
-            var client = ClientBuilder().tlsConfig(clientConfig("http/1.1")).build()
+        func startClient(client: Client, request: HttpRequest) {
             var arr_20 = Array<UInt8>(200000, repeat: 3)
             let res1 = client.send(request)
             @Expect(res1.status, 200)
@@ -128,34 +111,35 @@ class Test_Abort_01 {
             @Expect(readlen_1, 16000)
            
         }
+        let client = ClientBuilder().build()
 
         for( _ in 0..10 ) {
             spawn {
                 let req = HttpRequestBuilder()
-                    .url("https://127.0.0.1:${port}/test/b")
+                    .url("http://127.0.0.1:${port}/test/b")
                     .version(HTTP2_0)
                     .build()
-                startClient(req)    
+                startClient(client, req)    
             }
         }
 
         for( _ in 0..10 ) {
             spawn {
                 let req = HttpRequestBuilder()
-                    .url("https://127.0.0.1:${port}/test/c")
+                    .url("http://127.0.0.1:${port}/test/c")
                     .version(HTTP2_0)
                     .build()
-                startClient(req)    
+                startClient(client, req)    
             }
         }
 
         for( _ in 0..10 ) {
             spawn {
                 let req = HttpRequestBuilder()
-                    .url("https://127.0.0.1:${port}/test/d")
+                    .url("http://127.0.0.1:${port}/test/d")
                     .version(HTTP2_0)
                     .build()
-                startClient(req)    
+                startClient(client, req)    
             }
         }
 
@@ -163,6 +147,5 @@ class Test_Abort_01 {
         server.close()
 
     }
-
 }
 
