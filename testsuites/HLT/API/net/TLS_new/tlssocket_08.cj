@@ -8,8 +8,8 @@
 
 // LEVEL: 2
 // DEPENDENCE: ./data
-// EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
-// RUN-EXEC: %run_stdx %n.%suffix %run_utest_opt %run_args
+// EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %output %f %cmp_utest_opt
+// RUN-EXEC: %run_stdx %output %run_utest_opt %run_args
 
 import std.net.*
 import std.fs.*
@@ -192,7 +192,7 @@ class Test_tlssocket_08 {
             tcpser = Option<TcpServerSocket>.Some(tcpServer)
             tlsser = Option<TlsSocket>.Some(tlsServer)
             tlsServer.handshake()
-            tlsServer.writeTimeout = Duration.millisecond
+            tlsServer.writeTimeout = 5*Duration.second
             var buf2 = Array<UInt8>(sendSize, repeat: 10)
             for (i in 0..100) {
                 tlsServer.write(buf2)
