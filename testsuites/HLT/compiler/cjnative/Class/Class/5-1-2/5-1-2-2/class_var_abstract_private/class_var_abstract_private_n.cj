@@ -16,4 +16,4 @@ class Data <: Base {
     public var res: Int64 = one
 }
 // ASSERT: scan sema_missing_entry
-// ASSERT: scan sema_invalid_access_control
+// ASSERT: scan sema_undeclared_identifier
