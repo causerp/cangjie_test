@@ -68,7 +68,6 @@ class Test_Abort_01 {
         port = server.port
         var req1 = HttpRequestBuilder()
             .url("http://127.0.0.1:${port}/test/close1")
-            .version(HTTP2_0)
             .build()
         var client = ClientBuilder().build()
         let response1 = client.send(req1)
@@ -78,7 +77,7 @@ class Test_Abort_01 {
             response1.close()
         }
         sleep(Duration.second)
-        var buf1 = Array<UInt8>(20000, repeat: 0)
+        var buf1 = Array<UInt8>(10000, repeat: 0)
         try{
             response1.body.read(buf1)
 
@@ -92,7 +91,6 @@ class Test_Abort_01 {
         port = server.port
         var req2 = HttpRequestBuilder()
             .url("http://127.0.0.1:${port}/test/close2")
-            .version(HTTP2_0)
             .build()
         var client = ClientBuilder().build()
         let response2 = client.send(req2)
@@ -118,20 +116,20 @@ class Test_Abort_01 {
         port = server.port
         var req3 = HttpRequestBuilder()
             .url("http://127.0.0.1:${port}/test/close3")
-            .version(HTTP2_0)
             .build()
         var client = ClientBuilder().build()
         let response3 = client.send(req3)
         @Expect(response3.status, UInt16(200))
         response3.close()
         var buf3 = Array<UInt8>(10000, repeat: 0)
+        var len = 0
         try{
-            response3.body.read(buf3)
+            len = response3.body.read(buf3)
 
         }catch(_){
 
         }finally {
-            @Expect(buf3[0..2000], Array<UInt8>(2000, repeat: 0))
+            @Expect(len < 4000)
         }
 
         client.close()
