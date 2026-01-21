@@ -31,19 +31,6 @@ Tools/cjdb/datacom/expression_enum/expression_enum006.info
 Tools/cjdb/datacom/generics_expression/generics_local_var014.info
 
 # cross
-Tools/cjdb/datacom/cross_platform/cross_platform005.info
-Tools/cjdb/datacom/cross_platform/cross_platform006.info
-Tools/cjdb/datacom/cross_platform/cross_platform019.info
-Tools/cjdb/datacom/cross_platform/cross_platform022.info
-Tools/cjdb/datacom/cross_platform/cross_platform023.info
-Tools/cjdb/datacom/cross_platform/cross_platform024.info
-Tools/cjdb/datacom/cross_platform/cross_platform026.info
-Tools/cjdb/datacom/cross_platform/cross_platform027.info
-Tools/cjdb/datacom/cross_platform/cross_platform028.info
-Tools/cjdb/datacom/cross_platform/cross_platform029.info
-Tools/cjdb/datacom/cross_platform/cross_platform030.info
-Tools/cjdb/datacom/cross_platform/cross_platform031.info
-Tools/cjdb/datacom/cross_platform/cross_platform032.info
 Tools/cjdb/datacom/conditionBP_expression/cjdb_ConditionBP020.info
 Tools/cjdb/datacom/generics_expression/generics_local_var002.info
 Tools/cjdb/datacom/optional_chaining_expression/optional_chaining_expression001.info
