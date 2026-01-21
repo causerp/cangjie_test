@@ -40,7 +40,7 @@ public func clientConfig(protocol: String): TlsClientConfig {
 }
 
 var port = UInt16(0)
-var server = ServerBuilder().addr("127.0.0.1").tlsConfig(serverConfig("http/1.1")).port(0).build()
+var server = ServerBuilder().addr("127.0.0.1").tlsConfig(serverConfig("h2")).port(0).build()
 
 @Test
 class Test_Abort_01 {
@@ -83,9 +83,9 @@ class Test_Abort_01 {
         port = server.port
         var req1 = HttpRequestBuilder()
             .url("https://127.0.0.1:${port}/test/close1")
-            .version(HTTP1_1)
+            .version(HTTP2_0)
             .build()
-        var client = ClientBuilder().tlsConfig(clientConfig("http/1.1")).build()
+        var client = ClientBuilder().tlsConfig(clientConfig("h2")).build()
         let response1 = client.send(req1)
         @Expect(response1.status, UInt16(200))
 
@@ -107,9 +107,9 @@ class Test_Abort_01 {
         port = server.port
         var req2 = HttpRequestBuilder()
             .url("https://127.0.0.1:${port}/test/close2")
-            .version(HTTP1_1)
+            .version(HTTP2_0)
             .build()
-        var client = ClientBuilder().tlsConfig(clientConfig("http/1.1")).build()
+        var client = ClientBuilder().tlsConfig(clientConfig("h2")).build()
         let response2 = client.send(req2)
         @Expect(response2.status, UInt16(200))
 
@@ -134,9 +134,9 @@ class Test_Abort_01 {
         port = server.port
         var req3 = HttpRequestBuilder()
             .url("https://127.0.0.1:${port}/test/close3")
-            .version(HTTP1_1)
+            .version(HTTP2_0)
             .build()
-        var client = ClientBuilder().tlsConfig(clientConfig("http/1.1")).build()
+        var client = ClientBuilder().tlsConfig(clientConfig("h2")).build()
         let response3 = client.send(req3)
         @Expect(response3.status, UInt16(200))
         response3.close()

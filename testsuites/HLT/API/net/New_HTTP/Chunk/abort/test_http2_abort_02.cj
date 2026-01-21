@@ -40,7 +40,7 @@ public func clientConfig(protocol: String): TlsClientConfig {
 }
 
 var port = UInt16(0)
-var server = ServerBuilder().addr("127.0.0.1").tlsConfig(serverConfig("http/1.1")).port(0).build()
+var server = ServerBuilder().addr("127.0.0.1").tlsConfig(serverConfig("h2")).port(0).build()
 
 @Test
 class Test_Abort_01 {
@@ -108,7 +108,7 @@ class Test_Abort_01 {
         port = server.port
 
         func startClient(request: HttpRequest) {
-            var client = ClientBuilder().tlsConfig(clientConfig("http/1.1")).build()
+            var client = ClientBuilder().tlsConfig(clientConfig("h2")).build()
             var arr_20 = Array<UInt8>(200000, repeat: 3)
             let res1 = client.send(request)
             @Expect(res1.status, 200)

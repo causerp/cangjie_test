@@ -43,7 +43,7 @@ var port = UInt16(0)
 var server = ServerBuilder().addr("127.0.0.1").tlsConfig(serverConfig("http/1.1")).port(0).build()
 
 @Test
-class Test_Abort_01 {
+class Test_Abort_02 {
     func startserve():Unit {
         var a: HttpRequestHandler = FuncHandler( { httpContext =>
             let bodyBuf = Array<UInt8>(20000, repeat: 0)
@@ -107,8 +107,7 @@ class Test_Abort_01 {
         while(server.port == 0) {sleep(Duration.millisecond)}
         port = server.port
 
-        func startClient(request: HttpRequest) {
-            var client = ClientBuilder().tlsConfig(clientConfig("http/1.1")).build()
+        func startClient(client: Client, request: HttpRequest) {
             var arr_20 = Array<UInt8>(200000, repeat: 3)
             let res1 = client.send(request)
             @Expect(res1.status, 200)
@@ -128,6 +127,7 @@ class Test_Abort_01 {
             @Expect(readlen_1, 16000)
            
         }
+        let client = ClientBuilder().tlsConfig(clientConfig("http/1.1")).build()
 
         for( _ in 0..10 ) {
             spawn {
@@ -135,7 +135,7 @@ class Test_Abort_01 {
                     .url("https://127.0.0.1:${port}/test/b")
                     .version(HTTP2_0)
                     .build()
-                startClient(req)    
+                startClient(client, req)    
             }
         }
 
@@ -145,7 +145,7 @@ class Test_Abort_01 {
                     .url("https://127.0.0.1:${port}/test/c")
                     .version(HTTP2_0)
                     .build()
-                startClient(req)    
+                startClient(client, req)    
             }
         }
 
@@ -155,7 +155,7 @@ class Test_Abort_01 {
                     .url("https://127.0.0.1:${port}/test/d")
                     .version(HTTP2_0)
                     .build()
-                startClient(req)    
+                startClient(client, req)    
             }
         }
 
@@ -163,6 +163,5 @@ class Test_Abort_01 {
         server.close()
 
     }
-
 }
 
