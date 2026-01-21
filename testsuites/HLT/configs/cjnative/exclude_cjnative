@@ -89,8 +89,3 @@ API/std/time/TimeZone/load/test_loadFromPaths.cj
 
 # feature org name unavailable on this branch
 API/std/ast/orgName
-
-# https://gitcode.com/Cangjie/cangjie_test/issues/229
-compiler/cjnative/Extend/operator/define/operator_def_18.cj
-regression/testcase_485.cj
-regression/testcase_86/operator_def_18.cj
