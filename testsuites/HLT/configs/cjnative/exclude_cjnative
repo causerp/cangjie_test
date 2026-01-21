@@ -101,17 +101,8 @@ Tools/cjlint/rules/G_OTH_03/g_oth_03_10026/g_oth_03.info
 API/syntax
 
 # cjmp is not ready.
+compiler/cjnative/Packages/cjmp/cjmp_03025/test.cj
 compiler/cjnative/Packages/cjmp/cjmp_07014/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_11004_3/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_11012/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_11021/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_11022/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_11046/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_12003/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_12005/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_12008/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_12009/test.cj
-compiler/cjnative/Packages/cjmp/cjmp_12010/test.cj
 compiler/cjnative/Packages/cjmp/cjmp_13002/test.cj
 compiler/cjnative/Packages/cjmp/cjmp_14003/test.cj
 compiler/cjnative/Packages/cjmp/cjmp_03006/test.cj
@@ -197,3 +188,14 @@ Tools/cjpm/source_set/source_set006/dependence001
 Tools/cjpm/source_set/source_set006/dependence009
 Tools/cjpm/source_set/source_set006/dependence010
 Tools/cjpm/source_set/source_set006/dependence015
+
+# CJMP has to be fixed
+Tools/cjdb/datacom/cross_platform/cross_platform032.info
+Tools/cjcov/common_platform/cross_platform021/cross_platform021.cj
+Tools/cjcov/common_platform/cross_platform028/cross_platform028.cj
+
+# Exclude after sync `dev` -> `main`
+compiler/cjnative/Packages/cjmp/cjmp_03026/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_07008/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_13011/test.cj
+

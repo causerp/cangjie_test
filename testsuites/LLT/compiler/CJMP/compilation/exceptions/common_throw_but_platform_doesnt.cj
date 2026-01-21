@@ -9,19 +9,33 @@
 package cmp
 
 public common class A {
-    public common let a: Int
+  public init () {}
+
+  public common func foo(): Unit {
+    throw Exception()
+  }
 }
 
+public func goo() {
+    A().foo()
+  }
+
 // SEPARATE-FILE: p/p.cj
-// EXEC-PIPE-1: %compiler %diag_json --experimental p/p.cj c/cmp.chir --common-part-cjo=./c/cmp.cjo --output-type=dylib --output-dir ./p 2>&1 | compare %f
-// ASSERT: scan sema_used_before_initialization
+// EXEC: %compiler %noColor --experimental p/p.cj c/cmp.chir --common-part-cjo=./c/cmp.cjo --output-type=dylib
 package cmp
 
 public platform class A {
-    public let b = a + 10
-
-    public init() {
-        a = 10
-    }
+  public platform func foo() {
+    println("ok-no-throw")
+  }
 }
 
+// SEPARATE-FILE: main.cj
+// EXEC: %compiler %noColor main.cj -lcmp -L. -o %output
+// EXEC: %run %output 2>&1 | compare %f
+// ASSERT: scan ok-no-throw
+import cmp.*
+
+main() {
+    goo()
+}
