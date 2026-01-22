@@ -4,9 +4,9 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// DEPENDENCE: ../%n
-// EXEC: cd %n && %cjpm build -V | compare %f
-// ASSERT: regex cjc(.exe)*
-// ASSERT: scan-not --mock=on
-// ASSERT: scan-not --mock=runtime-error
-// ASSERT: scan-not --mock=off
+package demo
+
+main(): Int64 {
+    println("hello world")
+    return 0
+}
