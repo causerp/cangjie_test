@@ -14,6 +14,7 @@ public struct A {
     public func foo() {
         B()
     }
+    public platform init() {}
 }
 
 public struct B {

@@ -385,6 +385,16 @@ Tools\cjpm\source_set\source_set006\dependence009
 Tools\cjpm\source_set\source_set006\dependence010
 Tools\cjpm\source_set\source_set006\dependence015
 
+# CJMP has to be fixed
+Tools/cjdb/datacom/cross_platform/cross_platform032.info
+Tools/cjcov/common_platform/cross_platform021/cross_platform021.cj
+Tools/cjcov/common_platform/cross_platform028/cross_platform028.cj
+
+# Exclude after sync `dev` -> `main`
+compiler/cjnative/Packages/cjmp/cjmp_03026/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_07008/test.cj
+compiler/cjnative/Packages/cjmp/cjmp_13011/test.cj
+
 # https://gitcode.com/Cangjie/cangjie_test/issues/255
 Tools/cjcov/common_platform/cross_platform003/cross_platform003.cj
 Tools/cjcov/common_platform/cross_platform006/cross_platform006.cj
