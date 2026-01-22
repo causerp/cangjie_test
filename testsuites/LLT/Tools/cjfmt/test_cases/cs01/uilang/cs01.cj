@@ -4,8 +4,8 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-@CallingConv[CDECL]
-foreign {
-    func foo1(): Unit
-    func foo2(): Unit
+package cmp
+
+public common func foo(): Unit {
+    println("I am common")
 }

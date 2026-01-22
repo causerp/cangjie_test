@@ -4,8 +4,13 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-@CallingConv[CDECL]
-foreign {
-    func foo1(): Unit
-    func foo2(): Unit
+package cmp
+
+platform public interface I1 {}
+sealed platform interface I2 {}
+
+platform interface A {
+    public platform func foo1(a: Int64): Unit
 }
+
+public abstract open platform class C2 <: A {}
