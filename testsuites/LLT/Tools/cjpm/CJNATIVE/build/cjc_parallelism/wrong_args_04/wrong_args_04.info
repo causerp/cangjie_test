@@ -5,8 +5,6 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // DEPENDENCE: ../%n
-// EXEC: cd %n && %cjpm build -V | compare %f
-// ASSERT: regex cjc(.exe)*
-// ASSERT: scan-not --mock=on
-// ASSERT: scan-not --mock=runtime-error
-// ASSERT: scan-not --mock=off
+// EXEC: cd %n && %cjpm build -V 2>&1 | compare %f
+// ASSERT: regex Error: cannot configure both 'profile.build.cjc-jobs' and 'profile.build.enable-heuristic-parallelism' at the same time in '.[/|\\]cjpm.toml'
+// ASSERT: scan Error: cjpm build failed

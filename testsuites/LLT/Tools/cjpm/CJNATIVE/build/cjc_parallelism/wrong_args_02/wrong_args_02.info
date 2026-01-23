@@ -5,8 +5,6 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // DEPENDENCE: ../%n
-// EXEC: cd %n && %cjpm build -V | compare %f
-// ASSERT: regex cjc(.exe)*
-// ASSERT: scan-not --mock=on
-// ASSERT: scan-not --mock=runtime-error
-// ASSERT: scan-not --mock=off
+// EXEC: cd %n && %cjpm build -V 2>&1 | compare %f
+// ASSERT: regex Error: field 'profile.build.cjc-jobs' requires a positive integer argument in \(0, 999999999\] in '.[/|\\]cjpm.toml'
+// ASSERT: scan Error: cjpm build failed
