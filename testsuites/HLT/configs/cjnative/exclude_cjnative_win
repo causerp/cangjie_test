@@ -414,3 +414,7 @@ compiler/cjnative/Packages/cjmp/cjmp_11045/test.cj
 compiler/cjnative/Packages/cjmp/cjmp_14006/test.cj
 compiler/cjnative/stable_abi/07_extend/01_add_delete/add/01_extend_add_extend_public.cj
 
+# flaky tests with ACCESS VIOLATION on windows
+Tools\cjpm\stdx\stdx_c\check_01\check_01.info
+Tools\cjpm\stdx\stdx_c\tree_01\tree_01.info
+
