@@ -33,13 +33,6 @@ Tools/cjdb/datacom/lambda/lldb_lambda_05.info
 # feature organization name temporarily being disable on branch main
 compiler/cjnative/Packages/org_name
 
-# https://gitcode.com/Cangjie/cangjie_compiler/issues/522
-compiler/cjnative/Class/super/illegal_super_call_expr_0.cj
-compiler/cjnative/Class/super/illegal_super_call_expr_1.cj
-compiler/cjnative/Class/super/illegal_super_call_expr_2.cj
-compiler/cjnative/Class/super/illegal_super_call_expr_3.cj
-compiler/cjnative/Class/super/illegal_super_call_expr_4.cj
-
 # MacOS does not support reflect yet, these test cases for compatibility require reflect so disabled for now.
 compiler/cjnative/stable_abi/package_name
 compiler/cjnative/stable_abi/add_instance_member_variable

@@ -31,13 +31,6 @@ API/std/io/StringReader/StringReader_readln_13_01.cj
 # feature organization name temporarily being disable on branch main
 compiler/cjnative/Packages/org_name
 
-# https://gitcode.com/Cangjie/cangjie_compiler/issues/522
-compiler/cjnative/Class/super/illegal_super_call_expr_0.cj
-compiler/cjnative/Class/super/illegal_super_call_expr_1.cj
-compiler/cjnative/Class/super/illegal_super_call_expr_2.cj
-compiler/cjnative/Class/super/illegal_super_call_expr_3.cj
-compiler/cjnative/Class/super/illegal_super_call_expr_4.cj
-
 # exclude because of lack of features for cjmp on cjc
 Tools/cjpm/source_set/source_set001
 Tools/cjpm/source_set/source_set002/source_set_class
