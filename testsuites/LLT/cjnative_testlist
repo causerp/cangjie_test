@@ -182,12 +182,11 @@ compiler/CJMP/java/integration/config-struct-public-struct-hidden/config-struct-
 compiler/CJMP/java/integration/non-public-class-without-override/non-public-class-without-override.info
 compiler/CJMP/java/integration/non-public-enum/non-public-enum.info
 compiler/CJMP/java/integration/non-public-struct/non-public-struct.info
-compiler/Driver/options/help/test_showall.cj
 
-# Tech deb of multi-phase multi-parent support
+# Tech deb of multi-phase multi-parent support 
+# https://gitcode.com/Cangjie/cangjie_test/issues/265
 compiler/CJMP/compilation/several_parents/merging_initializers_big_case.cj
 compiler/CJMP/multiphase_compilation/3step_generic.cj
-
 compiler/CJMP/compilation/common_part_part_should_be_specified.cj
 compiler/CJMP/compilation/wrong_chir.cj
 compiler/CJMP/frontend/class/primary/primary_conflict_with_common.cj
