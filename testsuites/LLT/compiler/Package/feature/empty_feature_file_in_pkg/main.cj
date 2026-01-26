@@ -11,7 +11,7 @@ error: features declaration must be included in every file within the source set
 5 | | }
   | |_^
   | 
-note: perhapse you meant these features
+note: perhaps you meant these features
  ==> src/main.cj:1:10:
   | 
 1 | features os.Harmony
