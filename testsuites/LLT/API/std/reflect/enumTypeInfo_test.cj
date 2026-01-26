@@ -29,7 +29,7 @@
  *          public func apply(args: Array<Any>): Any
  *          public func getAssociatedValues(instance: Any): ReadOnlyList<Any>
  *          public func findAllAnnotations<T>(): Array<T> where T <: Annotation
- *          public func findAllAnnotation<T>(): ?T where T <: Annotation
+ *          public func findAnnotation<T>(): ?T where T <: Annotation
  *          public func getAllAnnotations(): Array<Annotation>
  *          public func hashCode(): Int64
  *          public operator func ==(other: EnumConstructorInfo): Bool
@@ -450,10 +450,10 @@ class EnumConstructorInfoTest {
         @Expect(ctorB.toString(), ctorB.qualifiedName)
 
         @Expect(ctorA.findAllAnnotations<TagA>().size, 1)
-        @Expect(ctorA.findAllAnnotation<TagB>().isNone(), true)
+        @Expect(ctorA.findAnnotation<TagB>().isNone(), true)
         @Expect(ctorB.findAllAnnotations<TagA>().size, 1)
         @Expect(ctorB.findAllAnnotations<TagB>().size, 1)
-        @Expect(ctorB.findAllAnnotation<TagB>().isSome(), true)
+        @Expect(ctorB.findAnnotation<TagB>().isSome(), true)
         @Expect(ctorB.getAllAnnotations().size, 2)
         @Expect(ctorB.annotations.toArray().size, 2)
     }
@@ -506,7 +506,7 @@ class EnumConstructorInfoTest {
         let ctor = EnumTypeInfo.get("default.E").getConstructor("M1")
         @Expect(ctor.annotations.toArray().size, 0)
         @Expect(ctor.findAllAnnotations<TagA>().size, 0)
-        @Expect(ctor.findAllAnnotation<TagA>().isNone(), true)
+        @Expect(ctor.findAnnotation<TagA>().isNone(), true)
         @Expect(ctor.getAllAnnotations().size, 0)
     }
 
@@ -548,7 +548,7 @@ class EnumConstructorInfoTest {
         let ctorC = EnumConstructorInfo.get("default.EAnno.C")
         @Expect(ctorC.getAllAnnotations().size, 0)
         @Expect(ctorC.findAllAnnotations<TagA>().size, 0)
-        @Expect(ctorC.findAllAnnotation<TagA>().isNone(), true)
+        @Expect(ctorC.findAnnotation<TagA>().isNone(), true)
         @Expect(ctorC.annotations.toArray().size, 0)
     }
 
@@ -604,7 +604,7 @@ func expectNoAnnotations(ctor: EnumConstructorInfo): Unit {
     @Expect(ctor.annotations.size, 0)
     @Expect(ctor.getAllAnnotations().size, 0)
     @Expect(ctor.findAllAnnotations<Annotation>().size, 0)
-    match (ctor.findAllAnnotation<Annotation>()) {
+    match (ctor.findAnnotation<Annotation>()) {
         case None => @Expect(true)
         case _ => @Expect(false)
     }
