@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/varray_expr.cj
 // (not Windows) EXEC: dos2unix varray_expr.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -32,8 +39,8 @@ class Test {
             case _ => @FailExpect("kind wrong")
         }
         // TODO: check arguments
-        @Expect(expr.toString(), "VArray<Int64, $5>([0, 3 ,4])")
-        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString(), expr.toString())
+        @Expect(expr.toString().replace("\r\n", "\n"), "VArray<Int64, $5>([0, 3 ,4])")
+        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString().replace("\r\n", "\n"), expr.toString().replace("\r\n", "\n"))
         var pos = expr.getLParenPos()
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([2, 22, 2, 23]).toArray())
         pos = expr.getRParenPos()
@@ -63,7 +70,7 @@ class Test {
             case _ => @FailExpect("kind wrong")
         }
         // TODO: check arguments
-        @Expect(expr.toString(), "VArray<Int64, $5>([0, 3 ,4])")
+        @Expect(expr.toString().replace("\r\n", "\n"), "VArray<Int64, $5>([0, 3 ,4])")
         var pos = expr.getLParenPos()
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 18, 1, 19]).toArray())
         pos = expr.getRParenPos()
@@ -73,10 +80,3 @@ class Test {
     }
 }
 
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */

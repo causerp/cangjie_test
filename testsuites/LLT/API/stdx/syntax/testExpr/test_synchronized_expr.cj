@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/synchronized_expr.cj
 // (not Windows) EXEC: dos2unix synchronized_expr.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -23,20 +30,20 @@ class Test {
     @TestCase
     func testExpr01() {
         let expr = (nodes[0] as SynchronizedExpr).getOrThrow()
-        @Expect(expr.structuredMutex.toString(), "obj")
-        @Expect(expr.block.toString(), """
+        @Expect(expr.structuredMutex.toString().replace("\r\n", "\n"), "obj")
+        @Expect(expr.block.toString().replace("\r\n", "\n"), """
 {
         while (true) {
             obj.wait()
         }
     }""")
-        @Expect(expr.toString(), """
+        @Expect(expr.toString().replace("\r\n", "\n"), """
 synchronized (obj) {
         while (true) {
             obj.wait()
         }
     }""")
-        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString(), expr.toString())
+        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString().replace("\r\n", "\n"), expr.toString().replace("\r\n", "\n"))
         var pos = expr.getSynchronizedKeyWordPos()
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([2, 5, 2, 17]).toArray())
         pos = expr.getLParenPos()
@@ -51,14 +58,14 @@ synchronized (obj) {
     func testSynchronizedExprInit() {
         let expr = (nodes[0] as SynchronizedExpr).getOrThrow()
         let synchronizedExpr = SynchronizedExpr(expr.block, expr.structuredMutex)
-        @Expect(synchronizedExpr.structuredMutex.toString(), "obj")
-        @Expect(synchronizedExpr.block.toString(), """
+        @Expect(synchronizedExpr.structuredMutex.toString().replace("\r\n", "\n"), "obj")
+        @Expect(synchronizedExpr.block.toString().replace("\r\n", "\n"), """
 {
         while (true) {
             obj.wait()
         }
     }""")
-        @Expect(synchronizedExpr.toString(), """
+        @Expect(synchronizedExpr.toString().replace("\r\n", "\n"), """
 synchronized (obj) {
         while (true) {
             obj.wait()
@@ -83,10 +90,3 @@ synchronized (obj) {
     }
 }
 
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */
