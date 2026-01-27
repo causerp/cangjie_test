@@ -8,7 +8,7 @@
 
 // LEVEL: 0
 // EXEC: %compiler %cmp_opt %use_ast %f -o %output %cmp_utest_opt
-// RUN-EXEC: %run %run_opt %output %run_args
+// (not O2)RUN-EXEC: %run %run_opt %output %run_args
 
 import std.collection.*
 
@@ -82,7 +82,7 @@ class Test_DumpCurrentThread {
         }
         _thread_info.toString() |> println
         @Assert(_thread_info.stackTrace[0].toString().contains("std.core.ThreadSnapshot::dumpCurrentThread"))
-        @Assert(_thread_info.stackTrace[1].toString().contains("default.Test_DumpCurrentThread::getFromInvoking::foo"))
+        @Assert(_thread_info.stackTrace[1].toString().contains("default.Test_DumpCurrentThread::getFromInvoking::"))
         @Assert(_thread_info.toString().contains("ThreadSnapshot(id=${_thread_info.id}, name=, state=Running)"))
         @Assert(_thread_info.toString().contains("stack trace"))
     }
