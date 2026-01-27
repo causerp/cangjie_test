@@ -7,7 +7,7 @@ error: feature names must be consistent across all files within a source set
 1 | features os.Linux
   |          ^^^^^^^^ 
   | 
-note: perhapse you meant these features
+note: perhaps you meant these features
  ==> src/main.cj:1:10:
   | 
 1 | features os.Harmony, os.Mac
@@ -20,7 +20,7 @@ error: feature names must be consistent across all files within a source set
 1 | features os.Windows
   |          ^^^^^^^^^^ 
   | 
-note: perhapse you meant these features
+note: perhaps you meant these features
  ==> src/main.cj:1:10:
   | 
 1 | features os.Harmony, os.Mac
