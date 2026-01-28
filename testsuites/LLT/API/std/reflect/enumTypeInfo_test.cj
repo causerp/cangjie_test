@@ -82,6 +82,11 @@ public enum E5 {
     | M2(Int64)
 }
 
+enum E6<T>{
+    | A(T)
+    | B
+}
+
 @Annotation
 public class TagA {
     const init() {}
@@ -192,7 +197,7 @@ class EnumTypeInfoTest {
     }
 
     @TestCase
-    func testConstruct() {
+    func testConstruct01() {
         let e = EnumTypeInfo.get("default.E")
 
         let inst1 = (e.construct("M1", []) as E).getOrThrow()
@@ -250,6 +255,21 @@ class EnumTypeInfoTest {
                     case _ => @Assert(false)
             }
             case _ => @Assert(false) 
+        }
+    }
+
+    @TestCase
+    func testConstruct02() {
+        let e = EnumTypeInfo.get("default.E6<default.C1>")
+        let ctor0 = (e.construct("A<default.C1>", [C1()]) as E6<C1>).getOrThrow()
+        match (ctor0) {
+            case E6<C1>.A(ca) => @Expect(ca.val, 0)
+            case _ => @Assert(false)
+        }
+        let ctor1 = (e.construct("B", []) as E6<C1>).getOrThrow()
+        match (ctor1) {
+            case E6<C1>.B => @Assert(true)
+            case _ => @Assert(false)
         }
     }
 
