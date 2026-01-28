@@ -190,7 +190,7 @@ class Test_File_No_Permission {
         file.read(buf)
         @Expect(data, buf)
         try {
-            file.writeb(data)
+            file.write(data)
         } catch (e: FSException) {
             @Assert(Regex("^The file `.+` does not have the write permission.$").matches(e.message))
             sum += 1

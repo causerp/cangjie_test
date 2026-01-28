@@ -59,7 +59,6 @@ API/std/ffi/Python/Builtins/002/python_builtins_20006.cj
 API/std/ffi/Python/Builtins/002/python_builtins_20007.cj
 
 API/std/io/file/File_create_03.cj
-API/std/fs/file/linux/test_linux_file_no_permission.cj
 API/std/io/StringReader/StringReader_readln_13_01.cj
 
 # exclude because of lack of features for cjmp on cjc

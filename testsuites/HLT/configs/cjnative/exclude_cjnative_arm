@@ -25,7 +25,6 @@ API/syntax
 API/std/time/TimeZone/load/test_loadFromPaths.cj
 
 API/std/io/file/File_create_03.cj
-API/std/fs/file/linux/test_linux_file_no_permission.cj
 API/std/io/StringReader/StringReader_readln_13_01.cj
 
 # feature organization name temporarily being disable on branch main
