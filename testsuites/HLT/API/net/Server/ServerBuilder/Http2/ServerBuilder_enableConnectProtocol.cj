@@ -114,7 +114,7 @@ public class Test_enableConnectProtocol {
             (websocket, headers) = WebSocket.upgradeFromClient(client, u, subProtocols: subProtocol, version: HTTP2_0)
         } catch (e: HttpException) {
             flag = true
-            @Expect(e.message, "Target HTTP/2 server doesn`t allow CONNECT method.")
+            @Expect(e.message, "Target HTTP/2 server doesn't allow CONNECT method.")
         }
         @Expect(flag, true)
     }
