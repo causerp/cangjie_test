@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/lit_const_str_expr.cj
 // (not Windows) EXEC: dos2unix lit_const_str_expr.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -30,8 +37,8 @@ class Test {
         @Expect(expr.delimiterNum, 0)
         @Expect(expr.isSingleQuote, false)
         @Expect(expr.rawValue, "me")
-        @Expect(expr.toString(), "\"me\"")
-        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString(), expr.toString())
+        @Expect(expr.toString().replace("\r\n", "\n"), "\"me\"")
+        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString().replace("\r\n", "\n"), expr.toString().replace("\r\n", "\n"))
         let pos = expr.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([2, 5, 2, 9]).toArray())
     }
@@ -46,9 +53,9 @@ class Test {
         @Expect(expr.delimiterNum, 1)
         @Expect(expr.isSingleQuote, false)
         @Expect(expr.rawValue, "hi")
-        @Expect(expr.toString(), """
+        @Expect(expr.toString().replace("\r\n", "\n"), """
 #"hi"#""")
-        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString(), expr.toString())
+        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString().replace("\r\n", "\n"), expr.toString().replace("\r\n", "\n"))
         let pos = expr.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([3, 5, 3, 11]).toArray())
     }
@@ -95,7 +102,7 @@ class Test {
         @Expect(litConstStrExpr.delimiterNum, 0)
         @Expect(litConstStrExpr.isSingleQuote, false)
         @Expect(litConstStrExpr.rawValue, "me")
-        @Expect(litConstStrExpr.toString(), "\"me\"")
+        @Expect(litConstStrExpr.toString().replace("\r\n", "\n"), "\"me\"")
     }
 
     @TestCase
@@ -110,7 +117,7 @@ class Test {
         @Expect(litConstStrExpr.delimiterNum, 1)
         @Expect(litConstStrExpr.isSingleQuote, false)
         @Expect(litConstStrExpr.rawValue, "hi")
-        @Expect(litConstStrExpr.toString(), """
+        @Expect(litConstStrExpr.toString().replace("\r\n", "\n"), """
 #"hi"#""")
         let pos = litConstStrExpr.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 1, 1, 7]).toArray())
@@ -128,7 +135,7 @@ class Test {
         @Expect(litConstStrExpr.delimiterNum, 0)
         @Expect(litConstStrExpr.isSingleQuote, true)
         @Expect(litConstStrExpr.strPartExprs.size, 1)
-        @Expect(litConstStrExpr.toString(), "\'\${dat}\'")
+        @Expect(litConstStrExpr.toString().replace("\r\n", "\n"), "\'\${dat}\'")
         let pos = litConstStrExpr.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 1, 1, 9]).toArray())
     }
@@ -146,7 +153,7 @@ class Test {
         @Expect(litConstStrExpr.isSingleQuote, false)
         @Expect(litConstStrExpr.strPartExprs.size, 4)
         @Expect(litConstStrExpr.hasInterpolation(), true)
-        @Expect(litConstStrExpr.toString(), """
+        @Expect(litConstStrExpr.toString().replace("\r\n", "\n"), """
 \"\"\"
 \${dja}hel
 lo\${djalkw}\${hello}\"\"\"""")
@@ -163,10 +170,3 @@ lo\${djalkw}\${hello}\"\"\"""")
     }
 }
 
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */

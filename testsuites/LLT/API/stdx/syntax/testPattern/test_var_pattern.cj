@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/var_pattern.cj
 // (not Windows) EXEC: dos2unix var_pattern.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -26,8 +33,8 @@ class Test {
         let pattern = (forExpr.pattern as VarPattern).getOrThrow()
 
         @Expect(pattern.name, "i")
-        @Expect(pattern.toString(), "i")
-        @Expect(pattern.toTokens().toString(), "i")
+        @Expect(pattern.toString().replace("\r\n", "\n"), "i")
+        @Expect(pattern.toTokens().toString().replace("\r\n", "\n"), "i")
 
         var pos = pattern.nodePos
         // note: need modify after support FOR pos
@@ -49,16 +56,10 @@ class Test {
         let varPattern = VarPattern(pattern.name)
 
         @Expect(varPattern.name, "i")
-        @Expect(varPattern.toString(), "i")
+        @Expect(varPattern.toString().replace("\r\n", "\n"), "i")
 
         var pos = varPattern.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 1, 1, 2]).toArray())
     }
 }
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */
+

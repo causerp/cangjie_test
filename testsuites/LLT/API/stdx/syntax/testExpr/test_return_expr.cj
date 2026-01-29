@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/return_expr.cj
 // (not Windows) EXEC: dos2unix return_expr.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -23,9 +30,9 @@ class Test {
         let funcDecl = (decls[0] as FuncDecl).getOrThrow()
         let body = funcDecl.body.getOrThrow()
         let expr = (body.nodes[0] as ReturnExpr).getOrThrow()
-        @Expect(expr.retVal.getOrThrow().toString(), "1")
-        @Expect(expr.toString(), "return 1")
-        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString(), expr.toString())
+        @Expect(expr.retVal.getOrThrow().toString().replace("\r\n", "\n"), "1")
+        @Expect(expr.toString().replace("\r\n", "\n"), "return 1")
+        @Expect(parseTokens(expr.toTokens(), refreshPos: false).node.getOrThrow().toString().replace("\r\n", "\n"), expr.toString().replace("\r\n", "\n"))
 
         var pos = expr.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([2, 5, 2, 13]).toArray())
@@ -39,7 +46,7 @@ class Test {
         let body = funcDecl.body.getOrThrow()
         let expr = (body.nodes[0] as ReturnExpr).getOrThrow()
         @Expect(expr.retVal.isNone())
-        @Expect(expr.toString(), "return // return nothing")
+        @Expect(expr.toString().replace("\r\n", "\n"), "return // return nothing")
 
         var pos = expr.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([6, 5, 6, 29]).toArray())
@@ -61,8 +68,8 @@ class Test {
         let body = funcDecl.body.getOrThrow()
         let tmp = (body.nodes[0] as ReturnExpr).getOrThrow()
         let expr = ReturnExpr(tmp.retVal)
-        @Expect(expr.retVal.getOrThrow().toString(), "1")
-        @Expect(expr.toString(), "return 1")
+        @Expect(expr.retVal.getOrThrow().toString().replace("\r\n", "\n"), "1")
+        @Expect(expr.toString().replace("\r\n", "\n"), "return 1")
 
         var pos = expr.nodePos
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 1, 1, 9]).toArray())
@@ -71,10 +78,3 @@ class Test {
     }
 }
 
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */

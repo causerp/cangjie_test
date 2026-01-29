@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
+ * This source file is part of the Cangjie project, licensed under Apache-2.0
+ * with Runtime Library Exception.
+ *
+ * See https://cangjie-lang.cn/pages/LICENSE for license information.
+ */
 // DEPENDENCE: sourceFile/import_alias.cj
 // (not Windows) EXEC: dos2unix import_alias.cj
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f %cmp_utest_opt
@@ -30,8 +37,8 @@ class Test {
         @Expect(content.prefixes, [])
         @Expect(content.identifier, "testPackage")
         @Expect(content.aliasName, "pkg")
-        @Expect(content.toString(), "testPackage as pkg")
-        @Expect(content.toTokens().toString(), "testPackage as pkg")
+        @Expect(content.toString().replace("\r\n", "\n"), "testPackage as pkg")
+        @Expect(content.toTokens().toString().replace("\r\n", "\n"), "testPackage as pkg")
         var pos = content.getIdentifierPos()
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 8, 1, 19]).toArray())
         pos = content.getAsPos()
@@ -54,7 +61,7 @@ class Test {
         @Expect(content.prefixes, ["a"])
         @Expect(content.identifier, "testPackage")
         @Expect(content.aliasName, "pkg")
-        @Expect(content.toString(), "a.testPackage as pkg")
+        @Expect(content.toString().replace("\r\n", "\n"), "a.testPackage as pkg")
         var pos = content.getIdentifierPos()
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([2, 10, 2, 21]).toArray())
         pos = content.getAsPos()
@@ -75,7 +82,7 @@ class Test {
         @Expect(content.prefixes, ["a", "b"])
         @Expect(content.identifier, "testPackage")
         @Expect(content.aliasName, "pkg")
-        @Expect(content.toString(), "a.b.testPackage as pkg")
+        @Expect(content.toString().replace("\r\n", "\n"), "a.b.testPackage as pkg")
         var pos = content.getIdentifierPos()
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([3, 12, 3, 23]).toArray())
         pos = content.getAsPos()
@@ -104,7 +111,7 @@ class Test {
         @Expect(content.prefixes, [])
         @Expect(content.identifier, "testPackage")
         @Expect(content.aliasName, "pkg")
-        @Expect(content.toString(), "testPackage as pkg")
+        @Expect(content.toString().replace("\r\n", "\n"), "testPackage as pkg")
         var pos = content.getIdentifierPos()
         @Expect([pos.beginLine, pos.beginColumn, pos.endLine, pos.endColumn], ArrayList<Int32>([1, 1, 1, 12]).toArray())
         pos = content.getAsPos()
@@ -127,13 +134,7 @@ class Test {
         @Expect(content.prefixes, ["a", "b"])
         @Expect(content.identifier, "testPackage")
         @Expect(content.aliasName, "pkg")
-        @Expect(content.toString(), "a.b.testPackage as pkg")
+        @Expect(content.toString().replace("\r\n", "\n"), "a.b.testPackage as pkg")
     }
 }
-/*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
- * This source file is part of the Cangjie project, licensed under Apache-2.0
- * with Runtime Library Exception.
- *
- * See https://cangjie-lang.cn/pages/LICENSE for license information.
- */
+
