@@ -13,10 +13,6 @@ API/syntax
 # timezone file in ci not support now
 API/std/time/TimeZone/load/test_loadFromPaths.cj
 
-# Excluded for now. See https://gitcode.com/Cangjie/cangjie_compiler/issues/517
-Tools/cjpm/source_set/source_set006/dependence011/dependence011.info
-Tools/cjpm/source_set/source_set007/source_set_cross002/source_set_cross002.info
-
 # feature organization name temporarily being disable on branch main
 compiler/cjnative/Packages/org_name
 

@@ -13,3 +13,5 @@ package mp1
 public common func f1(): Int64 {
     0
 }
+
+// public common func f2(): Int64
