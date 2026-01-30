@@ -141,7 +141,7 @@ class Test_Abort_01 {
         let response3 = client.send(req3)
         @Expect(response3.status, UInt16(200))
         response3.close()
-        var buf3 = Array<UInt8>(20000, repeat: 0)
+        var buf3 = Array<UInt8>(10000, repeat: 0)
 	var len = 0
         try{
             len = response3.body.read(buf3)
