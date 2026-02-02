@@ -14,7 +14,6 @@ Tools/cjdb/datacom/C_FFI/viewVariables_Cstring_002.info
 API/syntax/visit/ASTRewriter/test_rewriter_02.cj
 
 API/std/io/file/File_create_03.cj
-API/std/fs/file/linux/test_linux_file_no_permission.cj
 API/std/io/StringReader/StringReader_readln_13_01.cj
 
 # cjmp 

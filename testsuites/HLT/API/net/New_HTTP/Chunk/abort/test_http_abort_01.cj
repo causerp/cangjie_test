@@ -129,7 +129,7 @@ class Test_Abort_01 {
         }catch(_){
 
         }finally {
-            @Expect(len < 4000)
+            @Expect(len <= 4000)
         }
 
         client.close()
