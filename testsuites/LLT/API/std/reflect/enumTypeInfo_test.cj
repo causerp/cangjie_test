@@ -82,9 +82,13 @@ public enum E5 {
     | M2(Int64)
 }
 
-enum E6<T>{
+enum E6<T> {
     | A(T)
     | B
+}
+
+enum E7 {
+    A | B((Int64) -> Bool)
 }
 
 @Annotation
@@ -161,10 +165,10 @@ class EnumTypeInfoTest {
     func testGetInvalid() {
         @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.C1")).getOrThrow()
         @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.E.M1")).getOrThrow()
-        @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.E.M2<Int64>")).getOrThrow()
-        @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.E.M3<Int64, String>")).getOrThrow()
-        @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.E.M4<default.C1>")).getOrThrow()
-        @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.E.M5<default.E.M1>")).getOrThrow()
+        @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.E.M2(Int64)")).getOrThrow()
+        @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.E.M3(Int64, String)")).getOrThrow()
+        @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.E.M4(default.C1)")).getOrThrow()
+        @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.E.M5(default.E.M1)")).getOrThrow()
         @ExpectThrows[IllegalTypeException](EnumTypeInfo.get("default.NotExist")).getOrThrow()
     }
 
@@ -177,15 +181,15 @@ class EnumTypeInfoTest {
     @TestCase
     func testOfInvalid() {
         try {
-            let _: EnumTypeInfo = EnumTypeInfo.of(1)  // must specific type here, otherwise it will call TypeInfo.of(Object): TypeInfo
+            let _: EnumTypeInfo = EnumTypeInfo.of(1) // must specific type here, otherwise it will call TypeInfo.of(Object): TypeInfo
             @Assert(false)
-        } catch(e: IllegalTypeException) {
+        } catch (e: IllegalTypeException) {
             @Expect(e.message.contains("must be an Enum type"))
         }
         try {
             let _: EnumTypeInfo = EnumTypeInfo.of(C1())
             @Assert(false)
-        } catch(e: IllegalTypeException) {
+        } catch (e: IllegalTypeException) {
             @Expect(e.message.contains("must be an Enum type"))
         }
     }
@@ -203,65 +207,65 @@ class EnumTypeInfoTest {
         let inst1 = (e.construct("M1", []) as E).getOrThrow()
         match (inst1) {
             case E.M1 => @Assert(true)
-            case _ => @Assert(false) 
+            case _ => @Assert(false)
         }
 
-        let inst2 = (e.construct("M2<Int64>", [0]) as E).getOrThrow()
+        let inst2 = (e.construct("M2(Int64)", [0]) as E).getOrThrow()
         match (inst2) {
             case E.M2(val) => @Expect(val, 0)
-            case _ => @Assert(false) 
+            case _ => @Assert(false)
         }
 
-        let inst2b = (e.construct("E.M2<Int64>", [1]) as E).getOrThrow()
+        let inst2b = (e.construct("E.M2(Int64)", [1]) as E).getOrThrow()
         match (inst2b) {
             case E.M2(val) => @Expect(val, 1)
             case _ => @Assert(false)
         }
 
-        let inst3 = (e.construct("M3<Int64, String>", [0, "abc"]) as E).getOrThrow()
-        match(inst3) {
+        let inst3 = (e.construct("M3(Int64, String)", [0, "abc"]) as E).getOrThrow()
+        match (inst3) {
             case E.M3(v1, v2) =>
                 @Expect(v1, 0)
                 @Expect(v2, "abc")
-           
-            case _ => @Assert(false) 
+
+            case _ => @Assert(false)
         }
         match (inst3) {
             case E.M3(v1, v2) =>
                 @Expect(v1, 0)
                 @Expect(v2, "abc")
-           
-            case _ => @Assert(false) 
+
+            case _ => @Assert(false)
         }
 
-        let inst4 = (e.construct("M4<default.C1>", [C1()]) as E).getOrThrow()
+        let inst4 = (e.construct("M4(default.C1)", [C1()]) as E).getOrThrow()
         match (inst4) {
             case E.M4(c1) => @Expect(c1.val, 0)
-            case _ => @Assert(false) 
+            case _ => @Assert(false)
         }
 
-        let inst5 = (e.construct("M5<default.E>", [E.M1]) as E).getOrThrow()
-        match(inst5) {
-            case E.M5(e) => match(e) {
-                    case E.M1 => E.M1
-                    case _ => @Assert(false)
+        let inst5 = (e.construct("M5(default.E)", [E.M1]) as E).getOrThrow()
+        match (inst5) {
+            case E.M5(e) => match (e) {
+                case E.M1 => E.M1
+                case _ => @Assert(false)
             }
-            case _ => @Assert(false) 
+            case _ => @Assert(false)
         }
 
         match (inst5) {
-            case E.M5(e) => match(e) {
-                    case E.M1 => E.M1
-                    case _ => @Assert(false)
+            case E.M5(e) => match (e) {
+                case E.M1 => E.M1
+                case _ => @Assert(false)
             }
-            case _ => @Assert(false) 
+            case _ => @Assert(false)
         }
     }
 
     @TestCase
     func testConstruct02() {
         let e = EnumTypeInfo.get("default.E6<default.C1>")
-        let ctor0 = (e.construct("A<default.C1>", [C1()]) as E6<C1>).getOrThrow()
+        let ctor0 = (e.construct("A(default.C1)", [C1()]) as E6<C1>).getOrThrow()
         match (ctor0) {
             case E6<C1>.A(ca) => @Expect(ca.val, 0)
             case _ => @Assert(false)
@@ -277,22 +281,22 @@ class EnumTypeInfoTest {
     func testConstructInvalid() {
         let e = EnumTypeInfo.get("default.E")
 
-        @Expect(@AssertThrows[InvocationTargetException](e.construct("M2<Int64>", [])).message.contains("Failed to construct enum `default.E` with constructor `M2<Int64>`"))
-        @Expect(@AssertThrows[InvocationTargetException](e.construct("M3<Int64, String>", [0])).message.contains("Failed to construct enum `default.E` with constructor `M3<Int64, String>`"))
-        @Expect(@AssertThrows[InvocationTargetException](e.construct("M4<default.C1>", [])).message.contains("Failed to construct enum `default.E` with constructor `M4<default.C1>`"))
-        @Expect(@AssertThrows[InvocationTargetException](e.construct("M5<default.E>", [])).message.contains("Failed to construct enum `default.E` with constructor `M5<default.E>`"))
+        @Expect(@AssertThrows[InvocationTargetException](e.construct("M2(Int64)", [])).message.contains("Failed to construct enum `default.E` with constructor `M2(Int64)`"))
+        @Expect(@AssertThrows[InvocationTargetException](e.construct("M3(Int64, String)", [0])).message.contains("Failed to construct enum `default.E` with constructor `M3(Int64, String)`"))
+        @Expect(@AssertThrows[InvocationTargetException](e.construct("M4(default.C1)", [])).message.contains("Failed to construct enum `default.E` with constructor `M4(default.C1)`"))
+        @Expect(@AssertThrows[InvocationTargetException](e.construct("M5(default.E)", [])).message.contains("Failed to construct enum `default.E` with constructor `M5(default.E)`"))
 
-        @Expect(@AssertThrows[InvocationTargetException](e.construct("M2<Int64>", ["abc"])).message.contains("Argument index 0 expected"))
-        @Expect(@AssertThrows[InvocationTargetException](e.construct("M3<Int64, String>", [0, 123])).message.contains("Argument index 1 expected"))
-        @Expect(@AssertThrows[InvocationTargetException](e.construct("M4<default.C1>", [E.M1])).message.contains("Argument index 0 expected"))
-        @Expect(@AssertThrows[InvocationTargetException](e.construct("M5<default.E>", [C1()])).message.contains("Argument index 0 expected"))
+        @Expect(@AssertThrows[InvocationTargetException](e.construct("M2(Int64)", ["abc"])).message.contains("Argument index 0 expected"))
+        @Expect(@AssertThrows[InvocationTargetException](e.construct("M3(Int64, String)", [0, 123])).message.contains("Argument index 1 expected"))
+        @Expect(@AssertThrows[InvocationTargetException](e.construct("M4(default.C1)", [E.M1])).message.contains("Argument index 0 expected"))
+        @Expect(@AssertThrows[InvocationTargetException](e.construct("M5(default.E)", [C1()])).message.contains("Argument index 0 expected"))
     }
 
     @TestCase
     func testConstructUnknownConstructor() {
         let e = EnumTypeInfo.get("default.E")
         @ExpectThrows[InfoNotFoundException](e.construct("M9", [])).getOrThrow()
-        @ExpectThrows[InfoNotFoundException](e.construct("default.E.M2<Int64>", [0])).getOrThrow()
+        @ExpectThrows[InfoNotFoundException](e.construct("default.E.M2(Int64)", [0])).getOrThrow()
     }
 
     @TestCase
@@ -305,35 +309,35 @@ class EnumTypeInfoTest {
 
         (info, value) = e.destruct(E.M2(42))
         @Expect(info.name, "M2")
-        @Expect(info.qualifiedName, "default.E.M2<Int64>")
+        @Expect(info.qualifiedName, "default.E.M2(Int64)")
         @Expect(value.size, 1)
         @Expect(value[0] as Int64, Some(42))
         @Expect(info == EnumConstructorInfo.of(E.M2(42)))
 
         (info, value) = e.destruct(E.M3(42, "abc"))
         @Expect(info.name, "M3")
-        @Expect(info.qualifiedName, "default.E.M3<Int64, String>")
+        @Expect(info.qualifiedName, "default.E.M3(Int64, String)")
         @Expect(value.size, 2)
         @Expect(value[0] as Int64, Some(42))
         @Expect(value[1] as String, Some("abc"))
 
         (info, value) = e.destruct(E.M4(C1(42)))
         @Expect(info.name, "M4")
-        @Expect(info.qualifiedName, "default.E.M4<default.C1>")
+        @Expect(info.qualifiedName, "default.E.M4(default.C1)")
         @Expect(value.size, 1)
         if (let Some(c1) <- (value[0] as C1)) {
             @Expect(c1.val, 42)
         } else {
-            @Assert(false) 
+            @Assert(false)
         }
 
         (info, value) = e.destruct(E.M5(E.M2(42)))
         @Expect(info.name, "M5")
-        @Expect(info.qualifiedName, "default.E.M5<default.E>")
+        @Expect(info.qualifiedName, "default.E.M5(default.E)")
         @Expect(value.size, 1)
         match ((value[0] as E).getOrThrow()) {
             case E.M2(val) => @Expect(val, 42)
-            case _ => @Assert(false) 
+            case _ => @Assert(false)
         }
     }
 
@@ -351,13 +355,13 @@ class EnumTypeInfoTest {
         let ctors = info.constructors.toArray()
         @Expect(ctors.size, 6)
 
-        let names = Array<String>(ctors.size) { idx => ctors[idx].qualifiedName }
+        let names = Array<String>(ctors.size) {idx => ctors[idx].qualifiedName}
         @Expect(names.contains("default.E.M1"))
-        @Expect(names.contains("default.E.M2<Int64>"))
-        @Expect(names.contains("default.E.M2<Int64, Int64>"))
-        @Expect(names.contains("default.E.M3<Int64, String>"))
-        @Expect(names.contains("default.E.M4<default.C1>"))
-        @Expect(names.contains("default.E.M5<default.E>"))
+        @Expect(names.contains("default.E.M2(Int64)"))
+        @Expect(names.contains("default.E.M2(Int64, Int64)"))
+        @Expect(names.contains("default.E.M3(Int64, String)"))
+        @Expect(names.contains("default.E.M4(default.C1)"))
+        @Expect(names.contains("default.E.M5(default.E)"))
     }
 
     /* func getConstructor(constructor: String, argsCount!: Int64 = 0): EnumConstructInfo */
@@ -369,19 +373,19 @@ class EnumTypeInfoTest {
         @Expect(c1.qualifiedName, "default.E.M1")
 
         var c2 = e.getConstructor("M2", argsCount: 1)
-        @Expect(c2.qualifiedName, "default.E.M2<Int64>")
+        @Expect(c2.qualifiedName, "default.E.M2(Int64)")
 
         c2 = e.getConstructor("M2", argsCount: 2)
-        @Expect(c2.qualifiedName, "default.E.M2<Int64, Int64>")
+        @Expect(c2.qualifiedName, "default.E.M2(Int64, Int64)")
 
         let c3 = e.getConstructor("M3", argsCount: 2)
-        @Expect(c3.qualifiedName, "default.E.M3<Int64, String>")
+        @Expect(c3.qualifiedName, "default.E.M3(Int64, String)")
 
         let c4 = e.getConstructor("M4", argsCount: 1)
-        @Expect(c4.qualifiedName, "default.E.M4<default.C1>")
+        @Expect(c4.qualifiedName, "default.E.M4(default.C1)")
 
         let c5 = e.getConstructor("M5", argsCount: 1)
-        @Expect(c5.qualifiedName, "default.E.M5<default.E>")
+        @Expect(c5.qualifiedName, "default.E.M5(default.E)")
     }
 
     @TestCase
@@ -401,26 +405,25 @@ class EnumConstructorInfoTest {
         @Expect(ctor.name, "N1")
         @Expect(ctor.qualifiedName, "default.E2.N1")
 
-        ctor = EnumConstructorInfo.get("default.E2.N2<Int64>")
+        ctor = EnumConstructorInfo.get("default.E2.N2(Int64)")
         @Expect(ctor.name, "N2")
-        @Expect(ctor.qualifiedName, "default.E2.N2<Int64>")
+        @Expect(ctor.qualifiedName, "default.E2.N2(Int64)")
 
         ctor = EnumConstructorInfo.get("default.E.M1")
         @Expect(ctor.name, "M1")
         @Expect(ctor.qualifiedName, "default.E.M1")
 
-        ctor = EnumConstructorInfo.get("default.E.M3<Int64, String>")
+        ctor = EnumConstructorInfo.get("default.E.M3(Int64, String)")
         @Expect(ctor.name, "M3")
-        @Expect(ctor.qualifiedName, "default.E.M3<Int64, String>")
+        @Expect(ctor.qualifiedName, "default.E.M3(Int64, String)")
 
-        ctor = EnumConstructorInfo.get("default.E.M4<default.C1>")
+        ctor = EnumConstructorInfo.get("default.E.M4(default.C1)")
         @Expect(ctor.name, "M4")
-        @Expect(ctor.qualifiedName, "default.E.M4<default.C1>")
+        @Expect(ctor.qualifiedName, "default.E.M4(default.C1)")
 
-        ctor = EnumConstructorInfo.get("default.E.M5<default.E>")
+        ctor = EnumConstructorInfo.get("default.E.M5(default.E)")
         @Expect(ctor.name, "M5")
-        @Expect(ctor.qualifiedName, "default.E.M5<default.E>")
-
+        @Expect(ctor.qualifiedName, "default.E.M5(default.E)")
     }
     @TestCase
     func testConstructorsProperty() {
@@ -438,9 +441,9 @@ class EnumConstructorInfoTest {
                 hasA = true
             } else if (ctor.qualifiedName.endsWith(".B")) {
                 hasB1 = true
-            } else if (ctor.qualifiedName.endsWith(".B<Int64>")) {
+            } else if (ctor.qualifiedName.endsWith(".B(Int64)")) {
                 hasB2 = true
-            } else if (ctor.qualifiedName.endsWith(".B<Int64, String>")) {
+            } else if (ctor.qualifiedName.endsWith(".B(Int64, String)")) {
                 hasB3 = true
             } else if (ctor.qualifiedName.endsWith(".C")) {
                 hasC = true
@@ -456,7 +459,7 @@ class EnumConstructorInfoTest {
     @TestCase
     func testConstructorInfoProperties() {
         let ctorA = EnumConstructorInfo.get("default.EAnno.A")
-        let ctorB = EnumConstructorInfo.get("default.EAnno.B<Int64, String>")
+        let ctorB = EnumConstructorInfo.get("default.EAnno.B(Int64, String)")
         @Expect(ctorA.enumTypeInfo.qualifiedName, "default.EAnno")
         @Expect(ctorB.enumTypeInfo.qualifiedName, "default.EAnno")
         @Expect(ctorA.parameters.size, 0)
@@ -466,7 +469,7 @@ class EnumConstructorInfoTest {
         @Expect(ctorA.name, "A")
         @Expect(ctorB.name, "B")
         @Expect(ctorA.qualifiedName.endsWith(".A"))
-        @Expect(ctorB.qualifiedName.endsWith(".B<Int64, String>"))
+        @Expect(ctorB.qualifiedName.endsWith(".B(Int64, String)"))
         @Expect(ctorB.toString(), ctorB.qualifiedName)
 
         @Expect(ctorA.findAllAnnotations<TagA>().size, 1)
@@ -496,7 +499,7 @@ class EnumConstructorInfoTest {
         @Expect(values[1] as String, Some("ok"))
 
         let ctorFromInst = EnumConstructorInfo.of(inst)
-        let ctorFromGet = EnumConstructorInfo.get("default.EAnno.B<Int64, String>")
+        let ctorFromGet = EnumConstructorInfo.get("default.EAnno.B(Int64, String)")
         @Expect(ctorFromInst == ctorB)
         @Expect(ctorFromGet == ctorB)
         @Expect(ctorFromInst.hashCode(), ctorB.hashCode())
@@ -536,7 +539,6 @@ class EnumConstructorInfoTest {
         @ExpectThrows[IllegalTypeException](EnumConstructorInfo.get("EAnno")).getOrThrow()
     }
 
-    @Skip
     @TestCase
     func testConstructorOfInvalid() {
         @ExpectThrows[IllegalTypeException](EnumConstructorInfo.of(1)).getOrThrow()
@@ -545,7 +547,7 @@ class EnumConstructorInfoTest {
 
     @TestCase
     func testConstructorApplyInvalid() {
-        let ctorB = EnumConstructorInfo.get("default.EAnno.B<Int64, String>")
+        let ctorB = EnumConstructorInfo.get("default.EAnno.B(Int64, String)")
         let countErr = @ExpectThrows[InvocationTargetException](ctorB.apply([1])).getOrThrow()
         @Expect(countErr.message.contains("expected 2"))
         let typeErr = @ExpectThrows[InvocationTargetException](ctorB.apply([1, 2])).getOrThrow()
@@ -580,6 +582,13 @@ class EnumConstructorInfoTest {
         @Expect(c1 == c1)
         @Expect(c1 == c2, false)
     }
+
+    @TestCase
+    func testGetWithLambda() {
+        let t1 = EnumConstructorInfo.get("default.E7.B(Closure<(Int64) -> Bool>)")
+        let t2 = EnumTypeInfo.get("default.E7").construct("B(Closure<(Int64) -> Bool>)", [{x: Int64 => x > 0}])
+        @Expect(t1, EnumConstructorInfo.of(t2))
+    }
 }
 
 func constructorSignature(ctor: EnumConstructorInfo): String {
@@ -588,14 +597,14 @@ func constructorSignature(ctor: EnumConstructorInfo): String {
     }
     let sb = StringBuilder()
     sb.append(ctor.name)
-    sb.append("<")
+    sb.append("(")
     for (idx in 0..ctor.parameters.size) {
         sb.append(ctor.parameters[idx].qualifiedName)
         if (idx < ctor.parameters.size - 1) {
             sb.append(", ")
         }
     }
-    sb.append(">")
+    sb.append(")")
     sb.toString()
 }
 
@@ -696,19 +705,16 @@ func verifyNestedNonRefCase1(values: ReadOnlyList<Any>, expectedBool: Bool, expe
 func verifySelfCycleSome(values: ReadOnlyList<Any>, expectedInt64: Int64): Unit {
     @Expect(values.size, 1)
     match (values[0]) {
-        case opt: ?SelfCycle =>
-            match (opt) {
-                case Some(v) =>
-                    let innerCtor = EnumConstructorInfo.of(v)
-                    @Expect(innerCtor.name, "case2")
-                    let innerValues = innerCtor.getAssociatedValues(v)
-                    @Expect(innerValues.size, 1)
-                    @Expect(innerValues[0] as Int64, expectedInt64)
-                case None =>
-                    @Expect(false)
-            }
-        case _ =>
-            @Expect(false)
+        case opt: ?SelfCycle => match (opt) {
+            case Some(v) =>
+                let innerCtor = EnumConstructorInfo.of(v)
+                @Expect(innerCtor.name, "case2")
+                let innerValues = innerCtor.getAssociatedValues(v)
+                @Expect(innerValues.size, 1)
+                @Expect(innerValues[0] as Int64, expectedInt64)
+            case None => @Expect(false)
+        }
+        case _ => @Expect(false)
     }
 }
 
@@ -870,8 +876,8 @@ class EnumTypeInfoTests {
         @Expect(case2.parameters[0].qualifiedName, TypeInfo.of<Int32>().qualifiedName)
         @Expect(case3.parameters[0].qualifiedName, TypeInfo.of<Int32>().qualifiedName)
 
-        let args = Array<Any>(3) { idx =>
-            match (idx) {
+        let args = Array<Any>(3) {
+            idx => match (idx) {
                 case 0 => Int64(12)
                 case 1 => true
                 case _ => 1.25f32
@@ -953,8 +959,8 @@ class EnumTypeInfoTests {
         let case1 = info.getConstructor("case1", argsCount: 2)
         @Expect(case1.parameters[0].qualifiedName, TypeInfo.of<Bool>().qualifiedName)
         @Expect(case1.parameters[1].qualifiedName, TypeInfo.of<Int64>().qualifiedName)
-        let args = Array<Any>(2) { idx =>
-            match (idx) {
+        let args = Array<Any>(2) {
+            idx => match (idx) {
                 case 0 => false
                 case _ => Int64(9)
             }
@@ -1059,18 +1065,15 @@ class EnumTypeInfoTests {
         @Expect(ctor.name, "case1")
         @Expect(values.size, 1)
         match (values[0]) {
-            case opt: ?SelfCycle =>
-                match (opt) {
-                    case Some(v) =>
-                        let (innerCtor, innerValues) = info.destruct(v)
-                        @Expect(innerCtor.name, "case2")
-                        @Expect(innerValues.size, 1)
-                        @Expect(innerValues[0] as Int64, Int64(42))
-                    case None =>
-                        @Expect(false, true)
-                }
-            case _ =>
-                @Expect(false, true)
+            case opt: ?SelfCycle => match (opt) {
+                case Some(v) =>
+                    let (innerCtor, innerValues) = info.destruct(v)
+                    @Expect(innerCtor.name, "case2")
+                    @Expect(innerValues.size, 1)
+                    @Expect(innerValues[0] as Int64, Int64(42))
+                case None => @Expect(false, true)
+            }
+            case _ => @Expect(false, true)
         }
     }
 
@@ -1091,21 +1094,21 @@ class EnumTypeInfoTests {
         exerciseEnumPublicInterfaces<NonExhaustiveUnassociatedGeneric<Int64>>(nonExhaustiveGeneric.toArray())
 
         let nonExhaustiveAssociated = ArrayList<EnumCtorSpec>()
-        let case1Args = Array<Any>(3) { idx =>
-            match (idx) {
+        let case1Args = Array<Any>(3) {
+            idx => match (idx) {
                 case 0 => Int64(12)
                 case 1 => true
                 case _ => 1.25f32
             }
         }
-        nonExhaustiveAssociated.add(EnumCtorSpec("Case1", case1Args, { values =>
-            verifyInt64BoolFloat32(values, Int64(12), true, 1.25f32)
+        nonExhaustiveAssociated.add(EnumCtorSpec("Case1", case1Args, {
+            values => verifyInt64BoolFloat32(values, Int64(12), true, 1.25f32)
         }))
-        nonExhaustiveAssociated.add(EnumCtorSpec("Case2", Array<Any>(1, repeat: Int32(7)), { values =>
-            verifySingleInt32(values, Int32(7))
+        nonExhaustiveAssociated.add(EnumCtorSpec("Case2", Array<Any>(1, repeat: Int32(7)), {
+            values => verifySingleInt32(values, Int32(7))
         }))
-        nonExhaustiveAssociated.add(EnumCtorSpec("Case3", Array<Any>(1, repeat: Int32(9)), { values =>
-            verifySingleInt32(values, Int32(9))
+        nonExhaustiveAssociated.add(EnumCtorSpec("Case3", Array<Any>(1, repeat: Int32(9)), {
+            values => verifySingleInt32(values, Int32(9))
         }))
         exerciseEnumPublicInterfaces<NonExhaustiveAssociated>(nonExhaustiveAssociated.toArray())
 
@@ -1125,43 +1128,44 @@ class EnumTypeInfoTests {
         let exhaustiveUnassociatedGenericPair = ArrayList<EnumCtorSpec>()
         exhaustiveUnassociatedGenericPair.add(EnumCtorSpec("A", Array<Any>(), verifyEmpty))
         exhaustiveUnassociatedGenericPair.add(EnumCtorSpec("B", Array<Any>(), verifyEmpty))
-        exerciseEnumPublicInterfaces<ExhaustiveUnassociatedGenericPair<Int64>>(exhaustiveUnassociatedGenericPair.toArray())
+        exerciseEnumPublicInterfaces<ExhaustiveUnassociatedGenericPair<Int64>>(
+            exhaustiveUnassociatedGenericPair.toArray())
 
         let optionLikeRef = ArrayList<EnumCtorSpec>()
         optionLikeRef.add(EnumCtorSpec("Case1", Array<Any>(), verifyEmpty))
-        optionLikeRef.add(EnumCtorSpec("Case2", Array<Any>(1, repeat: "payload"), { values =>
-            verifySingleString(values, "payload")
+        optionLikeRef.add(EnumCtorSpec("Case2", Array<Any>(1, repeat: "payload"), {
+            values => verifySingleString(values, "payload")
         }))
         exerciseEnumPublicInterfaces<ExhaustiveAssociatedOptionLikeRef>(optionLikeRef.toArray())
 
         let optionLikeNonRef = ArrayList<EnumCtorSpec>()
         optionLikeNonRef.add(EnumCtorSpec("case1", Array<Any>(), verifyEmpty))
-        optionLikeNonRef.add(EnumCtorSpec("case2", Array<Any>(1, repeat: MyStruct()), { values =>
-            verifySingleStruct(values, TypeInfo.of<MyStruct>().qualifiedName)
+        optionLikeNonRef.add(EnumCtorSpec("case2", Array<Any>(1, repeat: MyStruct()), {
+            values => verifySingleStruct(values, TypeInfo.of<MyStruct>().qualifiedName)
         }))
         exerciseEnumPublicInterfaces<ExhaustiveAssociatedOptionLikeNonRef>(optionLikeNonRef.toArray())
 
         let nonRefAssociated = ArrayList<EnumCtorSpec>()
-        nonRefAssociated.add(EnumCtorSpec("case1", Array<Any>(2) { idx =>
-            match (idx) {
+        nonRefAssociated.add(EnumCtorSpec("case1", Array<Any>(2) {
+            idx => match (idx) {
                 case 0 => false
                 case _ => Int64(9)
             }
-        }, { values =>
-            verifyBoolInt64(values, false, Int64(9))
+        }, {
+            values => verifyBoolInt64(values, false, Int64(9))
         }))
-        nonRefAssociated.add(EnumCtorSpec("Case2", Array<Any>(1, repeat: 2.5f32), { values =>
-            verifySingleFloat32(values, 2.5f32)
+        nonRefAssociated.add(EnumCtorSpec("Case2", Array<Any>(1, repeat: 2.5f32), {
+            values => verifySingleFloat32(values, 2.5f32)
         }))
-        nonRefAssociated.add(EnumCtorSpec("Case3", Array<Any>(1, repeat: Int8(7)), { values =>
-            verifySingleInt8(values, Int8(7))
+        nonRefAssociated.add(EnumCtorSpec("Case3", Array<Any>(1, repeat: Int8(7)), {
+            values => verifySingleInt8(values, Int8(7))
         }))
         exerciseEnumPublicInterfaces<ExhaustiveAssociatedNonRef>(nonRefAssociated.toArray())
 
         let optionLikeGeneric = ArrayList<EnumCtorSpec>()
         optionLikeGeneric.add(EnumCtorSpec("case1", Array<Any>(), verifyEmpty))
-        optionLikeGeneric.add(EnumCtorSpec("case2", Array<Any>(1, repeat: Int64(123)), { values =>
-            verifySingleInt64(values, Int64(123))
+        optionLikeGeneric.add(EnumCtorSpec("case2", Array<Any>(1, repeat: Int64(123)), {
+            values => verifySingleInt64(values, Int64(123))
         }))
         exerciseEnumPublicInterfaces<ExhaustiveAssociatedOptionLikeGeneric<Int64>>(optionLikeGeneric.toArray())
 
@@ -1171,36 +1175,43 @@ class EnumTypeInfoTests {
         exerciseEnumPublicInterfaces<NestedChild>(nestedChild.toArray())
 
         let nestedParent = ArrayList<EnumCtorSpec>()
-        nestedParent.add(EnumCtorSpec("case1", Array<Any>(1, repeat: NestedChild.A), { values =>
-            verifyNestedChild(values, "A")
+        nestedParent.add(EnumCtorSpec("case1", Array<Any>(1, repeat: NestedChild.A), {
+            values => verifyNestedChild(values, "A")
         }))
         let nestedInner = ExhaustiveAssociatedNonRef.case1(true, Int64(7))
-        nestedParent.add(EnumCtorSpec("case2", Array<Any>(1, repeat: nestedInner), { values =>
-            verifyNestedNonRefCase1(values, true, Int64(7))
+        nestedParent.add(EnumCtorSpec("case2", Array<Any>(1, repeat: nestedInner), {
+            values => verifyNestedNonRefCase1(values, true, Int64(7))
         }))
         exerciseEnumPublicInterfaces<NestedParent>(nestedParent.toArray())
 
         let comboEnum = ArrayList<EnumCtorSpec>()
-        comboEnum.add(EnumCtorSpec("case1", Array<Any>(2) { idx =>
-            match (idx) {
-                case 0 => ExhaustiveUnassociated.B
-                case _ => NestedChild.B
-            }
-        }, { values =>
-            @Expect(values.size, 2)
-            @Expect(EnumConstructorInfo.of(values[0]).name, "B")
-            @Expect(EnumConstructorInfo.of(values[1]).name, "B")
-        }))
+        comboEnum.add(
+            EnumCtorSpec(
+                "case1",
+                Array<Any>(2) {
+                    idx => match (idx) {
+                        case 0 => ExhaustiveUnassociated.B
+                        case _ => NestedChild.B
+                    }
+                },
+                {
+                    values =>
+                        @Expect(values.size, 2)
+                        @Expect(EnumConstructorInfo.of(values[0]).name, "B")
+                        @Expect(EnumConstructorInfo.of(values[1]).name, "B")
+                }
+            )
+        )
         comboEnum.add(EnumCtorSpec("case2", Array<Any>(), verifyEmpty))
         exerciseEnumPublicInterfaces<ComboEnum>(comboEnum.toArray())
 
         let selfCycle = ArrayList<EnumCtorSpec>()
         let selfInner = SelfCycle.case2(Int64(42))
-        selfCycle.add(EnumCtorSpec("case1", Array<Any>(1, repeat: Some(selfInner)), { values =>
-            verifySelfCycleSome(values, Int64(42))
+        selfCycle.add(EnumCtorSpec("case1", Array<Any>(1, repeat: Some(selfInner)), {
+            values => verifySelfCycleSome(values, Int64(42))
         }))
-        selfCycle.add(EnumCtorSpec("case2", Array<Any>(1, repeat: Int64(5)), { values =>
-            verifySingleInt64(values, Int64(5))
+        selfCycle.add(EnumCtorSpec("case2", Array<Any>(1, repeat: Int64(5)), {
+            values => verifySingleInt64(values, Int64(5))
         }))
         exerciseEnumPublicInterfaces<SelfCycle>(selfCycle.toArray())
     }
