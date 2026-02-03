@@ -32,8 +32,11 @@ Unit type: Unit
 Nothing type: Nothing
 C pointer type string: CPointer<Int32>
 Reference type string: Int32&
+C pointer type: CPointer<Int32>
 Element type: Int32
+Reference type: Int32&
 Base type: Int32
+Reference type: Int32&&
 After stripping refs: Int32
 */
 
@@ -142,7 +145,8 @@ main() {
     // ===== Type.stripAllRefs().toString() test =====
     let intType7 = IntType.getInt32()
     let refType4 = RefType.get(intType7)
-    let baseType2 = refType4.stripAllRefs()
-    println("Reference type: ${refType4.toString()}")
+    let refType5 = RefType.get(refType4)
+    let baseType2 = refType5.stripAllRefs()
+    println("Reference type: ${refType5.toString()}")
     println("After stripping refs: ${baseType2.toString()}")
 }
