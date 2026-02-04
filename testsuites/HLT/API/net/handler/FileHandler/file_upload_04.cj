@@ -27,7 +27,7 @@ public class TestFileHandler {
     let client = ClientBuilder().build()
 
     public func startServer(): Unit {
-        server.distributor.register("/upload/tmp", FileHandler("./", handlerType: UpLoad))
+        server.distributor.register("/upload", FileHandler("./", handlerType: UpLoad))
 
         spawn {
             server.serve()
