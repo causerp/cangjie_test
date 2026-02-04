@@ -17,5 +17,6 @@ cjdb,cjdb --no-use-colors loop_expression021,loop_expression021
 b,b 10,loop_expression021.cj:10
 AOT r,r,-> 10
 n,n,-> 12
+n,n,-> 13
 n,n,-> 14
 q,q,
