@@ -13,7 +13,7 @@
 import std.math.*
 import std.collection.*
 
-main(): Int32 {
+main(): Int64 {
     var count = 0
 
     var arr1: Array<Rune> = Array<Rune>(1024, repeat: r'A')

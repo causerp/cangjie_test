@@ -12,7 +12,7 @@
 
 import std.math.*
 
-main(): Int32 {
+main(): Int64 {
     var strb1 = StringBuilder()
     if (strb1.size != 0) {
         return 1

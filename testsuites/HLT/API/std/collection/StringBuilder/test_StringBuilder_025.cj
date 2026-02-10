@@ -12,7 +12,7 @@
 
 import std.math.*
 
-unsafe main(): Int32 {
+unsafe main(): Int64 {
     var strb = StringBuilder([r'b', r' ', r'c', r'戸', r'E', r'@', r'。', r'a', r',', r'\''])
     var arr1: Array<UInt8> = [9, 32]
     strb.appendFromUtf8(Array<UInt8>())
