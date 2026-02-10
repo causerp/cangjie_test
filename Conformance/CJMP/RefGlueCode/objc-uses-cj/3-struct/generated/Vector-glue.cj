@@ -11,27 +11,37 @@ import interoplib.objc.*
 
 @C
 public func CJImpl_ObjC_cjworld_Vector_dot(registryId: RegistryId, anotherRegistryId: RegistryId): Int64 {
-    getFromRegistryById<Vector>(registryId).dot(
-        getFromRegistryById<Vector>(anotherRegistryId)
-    )
+    unsafe {
+        getFromRegistryById<Vector>(registryId).dot(
+            getFromRegistryById<Vector>(anotherRegistryId)
+        )
+    }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_Vector_initCJObject(x: Int32, y:Int32): RegistryId {
-    putToRegistry(Vector(x, y))
+    unsafe {
+        putToRegistry(Vector(x, y))
+    }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_Vector_X_get(registryId: RegistryId): Int32 {
-    getFromRegistryById<Vector>(registryId).x
+    unsafe {
+        getFromRegistryById<Vector>(registryId).x
+    }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_Vector_Y_get(registryId: RegistryId): Int32 {
-    getFromRegistryById<Vector>(registryId).y
+    unsafe {
+        getFromRegistryById<Vector>(registryId).y
+    }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_Vector_deleteCJObject(registryId: RegistryId): Unit {
-    removeFromRegistry(registryId)
+    unsafe {
+        removeFromRegistry(registryId)
+    }
 }

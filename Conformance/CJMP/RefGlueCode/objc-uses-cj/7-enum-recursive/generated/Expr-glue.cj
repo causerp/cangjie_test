@@ -12,31 +12,31 @@ import interoplib.objc.*
 @C
 public func CJImpl_ObjC_api_Expr_NumInitCJObject(p1: Int64): RegistryId {
     let exprNum = Expr.Num(p1)
-    putToRegistry(exprNum)
+    unsafe { putToRegistry(exprNum) }
 }
 
 @C
 public func CJImpl_ObjC_api_Expr_AddInitCJObject(registryIdL: RegistryId, registryIdR: RegistryId): RegistryId {
-    let exprL = getFromRegistryById<Expr>(registryIdL)
-    let exprR = getFromRegistryById<Expr>(registryIdR)
+    let exprL = unsafe { getFromRegistryById<Expr>(registryIdL) }
+    let exprR = unsafe { getFromRegistryById<Expr>(registryIdR) }
     let exprAdd = Expr.Add(exprL, exprR)
-    putToRegistry(exprAdd)
+    unsafe { putToRegistry(exprAdd) }
 }
 
 @C
 public func CJImpl_ObjC_api_Expr_SubInitCJObject(registryIdL: RegistryId, registryIdR: RegistryId): RegistryId {
-    let exprL = getFromRegistryById<Expr>(registryIdL)
-    let exprR = getFromRegistryById<Expr>(registryIdR)
+    let exprL = unsafe { getFromRegistryById<Expr>(registryIdL) }
+    let exprR = unsafe { getFromRegistryById<Expr>(registryIdR) }
     let exprSub = Expr.Sub(exprL, exprR)
-    putToRegistry(exprSub)
+    unsafe { putToRegistry(exprSub) }
 }
 
 @C
 public func CJImpl_ObjC_api_Expr_deleteCJObject(registryId: RegistryId): Unit {
-    removeFromRegistry(registryId)
+    unsafe { removeFromRegistry(registryId) }
 }
 
 @C
 public func CJImpl_ObjC_api_CJEval(registryId: RegistryId): Unit {
-    CJEval(getFromRegistryById<Expr>(registryId))
+    CJEval(unsafe { getFromRegistryById<Expr>(registryId) } )
 }

@@ -13,8 +13,8 @@ import objc.lang.*
 // and the CJMirror is created using initWithRegistryId constructor.
 // RC++ is not performed for ObjC object and resulted twins pair does not follow the DistributedGC workflow.
 func objcObjForPureCJ(cjA: A): NativeObjCId {
-    let id = putToRegistry(cjA)
     unsafe {
+        let id = putToRegistry(cjA)
         CFunc<(NativeObjCId, NativeObjCSel, RegistryId) -> NativeObjCId>(objCMsgSend())(alloc("A"), registerName("initWithRegistryId:"), id)
     }
 }
@@ -50,8 +50,8 @@ class A_fwd <: A {
         synchronized(mtx) {
             if (cjFinalizable) { // backOnTrack also known as TransitionIII
                 cjFinalizable = false
-                let id = putToRegistry(this)
                 unsafe {
+                    let id = putToRegistry(this)
                     CFunc<(NativeObjCId, NativeObjCSel, RegistryId) -> NativeObjCId>(objCMsgSend())(obj, registerName("reinitWithRegistryId:"), id)
                 }
             } else {
@@ -67,10 +67,10 @@ class A_fwd <: A {
 
     public override func fooI64(): Int64 {
         if ((overrideMask & (1 << 0)) != 0) {
-            withAutoreleasePool<Int64> { =>
-                unsafe {
+            unsafe {
+                withAutoreleasePool<Int64>( { =>
                     CFunc<(NativeObjCId, NativeObjCSel) -> Int64>(objCMsgSend())(objcObjAutoreleased(), registerName("fooI64"))
-                }
+                })
             }
         } else {
             fooI64Impl()
@@ -84,49 +84,49 @@ class A_fwd <: A {
 
 @C
 public func CJImpl_ObjC_cjworld_A_initl(obj: NativeObjCId, overrideMask: UInt64, x: Int64): RegistryId {
-    let id = putToRegistry(A_fwd(obj, overrideMask, x))
+    let id = unsafe { putToRegistry(A_fwd(obj, overrideMask, x)) }
     println("[CJ]: A.init(${id}, ${overrideMask}, ${x})")
     id
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_initll(obj: NativeObjCId, overrideMask: UInt64, x: Int64, y: Int64): RegistryId {
-    let id = putToRegistry(A_fwd(obj, overrideMask, x, y))
+    let id = unsafe { putToRegistry(A_fwd(obj, overrideMask, x, y)) }
     println("[CJ]: A.init(${id}, ${overrideMask}, ${x}, ${y})")
     id
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_lockCJObjectFwd(registryId: RegistryId): Unit {
-    getFromRegistryById<A_fwd>(registryId).mtx.lock()
+    unsafe { getFromRegistryById<A_fwd>(registryId).mtx.lock() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_unlockCJObjectFwd(registryId: RegistryId): Unit {
-    getFromRegistryById<A_fwd>(registryId).mtx.unlock()
+    unsafe { getFromRegistryById<A_fwd>(registryId).mtx.unlock() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_deleteCJObjectFwd(registryId: RegistryId): Unit {
     //println("[CJ]: A.deleteCJObjectFwd(${registryId})")
-    let fwd = getFromRegistryById<A_fwd>(registryId)
+    let fwd = unsafe { getFromRegistryById<A_fwd>(registryId) }
     fwd.cjFinalizable = true
-    removeFromRegistry(registryId)
+    unsafe { removeFromRegistry(registryId) }
     fwd.mtx.unlock()
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_deleteCJObject(registryId: RegistryId): Unit {
     //println("[CJ]: A.deleteCJObject(${registryId})")
-    removeFromRegistry(registryId)
+    unsafe { removeFromRegistry(registryId) }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_fooI64(registryId: RegistryId): Int64 {
-    getFromRegistryById<A>(registryId).fooI64()
+    unsafe { getFromRegistryById<A>(registryId).fooI64() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_fwd_fooI64(registryId: RegistryId): Int64 {
-    getFromRegistryById<A_fwd>(registryId).fooI64Impl()
+    unsafe { getFromRegistryById<A_fwd>(registryId).fooI64Impl() }
 }

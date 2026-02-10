@@ -13,8 +13,8 @@ import objc.lang.*
 // and the CJMirror is created using initWithRegistryId constructor.
 // RC++ is not performed for ObjC object and resulted twins pair does not follow the DistributedGC workflow.
 func objcObjForPureCJ(cjA: A): NativeObjCId {
-    let id = putToRegistry(cjA)
     unsafe {
+        let id = putToRegistry(cjA)
         CFunc<(NativeObjCId, NativeObjCSel, RegistryId) -> NativeObjCId>(objCMsgSend())(alloc("A"), registerName("initWithRegistryId:"), id)
     }
 }
@@ -45,8 +45,8 @@ class A_fwd <: A {
         synchronized(mtx) {
             if (cjFinalizable) { // backOnTrack also known as TransitionIII
                 cjFinalizable = false
-                let id = putToRegistry(this)
                 unsafe {
+                    let id = putToRegistry(this)
                     CFunc<(NativeObjCId, NativeObjCSel, RegistryId) -> NativeObjCId>(objCMsgSend())(obj, registerName("reinitWithRegistryId:"), id)
                 }
             } else {
@@ -62,10 +62,10 @@ class A_fwd <: A {
 
     public override func fooVirtual(): Unit {
         if ((overrideMask & (1 << 0)) != 0) {
-            withAutoreleasePool<Unit> { =>
-                unsafe {
+            unsafe {
+                withAutoreleasePool<Unit>({ =>
                     CFunc<(NativeObjCId, NativeObjCSel) -> Unit>(objCMsgSend())(objCAutorelease(objcObj()), registerName("fooVirtual"))
-                }
+                })
             }
         } else {
             fooVirtualImpl()
@@ -73,10 +73,10 @@ class A_fwd <: A {
     }
     public override func callFooVirtual(): Unit {
         if ((overrideMask & (1 << 1)) != 0) {
-            withAutoreleasePool<Unit> { =>
-                unsafe {
+            unsafe {
+                withAutoreleasePool<Unit>({ =>
                     CFunc<(NativeObjCId, NativeObjCSel) -> Unit>(objCMsgSend())(objCAutorelease(objcObj()), registerName("callFooVirtual"))
-                }
+                })
             }
         } else {
             callFooVirtualImpl()
@@ -84,10 +84,10 @@ class A_fwd <: A {
     }
     public override func fooI32(): Int32 {
         if ((overrideMask & (1 << 2)) != 0) {
-            withAutoreleasePool<Int32> { =>
-                unsafe {
+            unsafe {
+                withAutoreleasePool<Int32>({ =>
                     CFunc<(NativeObjCId, NativeObjCSel) -> Int32>(objCMsgSend())(objCAutorelease(objcObj()), registerName("fooI32"))
-                }
+                })
             }
         } else {
             fooI32Impl()
@@ -95,26 +95,27 @@ class A_fwd <: A {
     }
     public override func fooA(): A {
         if ((overrideMask & (1 << 3)) != 0) {
-            let objcA = withAutoreleasePool<NativeObjCId> { =>
-                unsafe {
+            unsafe {
+                let objcA = withAutoreleasePool<NativeObjCId>({ =>
                     CFunc<(NativeObjCId, NativeObjCSel) -> NativeObjCId>(objCMsgSend())(objCAutorelease(objcObj()), registerName("fooA"))
-                }
+                })
+                getFromRegistryByNativeHandle<A>(objcA)
             }
-            getFromRegistryByNativeHandle<A>(objcA)
         } else {
             fooAImpl()
         }
     }
     public override func paramA(cjA: A): Unit {
         if ((overrideMask & (1 << 4)) != 0) {
-            withAutoreleasePool<Unit> { =>
-                let objcA = match(cjA as A_fwd) {
-                    case Some(a_fwd) => objCAutorelease(a_fwd.objcObj())
-                    case None => objCAutorelease(objcObjForPureCJ(cjA))
-                }
-                unsafe {
+            unsafe {
+                withAutoreleasePool<Unit>({ =>
+                    let objcA = match(cjA as A_fwd) {
+                        case Some(a_fwd) => objCAutorelease(a_fwd.objcObj())
+                        case None => objCAutorelease(objcObjForPureCJ(cjA))
+                    }
+                
                     CFunc<(NativeObjCId, NativeObjCSel, NativeObjCId) -> Unit>(objCMsgSend())(objCAutorelease(objcObj()), registerName("paramA:"), objcA)
-                }
+                })
             }
         } else {
             paramAImpl(cjA)
@@ -144,69 +145,71 @@ class A_fwd <: A {
 
 @C
 public func CJImpl_ObjC_cjworld_A_init(obj: NativeObjCId, overrideMask: UInt64): RegistryId {
-    let id = putToRegistry(A_fwd(obj, overrideMask))
+    let id = unsafe { putToRegistry(A_fwd(obj, overrideMask)) }
     println("[CJ]: A.init(${id}, ${overrideMask})")
     id
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_lockCJObjectFwd(registryId: RegistryId): Unit {
-    getFromRegistryById<A_fwd>(registryId).mtx.lock()
+    unsafe { getFromRegistryById<A_fwd>(registryId).mtx.lock() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_unlockCJObjectFwd(registryId: RegistryId): Unit {
-    getFromRegistryById<A_fwd>(registryId).mtx.unlock()
+    unsafe { getFromRegistryById<A_fwd>(registryId).mtx.unlock() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_deleteCJObjectFwd(registryId: RegistryId): Unit {
-    //println("[CJ]: A.deleteCJObjectFwd(${registryId})")
-    let fwd = getFromRegistryById<A_fwd>(registryId)
-    fwd.cjFinalizable = true
-    removeFromRegistry(registryId)
-    fwd.mtx.unlock()
+    unsafe {
+        //println("[CJ]: A.deleteCJObjectFwd(${registryId})")
+        let fwd = getFromRegistryById<A_fwd>(registryId)
+        fwd.cjFinalizable = true
+        removeFromRegistry(registryId)
+        fwd.mtx.unlock()
+    }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_deleteCJObject(registryId: RegistryId): Unit {
     //println("[CJ]: A.deleteCJObject(${registryId})")
-    removeFromRegistry(registryId)
+    unsafe { removeFromRegistry(registryId) }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_fooVirtual(registryId: RegistryId): Unit {
-    getFromRegistryById<A>(registryId).fooVirtual()
+    unsafe { getFromRegistryById<A>(registryId).fooVirtual() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_fwd_fooVirtual(registryId: RegistryId): Unit {
-    getFromRegistryById<A_fwd>(registryId).fooVirtualImpl()
+    unsafe { getFromRegistryById<A_fwd>(registryId).fooVirtualImpl() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_callFooVirtual(registryId: RegistryId): Unit {
-    getFromRegistryById<A>(registryId).callFooVirtual()
+    unsafe { getFromRegistryById<A>(registryId).callFooVirtual() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_fwd_callFooVirtual(registryId: RegistryId): Unit {
-    getFromRegistryById<A_fwd>(registryId).callFooVirtualImpl()
+    unsafe { getFromRegistryById<A_fwd>(registryId).callFooVirtualImpl() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_fooI32(registryId: RegistryId): Int32 {
-    getFromRegistryById<A>(registryId).fooI32()
+    unsafe { getFromRegistryById<A>(registryId).fooI32() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_fwd_fooI32(registryId: RegistryId): Int32 {
-    getFromRegistryById<A_fwd>(registryId).fooI32Impl()
+    unsafe { getFromRegistryById<A_fwd>(registryId).fooI32Impl() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_fooA(registryId: RegistryId): NativeObjCId {
-    let cjA = getFromRegistryById<A>(registryId).fooA()
+    let cjA = unsafe { getFromRegistryById<A>(registryId).fooA() }
     match(cjA as A_fwd) {
         case Some(a_fwd) => a_fwd.objcObj() // to transit the ownership: at ObjC side (in A.h) A.fooA is marked with __attribute((ns_returns_retained)
         case None => objcObjForPureCJ(cjA)
@@ -215,7 +218,7 @@ public func CJImpl_ObjC_cjworld_A_fooA(registryId: RegistryId): NativeObjCId {
 
 @C
 public func CJImpl_ObjC_cjworld_A_fwd_fooA(registryId: RegistryId): NativeObjCId {
-    let cjA = getFromRegistryById<A_fwd>(registryId).fooAImpl()
+    let cjA = unsafe { getFromRegistryById<A_fwd>(registryId).fooAImpl() }
     match(cjA as A_fwd) {
         case Some(a_fwd) => a_fwd.objcObj() // to transit the ownership: at ObjC side (in A.h) A.fooA is marked with __attribute((ns_returns_retained)
         case None => objcObjForPureCJ(cjA)
@@ -224,12 +227,16 @@ public func CJImpl_ObjC_cjworld_A_fwd_fooA(registryId: RegistryId): NativeObjCId
 
 @C
 public func CJImpl_ObjC_cjworld_A_paramA(registryId: RegistryId, aRegistryId: RegistryId): Unit {
-    let cjA = getFromRegistryById<A>(aRegistryId) // it's OK if cjA is actually of A_fwd type
-    getFromRegistryById<A>(registryId).paramA(cjA)
+    unsafe {
+        let cjA = getFromRegistryById<A>(aRegistryId) // it's OK if cjA is actually of A_fwd type
+        getFromRegistryById<A>(registryId).paramA(cjA)
+    }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_A_fwd_paramA(registryId: RegistryId, aRegistryId: RegistryId): Unit {
-    let cjA = getFromRegistryById<A>(aRegistryId) // it's OK if cjA is actually of A_fwd type
-    getFromRegistryById<A_fwd>(registryId).paramAImpl(cjA)
+    unsafe {
+        let cjA = getFromRegistryById<A>(aRegistryId) // it's OK if cjA is actually of A_fwd type
+        getFromRegistryById<A_fwd>(registryId).paramAImpl(cjA)
+    }
 }
