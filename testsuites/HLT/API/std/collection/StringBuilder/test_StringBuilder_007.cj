@@ -13,7 +13,7 @@
 import std.math.*
 import std.collection.*
 
-main(): Int32 {
+main(): Int64 {
     var strb4 = StringBuilder("")
     if (strb4.size != 0) {
         return 4

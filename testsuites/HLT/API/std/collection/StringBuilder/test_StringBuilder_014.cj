@@ -13,7 +13,7 @@
 import std.math.*
 import std.collection.*
 
-main(): Int32 {
+main(): Int64 {
     // 与预期的string不匹配
     var strb1 = StringBuilder([r'b', r' ', r'c', r'戸', r'E', r'@', r'。', r'a'])
     if (strb1.toString() != "b c戸E@。a") {

@@ -12,7 +12,7 @@
 
 import std.math.*
 
-main(): Int32 {
+main(): Int64 {
     var strb4 = StringBuilder("123")
     if (strb4.toString() != "123") {
         return 4
