@@ -11,15 +11,15 @@ import interoplib.objc.*
 
 @C
 public func CJImpl_ObjC_cjworld_NonOpen_initCJObject(): RegistryId {
-    putToRegistry(NonOpen())
+    unsafe { putToRegistry(NonOpen()) }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_NonOpen_Foo(registryId: RegistryId): Unit {
-    getFromRegistryById<NonOpen>(registryId).Foo()
+    unsafe { getFromRegistryById<NonOpen>(registryId).Foo() }
 }
 
 @C
 public func CJImpl_ObjC_cjworld_NonOpen_deleteCJObject(registryId: RegistryId): Unit {
-    removeFromRegistry(registryId)
+    unsafe { removeFromRegistry(registryId) }
 }

@@ -11,20 +11,20 @@ import interoplib.objc.*
 
 @C
 public func CJImpl_ObjC_api_SimpleEnum_OneInitCJObject(): RegistryId {
-    putToRegistry(SimpleEnum.One)
+    unsafe { putToRegistry(SimpleEnum.One) }
 }
 
 @C
 public func CJImpl_ObjC_api_SimpleEnum_TwoInitCJObject(): RegistryId {
-    putToRegistry(SimpleEnum.Two)
+    unsafe { putToRegistry(SimpleEnum.Two) }
 }
 
 @C
 public func CJImpl_ObjC_api_SimpleEnum_ThreeInitCJObject(): RegistryId {
-    putToRegistry(SimpleEnum.Three)
+    unsafe { putToRegistry(SimpleEnum.Three) }
 }
 
 @C
 public func CJImpl_ObjC_api_CJPrint(registryId: RegistryId): Unit {
-    CJPrint(getFromRegistryById<SimpleEnum>(registryId))
+    CJPrint(unsafe { getFromRegistryById<SimpleEnum>(registryId) } )
 }
