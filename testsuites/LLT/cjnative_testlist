@@ -90,7 +90,6 @@ compiler/CJMP/java/parser/class/java_mirror_ctor.cj
 compiler/CJMP/java/parser/class/java_mirror_custom_fqname.cj
 compiler/CJMP/java/parser/class/java_mirror_field.cj
 compiler/CJMP/java/parser/class/java_mirror_inheritance.cj
-compiler/CJMP/java/parser/class/java_mirror_prop.cj
 compiler/CJMP/java/parser/interface/java_mirror_custom_fqname.cj
 compiler/CJMP/java/parser/interface/java_mirror_inheritance.cj
 compiler/CJMP/java/sema/foreign_name/impl_custom_native_ok.cj
