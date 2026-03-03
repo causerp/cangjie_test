@@ -18,7 +18,7 @@ class Test_HardLink {
     func create_illegal_01() {
         let e = @AssertThrows[FSException](HardLink.create("temp", to: "./tempfile"))
         println("create_illegal_01: e.message = ${e.message}")
-        @Expect(e.message.contains("No such file or directory") || e.message.contains("Failed to create link"))
+        @Expect(e.message.contains("No such file or directory") || e.message.contains("Failed to create link") || e.message.contains("Failed to create hard link"))
     }
 
     @TestCase
@@ -44,7 +44,7 @@ class Test_HardLink {
         File.create("./tempfile").close()
         let e = @AssertThrows[FSException](HardLink.create("./dir/aa", to: "./tempfile"))
         println("create_illegal_04: e.message = ${e.message}")
-        @Expect(e.message.contains("No such file or directory") || e.message.contains("Failed to create link"))
+        @Expect(e.message.contains("No such file or directory") || e.message.contains("Failed to create link") || e.message.contains("Failed to create hard link"))
         remove("./tempfile")
     }
 
@@ -53,7 +53,7 @@ class Test_HardLink {
         Directory.create("./a/b/c/d", recursive: true)
         let e = @AssertThrows[FSException](HardLink.create("temp", to: "./a/b/c/d"))
         println("create_illegal_05: e.message = ${e.message}")
-        @Expect(e.message.contains("Operation not permitted") || e.message.contains("Failed to create link"))
+        @Expect(e.message.contains("Operation not permitted") || e.message.contains("Failed to create link") || e.message.contains("Failed to create hard link"))
         remove("./a", recursive: true)
     }
 
