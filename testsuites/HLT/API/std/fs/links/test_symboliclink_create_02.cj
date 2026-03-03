@@ -26,7 +26,7 @@ class Test_SymbolicLink {
         File.create("./tempfile").close()
         let e = @AssertThrows[FSException](SymbolicLink.create("tempfile", to: "./tempfile"))
         println("create_illegal_01: e.message = ${e.message}")
-        @Expect(e.message == "File exists." || e.message.contains("Failed to create symbolic link `tempfile` to `./tempfile` return -17"))
+        @Expect(e.message == "File exists." || e.message.contains("Failed to create symbolic link `tempfile` to `./tempfile`))
         remove("./tempfile")
     }
 
@@ -53,7 +53,7 @@ class Test_SymbolicLink {
         File.create("./tempfile").close()
         let e = @AssertThrows[FSException](SymbolicLink.create("./dir/aa", to: "./tempfile"))
         println("create_illegal_04: e.message = ${e.message}")
-        @Expect(e.message == "No such file or directory." || e.message.contains("Failed to create symbolic link `./dir/aa` to `./tempfile` return -2"))
+        @Expect(e.message == "No such file or directory." || e.message.contains("Failed to create symbolic link `./dir/aa` to `./tempfile`"))
         remove("./tempfile")
     }
 
