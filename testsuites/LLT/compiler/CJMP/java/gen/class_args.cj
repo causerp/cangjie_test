@@ -133,7 +133,7 @@ public class A <: M {
         super(A())
     }
 
-    func f(arg: M) {
+    public func f(arg: M) {
 
     }
 }

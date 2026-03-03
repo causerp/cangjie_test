@@ -103,14 +103,14 @@ public class A <: M {
         a[0] = -22
     }
 
-    func p(o: JArray<A>) {
+    public func p(o: JArray<A>) {
         var a = JArray<A>(33)
         a[1]
         a[22] = A()
         a = o
     }
 
-    func r(o: JArray<UInt16>): Unit {
+    public func r(o: JArray<UInt16>): Unit {
         JArray<Bool>(12)
     }
 }
