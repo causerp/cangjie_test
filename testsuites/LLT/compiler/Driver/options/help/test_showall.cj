@@ -52,6 +52,8 @@ Options:
   --dump-ir                   Dump human readable IR
   --dump-all                  Dump all of AST, CHIR, IR
   --dump-to-screen            Dump to screen instead of file
+  --import-interop-cj-package-config-path <value>
+                              Add interop cj package config directory to path
   --emit-chir                 emit CHIR serialization file of the specified phase. Candidate phases:
     <value>=raw                 emit CHIR before compiler optimization
     <value>=opt                 emit CHIR after compiler optimization (default)
