@@ -19,7 +19,7 @@ let count = Box<Int64>(0)
 
 func sendSignal(sig: Int32): Unit {
     kill(Int32(getProcessId()), sig)
-    sleep(Duration.second)
+    sleep(Duration.second * 2)
 }
 
 func func_2(_: Int32) {
