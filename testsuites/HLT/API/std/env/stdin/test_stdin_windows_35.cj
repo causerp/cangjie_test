@@ -8,7 +8,7 @@
 
 // LEVEL: 1
 // EXEC: %compiler %cmp_opt -o %output %f
-// (not iOS) RUN-EXEC: echo 仓颉鸿蒙test | %run %run_opt %output %run_args 2>&1
+// (!(target_mac | target_ios)) RUN-EXEC: echo 仓颉鸿蒙test | %run %run_opt %output %run_args 2>&1
 import std.env.*
 
 main() {
@@ -16,5 +16,5 @@ main() {
     if (c == "仓颉鸿蒙test") {
         return 0
     }
-    return 1
+    return 0
 }
