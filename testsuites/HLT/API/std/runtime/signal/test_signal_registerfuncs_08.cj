@@ -7,8 +7,8 @@
  */
 
 // LEVEL: 2
-// (!(target_win | target_ios)) EXEC: %compiler %cmp_opt %f -o %output
-// (!(target_win | target_ios)) RUN-EXEC: %run %run_opt %output %run_utest_opt %run_args 
+// (not Windows) EXEC: %compiler %cmp_opt %f -o %output
+// (not Windows) RUN-EXEC: %run %run_opt %output %run_utest_opt %run_args 
 
 import std.env.*
 import std.runtime.*
@@ -19,7 +19,7 @@ let count = Box<Int64>(0)
 
 func sendSignal(sig: Int32): Unit {
     kill(Int32(getProcessId()), sig)
-    sleep(Duration.second * 10)
+    sleep(Duration.second)
 }
 
 func func_2(_: Int32) {
