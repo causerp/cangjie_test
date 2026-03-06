@@ -9,10 +9,10 @@
 // LEVEL: 0
 // DEPENDENCE: test.c
 // EXEC: %clang %clang_opt -o libtest.%test_suffix test.c && ls
-// (CJNATIVE) ERRCHECK: %compiler %cmp_opt %f --library test --output %output
-// (not MAC and not OHOS and not Windows) ASSERT: scan cannot find -ltest
-// (MAC and not OHOS) ASSERT: scan library not found for -ltest
-// (OHOS or Windows) ASSERT: scan unable to find library -ltest
+// ERRCHECK: %compiler %cmp_opt %f --library test --output %output
+// (target_linux) ASSERT: scan cannot find -ltest
+// (target_mac & !target_ohos & !target_android) ASSERT: scan library not found for -ltest
+// (target_win | target_ohos | target_android) ASSERT: scan unable to find library -ltest
 
 foreign func printHello(): Unit
 
