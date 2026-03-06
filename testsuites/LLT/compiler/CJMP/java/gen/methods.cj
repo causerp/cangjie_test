@@ -41,23 +41,23 @@ public class A extends M {
 
     public native long initCJObjectl(long x);
 
-    public void f() {
+    void f() {
         f(this.self);
     }
 
-    public native void f(long self);
+    native void f(long self);
 
-    public void oneArg(long x) {
+    void oneArg(long x) {
         oneArgl(this.self, x);
     }
 
-    public native void oneArgl(long self, long x);
+    native void oneArgl(long self, long x);
 
-    public void twoArgs(long x, boolean y) {
+    void twoArgs(long x, boolean y) {
         twoArgslb(this.self, x, y);
     }
 
-    public native void twoArgslb(long self, long x, boolean y);
+    native void twoArgslb(long self, long x, boolean y);
 
     @Override
     public boolean equals(Object obj) {

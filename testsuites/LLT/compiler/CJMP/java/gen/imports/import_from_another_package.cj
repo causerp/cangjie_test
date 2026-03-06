@@ -110,15 +110,15 @@ public class A <: M {
         super(x, x)
     }
 
-    func f(arg: JString) {
+    public func f(arg: JString) {
         println(1)
     }
 
-    func oneArg(x: Int) {
+    public func oneArg(x: Int) {
         println(x)
     }
 
-    func twoArgs(x: Int, y: Bool) {
+    public func twoArgs(x: Int, y: Bool) {
         println(x)
         println(y)
     }
