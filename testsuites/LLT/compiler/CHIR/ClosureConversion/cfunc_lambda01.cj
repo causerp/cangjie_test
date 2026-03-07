@@ -4,15 +4,12 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// EXEC-PIPE: %compiler %cmp_opt -o %n.%suffix %f 2>&1 | compare %f
+// LEVEL: 0
+// EXEC-PIPE-0: %compiler %n.cj -o %output 2>&1
 
-// ASSERT: scan-not error
-// ASSERT: scan warning: function 'foo' is deprecated. Some words.
-
-@Deprecated[message: "Some words"]
-func foo() {}
-
-main(): Unit {
-    foo()
-    0
+main() {
+    unsafe {
+        let f: (Int64, CFunc<(Int64) -> Int64>) -> Int64 = { x, y => y(x + 1) }
+        return f(1, { x => x + 1 }) - 3
+    }
 }

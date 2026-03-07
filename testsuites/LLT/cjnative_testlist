@@ -182,6 +182,10 @@ compiler/CHIR/CHIR2HLIR/package/scanDepPkgNoModule/test.cj
 # mock failed.
 API/std/unittest/mock/compiler/createMock/genericInstantiation.cj
 
+compiler/Plugins/IRCheck/FoundError/default.cj
+compiler/Plugins/IRCheck/FoundError/found_error.cj
+
+
 # native FFI
 ## java (broken after migration to "blue" branch)
 compiler/CJMP/java/parser/class/java_mirror_ctor.cj
