@@ -6,10 +6,14 @@ class M {
 }
 
 /* SCAN-IN
-warning: java-mirrored property is deprecated, use field instead
- ==> java_mirror_prop_deprecated.cj:5:5:
+error: java-mirrored property is forbidden, use field instead
+ ==> java_mirror_prop_forbidden.cj:5:5:
   | 
 5 |     public prop x: Int64
+  |     ^^^^^^^^^^^^^^^^^^^^ 
+  | 
+
+1 error generated, 1 error printed.
 
 */
 
