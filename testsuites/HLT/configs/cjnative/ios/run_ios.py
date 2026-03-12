@@ -227,6 +227,8 @@ def main():
         # 读取日志内容
         with open('ios_sim.log', 'r', encoding='utf-8') as f:
             cangjie_runtime_log_lines = (line.rstrip('\n') for line in f if '[CANGJIE:RUNTIME]' in line)
+            # 过滤掉这一句
+            cangjie_runtime_log_lines = [line for line in cangjie_runtime_log_lines if 'signpost functions all loaded successfully' not in line]
             sys_log_content = '\n'.join(cangjie_runtime_log_lines)
 
         if not args.objcffi:
@@ -247,7 +249,7 @@ def main():
                     return_code = 134
                 else:
                     # 其他未知原因
-                    raise Exception(f"Error: The 'cj_main_return_start' and 'cj_main_return_end' were not found, please check cangjie main function!")
+                    raise Exception(f"unknown condition occurred.")
         sys.exit(return_code)
     finally:
         sys.stdout.write(sys_log_content)

@@ -8,8 +8,8 @@
 
 // LEVEL: 0
 // DEPENDENCE: test.c
-// (target_ios | target_ios_simulator) EXEC: %clang %clang_opt -o test.o test.c && ar rcs libtest.%test_suffix test.o && ls
-// (!(target_ios | target_ios_simulator)) EXEC: %clang %clang_opt -o libtest.%test_suffix test.c && ls
+// (target_ios | target_ios_simulator) EXEC: %clang %clang_opt -o test.o test.c && ar rcs libtest.%test_suffix test.o
+// (!(target_ios | target_ios_simulator)) EXEC: %clang %clang_opt -o libtest.%test_suffix test.c
 // (!(target_ios | target_ios_simulator)) EXEC-PIPE-1: %compiler %cmp_opt %f --library test --output %output 2>&1 | compare %f
 // (target_ios | target_ios_simulator) EXEC: %compiler %cmp_opt %f --library test --output %output
 // (target_linux) ASSERT: scan cannot find -ltest
