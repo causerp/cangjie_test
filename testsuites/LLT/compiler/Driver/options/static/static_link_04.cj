@@ -4,8 +4,9 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// EXEC-PIPE-1: %compiler %cmp_opt --int-overflow=wrapping --static --dy-std %f -o %output 2>&1 | compare %f
-// ASSERT: scan options --static and --dy-std are mutually exclusive
+// EXEC-PIPE: %compiler %cmp_opt --int-overflow=wrapping --static %f --output-type=staticlib -o %output 2>&1 | compare %f
+// ASSERT: scan '--static' option is only effective when compiling executables.
+
 main() {
     try {
         throw Exception()
