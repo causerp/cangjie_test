@@ -369,11 +369,6 @@ API/std/io/StringReader/StringReader_readln_13_01.cj
 # feature organization name temporarily being disable on branch main
 compiler/cjnative/Packages/org_name
 
-# CJMP has to be fixed
-Tools/cjdb/datacom/cross_platform/cross_platform032.info
-Tools/cjcov/common_platform/cross_platform021/cross_platform021.cj
-Tools/cjcov/common_platform/cross_platform028/cross_platform028.cj
-
 # long path on windows
 Tools/cjpm/source_set/source_set003/source_set_identifier002
 
