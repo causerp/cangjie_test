@@ -60,10 +60,6 @@ compiler/IncrementalCompilation/DeclLevel/OnlyDebugMode/Struct_Variable_Method_R
 compiler/IncrementalCompilation/DeclLevel/Package/ChangePackageAstPosition_NoChange.cj
 compiler/IncrementalCompilation/DeclLevel/Package/ChangePackageNameColumn_NoChange.cj
 compiler/IncrementalCompilation/DeclLevel/Struct/MemberOrder2.cj
-# Alias impl is changed
-compiler/IncrementalCompilation/DeclLevel/Extend_CrossPackage/PolluteAliasExtend.cj
-# incr ice 12
-compiler/IncrementalCompilation/DeclLevel/TypeAlias/TypeAlias_LoadCache02/TypeAlias_LoadCache02.cj
 # chir_debug
 compiler/IncrementalCompilation/DeclLevel/Package/O2/FI_10_Incr.cj
 compiler/IncrementalCompilation/DeclLevel/Package/O2/FI_1_Incr.cj
