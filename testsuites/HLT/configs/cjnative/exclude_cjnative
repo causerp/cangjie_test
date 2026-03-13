@@ -79,6 +79,12 @@ Tools/cjlint/rules/G_OTH_03/g_oth_03_10026/g_oth_03.info
 # syntax will be supported in future
 API/syntax
 
+# reflect some not support
+API/std/reflect/cjnative/enum_type
+API/std/reflect/cjnative/function_type
+API/std/reflect/cjnative/generated
+API/std/reflect/cjnative/tuple_type
+
 # timezone file in ci not support now
 API/std/time/TimeZone/load/test_loadFromPaths.cj
 

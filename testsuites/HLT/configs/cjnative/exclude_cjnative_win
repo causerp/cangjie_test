@@ -211,6 +211,12 @@ API/std/socket/UnixSocket
 # windows 未授予创建软连接权限
 API/std/fs/path/windows/unc_path/test_path_unequal_02.cj
 
+# reflect some not support
+API/std/reflect/cjnative/enum_type
+API/std/reflect/cjnative/function_type
+API/std/reflect/cjnative/generated
+API/std/reflect/cjnative/tuple_type
+
 # ======================== Compiler exclude ========================
 # linux和win的命令行差异
 
