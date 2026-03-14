@@ -23,10 +23,10 @@ main() {
 
 /* SCAN-IN
 error: ambiguous use of 'p1'
-  ==> main.cj.macrocall:21:5:
+  ==> main.cj.macrocall:21:15:
    | 
-21 |     p1.f()
-   |     ^^ 
+21 | /* 17.4 */    p1.f()
+   |               ^^ 
    | 
 note: found imported candidate
   ==> main.cj.macrocall:14:1:
