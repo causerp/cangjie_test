@@ -8,20 +8,15 @@
 
 package com;
 
-public class ReturnType {
-  public Ref01 foo(Ref01 ref) {
-    return ref;
-  }
+import com.example.myapplication.Logger;
 
-  public Ref02 goo(Ref02 ref) {
-    return ref;
-  }
+public interface I1 {
+  public I1 foo();
 
-  public static Ref01 staticfoo(Ref01 ref) {
-    return ref;
-  }
+  public int goo(I1 a);
 
-  public static Ref02 staticgoo(Ref02 ref) {
-    return ref;
+  public static int bar() {
+    Logger.println("in I1 bar");
+    return 1;
   }
 }

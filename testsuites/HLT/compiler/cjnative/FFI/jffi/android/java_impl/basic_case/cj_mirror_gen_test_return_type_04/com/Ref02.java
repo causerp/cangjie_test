@@ -8,20 +8,6 @@
 
 package com;
 
-public class ReturnType {
-  public Ref01 foo(Ref01 ref) {
-    return ref;
-  }
-
-  public Ref02 goo(Ref02 ref) {
-    return ref;
-  }
-
-  public static Ref01 staticfoo(Ref01 ref) {
-    return ref;
-  }
-
-  public static Ref02 staticgoo(Ref02 ref) {
-    return ref;
-  }
+public final class Ref02 {
+    
 }
