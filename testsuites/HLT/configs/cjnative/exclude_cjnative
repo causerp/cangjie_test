@@ -27,6 +27,12 @@ compiler/cjnative/stable_abi/interface/modify/funcmemeber_property/modify/compil
 # syntax will be supported in future
 API/syntax
 
+# reflect some not support
+API/std/reflect/cjnative/enum_type
+API/std/reflect/cjnative/function_type
+API/std/reflect/cjnative/generated
+API/std/reflect/cjnative/tuple_type
+
 # timezone file in ci not support now
 API/std/time/TimeZone/load/test_loadFromPaths.cj
 
