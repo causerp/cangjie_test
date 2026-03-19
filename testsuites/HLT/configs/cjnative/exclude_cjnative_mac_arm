@@ -12,8 +12,6 @@ API/syntax/visit/ASTRewriter/test_rewriter_02.cj
 
 # fail in ci env
 API/std/socket/UdpSocket/test_udp_transportation_init.cj
-# objcffi not support call mut func
-compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_struct_0022/
 # limit described in the doc
 compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_pointer_0014/
 compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_prop_0003/
@@ -26,13 +24,7 @@ compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_func_pointer_0007
 compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_func_pointer_0008
 compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_func_pointer_0014
 compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_func_pointer_0015
-# catch exception
-compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_optional_0003/test.info
-compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_optional_0004/test.info
-compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_optional_0006/test.info
-# run failed
-compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0012/test.info
-compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0023/test.info
+
 # cj generic
 compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_generic_0019
 
@@ -59,3 +51,15 @@ compiler/cjnative/Packages/org_name/package_decl/no_package_name_2.cj
 # https://gitcode.com/Cangjie/cangjie_test/issues/315
 compiler/cjnative/Chir/CompileOption/plugin/testpath/test_plugin_path_05n.cj
 compiler/cjnative/Chir/CompileOption/plugin/runplugin/plugin5/runplugin.cj
+
+# cjmp
+# https://gitcode.com/Cangjie/cangjie_compiler/issues/566
+compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0102/test.info
+compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0103/test.info
+compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0104/test.info
+
+# cjmp
+# these three are not ready for iOS, exclude them here as there is no dedicated iOS exclude list
+compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0114/test.info
+compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0115/test.info
+compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_enum_0031/test.info
