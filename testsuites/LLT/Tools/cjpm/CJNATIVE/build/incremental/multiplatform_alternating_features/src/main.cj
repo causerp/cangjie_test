@@ -4,12 +4,12 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package huawei::test
+package testapp
 
-import huawei::test.pkgC.*
+import cmp.*
 
-main(): Int64 {
-    printC()
-    println("hello world")
-    return 0
+main(): Unit {
+    foo()
+    goo()
+    boo()
 }

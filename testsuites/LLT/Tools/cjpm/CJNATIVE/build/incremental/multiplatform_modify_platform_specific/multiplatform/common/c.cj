@@ -4,12 +4,12 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package huawei::test
+@NonProduct
+features {}
+package cmp
 
-import huawei::test.pkgC.*
-
-main(): Int64 {
-    printC()
-    println("hello world")
-    return 0
+public common func foo(): Unit
+public func boo() {
+    print("call from boo:  ")
+    foo()
 }

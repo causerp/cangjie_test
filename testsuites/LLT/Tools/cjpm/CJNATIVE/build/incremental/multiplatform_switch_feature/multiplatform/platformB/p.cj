@@ -4,12 +4,14 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package huawei::test
+features { user.cmp.arch.little }
+package cmp
 
-import huawei::test.pkgC.*
+public specific func foo(): Unit {
+    println("Platform B 'foo'")
+}
 
-main(): Int64 {
-    printC()
-    println("hello world")
-    return 0
+public func goo() {
+    print("call from goo:")
+    foo()
 }

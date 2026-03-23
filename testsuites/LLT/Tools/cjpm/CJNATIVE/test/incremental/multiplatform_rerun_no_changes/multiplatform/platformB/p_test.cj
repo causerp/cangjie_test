@@ -4,12 +4,15 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package huawei::test
+package cmp
 
-import huawei::test.pkgC.*
+internal import std.unittest.*
+import std.unittest.testmacro.*
 
-main(): Int64 {
-    printC()
-    println("hello world")
-    return 0
+@Test
+public class TestPlatformB {
+    @TestCase
+    func testGetValue(): Unit {
+        @Assert(getValue(), 200)
+    }
 }

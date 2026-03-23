@@ -4,12 +4,9 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-package huawei::test
+features { user.cmp.arch.big }
+package cmp
 
-import huawei::test.pkgC.*
-
-main(): Int64 {
-    printC()
-    println("hello world")
-    return 0
+public specific func getValue(): Int64 {
+    return 100
 }
