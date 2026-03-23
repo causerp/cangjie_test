@@ -8,8 +8,8 @@
 // (CJNATIVE and not Windows) RUN-EXEC-PIPE: %cat ./src/java/impl/A.java | grep 'protected' | compare %f
 
 /* SCAN-IN
-    protected void foo() {
-    protected native void foo(long self);
+    protected A(int i) {
+    protected native long initCJObjecti(int i);
 */
 
 package cjworld.theworld
@@ -20,5 +20,6 @@ import java.lang.*
 @JavaImpl["A"]
 public class A {
     public init() {}
-    protected func foo(): Unit {}
+    protected init(i: Int32) {}
+    public func foo(): Unit {}
 }
