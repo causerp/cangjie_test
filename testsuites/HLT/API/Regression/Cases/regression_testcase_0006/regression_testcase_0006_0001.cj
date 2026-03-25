@@ -11,6 +11,10 @@
 // RUN-EXEC-PIPE: %run %run_opt %output %run_args
 
 import std.posix.*
+@When[os != "Windows"]
+let num = 4
+@When[os == "Windows"]
+let num = 3
 
 main() {
     var fd = `open`("regression_testcase_0006_0001.cj", O_RDWR)
@@ -18,7 +22,7 @@ main() {
     var buf = str1.getChars()
     var readNum = unsafe { read(fd, buf, 4) }
     unsafe { LibC.free(str1) }
-    if (readNum == 4) {
+    if (readNum == num) {
         return 0
     } else {
         return 1
