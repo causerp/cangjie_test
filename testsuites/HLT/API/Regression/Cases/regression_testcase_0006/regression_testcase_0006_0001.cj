@@ -12,9 +12,9 @@
 
 import std.posix.*
 @When[os != "Windows"]
-let num = 4
+var num: IntNative = 4
 @When[os == "Windows"]
-let num = 3
+var num: IntNative = 3
 
 main() {
     var fd = `open`("regression_testcase_0006_0001.cj", O_RDWR)
