@@ -19,7 +19,7 @@ class Rectangle {
         this.width = width
         this.height = height
     }
-    public func area(): Unit  {
+    public func area(): Int64  {
         width * height
     }
 }
