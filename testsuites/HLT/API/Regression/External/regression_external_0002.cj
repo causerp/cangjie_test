@@ -8,7 +8,7 @@
 
 // LEVEL: 2
 // EXEC: %compiler %overflow_wrapping %cmp_opt %f -o %output
-//  RUN-EXEC: %run %run_opt %output %run_args
+// RUN-EXEC: %run %run_opt %output %run_args
 
 import std.ast.*
 

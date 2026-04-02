@@ -7,8 +7,8 @@
  */
 
 // LEVEL: 2
-//  EXEC: %compiler %cmp_opt %f -o %output %cmp_utest_opt
-//  RUN-EXEC-PIPE-1: %run %run_opt %output %run_utest_opt %run_args 2>&1 | compare %f
+// EXEC: %compiler %cmp_opt %f -o %output %cmp_utest_opt
+// RUN-EXEC-PIPE-1: %run %run_opt %output %run_utest_opt %run_args 2>&1 | compare %f
 //  ASSERT: scan REASON: After 10 generation steps
 //  ASSERT: scan REASON: After 15 generation steps and 5 reduction steps
 //  ASSERT: scan REASON: After 5 generation steps
