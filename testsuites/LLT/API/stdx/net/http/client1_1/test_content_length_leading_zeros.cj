@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
  * This source file is part of Cangjie project, licensed under Apache-2.0
  * with Runtime Library Exception.
  *
@@ -52,7 +52,7 @@ class TestContentLengthWithLeadingZeros {
             client.send(r)
             @Expect(1, 2)
         } catch (e: HttpException) {
-            @Expect(e.message, "The content-length format is invalid.")
+            @Expect(e.message, "The content-length has leading zeros.")
         }
         
         println("testContentLengthWithLeadingZeros_ok")
@@ -101,7 +101,7 @@ class TestContentLengthWithLeadingZeros {
             client.send(r)
             @Expect(1, 2)
         } catch (e: HttpException) {
-            @Expect(e.message, "The content-length format is invalid.")
+            @Expect(e.message, "The content-length has leading zeros.")
         }
         
         println("testInvalidContentLengthWithLeadingZeros_ok")
