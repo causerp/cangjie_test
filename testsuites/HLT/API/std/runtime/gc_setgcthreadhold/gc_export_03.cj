@@ -7,7 +7,7 @@
  */
 
 // LEVEL: 2
-//  ERRCHECK: %compiler %cmp_opt %f -o %output
+// ERRCHECK: %compiler %cmp_opt %f -o %output
 
 import std.runtime.*
 
