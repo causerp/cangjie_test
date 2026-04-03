@@ -372,3 +372,8 @@ Tools/cjdb/datacom/cross_platform/
 API/net/New_HTTP/HttpRequest/test_header_01.cj
 API/net/New_HTTP/HttpRequest/test_request_modify.cj
 API/net/New_HTTP/HttpResponse/test_header_01.cj
+
+# https://gitcode.com/Cangjie/cangjie_test/issues/229
+compiler/cjnative/Extend/operator/define/operator_def_18.cj
+regression/testcase_485.cj
+regression/testcase_86/operator_def_18.cj
