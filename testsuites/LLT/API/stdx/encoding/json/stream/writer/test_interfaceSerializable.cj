@@ -457,7 +457,7 @@ class Test_JsonSerializable {
         let w = writer()
         w.jw.writeValue<ConcurrentHashMap<String, Int64>>(map)
 
-        @Expect("{\"1\":1,\"3\":3,\"2\":2}", w.toString())
+        @Expect("{\"3\":3,\"1\":1,\"2\":2}", w.toString())
 
         let m1 = myClass("1", 1)
         let m2 = myClass("2", 2)
@@ -468,13 +468,13 @@ class Test_JsonSerializable {
         map2.add("3", m3)
         let w2 = writer()
         w2.jw.writeValue<ConcurrentHashMap<String, myClass>>(map2)
-        @Expect("{\"1\":{\"1\":1},\"3\":{\"3\":3},\"2\":{\"2\":2}}", w2.toString())
+        @Expect("{\"3\":{\"3\":3},\"1\":{\"1\":1},\"2\":{\"2\":2}}", w2.toString())
 
         let w3 = writer()
         w3.jw.startObject()
         w3.jw.writeName("a").writeValue<ConcurrentHashMap<String, Int64>>(map)
         w3.jw.endObject()
-        @Expect("{\"a\":{\"1\":1,\"3\":3,\"2\":2}}", w3.toString())
+        @Expect("{\"a\":{\"3\":3,\"1\":1,\"2\":2}}", w3.toString())
 
         let w4 = writer()
         let map4: ConcurrentHashMap<String, ConcurrentHashMap<String, Int64>> = ConcurrentHashMap<String, ConcurrentHashMap<String, Int64>>()
@@ -482,6 +482,6 @@ class Test_JsonSerializable {
         w4.jw.startObject()
         w4.jw.writeName("a").writeValue<ConcurrentHashMap<String, ConcurrentHashMap<String, Int64>>>(map4)
         w4.jw.endObject()
-        @Expect("{\"a\":{\"b\":{\"1\":1,\"3\":3,\"2\":2}}}", w4.toString())
+        @Expect("{\"a\":{\"b\":{\"3\":3,\"1\":1,\"2\":2}}}", w4.toString())
     }
 }
