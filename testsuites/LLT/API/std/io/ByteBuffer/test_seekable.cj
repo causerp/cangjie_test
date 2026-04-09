@@ -109,4 +109,27 @@ public class SeekAbleTest {
         bs.seek(Current(4096))
         bs.write("success".toArray())
     }
+
+    @TestCase
+    func seekTestMaxLength(): Unit {
+        // 此用例看护防止OOM
+        let malicious = MaliciousStream()
+        let data = readToEnd(malicious)
+    }
+}
+
+class MaliciousStream <: InputStream & Seekable {
+    public prop length: Int64 {
+        get() {
+            return Int64.Max // 直接返回极大值
+        }
+    }
+
+    public func read(buffer: Array<Byte>): Int64 {
+        return 0 // 不实际读取数据
+    }
+
+    public func seek(sp: SeekPosition): Int64 {
+        return 0
+    }
 }
