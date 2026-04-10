@@ -6,11 +6,16 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
  
-// DEPENDENCE: ../test.toml test.h
+// DEPENDENCE: test.toml test.h
 // EXEC: ObjCInteropGen test.toml
-// EXEC: %cat test.cj | compare %f
+// EXEC: %cat cjworld/test.cj | compare %f
 /* SCAN-IN
-public type UInteger = UInt32
+import objc.foundation.NSEnum
+import interoplib.objc.*
+import objc.lang.*
 
-public type M = UInteger
+@ObjCMirror
+public open class M {
+    protected var x: NSEnum
+}
 */
