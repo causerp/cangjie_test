@@ -89,6 +89,9 @@ public class Test_readTimeout {
         spawn {
             s.serve()
         }
+        while (s.port == 0) {
+            sleep(Duration.millisecond)
+        }
         let client = ClientBuilder().readTimeout(Duration.Zero).tlsConfig(clientConfig()).build()
         @Expect(client.readTimeout, Duration.second * 0)
         let request = HttpRequestBuilder().url("https://127.0.0.1:${s.port}/dd").version(HTTP2_0).build()
@@ -112,6 +115,9 @@ public class Test_readTimeout {
             )
         spawn {
             s.serve()
+        }
+        while (s.port == 0) {
+            sleep(Duration.millisecond)
         }
         let client = ClientBuilder().readTimeout(Duration.nanosecond * -1).tlsConfig(clientConfig()).build()
         @Expect(client.readTimeout, Duration.Zero)
