@@ -46,7 +46,8 @@ func send_partial_header_request(s: Server): Bool {
     try {
         socket.connect(timeout: Duration.second)
         socket.write(prefix.toArray())
-        sleep(Duration.millisecond * 20)
+        // Give the zero readHeaderTimeout timer enough time to fire even on slower machines.
+        sleep(Duration.millisecond * 200)
         try {
             socket.write(suffix.toArray())
         } catch (_: SocketException) {
