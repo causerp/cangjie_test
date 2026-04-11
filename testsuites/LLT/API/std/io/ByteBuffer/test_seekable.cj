@@ -112,7 +112,7 @@ public class SeekAbleTest {
 
     @TestCase
     func seekTestMaxLength(): Unit {
-        // 此用例看护防止OOM
+        // This test case prevents OOM.
         let malicious = MaliciousStream()
         let data = readToEnd(malicious)
     }
@@ -121,12 +121,12 @@ public class SeekAbleTest {
 class MaliciousStream <: InputStream & Seekable {
     public prop length: Int64 {
         get() {
-            return Int64.Max // 直接返回极大值
+            return Int64.Max
         }
     }
 
     public func read(buffer: Array<Byte>): Int64 {
-        return 0 // 不实际读取数据
+        return 0
     }
 
     public func seek(sp: SeekPosition): Int64 {
