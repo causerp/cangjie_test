@@ -6,7 +6,12 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL:0
-// DEPENDENCE: ../%n
-// (native_compilation)EXEC: cd %n && %cjpm build %cjpm_opt -j 12
-// (native_compilation)EXEC: cd %n && %cjpm run
+features {os.android}
+package mp
+
+public specific var a: Int64 = 0
+
+public func test_plat(): Unit {
+    a
+    println("I run on Darwin")
+}
