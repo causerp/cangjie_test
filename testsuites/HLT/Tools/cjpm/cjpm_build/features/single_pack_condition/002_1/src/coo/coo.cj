@@ -6,7 +6,11 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 1
-// DEPENDENCE: ../%n
-// (cross_compilation & not Windows) ERRCHECK: cd %n && %cjpm build %cjpm_opt -V
-// (cross_compilation & not Windows) ASSERT: scan Error: can not find the package 'aaa' which is listed in 'compile-macros-for-target' field
+package cj002.coo
+
+internal import pro1.boo.*
+
+public func c(): Unit {
+    b()
+    println("cc")
+}

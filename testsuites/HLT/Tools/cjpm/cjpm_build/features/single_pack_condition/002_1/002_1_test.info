@@ -6,7 +6,8 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 1
-// DEPENDENCE: ../%n
-// (cross_compilation & not Windows) ERRCHECK: cd %n && %cjpm build %cjpm_opt -V
-// (cross_compilation & not Windows) ASSERT: scan Error: can not find the package 'aaa' which is listed in 'compile-macros-for-target' field
+// LEVEL: 2
+// DEPENDENCE: ../002
+
+// (native_compilation)EXEC: %cp 002/test_result.txt .
+// (native_compilation)EXEC-PIPE-1: cd 002 && %cjpm test -V --cfg1 --cfg6 2>&1 | compare test_result.txt
