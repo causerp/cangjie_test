@@ -4,17 +4,8 @@
 #
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-[dependencies]
-
 [package]
   cjc-version = "1.0.0"
-  compile-option = ""
-  description = "nothing here"
-  link-option = ""
-  name = "aoo"
-  output-type = "static"
-  src-dir = ""
-  target-dir = ""
+  name = "dep2"
   version = "1.0.0"
-  package-configuration = {}
-  scripts = {}
+  output-type = "dynamic"
