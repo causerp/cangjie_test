@@ -4,8 +4,11 @@
 #
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-[dependencies]
-  opengauss = {git = "https://gitcode.com/runningW/opengauss-driver.git", branch="master"}
+[package]
+  cjc-version = "1.0.0"
+  name = "dep2"
+  version = "1.0.0"
+  output-type = "dynamic"
 
-[workspace]
-members = ["aoo"]
+[profile.build.combined]
+  dep2 = "dynamic"

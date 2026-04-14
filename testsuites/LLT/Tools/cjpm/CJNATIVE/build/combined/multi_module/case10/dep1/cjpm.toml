@@ -4,18 +4,11 @@
 #
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-[dependencies]
-  aoo = { path = "./workspace" }
-
 [package]
   cjc-version = "1.0.0"
-  compile-option = ""
-  description = "nothing here"
-  link-option = ""
-  name = "demo"
-  output-type = "executable"
-  override-compile-option = ""
-  src-dir = ""
-  target-dir = ""
+  name = "dep1"
   version = "1.0.0"
-  package-configuration = {}
+  output-type = "dynamic"
+
+[dependencies]
+  dep2 = { path = "../dep2" }

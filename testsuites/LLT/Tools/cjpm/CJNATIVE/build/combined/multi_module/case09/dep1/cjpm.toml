@@ -4,20 +4,14 @@
 #
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-[dependencies]
-
 [package]
   cjc-version = "1.0.0"
-  name = "pro2"
-  description = "nothing here"
+  name = "dep1"
   version = "1.0.0"
-  target-dir = ""
-  src-dir = ""
   output-type = "dynamic"
-  compile-option = ""
-  override-compile-option = ""
-  link-option = ""
-  package-configuration = {}
+
+[dependencies]
+  dep2 = { path = "../dep2" }
 
 [profile.build.combined]
-  pro2 = "dynamic"
+  dep1 = "dynamic"
