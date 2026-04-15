@@ -65,4 +65,22 @@ class Test_StringReader_readln {
             @Expect(true)
         }
     }
+
+    @TestCase
+    func test_read() {
+        // This test case guards against infinite loop issues
+        // Encoding of the 3-byte UTF-8 character "中": 0xE4 0xB8 0xAD
+        // Only the first 2 bytes are provided, resulting in truncation
+        let truncatedUTF8: Array<Byte> = [0xE4, 0xB8]
+
+        let input = ByteBuffer(truncatedUTF8)
+        let reader = StringReader(input)
+
+        try {
+            let ch = reader.read()
+            println("读到字符: ${ch}")
+        } catch (e: Exception) {
+            @Expect("Input stream finished in the middle of a UTF-8 sequence", e.message)
+        }
+    }
 }
