@@ -268,7 +268,7 @@ def main():
         remote_path,
     )
     check_case = construct_tool_shell_cmd("ls /data/local/tmp/run/" + remote_path)
-    return_code, com_out, com_err = run(check_case, ".", 60)
+    return_code, com_out, com_err = run(check_case, ".", 10)
     if "No such file or directory" not in com_out and "No such file or directory" not in com_err:
         execute_stages["copy_file_to_remote"] = None
     run_case(execute_stages, ".", timeout)
