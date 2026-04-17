@@ -13,6 +13,7 @@ import std.io.{OutputStream, BufferedOutputStream}
 import std.console.Console
 import std.fs.*
 import std.collection.{HashMap, ArrayList, TreeMap}
+import std.sync.{AtomicBool, AtomicInt64, Mutex}
 import stdx.log.*
 import stdx.logger.*
 import std.unittest.*
@@ -284,6 +285,221 @@ public class TestLog {
         @Expect(outputStr.size > 1000)
 
         logger.close()
+    }
+
+    // Test case 1: CommonLogger withAttrs creates independent loggers
+    // Verifies that withAttrs() creates independent logger instances with separate closed states
+    // REGRESSION TEST: If this test fails after PR #572 merge, it indicates
+    // that shared _state broke scoped logger lifecycle (high-risk issue)
+    @TestCase
+    func testCommonLoggerWithAttrsSharesClosedState(): Unit {
+        let output = TestOutputStream()
+        let tl = TextLogger(output)
+        tl.level = LogLevel.TRACE
+
+        // Create independent loggers via withAttrs (each has its own closed state)
+        let logger1 = tl.withAttrs([("id", "1")])
+        let logger2 = tl.withAttrs([("id", "2")])
+        let logger3 = tl.withAttrs([("id", "3")])
+
+        // Initially none should be closed
+        @Expect(!tl.isClosed())
+        @Expect(!logger1.isClosed())
+        @Expect(!logger2.isClosed())
+        @Expect(!logger3.isClosed())
+
+        // Close one copy
+        logger1.close()
+
+        // EXPECTED: Only logger1 should be closed (independent closed state)
+        // This is the CORRECT behavior for scoped logger lifecycle
+        @Expect(!tl.isClosed()) // original logger NOT closed
+        @Expect(logger1.isClosed()) // logger1 is closed
+        @Expect(!logger2.isClosed()) // logger2 NOT closed
+        @Expect(!logger3.isClosed()) // logger3 NOT closed
+
+        // Test with JsonLogger as well
+        let output2 = TestOutputStream()
+        let jl = JsonLogger(output2)
+        jl.level = LogLevel.TRACE
+
+        let jlLogger1 = jl.withAttrs([("id", "1")])
+        let jlLogger2 = jl.withAttrs([("id", "2")])
+
+        @Expect(!jl.isClosed())
+        @Expect(!jlLogger1.isClosed())
+        @Expect(!jlLogger2.isClosed())
+
+        jlLogger2.close()
+
+        // EXPECTED: Only jlLogger2 should be closed (independent closed state)
+        @Expect(!jl.isClosed()) // original logger NOT closed
+        @Expect(!jlLogger1.isClosed()) // jlLogger1 NOT closed
+        @Expect(jlLogger2.isClosed()) // jlLogger2 is closed
+    }
+
+    // Test case 2: Concurrent write safety with independent loggers
+    // Verifies that concurrent writes from multiple independent loggers
+    // (each with its own OutputStream reference) don't cause data corruption
+    // NOTE: This tests the CURRENT implementation behavior (independent OutputStreams)
+    @TestCase
+    func testCommonLoggerWithAttrsConcurrentWriteSafety(): Unit {
+        let output = TestOutputStream()
+        let tl = TextLogger(output)
+        tl.level = LogLevel.TRACE
+
+        let writeCount = AtomicInt64(0)
+        let expectedWrites = 100
+        let numLoggers = 5
+
+        // Create loggers via withAttrs (they share the same OutputStream)
+        let loggers = ArrayList<Logger>()
+        loggers.add(tl)
+        for (i in 1..numLoggers) {
+            loggers.add(tl.withAttrs([("thread", "${i}")]))
+        }
+
+        // Concurrently write from all loggers
+        let futures = ArrayList<Future<Unit>>()
+        for (i in 0..numLoggers) {
+            let logger = loggers[i]
+            let futures2 = spawn {
+                for (j in 0..expectedWrites / numLoggers) {
+                    logger.info("thread_${i}_msg_${j}")
+                    _ = writeCount.fetchAdd(1)
+                }
+            }
+            futures.add(futures2)
+        }
+
+        // Wait for all threads to complete
+        for (f in futures) {
+            f.get()
+        }
+
+        // Verify all writes completed
+        @Expect(writeCount.load() == expectedWrites)
+
+        // Verify output contains messages from all threads
+        let outputStr = output.toString()
+        for (i in 0..numLoggers) {
+            @Expect(outputStr.contains("thread_${i}_"))
+        }
+
+        tl.close()
+    }
+
+    // Test case 3: Concurrent close safety with independent loggers
+    // Verifies that concurrent close calls from multiple independent loggers
+    // don't crash. Each logger has its own closed state, so closing one
+    // doesn't affect others' isClosed() result.
+    @TestCase
+    func testCommonLoggerWithAttrsConcurrentCloseSafety(): Unit {
+        let output = TestOutputStream()
+        let tl = TextLogger(output)
+        tl.level = LogLevel.TRACE
+
+        // Write some messages first
+        tl.info("initial message")
+
+        // Create loggers via withAttrs (they share the same OutputStream)
+        let numLoggers = 10
+        let loggers = ArrayList<Logger>()
+        loggers.add(tl)
+        for (i in 1..numLoggers) {
+            loggers.add(tl.withAttrs([("id", "${i}")]))
+        }
+
+        let closeCount = AtomicInt64(0)
+
+        // Concurrently close all loggers
+        let futures = ArrayList<Future<Unit>>()
+        for (i in 0..numLoggers) {
+            let logger = loggers[i]
+            let f = spawn {
+                logger.close()
+                _ = closeCount.fetchAdd(1)
+            }
+            futures.add(f)
+        }
+
+        // Wait for all close operations
+        for (f in futures) {
+            f.get()
+        }
+
+        // Verify all close calls completed without crashing
+        @Expect(closeCount.load() == numLoggers)
+
+        // Verify final closed state is consistent
+        @Expect(tl.isClosed())
+        for (i in 0..numLoggers) {
+            @Expect(loggers[i].isClosed())
+        }
+
+        // Verify output contains the initial message
+        let outputStr = output.toString()
+        @Expect(outputStr.contains("initial message"))
+
+        // Test with JsonLogger as well
+        let output2 = TestOutputStream()
+        let jl = JsonLogger(output2)
+        jl.level = LogLevel.TRACE
+
+        jl.info("json initial message")
+
+        let jlLogger1 = jl.withAttrs([("id", "1")])
+        let jlLogger2 = jl.withAttrs([("id", "2")])
+
+        let f1 = spawn {jlLogger1.close()}
+        let f2 = spawn {jlLogger2.close()}
+        let f3 = spawn {jl.close()}
+
+        f1.get()
+        f2.get()
+        f3.get()
+
+        @Expect(jl.isClosed())
+        @Expect(jlLogger1.isClosed())
+        @Expect(jlLogger2.isClosed())
+
+        let outputStr2 = output2.toString()
+        @Expect(outputStr2.contains("json initial message"))
+    }
+
+    // Test case 4: log() ignores closed state, causing inconsistency
+    // This test exposes the medium-risk issue from PR #572 review:
+    // - isClosed() returns true due to shared closed state
+    // - But log() still writes without checking _state.closed
+    // - Result: logs show isClosed=true but still produce output
+    // NOTE: This test documents current behavior for future fix reference
+    @TestCase
+    func testLogIgnoresClosedStateInconsistency(): Unit {
+        let output = TestOutputStream()
+        let logger = TextLogger(output)
+        logger.level = LogLevel.TRACE
+
+        // Write before close
+        logger.info("before close")
+        @Expect(!logger.isClosed())
+
+        // Close the logger
+        logger.close()
+        @Expect(logger.isClosed())
+
+        // CURRENT BEHAVIOR: log() ignores closed state
+        // Attempting to log after close still succeeds
+        logger.info("after close") // <-- This should ideally be blocked
+
+        // Verify the inconsistency: isClosed() is true but output still grows
+        let outputStr = output.toString()
+        @Expect(outputStr.contains("before close"))
+        @Expect(outputStr.contains("after close")) // <-- Documents current behavior
+
+        // This exposes that close() doesn't prevent further logging
+        // Future fix should either:
+        // 1. Make log() check _state.closed and skip writing
+        // 2. Or throw exception when logging on closed logger
     }
 }
 
