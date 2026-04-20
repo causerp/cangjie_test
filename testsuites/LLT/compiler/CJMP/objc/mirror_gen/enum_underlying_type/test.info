@@ -13,4 +13,5 @@
 public type UInteger = UInt32
 
 public type M = UInteger
+public const a: M = 0
 */

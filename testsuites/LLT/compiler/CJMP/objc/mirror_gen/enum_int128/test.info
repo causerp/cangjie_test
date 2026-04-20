@@ -11,4 +11,8 @@
 // EXEC: %cat test.cj | compare %f
 /* SCAN-IN
 public type M = ObjCInt128
+public const a: M = ObjCInt128(0, 0)
+public const b: M = ObjCInt128(1, 0)
+public const c: M = ObjCInt128(-1, 0)
+public const d: M = ObjCInt128(0, 1)
 */
