@@ -13,7 +13,7 @@ annotations empty: 0
 annotations size after set: 1
 annotation class name: FlagAnno
 annotation str has At: true
-anno field kind: flag
+anno field kind: flag flag
 */
 
 import stdx.chir.*
@@ -32,9 +32,10 @@ main() {
     println("annotation str has At: ${nullary.annotations[0].toString().contains("@")}")
 
     let ann0 = nullary.annotations[0]
-    ann0.setFieldValue("kind", "flag")
-    if (let Some(v) <- ann0.getFieldValue("kind")) {
-        println("anno field kind: ${v}")
+    let fields = Array<String>(2, repeat: "flag")
+    ann0.fields = fields
+    if (let fs <- ann0.fields && fs.size == 2) {
+        println("anno field kind: ${fs[0]} ${fs[1]}")
     } else {
         println("anno field kind: missing")
     }

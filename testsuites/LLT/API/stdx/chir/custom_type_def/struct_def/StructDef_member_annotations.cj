@@ -13,7 +13,7 @@ member annotations empty: 0
 after anno size: 1
 anno class: StructFieldAnno
 anno str has At: true
-field kind value: tag
+field kind value: tag tag
 outer is struct: true
 instance vars: 2
 second member anno size: 0
@@ -29,14 +29,15 @@ main() {
     println("member annotations empty: ${x.annotations.size}")
 
     let a = Annotation("StructFieldAnno")
-    a.setFieldValue("kind", "tag")
+    let fields = Array<String>(2, repeat: "tag")
+    a.fields = fields
     x.annotations = Array<Annotation>(1, { _ => a })
 
     println("after anno size: ${x.annotations.size}")
     println("anno class: ${x.annotations[0].classSrcCodeName}")
     println("anno str has At: ${x.annotations[0].toString().contains("@")}")
-    if (let Some(v) <- x.annotations[0].getFieldValue("kind")) {
-        println("field kind value: ${v}")
+    if (let fs <- x.annotations[0].fields) {
+        println("field kind value: ${fs[0]} ${fs[1]}")
     } else {
         println("field kind value: missing")
     }
