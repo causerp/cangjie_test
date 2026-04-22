@@ -29,5 +29,6 @@ class TestFileInfo {
         // 仅文件名
         let fileInfo = FileInfo(fileName)
         @Expect(canonicalize(fileInfo.path).toString(), filePath)
+        removeIfExists(filePath)
     }
 }

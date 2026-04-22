@@ -29,5 +29,6 @@ class TestFileInfo {
         // 目录绝对路径
         let fileInfo = FileInfo(dirPath)
         @Expect(canonicalize(fileInfo.path).toString(), dirPath)
+        removeIfExists(dirPath)
     }
 }

@@ -25,9 +25,11 @@ class TestFileInfo {
     func testCase0(): Unit {
         let fileName = "test.txt"
         let filePath = getcwd() + sep + fileName
+        println("filePath: ${filePath}")
         File.create(filePath)
         // 文件绝对路径
         let fileInfo = FileInfo(filePath)
         @Expect(canonicalize(fileInfo.path).toString(), filePath)
+        removeIfExists(filePath)
     }
 }

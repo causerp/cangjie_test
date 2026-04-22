@@ -64,7 +64,7 @@ class TestFileHandler {
         let resp1 = client.send(req1)
         @Assert(resp1.status, 200) //SUCCESS
         @Expect(exists("upload1.CC"))
-
+        removeIfExists("upload1.CC")
 
         let req2 = HttpRequestBuilder()
             .post()
@@ -75,9 +75,10 @@ class TestFileHandler {
         let resp2 = client.send(req2)
         @Assert(resp2.status, 200) //SUCCESS
         @Expect(exists("upload2.CC"))
-
+        removeIfExists("upload2.CC")
         client.close()
         server.close()
+        
     }
 
     
