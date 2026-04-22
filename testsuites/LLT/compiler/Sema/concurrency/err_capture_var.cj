@@ -8,31 +8,30 @@
 
 main() {
     var flag = false
-    let thunk = {
-        =>
+    spawn {
         var a = 1
         if (a + 1 == 2) {
             flag = true
         }
     }
-    return thunk()
+    return
 }
 
 /* SCAN
-error: lambda capturing mutable variables needs to be called directly
-  ==> err_capture_var.cj:11:17:
+error: 'spawn' expressions cannot capture mutable variables; consider using 'let' or boxing
+  ==> err_capture_var.cj:11:11:
    | 
-11 |       let thunk = {
-   |  _________________^
-12 | |         =>
+11 |       spawn {
+   |  ___________^
+12 | |         var a = 1
    | | ...
-17 | |     }
+16 | |     }
    | |_____^
    | 
 note: 'flag' is mutable
-  ==> err_capture_var.cj:15:13:
+  ==> err_capture_var.cj:14:13:
    | 
-15 |             flag = true
+14 |             flag = true
    |             ^^^^ 
    | 
 
