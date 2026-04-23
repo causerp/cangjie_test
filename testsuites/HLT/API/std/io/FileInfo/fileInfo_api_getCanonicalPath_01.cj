@@ -26,6 +26,7 @@ class TestFileInfo {
         let fileName = "test.txt"
         let filePath = getcwd() + sep + fileName
         println("filePath: ${filePath}")
+        removeIfExists(filePath)
         File.create(filePath)
         // 文件绝对路径
         let fileInfo = FileInfo(filePath)

@@ -68,6 +68,8 @@ class TestFileHandler {
             .header("content-type", "multipart/form-data; boundary=${boundary}")
             .body(buildMultipleFileBodyData("upload1.CC", "upload2.CC"))
             .build()
+        removeIfExists("upload1.CC") 
+        removeIfExists("upload2.CC")    
         let resp = client.send(req)
         @Assert(resp.status, 200) //SUCCESS
         @Expect(exists("upload1.CC"))
