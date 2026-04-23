@@ -5,27 +5,28 @@
  *
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
-
 // EXEC: %compiler %cmp_opt -Woff=all --mock=on %f -o %output 2>&1
 // EXEC-0: %run %run_opt %output %run_utest_opt %run_args 2>&1 | compare %f
-// ASSERT: scan cccbbb
+// ASSERT: scan Done
 
-class C {
-    public var c : Int64 = 1
-    public init() {
-        print("ccc")
-    }
+class S<T> {
+    S(public var x!: ?T = None){}
 }
 
-class B {
-    public var b : Int64 = 1
-    public init(){
-        print("bbb")
+class A<T> {
+    public var x: S<T> = S<T>()
+}
+
+extend<T> A<T> {
+    public func foo() {
+        x.x = None
+    }
+
+    public func bar(): S<T> {
+        x
     }
 }
 
 main() {
-    B().b = C().c
-    println()
-    return 0
+    println("Done")
 }
