@@ -8,7 +8,7 @@
 
 // LEVEL: 0
 // EXEC: %compiler %cmp_opt %f -o %output %cmp_utest_opt
-// RUN-EXEC: %run %run_opt %output %run_utest_opt %run_args
+// RUN-EXEC: %ls && %run %run_opt %output %run_utest_opt %run_args
 
 import std.io.*
 import std.posix.*
