@@ -34,6 +34,7 @@ main() {
     var _thread_infos = ThreadSnapshot.dumpAllThreads()
 
     @Assert(_thread_infos.size, 2)
+    var _thread_info = _thread_infos[0]
 
     sleep(Duration.second)
     _thread.thread.name = "pending"
