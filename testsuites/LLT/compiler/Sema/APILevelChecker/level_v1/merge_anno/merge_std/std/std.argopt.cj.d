@@ -20,7 +20,7 @@ import std.collection.*
 * @since 0.17.4
 */
 @Deprecated[message: "Use global function `public func parseArguments(args: Array<String>, specs: Array<ArgumentSpec>): ParsedArguments` instead."]
-@!APILevel[12, atomicservice : true]
+@!APILevel[32, atomicservice : true]
 public class ArgOpt {
     /**
     * Constructor one parameters.
