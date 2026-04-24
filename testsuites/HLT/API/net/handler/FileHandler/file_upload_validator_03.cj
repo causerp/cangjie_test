@@ -61,6 +61,7 @@ class TestFileHandler {
             .header("content-type", "multipart/form-data; boundary=${boundary}")
             .body(buildBodyData("upload.txt"))
             .build()
+        removeIfExists("upload.txt")    
         let resp1 = client.send(req1)
         @Assert(resp1.status, 200) //success
         @Expect(exists("upload.txt"))
@@ -72,6 +73,7 @@ class TestFileHandler {
             .header("content-type", "multipart/form-data; boundary=${boundary}")
             .body(buildBodyData("upload.ttxt"))
             .build()
+        removeIfExists("upload.ttxt")    
         let resp2 = client.send(req2)
         @Assert(resp2.status, 200) //success
         @Expect(exists("upload.ttxt"))

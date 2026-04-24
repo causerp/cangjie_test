@@ -61,6 +61,7 @@ class TestFileHandler {
             .header("content-type", "multipart/form-data; boundary=${boundary}")
             .body(buildBodyData("upload1.CC"))
             .build()
+        removeIfExists("upload1.CC")    
         let resp1 = client.send(req1)
         @Assert(resp1.status, 200) //SUCCESS
         @Expect(exists("upload1.CC"))
@@ -72,6 +73,7 @@ class TestFileHandler {
             .header("content-type", "multipart/form-data; boundary=${boundary}")
             .body(buildBodyData("upload2.CC"))
             .build()
+        removeIfExists("upload2.CC")    
         let resp2 = client.send(req2)
         @Assert(resp2.status, 200) //SUCCESS
         @Expect(exists("upload2.CC"))

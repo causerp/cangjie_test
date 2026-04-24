@@ -8,7 +8,7 @@
 
 // LEVEL: 0
 // EXEC: %compiler %cmp_opt %f -o %output %cmp_utest_opt
-// RUN-EXEC: %run %run_opt %output %run_utest_opt %run_args
+// RUN-EXEC: %ls && %run %run_opt %output %run_utest_opt %run_args
 
 import std.io.*
 import std.posix.*
@@ -26,6 +26,7 @@ class TestFileInfo {
         let fileName = "test.txt"
         let filePath = getcwd() + sep + fileName
         println("filePath: ${filePath}")
+        removeIfExists(filePath)
         File.create(filePath)
         // 文件绝对路径
         let fileInfo = FileInfo(filePath)
