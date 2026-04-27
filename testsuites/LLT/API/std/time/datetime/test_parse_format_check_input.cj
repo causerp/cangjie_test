@@ -545,6 +545,12 @@ public class DateTimeParseTest {
             @Expect(e.message, "Extar value, start at index 16.")
         }
         try {
+            DateTime.parse("2023-04-10 Asia\\Shanghai", "yyyy-MM-dd zzzz")
+            @Expect(false)
+        } catch (e: TimeParseException) {
+            @Expect(e.message.contains("Illegal zone name or zone id.") || e.message.contains("Extar value"), true)
+        }
+        try {
             DateTime.parse("2023-04-10 XXT", "yyyy-MM-dd zz")
             @Expect(false)
         } catch (e: TimeParseException) {
