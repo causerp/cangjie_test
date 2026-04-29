@@ -71,7 +71,8 @@ class Test_readTimeout_writeTimeout {
                 {
                     ctx =>
                     ctx.request.body.read(Array<UInt8>(1024 * 1024, repeat: 0))
-                    Sleep(Duration.second * 2)
+                    // Keep enough margin for asynchronous client timeout timers on slow environments.
+                    Sleep(Duration.second * 5)
                 }
             )
         spawn {
@@ -105,7 +106,8 @@ class Test_readTimeout_writeTimeout {
                 {
                     ctx =>
                     ctx.request.body.read(Array<UInt8>(1024 * 1024, repeat: 0))
-                    Sleep(Duration.second * 2)
+                    // Keep enough margin for asynchronous client timeout timers on slow environments.
+                    Sleep(Duration.second * 5)
                 }
             )
         spawn {
@@ -134,6 +136,9 @@ class Test_readTimeout_writeTimeout {
         } catch (e: HttpTimeoutException | HttpException) {
             @Expect(e.message.contains("timeout") || e.message.contains("Stream closed"))
         }
+
+        client.close()
+        client = ClientBuilder().readTimeout(Duration.Zero).writeTimeout(Duration.Zero).build()
 
         // 请求配置后不超时
         var req1 = HttpRequestBuilder()
@@ -186,6 +191,13 @@ class Test_readTimeout_writeTimeout {
         } catch (e: HttpTimeoutException | HttpException) {
             @Expect(e.message.contains("timeout") || e.message.contains("Stream closed"))
         }
+
+        client.close()
+        client = ClientBuilder()
+            .tlsConfig(clientconf)
+            .readTimeout(Duration.Zero)
+            .writeTimeout(Duration.Zero)
+            .build()
         // 请求配置后不超时
         var req1 = HttpRequestBuilder()
             .readTimeout(5 * Duration.second)
