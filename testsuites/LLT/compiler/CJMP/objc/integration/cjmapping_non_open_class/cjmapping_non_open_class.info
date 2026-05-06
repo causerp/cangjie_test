@@ -6,7 +6,6 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// (CJNATIVE and not Windows) DEPENDENCE: ../Cangjie.h
 // (CJNATIVE and not Windows) DEPENDENCE: ../%n
 // (CJNATIVE and not Windows) RUN-EXEC-0: %cd %n && %compiler %compile_shared_lib_opt %overflowOpt %enable_objc_cjmapping -p src/cjworld %import_objc_interop
 // (CJNATIVE and not Windows) EXEC: %cd %n && %clang %cangjie_runtime_link %clang_link_core %clang_link_objc_interop  objc-gen/*.m -I../ -Iobjc-gen -L. -lcjworld -shared -o libgluecode.%dylib_suffix
