@@ -11,6 +11,7 @@ Tools/cjpm/stdx/c/check_01/check_01.info
 Tools/cjpm/stdx/c/tree_01/tree_01.info
 Tools/cjpm/cjpm_build/features/single_pack_condition/009/009_test.info
 Tools/cjpm/cjpm_build/features/single_pack_condition/002/002_test.info
+Tools/cjprof
 
 # old jffi can only be run with cjvm.
 compiler/cjnative/FFI/jffi
