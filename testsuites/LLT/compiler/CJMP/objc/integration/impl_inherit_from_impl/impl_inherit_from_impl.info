@@ -4,7 +4,6 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// (CJNATIVE and not Windows) DEPENDENCE: ../Cangjie.h
 // (CJNATIVE and not Windows) DEPENDENCE: ../%n
 // (CJNATIVE and not Windows) RUN-EXEC-0: %cd %n && mkdir -p out
 // (CJNATIVE and not Windows) RUN-EXEC-0: %cd %n && %compiler -g %compile_shared_lib_opt %overflowOpt -p src/cjworld %import_objc_interop -o out
