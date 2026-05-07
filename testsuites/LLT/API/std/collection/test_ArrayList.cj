@@ -644,6 +644,23 @@ class ArrayListTest {
     }
 
     @TestCase
+    func sortByStable(): Unit {
+        let arrlist = ArrayList<(Int64, Int64)>([(1, 0), (1, 1), (0, 2)])
+        arrlist.sortBy(stable: true, comparator: {
+            x, y => if (x[0] > y[0]) {
+                return GT
+            } else if (x[0] < y[0]) {
+                return LT
+            } else {
+                return EQ
+            }
+        })
+        @Assert(arrlist[0][1], 2)
+        @Assert(arrlist[1][1], 0)
+        @Assert(arrlist[2][1], 1)
+    }
+
+    @TestCase
     func sortByNoTimeout(): Unit {
         var mut1 = ArrayList<Int64>([4, 4, 4, 4, 4, 4, 4, 4, 7434, 83131231, 32131, 32328])
         var res1 = ArrayList<Int64>([4, 4, 4, 4, 4, 4, 4, 4, 7434, 83131231, 32131, 32328])
