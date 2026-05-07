@@ -10,6 +10,7 @@ Tools/cjpm/stdx/c/build_mock/build_mock.info
 Tools/cjpm/stdx/c/check_01/check_01.info
 Tools/cjpm/stdx/c/tree_01/tree_01.info
 Runtime/cjnative/runtime/OutOfMemoryError/oom_dump.cj
+Tools/cjprof
 # linux与win环境问题
 API/std/os/env/test_setEnv/test_setEnv_002/test_setEnv_002.cj
 API/std/os/env/test_setEnv/test_setEnv_005/test_setEnv_005.cj
