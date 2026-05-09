@@ -7,5 +7,5 @@
 // DEPENDENCE: ../sample
 // EXEC: %copy sample/heap.data .
 // EXEC: %cjprof heap -i heap.data --show-reference="RawArray<std.core::String>" --incoming-reference 2>&1 | compare %f
-// ASSERT: scan RawArray<std.core::String> @ 0x7fcc4813b168 [ROOT GLOBAL]                    16             16
-// ASSERT: scan RawArray<std.core::String> @ 0x7fcc4813b318                                 112            200
+// ASSERT: scan RawArray<std.core::String> @ 0x7e5341e00168 [ROOT GLOBAL]                    16             16
+// ASSERT: scan RawArray<std.core::String> @ 0x7e5341e002b0                                  64             64

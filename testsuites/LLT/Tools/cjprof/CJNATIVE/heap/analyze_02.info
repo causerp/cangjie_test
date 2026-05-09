@@ -7,4 +7,4 @@
 // DEPENDENCE: ../sample
 // EXEC: %copy sample/heap.data .
 // EXEC: %cjprof heap -i heap.data 2>&1 | compare %f
-// ASSERT: scan default::Dirived                                                              1             88            328
+// ASSERT: scan default::Dirived                                                              1             72            168

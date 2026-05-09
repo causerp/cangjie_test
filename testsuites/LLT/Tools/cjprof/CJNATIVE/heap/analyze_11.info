@@ -6,5 +6,5 @@
 
 // DEPENDENCE: ../sample
 // EXEC: %copy sample/heap_multi_ref.data .
-// EXEC: %cjprof heap -i heap_multi_ref.data --show-reference="std.core::ThreadLocalMap" 2>&1 | grep -c "std.core::ThreadLocalMap @ 0x7f08671e7028" | compare %f
+// EXEC: %cjprof heap -i heap_multi_ref.data --show-reference="std.core::ThreadLocalMap" 2>&1 | grep -c "std.core::ThreadLocalMap @ 0x76b787420020" | compare %f
 // ASSERT: scan 1
