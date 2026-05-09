@@ -5,4 +5,4 @@
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // EXEC: %cjprof record -p 0 2>&1 | compare %f
-// ASSERT: scan error: Trace process (0) failed (3).
+// ASSERT: scan error: Invalid pid '0'.
