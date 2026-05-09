@@ -6,7 +6,7 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 0
+// LEVEL: 3
 // DEPENDENCE:  ../../cjdb_test.py ../../basecase/coroutine/
 // EXEC: %compiler %cmp_opt -g coroutine/coroutine_13.cj -o coroutine_13%cmp_output
 // RUN-EXEC: python3 cjdb_test.py coroutine_048.info coroutine_13 %run_env

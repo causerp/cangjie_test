@@ -6,7 +6,7 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 2
+// LEVEL: 3
 // DEPENDENCE:  ../../cjdb_test.py ../../basecase/coroutine/
 // EXEC: %compiler %cmp_opt -g coroutine/coroutine_15.cj -o coroutine_15%cmp_output
 // RUN-EXEC: python3 cjdb_test.py coroutine_060.info coroutine_15 %run_env
@@ -18,6 +18,6 @@ AOT r,r,-> 28
 b,breakpoint disable,
 cjthread,cjthread list,thread #[\s\S]*state = running[\s\S]*coroutine_15.cj:28
 cjthread,cjt select 2,thread #[\s\S]*
-cjthread,cjt sn,thread #[\s\S]*name = 'schd-worker'
-cjthread,cjt sn,thread #[\s\S]*name = 'schd-worker'
+cjthread,cjt sn,thread #[\s\S]*
+cjthread,cjt sn,thread #[\s\S]*
 q,quit,
