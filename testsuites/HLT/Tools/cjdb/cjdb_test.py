@@ -231,10 +231,6 @@ def on_debugging(f_e, lines_e, test_case, cmp_res, run_platform, run_env, port_n
         elif "quit" in firstcmd or "q" in firstcmd or "exit" in firstcmd:
             process.sendline(doline)
             process.sendline('y')
-            try:
-                process.expect(pexpect.EOF, timeout=5)
-            except:
-                pass
             if run_platform != 'darwin':
                 process.wait()
             break
@@ -246,10 +242,6 @@ def on_debugging(f_e, lines_e, test_case, cmp_res, run_platform, run_env, port_n
     if not ("quit" in firstcmd or "q" in firstcmd or "exit" in firstcmd):
         process.sendline("q")
         process.sendline("y")
-        try:
-            process.expect(pexpect.EOF, timeout=5)
-        except:
-            pass
         if run_platform != 'darwin':
             process.wait()
 
@@ -262,7 +254,7 @@ def dotest(process, doline, result, f_e, run_env, run_platform, p=None):
     """
     process.sendline(doline)
     if run_platform == 'linux':
-        result = '[\\s\\S]*' + result + '[\\s\\S]*\\(cjdb\\)'
+        result = '\n[\\s\\S]*' + result + '[\\s\\S]*\\(cjdb\\)'
     elif run_platform == 'windows':
         result = '[\\r\\n]*[\\s\\S]*' + result + '[\\s\\S]*'
     else:
@@ -290,10 +282,6 @@ def indextest(process, doline, index, f_e, run_env, run_platform, p):
 
         process.sendline("q")
         process.sendline("y")
-        try:
-            process.expect(pexpect.EOF, timeout=5)
-        except:
-            pass
         if 'darwin' not in run_env:
             process.wait()
         f_e.close()
