@@ -159,7 +159,7 @@ def on_debugging(f_e, lines_e, test_case, cmp_res, run_platform, run_env, port_n
                 if "cjnative" in run_env:
                     if 'CJVM' in firstcmd:
                         continue
-                    process = pexpect.popen_spawn.PopenSpawn(["cmd", "/c", doline], timeout=15,
+                    process = pexpect.popen_spawn.PopenSpawn(doline, timeout=15,
                                                              encoding='utf-8',
                                                              maxread=3000,
                                                              codec_errors='replace'
@@ -190,7 +190,7 @@ def on_debugging(f_e, lines_e, test_case, cmp_res, run_platform, run_env, port_n
                                                  preexec_fn=os.setsid
                                                  )
                         time.sleep(2)
-                process = pexpect.spawnu(doline, timeout=15, maxread=50000)
+                process = pexpect.spawnu(doline, timeout=15, maxread=200000, searchwindowsize=10000)
             result = '[\\s\\S]*' + result + '[\\s\\S]*'
 
         # CJVM need 'process connect' command to connect server
