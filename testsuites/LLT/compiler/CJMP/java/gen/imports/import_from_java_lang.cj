@@ -87,7 +87,6 @@ public class A extends M {
 package cjworld.theworld
 
 import java.lang.*
-import java.lang.JString
 
 @JavaMirror["M"]
 public open class M {

@@ -6,9 +6,7 @@
 
 package cj
 
-import java.lang.JObject
-import java.lang.JArray
-import java.lang.JString
+import java.lang.*
 
 @JavaMirror["com.java.lib.JImpl"]
 open class JImpl <: JObject {

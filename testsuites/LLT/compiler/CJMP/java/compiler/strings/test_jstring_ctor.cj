@@ -10,8 +10,7 @@
 
 package javaapp.my
 
-import java.lang.JObject
-import java.lang.JString
+import java.lang.*
 
 func useJString(_: JString) {}
 
