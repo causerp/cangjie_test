@@ -63,7 +63,6 @@ public class A extends Cla$s.Inner {
 
 package cjworld.theworld
 
-import interoplib.interop.*
 import java.lang.JObject
 
 @JavaMirror["Clas\\$"]

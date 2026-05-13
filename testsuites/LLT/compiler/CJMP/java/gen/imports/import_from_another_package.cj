@@ -89,7 +89,6 @@ public class A extends M {
 
 package cjworld.theworld
 
-import interoplib.interop.*
 import java.lang.JObject
 import java.cj.mirrors.JString
 

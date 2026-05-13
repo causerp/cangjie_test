@@ -57,7 +57,6 @@ class A extends M {
 
 package cjworld.theworld
 
-import interoplib.interop.*
 import java.lang.JObject
 
 @JavaMirror["M"]

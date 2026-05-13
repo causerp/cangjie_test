@@ -79,9 +79,7 @@ public class A extends M {
 
 package cjworld.theworld
 
-import interoplib.interop.*
-import java.lang.JObject
-import java.lang.JArray
+import java.lang.*
 
 @JavaMirror["M"]
 public open class M {
