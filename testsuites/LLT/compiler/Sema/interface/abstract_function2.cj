@@ -30,13 +30,13 @@ error: class 'A' missing abstract modifier, otherwise abstract function or prope
   ==> abstract_function2.cj:13:1:
    | 
 13 | class A <: I {}
-   | ^ 
+   | ^^^^^^^^^^^^^^^ 
    | 
 note: unimplemented interface function 'f2'
   ==> abstract_function2.cj:10:5:
    | 
 10 |     static func f2(a!: Int64, b!: Int64): Int64
-   |     ^ 
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
    | 
 
 2 errors generated, 2 errors printed.
