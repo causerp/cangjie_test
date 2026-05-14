@@ -1,4 +1,4 @@
-// Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+// Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
 // This source file is part of the Cangjie project, licensed under Apache-2.0
 // with Runtime Library Exception.
 //
@@ -9,7 +9,7 @@
 // EXEC: %run_macro %compiler %cmp_opt %f -o %output
 // EXEC: %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan 888
-// ASSERT: scan 999
+// ASSERT: scan @M[1](999)
 
 import pkg1.*
 import std.ast.*
