@@ -255,10 +255,8 @@ def dotest(process, doline, result, f_e, run_env, run_platform, p=None):
     process.sendline(doline)
     if run_platform == 'linux':
         result = '\n[\\s\\S]*' + result + '[\\s\\S]*\\(cjdb\\)'
-    elif run_platform == 'windows':
-        result = '[\\r\\n]*[\\s\\S]*' + result + '[\\s\\S]*'
     else:
-        result = '[\\r\\n]*[\\s\\S]*' + result + '[\\s\\S]*'
+        result = '\n[\\s\\S]*' + result + '[\\s\\S]*'
     index = process.expect([result, pexpect.EOF, pexpect.TIMEOUT], timeout=15)
     indextest(process, doline, index, f_e, run_env, run_platform, p)
     return
