@@ -1,4 +1,4 @@
-// Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+// Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
 // This source file is part of the Cangjie project, licensed under Apache-2.0
 // with Runtime Library Exception.
 //
@@ -44,4 +44,8 @@ public macro testAttr2(attr: Tokens, input: Tokens) {
 
 public macro testaQuote(attr: Tokens) {
     quote(quote(\$input))
+}
+
+public macro MMMM(a: Tokens) {
+    return a
 }
