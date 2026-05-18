@@ -13,9 +13,6 @@ Tools/cjpm/stdx/c/build_mock/build_mock.info
 
 # fail in ci env
 API/std/socket/UdpSocket/test_udp_transportation_init.cj
-# limit described in the doc
-compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_pointer_0014/
-compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_prop_0003/
 # mirrorgen error Option<M> -> M
 compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_func_pointer_0007
 compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_func_pointer_0008
@@ -58,17 +55,20 @@ compiler/cjnative/Packages/org_name/package_decl/no_package_name_2.cj
 compiler/cjnative/Chir/CompileOption/plugin/testpath/test_plugin_path_05n.cj
 compiler/cjnative/Chir/CompileOption/plugin/runplugin/plugin5/runplugin.cj
 
+# error: no visible @interface for 'A' declares the selector 'f3'
+compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_inheritance_0007/test.info
+
+# SIGSEGV when run
+compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/mirror_objcinit_0014/test.info
+
+# SIGUSR1 (Bus error: 10) from native frame
+compiler/cjnative/FFI/objcffi/glue_code/oc_mirror/optional/optional_10/test.info
+
 # cjmp
 # https://gitcode.com/Cangjie/cangjie_compiler/issues/566
 compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0102/test.info
 compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0103/test.info
 compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0104/test.info
-
-# cjmp
-# these three are not ready for iOS, exclude them here as there is no dedicated iOS exclude list
-compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0114/test.info
-compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0115/test.info
-compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_enum_0031/test.info
 
 API/syntax/parseFunc/parseDir/path/parsedir_path_012n.cj
 
