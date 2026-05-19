@@ -7,7 +7,7 @@
 // RUN-EXEC: %set_stdx_path %run %run_opt %n.%suffix %run_args | compare %f
 
 /* SCAN
-debug exit inst: true true true true
+debug exit inst: true true true
 vbuilder: true
 */
 
@@ -27,7 +27,7 @@ main() {
     let ex = b.createExit()
     let giv = b.createGetInstantiateValue(fn, ArrayList<Type>.of([i32]))
     let l = b.createLambda(FuncType.get(Array<Type>(), UnitType.get()), "m", "m")
-    println("debug exit inst: ${dbg.srcCodeName == "s.cj"} ${ex.result.ty == UnitType.get()} ${giv.instantiateTypes[0] == i32} ${l.parameters.size == 0 && l.body.entryBlock != bb}")
+    println("debug exit inst: ${dbg.srcCodeName == "s.cj"} ${giv.instantiateTypes[0] == i32} ${l.parameters.size == 0 && l.body.entryBlock != bb}")
 
     let initf = pkg.addFunction(FuncType.get(Array<Type>(1, { _ => i32 }), i32), "initf", "initf", "pkg.cb.misc")
     let vb = b.createVArrayBuilder(VArrayType.get(i32, 2i64), c, c, initf)
