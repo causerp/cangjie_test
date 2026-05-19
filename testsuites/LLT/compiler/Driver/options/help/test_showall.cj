@@ -36,7 +36,6 @@ Options:
   --objc-interop-output-dir <value>
                               Specify output directory for Objective-C generated sources
   --no-prelude                Not import cangjie std.core package by default, only applicable when compiling std.core
-  --enable-interop-cjmapping  enable cj data structure mapping for interop (Experimental)
   --static                    Statically link cangjie library
   --static-std                Statically link packages of the std module
   --dy-std                    Dynamically link packages of the std module
@@ -56,8 +55,6 @@ Options:
   --dump-ir                   Dump human readable IR
   --dump-all                  Dump all of AST, CHIR, IR
   --dump-to-screen            Dump to screen instead of file
-  --import-interop-cj-package-config-path <value>
-                              Add interop cj package config directory to path
   --emit-chir                 emit CHIR serialization file of the specified phase. Candidate phases:
     <value>=raw                 emit CHIR before compiler optimization
     <value>=opt                 emit CHIR after compiler optimization (default)

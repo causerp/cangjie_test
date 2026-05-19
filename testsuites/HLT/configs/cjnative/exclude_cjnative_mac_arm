@@ -31,6 +31,9 @@ compiler/cjnative/FFI/objcffi/glue_code/oc_impl/impl_func_pointer_0015
 # cj generic
 compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_generic_0019
 
+# "Objective-C calls Cangjie" interop (cjmapping) is disabled
+compiler/cjnative/FFI/objcffi/glue_code/cj_impl
+
 API/std/io/file/File_create_03.cj
 API/std/io/StringReader/StringReader_readln_13_01.cj
 
