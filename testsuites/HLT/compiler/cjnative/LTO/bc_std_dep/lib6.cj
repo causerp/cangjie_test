@@ -4,9 +4,8 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// LEVEL: 1
-// DEPENDENCE: ../%n
-// EXEC: cd %n && rm -rf cangjie_stdx
-// EXEC: cd %n && git clone https://gitcode.com/Cangjie/cangjie_stdx.git -b main
-// EXEC-PIPE-0: cd %n/cangjie_stdx && %cjpm build --mock 2>&1 | compare %f
-// ASSERT: scan cjpm build success
+package lib6
+
+public func greet6(name: String): Unit {
+    println("Hello, ${name}!")
+}
