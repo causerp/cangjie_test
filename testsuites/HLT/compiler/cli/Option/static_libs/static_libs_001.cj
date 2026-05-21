@@ -7,8 +7,8 @@
  */
 
 // LEVEL: 0
-// (not MAC and not Windows) EXEC: %compiler -L $CANGJIE_STDX_PATH -lstdx.encoding.base64 --import-path  $CANGJIE_STDX_PATH %cmp_opt %f -o %output
-// (Windows)EXEC: %compiler -L %CANGJIE_STDX_PATH%  -lstdx.encoding.base64 --import-path %CANGJIE_STDX_PATH% %cmp_opt %f -o %output
+// (not MAC and not Windows) EXEC: %compiler -L $CANGJIE_STDX_PATH -lstdx.encoding.base64 --import-path  $CANGJIE_STDX_PATH %compilation_options %extra_options %lto_options %sanitizer_options %mock_options %optimization_options %debug_options %f -o %output
+// (Windows)EXEC: %compiler -L %CANGJIE_STDX_PATH%  -lstdx.encoding.base64 --import-path %CANGJIE_STDX_PATH% %compilation_options %extra_options %lto_options %sanitizer_options %mock_options %optimization_options %debug_options %f -o %output
 // (not MAC and not Windows) EXEC: %ldd %output | compare %f
 // ASSERT: scan-not libcangjie-std-core.so
 // ASSERT: scan-not libcangjie-std-math.so
