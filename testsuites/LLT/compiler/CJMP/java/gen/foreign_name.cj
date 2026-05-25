@@ -65,7 +65,6 @@ public class A extends M {
 
 package cjworld.theworld
 
-import interoplib.interop.*
 import java.lang.JObject
 
 @JavaMirror["M"]
@@ -73,7 +72,7 @@ public open class M {
     public init()
 
     @ForeignName["id"]
-    public prop myId: Int32
+    public let myId: Int32
 
     @ForeignName["foo"]
     public static func myFoo(): Int32

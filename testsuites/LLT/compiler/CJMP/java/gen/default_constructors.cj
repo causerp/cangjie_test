@@ -63,7 +63,6 @@ public class CangjieInvoke_Father {
 
 package cjworld.theworld
 
-import interoplib.interop.*
 import java.lang.JObject
 
 @JavaImpl

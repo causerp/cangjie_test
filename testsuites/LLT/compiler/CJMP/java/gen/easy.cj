@@ -28,7 +28,7 @@ public class A extends M {
         super();
     }
 
-    public native long initCJObject();
+    native long initCJObject();
 
     @Override
     public boolean equals(Object obj) {
@@ -57,7 +57,6 @@ public class A extends M {
 
 package cjworld.theworld
 
-import interoplib.interop.*
 import java.lang.JObject
 
 @JavaMirror["M"]

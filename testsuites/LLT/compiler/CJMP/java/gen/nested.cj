@@ -19,7 +19,7 @@ public class A extends Cla$s.Inner {
 
     long self;
 
-    A() {
+    public A() {
         super();
         self = initCJObject();
     }
@@ -63,7 +63,6 @@ public class A extends Cla$s.Inner {
 
 package cjworld.theworld
 
-import interoplib.interop.*
 import java.lang.JObject
 
 @JavaMirror["Clas\\$"]
@@ -98,7 +97,7 @@ public open class OtherInnerInner {
 
 @JavaImpl["A"]
 public class A <: OtherInner {
-    init() {
+    public init() {
         super()
         println("Hello from Cangjie!")
     }

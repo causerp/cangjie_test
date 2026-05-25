@@ -66,7 +66,6 @@ import cangjie.lang.internal.$$NativeConstructorMarker;
 
 package cjworld.theworld
 
-import interoplib.interop.*
 import java.lang.JObject
 
 @JavaMirror
