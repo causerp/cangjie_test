@@ -71,3 +71,5 @@ compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_class_0115/test.info
 compiler/cjnative/FFI/objcffi/glue_code/cj_impl/impl_enum_0031/test.info
 
 API/syntax/parseFunc/parseDir/path/parsedir_path_012n.cj
+
+API/net/TLS_new/KeylessTlsServerConfig/test_KeylessTlsServerConfig.cj
