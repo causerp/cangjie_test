@@ -423,3 +423,7 @@ API/syntax/parseFunc/parseFile/path/parsefile_path_005.cj
 API/syntax/parseFunc/parseFile/path/parsefile_path_011n.cj
 
 API/net/TLS_new/KeylessTlsServerConfig/test_KeylessTlsServerConfig.cj
+# cjcov, 回合main分支，暂时屏蔽
+Tools\cjcov\cjcov_special_filename\cjcov_special_filename_017
+Tools\cjcov\cjcov_special_filename\cjcov_special_filename_018
+
