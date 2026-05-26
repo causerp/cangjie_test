@@ -25,14 +25,6 @@ warning: unused function:'foo'
    | ^ unused function
    | 
    # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-note: the warning occurs after the macro is expanded
-  ==> unused_function_2.cj:14:1:
-   | 
-14 |   @M2
-   |  _^
-15 | | private func foo() {}
-   | |_____________________^
-   | 
 note: the code after the macro is expanded as follows
    | 
    |   /* 14.1 */private func foo() {
@@ -43,12 +35,13 @@ note: the code after the macro is expanded as follows
    | | /* 14.5 */
    | |__________^
    | 
-note: which is expanded as follows
+note: the warning occurs after the macro is expanded
+  ==> unused_function_2.cj:14:1:
    | 
-   |   /* 14.1 */private func foo() {
-   |  ___________^
-   | | /* 14.2 */}
-   | |___________^
+14 |   @M2
+   |  _^
+15 | | private func foo() {}
+   | |_____________________^
    | 
 
 warning: unused function:'testM1'
