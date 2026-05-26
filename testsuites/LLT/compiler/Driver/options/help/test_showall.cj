@@ -33,6 +33,8 @@ Options:
   --output-dir <value>        Specify output directory (it affects '--output' option)
   --output-javagen-dir <value>
                               Specify output directory for javagen
+  --objc-interop-output-dir <value>
+                              Specify output directory for Objective-C generated sources
   --no-prelude                Not import cangjie std.core package by default, only applicable when compiling std.core
   --static                    Statically link cangjie library
   --static-std                Statically link packages of the std module
@@ -116,7 +118,8 @@ Options:
   -p, --package               Specify package directory to be compiled
   --import-path <value>       Add .cjo search path
   --plugin <value>            Specify the dynamic library path of compiler plugin
-  --common-part-cjo           Add .cjo path for common part of package (Experimental)
+  --common-part-cjo <value>   Add .cjo file of package common part (Experimental)
+  --common-part-chir <value>  Add .chir file of package common part (Experimental)
   --incremental-compile       Enable incremental compilation. (Experimental)
   --save-temps <value>        Save intermediate compilation results. <value>: path to save temp files.
   -Woff, --warn-off <value>   Suppress a specific group of warning

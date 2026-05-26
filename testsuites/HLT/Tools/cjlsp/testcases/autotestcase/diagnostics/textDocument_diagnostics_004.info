@@ -6,7 +6,7 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 0 EXCLUDE
+// LEVEL: 0
 // DEPENDENCE:  ../../../lsp_test.py ../../../sourcecode/cangjieTest/diagnosticsTest ../../../lsp_config.txt
 // EXEC: %python lsp_test.py textDocument_diagnostics_004.info
 

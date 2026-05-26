@@ -122,14 +122,9 @@ class RunTestcase:
         self.write_msg(file_handle, "log is collected in compare_result.txt.")
         env_info = os.getenv('CANGJIE_STDX_PATH')
         self.write_msg(file_handle, 'CANGJIE_STDX_PATH is : ' + env_info)
-        try:
-            file_handle.close()
-        except Exception as e:
-            print(f"file_handle close has {e}")
-        finally:                        
-            if res_index:
-                print(f"return code is {res_index}")
-                os._exit(1)
+        file_handle.close()
+        if res_index:
+            os._exit(1)
 
     def write_compare_log(self, file_handle, res_index, expect_json, receive_json, is_crash=False):
         """
@@ -368,20 +363,16 @@ class RunTestcase:
         else:
             server_start = f'{lsp_server_path}/LSPServer --test --disableAutoImport --enable-log=true'
         print(server_start)
+        f_out = open('freopen.out', 'w')
+        process_server = subprocess.Popen(
+            [self.bash, self.bash_param, server_start],
+            stdin=subprocess.PIPE,
+            stdout=f_out,
+            stderr=f_out,
+            text=True  # 使用文本模式
+        )
 
-        res_index = -1
-        write_state = False
         try:
-            f_out = open('freopen.out', 'w')
-            f_out.write("    \n")
-            write_state = True
-            process_server = subprocess.Popen(
-                [self.bash, self.bash_param, server_start],
-                stdin=subprocess.PIPE,
-                stdout=f_out,
-                stderr=f_out,
-                text=True  # 使用文本模式
-            )
             symbol_id_key = None
             symbol_id_value = None
             for request in self.request_list:
@@ -403,17 +394,11 @@ class RunTestcase:
             process_server.wait(timeout=30)
         except subprocess.TimeoutExpired as e:
             process_server.kill()
-            print(f"process_server time out")
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
-            print(f"write freopen.out {write_state}")
-        finally:
-            time.sleep(1)
-            f_out.close()
-            if write_state:
-                res_index = process_server.returncode
-            else:
-                os._exit(0)  
+        time.sleep(1)
+        f_out.close()
+        res_index = process_server.returncode
         return res_index
 
     def write_request_file(self, request_dict):

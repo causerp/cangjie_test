@@ -19,7 +19,7 @@ class A extends M {
 
     long self;
 
-    A() {
+    public A() {
         super();
         self = initCJObject();
     }
@@ -57,7 +57,6 @@ class A extends M {
 
 package cjworld.theworld
 
-import interoplib.interop.*
 import java.lang.JObject
 
 @JavaMirror["M"]
@@ -67,7 +66,7 @@ public open class M {
 
 @JavaImpl["A"]
 class A <: M {
-    init() {
+    public init() {
         super()
     }
 }
