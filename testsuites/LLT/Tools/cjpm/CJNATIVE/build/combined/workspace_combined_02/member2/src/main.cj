@@ -4,6 +4,10 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// DEPENDENCE: ../%n
-// EXEC: cd %n/dep1 && %cjpm build -V 2>&1 | compare ../%f
-// ASSERT: scan cjpm build success
+package member2
+
+import member2.boo.*
+
+main(): Int64 {
+    return 0
+}
