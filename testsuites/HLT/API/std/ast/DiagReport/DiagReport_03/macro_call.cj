@@ -8,7 +8,7 @@
 
 // LEVEL: 1
 // DEPENDENCE: macro_definition.cj
-// ERRCHECK: %compiler %cmp_opt %cmp_macro macro_definition.cj
+// ERRCHECK: %compiler %cmp_opt macro_definition.cj
 // ASSERT: scan "sema_undeclared_identifier"
 
 package macro_calling
