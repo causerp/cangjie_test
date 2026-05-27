@@ -1,0 +1,10 @@
+BenchmarkWriteString
+BenchmarkReadString
+BenchmarkWriteInt64
+BenchmarkReadInt64
+BenchmarkWriteFloat64
+BenchmarkReadFloat64
+BenchmarkWriteNull
+BenchmarkReadNull
+BenchmarkWriteBool
+BenchmarkReadBool

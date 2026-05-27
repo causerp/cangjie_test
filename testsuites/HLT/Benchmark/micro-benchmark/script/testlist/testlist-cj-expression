@@ -1,0 +1,12 @@
+BenchmarkIfElse
+BenchmarkLoop
+BenchmarkMatch
+BenchmarkWhile
+BenchmarkReadArrayInOrder
+BenchmarkReadArrayOutOfOrder
+BenchmarkWriteArrayInOrderD2
+BenchmarkWriteArrayInOrderD3
+BenchmarkWriteArrayInOrderD1
+BenchmarkWriteArrayOutOfOrderD1
+BenchmarkWriteArrayOutOfOrderD2
+BenchmarkWriteArrayOutOfOrderD3

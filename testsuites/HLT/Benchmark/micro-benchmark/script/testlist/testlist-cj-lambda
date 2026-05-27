@@ -1,0 +1,5 @@
+BenchmarkLambdaComposition
+BenchmarkLambdaWithCollections
+BenchmarkLambdaWithEscape
+BenchmarkLambdaWithConditionalEscape
+BenchmarkLambdaWithoutEscape

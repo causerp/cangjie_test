@@ -1,0 +1,9 @@
+BenchmarkHttp2Delete
+BenchmarkHttp2Get
+BenchmarkHttp2Head
+BenchmarkHttp2PostForm
+BenchmarkHttp2PostRequestBody
+BenchmarkHttp2PostResponseBody
+BenchmarkHttp2PutForm
+BenchmarkHttp2PutRequestBody
+BenchmarkHttp2PutResponseBody

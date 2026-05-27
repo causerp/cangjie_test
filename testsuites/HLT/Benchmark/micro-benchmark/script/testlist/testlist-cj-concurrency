@@ -1,0 +1,7 @@
+BenchmarkCondition
+BenchmarkCPUIntensive
+BenchmarkIOInstensive
+BenchmarkLock
+BenchmarkReschedule
+BenchmarkSubmitRunning1Processor
+BenchmarkThreadCreate
