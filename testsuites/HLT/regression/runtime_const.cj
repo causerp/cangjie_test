@@ -6,17 +6,19 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 1
-// EXEC: %compiler %cmp_opt -o %output %f
-// RUN-EXEC: %run %run_opt echo "仓颉鸿蒙test" | %output %run_args
-
-import std.console.*
+// LEVEL: 0
+// EXEC: %compiler %cmp_opt %f -o %output
+// RUN-EXEC: %run %run_opt %output %run_args
 
 main() {
-    let c = Console.stdIn.readln()
-    if (c == "仓颉鸿蒙test") {
-        0
-    } else {
-        1
+    func func1() {
+        const var1: String = "a"
     }
+
+    if (false) {
+        func func1() {
+            const var1: String = ("a", 1)[0]
+        }
+    }
+    return 0
 }
