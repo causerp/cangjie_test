@@ -1,0 +1,7 @@
+-biased
+-bacon
+-mon-uncontended
+-mon-contended -threads 16
+-mon-contended -threads 32
+-mon-contended -threads 64
+-mon-contended -threads 128

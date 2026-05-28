@@ -1,0 +1,7 @@
+BenchmarkDoWhile
+BenchmarkForinIteratorArrayList
+BenchmarkForinIteratorHashmap
+BenchmarkForinIteratorHashset
+BenchmarkForinRange
+BenchmarkForinRangeWhere
+BenchmarkWhile

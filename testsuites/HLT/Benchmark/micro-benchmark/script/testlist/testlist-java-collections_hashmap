@@ -1,0 +1,5 @@
+BenchmarkHashmapClone
+BenchmarkHashmapContains
+BenchmarkHashmapInit
+BenchmarkHashmapPut
+BenchmarkRemoveFromHashMap

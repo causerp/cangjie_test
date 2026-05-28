@@ -1,0 +1,13 @@
+Benchmark_ClassTypeInfo_construct
+Benchmark_ClassTypeInfo_getConstructor
+Benchmark_ClassTypeInfo_getFunction
+Benchmark_ClassTypeInfo_getset
+Benchmark_ClassTypeInfo_getVariable
+Benchmark_ClassTypeInfo_invokeFunction
+Benchmark_ClassTypeInfo_of
+class_01
+class_02
+class_03
+class_04
+class_05
+I1

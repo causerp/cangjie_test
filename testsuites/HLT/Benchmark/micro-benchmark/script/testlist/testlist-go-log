@@ -1,0 +1,5 @@
+BenchmarkLog_Trace
+BenchmarkLog_DEBUG
+BenchmarkLog_INFO
+BenchmarkLog_WARN
+BenchmarkLog_ERROR

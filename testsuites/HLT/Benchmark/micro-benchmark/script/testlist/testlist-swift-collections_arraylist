@@ -1,0 +1,8 @@
+BenchmarkArrayListAppend
+BenchmarkArrayListContains
+BenchmarkArrayListEqual
+BenchmarkArrayListGet
+BenchmarkArrayListInitLamda
+BenchmarkArrayListInsertByLoop
+BenchmarkArrayListRemove
+BenchmarkArrayListSet

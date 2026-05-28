@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+int8_t* getptr(int8_t num) {
+    int8_t* ptr = (int8_t*)malloc(sizeof(int8_t));
+    ptr[0] = num;
+    return ptr;
+}
+
+int32_t testfunc(int8_t* param1, int8_t* param2, int8_t* param3, int8_t* param4) {
+    int32_t res = *param1 + *param2 + *param3 - *param4;
+    return res;
+}

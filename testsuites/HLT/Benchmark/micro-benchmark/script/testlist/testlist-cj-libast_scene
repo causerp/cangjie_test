@@ -1,0 +1,10 @@
+BenchmarkGenerateBuilderParam
+BenchmarkGenerateForEachCreate
+BenchmarkGenPropDecl
+BenchmarkGetOptionBaseType
+BenchmarkGqlOperation
+BenchmarkGqlSerialize
+BenchmarkMacroGeneratorBody
+BenchmarkParseMethodsForClass
+BenchmarkParseMethodsForTokens
+BenchmarkSerializableFieldMessage

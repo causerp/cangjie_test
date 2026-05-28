@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdint.h>
+
+typedef void (*callback)();
+void run(callback cb1,callback cb2,callback cb3,callback cb4,
+         callback cb5,callback cb6,callback cb7,callback cb8){
+    cb1();
+    cb2();
+    cb3();
+    cb4();
+    cb5();
+    cb6();
+    cb7();
+    cb8();
+};

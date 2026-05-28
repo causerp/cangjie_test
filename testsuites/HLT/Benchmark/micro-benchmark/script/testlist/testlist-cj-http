@@ -1,0 +1,9 @@
+BenchmarkDelete
+BenchmarkHead
+BenchmarkGet
+BenchmarkPutForm
+BenchmarkPutResponseBody
+BenchmarkPutRequestBody
+BenchmarkPostForm
+BenchmarkPostResponseBody
+BenchmarkPostRequestBody

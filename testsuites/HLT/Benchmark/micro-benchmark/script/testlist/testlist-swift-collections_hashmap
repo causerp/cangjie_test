@@ -1,0 +1,7 @@
+BenchmarkHashMapContains_Int64_NonExist
+BenchmarkHashMapContains_Int64
+BenchmarkHashMapGet_Operator_Int64
+BenchmarkHashMapInitCollection
+BenchmarkHashMapPut_Int64
+BenchmarkHashMapPut_Operator_Int64
+BenchmarkHashMapRemove

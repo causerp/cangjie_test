@@ -1,0 +1,10 @@
+BenchmarkJsonReadBool
+BenchmarkJsonReadFloat64
+BenchmarkJsonReadInt64
+BenchmarkJsonReadNull
+BenchmarkJsonReadString
+BenchmarkJsonWriteBool
+BenchmarkJsonWriteFloat64
+BenchmarkJsonWriteInt64
+BenchmarkJsonWriteNull
+BenchmarkJsonWriteString

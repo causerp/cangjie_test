@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+    Copyright 2015 ARM Limited
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Perf Output of Micro-benchmarks</title>
+  <script type="text/javascript">
+    var bench_result = [];
+  </script>
+  <script type="text/javascript" src="../perf-out/bench_result.js"></script>
+  <script type="text/javascript" src="./utils.js"></script>
+  <script type="text/javascript" src="./index.js"></script>
+</head>
+
+<body onload="init();">
+  <h2>Perf output of Java micro-benchmarks.</h2>
+  Hotspot format : "<span style="font-weight:bold">[number of significant events] &lt;cycles percentage&gt; &lt;symbol name&gt;</span>"
+  <br>
+  Events will be marked as significant if <span style="font-weight:bold">event_percentage > cycles_percentage ^ (1/threshold)</span>.
+  <br>
+  Significant events threshold :
+  <input type="number" id="threshold" value="2">
+  <button onclick="resetTable()">Set</button>
+  <!-- Use input instead of js variable, so that the value can be kept by browser. -->
+  <input type="number" id="showNative" value="1" style="display:none">
+  <button onclick="toggleNative()" id="toggleNative"></button>
+  <input type="number" id="showJava" value="1" style="display:none">
+  <button onclick="toggleJava()" id="toggleJava"></button>
+  <br>
+  <table>
+    <thead>
+      <tr>
+        <th class="benchmarkTableHead1"></th>
+        <th class="benchmarkTableHead1" colspan="3">
+          Summary
+        </th>
+        <th class="benchmarkTableHead1" id="annotation_head">
+          Annotation
+        </th>
+      </tr>
+      <tr id="head2">
+        <th class="benchmarkTableHead2">Benchmark Name</th>
+        <th class="benchmarkTableHead2">Flame Graph</th>
+        <th class="benchmarkTableHead2">Report</th>
+        <th class="benchmarkTableHead2">Output</th>
+      </tr>
+    </thead>
+    <tbody id="benchs">
+    </tbody>
+  </table>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+#include "BenchmarkCffiCString1.h"
+
+#include <malloc.h>
+#include <stdint.h>
+#include <string.h>
+
+JNIEXPORT jlong JNICALL Java_BenchmarkCffiCString1_mallocCString(JNIEnv* env, jclass, jstring jstr)
+{
+    const char* utf8Str = (*env)->GetStringUTFChars(env, jstr, NULL);
+    if (utf8Str != NULL) {
+        size_t length = strlen(utf8Str);
+        char* copied = (char*)malloc(length + 1);
+        if (copied != NULL) {
+            strcpy(copied, utf8Str);
+        }
+        (*env)->ReleaseStringUTFChars(env, jstr, utf8Str);
+        return (jlong)copied;
+    }
+    return (jlong)utf8Str;
+}
+
+JNIEXPORT jint JNICALL Java_BenchmarkCffiCString1_testFunc(JNIEnv*, jclass, jlong param1)
+{
+    return 0;
+}

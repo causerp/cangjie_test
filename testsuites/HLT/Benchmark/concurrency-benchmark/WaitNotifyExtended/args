@@ -1,0 +1,4 @@
+base s=0 p=16 c=16 v=4
+base s=0 p=32 c=32 v=4
+base s=0 p=64 c=64 v=4
+base s=0 p=128 c=128 v=4

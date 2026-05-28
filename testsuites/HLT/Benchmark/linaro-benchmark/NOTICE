@@ -1,0 +1,158 @@
+The benchmark framework is licensed under the Apache License, Version 2.0.
+
+The Project includes packages written by third parties.
+The following third party packages are included, and carry
+their own copyright notices and license terms:
+
+* for benchmarks/algorithm/AccessFannkuch.java
+      benchmarks/algorithm/BitopsNSieve.java
+      benchmarks/algorithm/NSieve.java
+      benchmarks/math/AccessNBody.java
+      benchmarks/math/MathPartialSums.java
+      benchmarks/math/MathSpectralNorm.java
+      benchmarks/micro/ControlFlowRecursive.java :
+
+/* The Great Computer Language Shootout
+   http://shootout.alioth.debian.org/
+   contributed by Isaac Gouy */
+
+http://benchmarksgame.alioth.debian.org/license.html  (BSD 3-clause license)
+
+The Computer Language Benchmarks Game
+Revised BSD license
+
+This is a specific instance of the Open Source Initiative (OSI) BSD license template.
+
+Copyright © 2004-2008 Brent Fulgham, 2005-2015 Isaac Gouy
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+    Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+    Neither the name of "The Computer Language Benchmarks Game" nor the name of
+    "The Computer Language Shootout Benchmarks" nor the names of its
+    contributors may be used to endorse or promote products derived from this
+    software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+-----
+
+* For files in benchmarks/benchmarksgame/*
+  under BSD 3-clause license. See file benchmarks/benchmarksgame/LICENSE
+  [from http://benchmarksgame.alioth.debian.org/download/benchmarksgame-sourcecode.zip]
+
+-----
+
+* For files in benchmarks/reversigame/*
+  under the MIT License (MIT). See file benchmarks/reversigame/LICENSE
+  [from https://github.com/luugiathuy/ReversiGame]
+
+-----
+
+* For benchmarks/algorithm/CryptoMD5.java:
+      benchmarks/algorithm/CryptoSHA1.java:
+  BSD 3-clause License
+  Copyright (C) Paul Johnston 1999 - 2002.
+
+-----
+
+* For benchmarks/math/MathCordic.java:
+  BSD 2-Clause License
+
+---
+
+* For benchmarks/micro/Base64.java
+  From Wikipedia, article "Base64" https://en.wikipedia.org/wiki/Base64
+  Creative Commons Attribution-ShareAlike License
+
+---
+
+* For benchmarks/micro/BitfieldRotate.java
+  MIT License
+
+---
+
+* For files in benchmarks/caffeinemark/*
+  This software is available under multiple licenses on
+  https://community.cablelabs.com/svn/OCAPRI/trunk/ri/RI_Stack/apps/vm_perf_test/src/com/tvworks/plateval/caffeinemark/
+  we redistribute it under the BSD 2-clause License
+
+---
+
+* For files in benchmarks/stanford/*
+* For benchmarks/micro/GCCLoops.java
+
+==============================================================================
+LLVM Release License
+==============================================================================
+University of Illinois/NCSA
+Open Source License
+
+Copyright (c) 2003, 2004 University of Illinois at Urbana-Champaign.
+All rights reserved.
+
+Developed by:
+
+    LLVM Team
+
+    University of Illinois at Urbana-Champaign
+
+    http://llvm.cs.uiuc.edu
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal with
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+    * Redistributions of source code must retain the above copyright notice,
+      this list of conditions and the following disclaimers.
+
+    * Redistributions in binary form must reproduce the above copyright notice,
+      this list of conditions and the following disclaimers in the
+      documentation and/or other materials provided with the distribution.
+
+    * Neither the names of the LLVM Team, University of Illinois at
+      Urbana-Champaign, nor the names of its contributors may be used to
+      endorse or promote products derived from this Software without specific
+      prior written permission.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+CONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE
+SOFTWARE.
+
+---
+
+* For files in benchmarks/testsimd/*
+  Apache License, Version 2.0.
+
+---
+
+* we use the tool checkstyle
+it is downloaded automatically from http://sourceforge.net/projects/checkstyle
+but not redistributed here
+(LGLv2.1 License)
+
