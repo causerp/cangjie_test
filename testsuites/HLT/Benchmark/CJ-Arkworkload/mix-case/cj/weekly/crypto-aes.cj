@@ -386,7 +386,7 @@ private func AESDecryptCtr(ciphertext: String, password: String, nBits: Int64): 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 private func escCtrlChars(str: String): String {  // escape control chars which might cause problems handling ciphertext
     let tmpsArr = [0, 9, 10, 11, 12, 13, 160, 39, 34, 33, 45]
-    // let strArr =  ["\0", "\t", "\n", "\u{0B}", "\u{0C}", "\r", " ", "\'", "\"", "!", "-"]
+    
     var s = ""
     var arr = str.toRuneArray()
     for(i in 0..arr.size){

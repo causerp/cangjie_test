@@ -33,7 +33,7 @@ class GaussianBlur {
     var right_corner: Float64 = 0.0
 
     func gaussCoef(SIGMA: Int64): Array<Float64>{
-        //debugLog("gaussCoef=====sigma", object: sigma)
+     
         var sigma = Float64(SIGMA)
         if (sigma < 0.5) {
             sigma = 0.5
@@ -51,19 +51,13 @@ class GaussianBlur {
         b2 = -g2
         left_corner = (a0 + a1) / (1.0 - b1 - b2)
         right_corner = (a2 + a3) / (1.0 - b1 - b2)
-        //debugLog("gaussCoef=====([a0, a1, a2, a3, b1, b2, left_corner, right_corner])", object: ([a0, a1, a2, a3, b1, b2, left_corner, right_corner]))
+      
         return [a0, a1, a2, a3, b1, b2, left_corner, right_corner ]
     }
     
     @OverflowWrapping
     func convolveRGBA(src:Array<UInt32>, out: Array<UInt32>, line: Array<Float64>, coeff: Array<Float64>, width: Int, height: Int) {
-        // takes src image and writes the blurred and transposed result into out
-        //debugLog("convolveRGBA=====src length",object: src.count)
-        //debugLog("convolveRGBA=====out length",object: out.count)
-        //debugLog("convolveRGBA=====line length",object: line.count)
-        //debugLog("convolveRGBA=====coeff",object: coeff.count)
-        //debugLog("convolveRGBA=====width",object: width)
-        //debugLog("convolveRGBA=====height",object: height)
+    
 
         var rgba: Int64
         var prev_src_r: Float64; var prev_src_g: Float64; var prev_src_b: Float64; var prev_src_a: Float64
@@ -210,20 +204,17 @@ class GaussianBlur {
                 out_index -= height
             }
         }        
-        //debugLog("out length: ", object: out.count)
+      
     }
     
     func blurRGBA(src:Array<UInt32>, width:Int64, height:Int64, radius:Int64) {
-        //debugLog("convolveRGBA=====src length",object: src.count)
-        //debugLog("convolveRGBA=====width",object: width)
-        //debugLog("convolveRGBA=====height",object: height)
-        //debugLog("convolveRGBA=====radius",object: radius)
+      
         // Quick exit on zero radius    
         if ((radius == 0)) { return }
       
         // Unify input data type, to keep convolver calls isomorphic
         var src32 = src
-        // var out = [UInt32](repeating: 0, count: src32.size),
+     
         var out: Array<UInt32> = Array(src32.size, repeat:0)
 
         // tmp_line = [Float64](repeating: 0, count: max(width, height) * 4)
@@ -259,7 +250,7 @@ class Benchmark{
             return Float64(seed & 0xfffffff) / Float64(0x10000000)
         }()
     
-        // var buffer = [UInt32](repeating: 0, count: width * height)
+       
         var buffer:Array<UInt32> = Array(width * height, repeat:0)
 
         for (i in 0..buffer.size) {

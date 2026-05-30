@@ -10,10 +10,7 @@
 // EXEC: %compiler %cmp_opt %optimization_level_2 --no-sub-pkg %f -o %output
 // RUN-EXEC: %export cjHeapSize=512mb && %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan ms
-// The Great Computer Language Shootout
-//  http://shootout.alioth.debian.org
-//
-//  Contributed by Ian Osgood
+
 
 import std.time.*
 import std.collection.*

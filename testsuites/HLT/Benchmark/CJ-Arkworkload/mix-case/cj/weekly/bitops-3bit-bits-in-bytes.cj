@@ -94,7 +94,7 @@ main() {
         let startTimeInLoop = currentTimestamp13()
         Benchmark().run()
         let endTimeInLoop = currentTimestamp13()
-        //log("bitops_3bit_bits_in_byte: ms = \((endTimeInLoop - startTimeInLoop)) i= \(i)")
+        
     }
     let endTime = currentTimestamp13()
     println("bitops-3bit-bits-in-byte: ms = ${Float64((endTime-startTime).toNanoseconds())/1000000.0}")

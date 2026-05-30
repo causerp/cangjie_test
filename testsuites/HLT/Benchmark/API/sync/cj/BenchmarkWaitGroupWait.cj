@@ -27,7 +27,7 @@ func benchmarkwaitgroup(futt:ArrayList<Future<Unit>>,localWorkt:Int64):Unit{
                     {
                         futt[i].get()
                     }
-                    for (j in 0..localWorkt){//for i := 0; i < localWork; i++ {
+                    for (j in 0..localWorkt){
                         foo *= 2
                         foo /= 2
                     }

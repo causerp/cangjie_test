@@ -98,10 +98,10 @@ main():Int64{
     var perTime: Float64 = Float64(durTime.toNanoseconds())/Float64(reps)
 
     if (obj.verify() == true) {
-        // print(perTime.format(".2") + "ns\n")
+   
         print("Error!\n")
     } else {
-        // print("Error!\n")
+
         print(perTime.format(".2") + "ns\n")
     }
 

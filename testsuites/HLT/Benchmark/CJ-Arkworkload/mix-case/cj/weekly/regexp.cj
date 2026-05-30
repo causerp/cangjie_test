@@ -51,7 +51,6 @@ class RegExpBenchmark {
             sum += runBlock9();
             sum += runBlock10();
             sum += runBlock11();
-            // println("last num ${sum}")
         }
         let endTime = Timer().getTime()
         println("regexp: ms = ${Float64((endTime - startTime).toNanoseconds())/1000000.0}")

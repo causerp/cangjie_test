@@ -102,7 +102,7 @@ func isIdentifierStart(code: Int64) : Bool{
     }
     if (code <= INT_VAL_0xFFFF) {
         // 当前不支持 unicode 正则
-        // return code >= INT_VAL_0xAA && nonASCIIidentifierStart.matcher("${code}").matchStart().isSome()
+
         return code >= INT_VAL_0xAA && false
     }
     return isInAstralSet(code, astralIdentifierStartCodes)
@@ -129,7 +129,6 @@ func isIdentifierChar(code: Int64) : Bool {
     }
     if (code <= INT_VAL_0xFFFF) {
         // 当前不支持 unicode 正则
-        // return code >= INT_VAL_0xAA && nonASCIIidentifier.matcher("${code}").matchStart().isSome()
         return code >= INT_VAL_0xAA && false
     }
     return isInAstralSet(code, astralIdentifierStartCodes) || isInAstralSet(code, astralIdentifierCodes);

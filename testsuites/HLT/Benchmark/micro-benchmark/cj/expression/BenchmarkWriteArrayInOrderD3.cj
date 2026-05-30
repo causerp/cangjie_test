@@ -14,7 +14,7 @@ import std.time.*
 import std.convert.*
 import std.convert.*
 
-// let memberLen :Array<Int64> =[32, 256, 2048, 16384, 131072,1048576]
+
 let memberLen: Array<(Int64, Int64)> = [(32, 100), (256, 100)]
 
 func timeBenchmarkWriteArrayInOrderD3(len: Int64, reps: Int64): Unit {

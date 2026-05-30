@@ -165,7 +165,7 @@ class Sha256 {
         for (item in b) {
             c.add(initUInt32(item))
         }
-        // let c = b.map({(item) in initUInt32(item)})
+        
 
         var j = 0
         i = 512 + ol - ((512 + ol) & 511)
@@ -526,7 +526,7 @@ class Benchmark {
             for (i in 0..4500) {
                 hash = Sha256.hash(hash)
                 if (i % 500 == 0) {
-                    //DeBugLog("第\(i + 1)条的hash：\(hash)")
+                    
                 }
             }
             if (Hex.fromBits(hash) != "719043495be84b97fe4f5d7e61c99d6d1ba0cd6974a6b10c684c25a44ddd0c03") {

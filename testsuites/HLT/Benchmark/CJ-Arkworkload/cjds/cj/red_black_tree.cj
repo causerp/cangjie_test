@@ -178,7 +178,7 @@ class RedBlackTree {
                 }
             }
         }
-        // println("put_afterwhile: ${!refEq_1(x, root)}")
+
         root.getOrThrow().color = "black"
         return Option<Object>.None
     }

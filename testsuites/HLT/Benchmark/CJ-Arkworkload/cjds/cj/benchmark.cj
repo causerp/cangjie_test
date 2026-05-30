@@ -80,7 +80,7 @@ class Result {
 }
 
 func benchmarkImpl(configuration: Configuration) {
-    // debugLog("Initialization parameters: {verbosity: " + "${configuration.verbosity}" + ", numAircraft: " + "${configuration.numAircraft}" + ", numFrames: " + "${configuration.numFrames}" + ", expectedCollisions: " + "${configuration.expectedCollisions}" + ", exclude: " + "${configuration.exclude}" + "}")
+
     let verbosity = configuration.verbosity
     let numAircraft = configuration.numAircraft
     let numFrames = configuration.numFrames
@@ -94,7 +94,6 @@ func benchmarkImpl(configuration: Configuration) {
     for (i in 0..numFrames) {
         let time = Float64(i) / TIME_DIVISOR
         let collisions = detector.handleNewFrame(simulator.simulate(time))
-        // debugLog("Collision data: " + "${collisions.size}")
         let before = lastTime
         let after = currentTime()
         lastTime = after
@@ -128,7 +127,7 @@ func benchmarkImpl(configuration: Configuration) {
     for (result in results) {
         actualCollisions += result.numCollisions
     }
-//    debugLog("Actual Collision Results: " + "\(actualCollisions)" + ", Expecting Collision Results：" + "\(expectedCollisions)")
+
     if (actualCollisions != expectedCollisions) {
         throw NormalError("Bad number of collisions: " + "${actualCollisions}" + " (expected " + "${expectedCollisions}" + ")")
     }

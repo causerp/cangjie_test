@@ -63,7 +63,7 @@ public class EnterExit {
                 for (int cnt = 0; cnt < FACTOR; cnt++) {
                     int len = m.data[id].length;
                     for (int i = 0; i < len; i++) {
-                        //let each thread process a separate column to measure pure synchronzed and avoid memory clashes
+                 
                         synchronized (m) {
                             m.data[id][i] = id + i;
 

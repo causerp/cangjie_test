@@ -93,11 +93,11 @@ func offsetMomentum() {
         pz = t.vz * t.mass + pz
         i++
     }
-	//print("${bodies[0].vx} ${bodies[0].vy} ${bodies[0].vz}\n")
+	
 	bodies[0].vx = -px / SOLAR_MASS
 	bodies[0].vy = -py / SOLAR_MASS
 	bodies[0].vz = -pz / SOLAR_MASS
-	//print("${bodies[0].vx} ${bodies[0].vy} ${bodies[0].vz}\n")
+	
 }
 
 func energy(): Float64 {

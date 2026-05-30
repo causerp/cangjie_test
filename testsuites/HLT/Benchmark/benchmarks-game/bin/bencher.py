@@ -1015,7 +1015,6 @@ def measureCheckAndLogRepeatLargest(p, t, ms):
                             m = measure(a, qsplit(cmd), delay, maxtime, of, ef,
                                         logger=logger, affinitymask=affinitymask)
 
-                # check the program output was as expected, commented by m00416256, skip check output
                 # checkAndLog(m,ofName,logf)
 
                 # add to the measurements

@@ -66,17 +66,6 @@ func setupArrays() :Unit{
       }
     }
 
-  //  @OverflowWrapping
-  //  func  verifyExample8() :Bool{
-  //      timeExample8(1)
-  //      var hashCodes :Array<Int32>= Array<Int32>(G.size,0)
-  //      for (i in 0..G.size) {
-  //        hashCodes[i] = Int32(out.hashCode())
-  //      }
-  //      var  hashCode  = Int32(hashCodes.hashCode())
-  //      var  expectedHashCode :Int32 = -1269715455
-  //      return hashCode == expectedHashCode
-  //    }
 
   public func example8 (G : Array<Array<Int32>>,x:Int32) :Unit{
      for(i in 0..MAT_M){

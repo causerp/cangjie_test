@@ -10,35 +10,7 @@
 // EXEC: %compiler %cmp_opt %optimization_level_2 --no-sub-pkg %f -o %output
 // RUN-EXEC: %export cjHeapSize=512mb && %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan ms
-/*
- * Copyright (c) Brian Grinstead, http://briangrinstead.com
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
 
-// javascript-astar 0.4.1
-// http://github.com/bgrins/javascript-astar
-// Freely distributable under the MIT License.
-// Implements the astar search algorithm in javascript using a Binary Heap.
-// Includes Binary Heap (with modifications) from Marijn Haverbeke.
-// http://eloquentjavascript.net/appendix2.html
 
 import std.time.*
 import std.collection.*
@@ -80,7 +52,7 @@ class Astar {
     func search(graph: Graph, start: GridNode, end: GridNode, options!: Options = Options()): ArrayList<GridNode> {
         graph.cleanDirty()
 
-        // let options = options ?? Options()
+        
 
         let heuristic = options.heuristic ?? Heuristics.manhattan
         let closest = options.closest ?? false
@@ -124,7 +96,7 @@ class Astar {
                     neighbor.visited = true
                     neighbor.parent = currentNode
 
-                    // neighbor.h = neighbor.h != 0 ? neighbor.h : heuristic(neighbor, end)
+                    
 
                     if (neighbor.h != 0) {
                         neighbor.h = neighbor.h
@@ -369,21 +341,7 @@ class BinaryHeap {
         }
         return result
     }
-    // func remove(node: GridNode){
-    //     let i = this.content.firstIndex(where: {node.x == $0.x && node.y == $0.y})
-
-    //     // When it is found, the process seen in 'pop' is repeated
-    //     // to fill up the hole.
-    //     let end = content.remove(content.size - 1)
-    //     if (i != content.size - 1) {
-    //         content[index] = end
-    //         if (scoreFunction(end) < scoreFunction(node)) {
-    //             sinkDown(index)
-    //         } else {
-    //             bubbleUp(index)
-    //         }
-    //     }
-    // }
+  
     func size(): Int64 {
         return content.size
     }
@@ -461,9 +419,7 @@ class BinaryHeap {
                     }
                 }
 
-                // if (child2Score < (swap == nil ? elemScore : child1Score!)) {
-                //     swap = child2N
-                // }
+               
             }
 
             // If the element needs to be moved, swap it, and continue.
@@ -8002,7 +7958,7 @@ class Benchmark {
             let start = graph.grid[0][0]
             let end = graph.grid[123][321]
             let result = astar.search(graph, start, end)
-            ////DebugLog(result)
+      
         }
         let endTime = Timer().getTime()
         println("ai-astar: ms = " + "${Float64((endTime-startTime).toNanoseconds())/1000000.0}")

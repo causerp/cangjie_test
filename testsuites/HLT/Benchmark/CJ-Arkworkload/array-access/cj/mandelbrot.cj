@@ -70,12 +70,12 @@ func Mandelbrot() {
             bit_num += 1
             if (bit_num == 8) {
                 res += byte_acc
-                // putc(byte_acc,stdout) // Glibc
+ 
                 byte_acc = 0
                 bit_num = 0
             } else if (x == w-1) {
                 byte_acc <<= (8-w%8)
-                // putc(byte_acc,stdout) // Glibc
+ 
                 res += byte_acc
                 byte_acc = 0
                 bit_num = 0
@@ -83,14 +83,14 @@ func Mandelbrot() {
         }
     }
     println(res)
-    // return res
+
 }
 
 func runMandelbrot():Int64{
     timer.start()
     Mandelbrot();
     let time = timer.stop()
-    // print(String(res))
+
     println("Array Access - RunMandelbrot:\t${Float64(time.toNanoseconds())/1000000.0}\tms");
     return  Int64(time.toMilliseconds())
 }

@@ -116,7 +116,7 @@ class Benchmark {
             let tag1 = tag.toArray()
             var validates = true
             for (j in tag1) {
-                // let ch = j.asciiValue.getOrThrow()
+                
                 let ch = j
                 if (ch < 0x20 || ch > 0x7f) {
                     validates = false

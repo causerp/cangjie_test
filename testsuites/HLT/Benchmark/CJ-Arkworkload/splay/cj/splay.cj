@@ -11,12 +11,7 @@
 // RUN-EXEC: %export cjHeapSize=512mb && %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan ms
 
-//
-//  Splay.swift
-//  JetStream2Swift
-//
-//  Created by iMac on 2023/10/23.
-//
+
 
 import std.time.*
 import std.collection.*
@@ -110,7 +105,7 @@ class Splay {
         // Check if the platform has the performance.now high resolution timer.
         // If not, throw exception and quit.
         if (Timer().getTime() == 0.0) {
-            //deBugLog("PerformanceNowUnsupported")
+            
             return
         }
         splayTree = SplayTree()
@@ -429,7 +424,7 @@ class Benchmark{
         let splay = Splay()
         splay.SplaySetup()
         let setupEnd = Timer().getTime()
-        //deBugLog("setupTime: " + String(setupEnd - setupStart) + " ms")
+        
         for (_ in 0..20) {
             for (_ in 0..50) {
                 splay.SplayRun()

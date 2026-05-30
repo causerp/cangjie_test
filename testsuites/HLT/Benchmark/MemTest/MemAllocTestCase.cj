@@ -366,7 +366,7 @@ public func testcase_1(){
     var list = ArrayList<Thread>()
     var slot = 0
     for (i in 0..DEFAULT_THREAD_NUM) {
-    //for (i in 0..1) {
+ 
         slot = i % MAX_SLOT_NUM
         var m = MemAlloc(ALLOC_4K, slot, mAllThreadReference, i, MemAlloc.SAVE_ALL, false, 1)
         var x = StopAbleThread(m, "testcase1_${i+1}")
@@ -385,7 +385,7 @@ public func testcase_1_1(){
     var list = ArrayList<Thread>()
     var slot = 0
     for (i in 0..DEFAULT_THREAD_NUM) {
-    //for (i in 0..1) {
+  
         slot = i % MAX_SLOT_NUM
         var m = MemAlloc(ALLOC_4K, slot, mAllThreadReference, i, MemAlloc.SAVE_ALL, false, 1, finalizer:1)
         var x = StopAbleThread(m, "testcase1_${i+1}")
@@ -405,7 +405,7 @@ public func testcase_1_2(){
     var slot = 0
     for (i in 0..DEFAULT_THREAD_NUM) {
         GC()
-    //for (i in 0..1) {
+
         slot = i % MAX_SLOT_NUM
         var m = MemAlloc(ALLOC_4K, slot, mAllThreadReference, i, MemAlloc.SAVE_ALL, false, 1, finalizer:2)
         var x = StopAbleThread(m, "testcase1_${i+1}")

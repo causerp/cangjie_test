@@ -67,13 +67,7 @@ func setupArrays() :Unit{
       }
     }
 
-    // @OverflowWrapping
-    // func  verifyExample4a() :Bool{
-    //   timeExample4a(1)
-    //   var  hashCode  = Int32(out.hashCode())
-    //   var  expectedHashCode :Int32 = -368214970
-    //   return hashCode == expectedHashCode
-    // }
+ 
 
   public func example4a (b:Array<Int32>,n:Int32, out:Array<Int32>) :Unit{
      for (i in 0..n){

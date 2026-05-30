@@ -157,7 +157,7 @@ class Oscar1{
     }
 
     public func Oscar3():Unit{
-        // var i : Int32 = 0
+   
         Exptab(fftsize,e)
         seed = 5767
         for (i in 1..fftsize){

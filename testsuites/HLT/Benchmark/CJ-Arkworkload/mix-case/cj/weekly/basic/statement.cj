@@ -1061,7 +1061,6 @@ class Parse {
 
     }
 
-    /// primary => identifier(numberExpression,numberExpression...) | number | (numberExpression)
     func parsePrimary(): NumericExpression {
         let token = nextToken()
         match (token.kind) {

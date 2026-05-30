@@ -141,7 +141,7 @@ class  RawInflate {
         this.resize = false
         
         // option parameters
-        //let optParams = optParams
+   
         if (optParams.isSome()) {
             let index = optParams.getOrThrow().index
             if (index.isSome()) {
@@ -612,7 +612,7 @@ class  RawInflate {
 
         let input: Array<UInt8> = this.input
         let output: Array<UInt8> = this.output
-        //let optParam = optParam
+    
         if (optParam.isSome())  {
             let fixRatio = optParam.getOrThrow().fixRatio
             if (fixRatio.isSome()) {

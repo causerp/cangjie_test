@@ -50,7 +50,7 @@ var out2 : Array<Int32> = Array<Int32>(Int64(N*2),repeat:0)
 var sout : Array<Int16> = Array<Int16>(Int64(N),repeat:0)
 
 func setupArrays() :Unit{
- // initArrayI(a)
+ 
   initArrayI(b)
   initArrayI(c)
   initArrayS(sb)

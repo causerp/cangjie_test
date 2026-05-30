@@ -327,9 +327,9 @@ func mandreelLoadFat(): Unit {
 func mandreelAppStart(startStateFunc: (String, String) -> Unit, params: Param): Unit {
     mandreelAppStartStateFunc = startStateFunc
 
-    //if (params.log != nil) {
+
     mandreelAppLog = params.log
-    //}
+   
 
     if (params.platform != "") {
         commonVariable.mandreelAppPlatform = params.platform
@@ -375,15 +375,15 @@ func mandreelAppStart(startStateFunc: (String, String) -> Unit, params: Param): 
             return;
         }
 
-        //if (params.width != nil) {
+      
         canvas.getOrThrow().width = Float64(params.width)
         mandreelAppWidthSrc = Float64(params.width)
-        //}
+       
 
-        //if (params.height != nil) {
+      
         canvas.getOrThrow().height = Float64(params.height)
         mandreelAppHeightSrc = Float64(params.height)
-        //}
+      
         if (commonVariable.mandreelAppPlatform == "webgl") {}
 
         if (commonVariable.mandreelAppPlatform == "canvas") {
@@ -393,13 +393,7 @@ func mandreelAppStart(startStateFunc: (String, String) -> Unit, params: Param): 
                 return;
             }
         }
-        // if  (params.cache.isSome()){
-        // } else {
-        //     if (mandreelAppStartStateFunc.isSome()) {
-        //         mandreelAppStartStateFunc("loadingFat","")
-        //     }
-        //     mandreelLoadFat();
-        // }
+     
     }
     if (commonVariable.mandreelAppPlatform == "flash") {
         mandreelAppWorkingFolder = "data/as3/"
@@ -426,13 +420,13 @@ func mandreelAppStart(startStateFunc: (String, String) -> Unit, params: Param): 
             }
         }
 
-        //if (params.width != nil) {
+     
         mandreelAppCanvasWidth = Float64(params.width)
-        //}
+      
 
-        //if (params.height != nil) {
+      
         mandreelAppCanvasHeight = Float64(params.height)
-        //}
+      
 
         mandreelAppCanvasDiv = params.flashCanvas
 
@@ -453,9 +447,9 @@ func mandreelAppStart(startStateFunc: (String, String) -> Unit, params: Param): 
                 my_flashvars += "&restore_context=1"
             }
 
-            // if (params.antialiasing != nil) {
+        
             my_flashvars += "&antialiasing${params.antialiasing}"
-            //}
+         
 
             if (params.right_click_enable == true) {
                 my_flashvars += "&right_click=1"
@@ -482,10 +476,7 @@ func mandreelAppStart(startStateFunc: (String, String) -> Unit, params: Param): 
         if (mandreelAppStartStateFunc.isSome()) {
             mandreelAppStartStateFunc.getOrThrow()("loadingFat", "")
         }
-        // match(mandreelAppStartStateFunc){
-        //     case Some(x) => mandreelAppStartStateFunc("loadingFat","")
-        //     case None => ()
-        // }
+
         mandreelLoadFat()
     }
 
@@ -567,23 +558,7 @@ func latencyMandreel(): ArrayList<Float64> {
 
 func tearDownMandreel(): Unit {
 
-    //    myOldConstructors = nil
-    //    heapClassInst.my_heap = nil
-    //    heapClassInst.my_heap8 = nil
-    //    heapClassInst.my_heap32 = nil
-    //
-    //    heapClassInst.heap = nil
-    //    heapClassInst.heap8 = nil
-    //    heapClassInst.heapU8 = nil
-    //    heapClassInst.heap16 = nil
-    //    heapClassInst.heapU16 = nil
-    //    heapClassInst.heap32 = nil
-    //    heapClassInst.heapU32 = nil
-    //    heapClassInst.heapFloat = nil
-    //    heapClassInst.heapFloat64 = nil
-    //    mandreelAppUsePackAsyncTexture = Array()
-    //    commonVariable.mandreelPauseTimes = Array()
-    // commonVariable.heapNewPos = commonVariable.heapNewPos != 512 ? my_heapNewPos : 512
+
     if (commonVariable.heapNewPos != 512) {
         commonVariable.heapNewPos = my_heapNewPos
     } else {
@@ -608,7 +583,6 @@ func Mandreel_flushTimeouts(): Unit {
 
 func Mandreel_checkState(): Unit {
     var sum: Int64 = 0
-    // for (i in stride(from: 0, to: heapClassInst.heap32.count, by: 100)) {
     for (i in 0..(heapClassInst.size / 32) : 100) {
         sum = (sum * 3 + Int64(heapClassInst.heap32[i])) & 0xFFFFFF
     }
@@ -689,11 +663,7 @@ func mandreelJsScriptLoaded(): Unit {
     else {
         imandreelJsScriptLoaded()
     }
-    // match(mandreelPackfiledataName){
-    //     case Some(X) => return
-    //     case None => imandreelJsScriptLoaded()
 
-    // }
 }
 
 func imandreelLoadAudio(): Unit {
@@ -1335,21 +1305,13 @@ func llvm_store_unalign32(addr: Int64, value: Int64): Unit {
 
 func llvm_read_unalign32(addr: Int64): UInt8 {
     var value: UInt8 = 0
-    // value = heapClassInst.heapU8[addr];
-    // value |= heapClassInst.heapU8[addr+1] << 8;
-    // value |= heapClassInst.heapU8[addr+2] << 16;
-    // value |= heapClassInst.heapU8[addr+3] << 24;
+
     return value;
 }
 
 func llvm_read_unalign32_float(addr: Int64): Float32 {
     var value: UInt8 = 0
-    // value = heapClassInst.heapU8[addr];
-    // value |= heapClassInst.heapU8[addr+1] << 8;
-    // value |= heapClassInst.heapU8[addr+2] << 16;
-    // value |= heapClassInst.heapU8[addr+3] << 24;
 
-    // heapClassInst.heap32[0] = Int32(value);
     return heapClassInst.heapFloat[0];
 }
 
@@ -1381,7 +1343,7 @@ func mandreel_renamels(sp: Int64): Unit {
     let value = my_localStorage.getOrThrow().getItem(key_a)
     let value2 = my_localStorage.getOrThrow().getItem(key_a + "_size");
 
-    // if (value != nil && value2 != nil) {
+ 
     if (let (Some(V1), Some(V2)) <- (value, value2)) {
         my_localStorage.getOrThrow().setItem(key_b, V1);
         my_localStorage.getOrThrow().setItem(key_b + "_size", V2);
@@ -1426,13 +1388,13 @@ func fill_wptr_from_string(ptr: Int64, v: String): Unit {
 func mandreelInterRetParam(type1: String, value: Any): Int64 {
     match (type1) {
         case "int" =>
-            // commonVariable.r_g0 = value as! Int64
+          
             if (let Some(rValue) <- (value as Int64)) {
             commonVariable.r_g0 = rValue
         }
 
         case "float" =>
-            // commonVariable.f_g0 = value as! Float64
+      
             if (let Some(rValue) <- (value as Float64)) {
             commonVariable.f_g0 = rValue
         }

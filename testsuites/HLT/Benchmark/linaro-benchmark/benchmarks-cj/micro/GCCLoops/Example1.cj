@@ -68,14 +68,7 @@ class GCCLoops {
         }
     }
 
-    // @OverflowWrapping
-    // func  verifyExample1() :Bool{
-    //     // Arrays.fill(out, 0)
-    //     timeExample1(1)
-    //     var hashCode = Int32(out.hashCode())
-    //     var expectedHashCode: Int32 = -858163061
-    //     return hashCode == expectedHashCode
-    // }
+   
 
     public func example1 (b:Array<Int32>, c:Array<Int32>, out:Array<Int32>) :Unit{
         for (i in 0..N){

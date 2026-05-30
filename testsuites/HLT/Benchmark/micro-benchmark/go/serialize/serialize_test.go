@@ -90,24 +90,6 @@ func BenchmarkSerializable_64_4(b *testing.B)  { benchMarkSerializeOfMarshal(b, 
 func BenchmarkSerializable_64_8(b *testing.B)  { benchMarkSerializeOfMarshal(b, "n64d8") }
 func BenchmarkSerializable_64_32(b *testing.B)  { benchMarkSerializeOfMarshal(b, "n64d32") }
 
-//Go does not have a case corresponding to 128.
-// func BenchmarkSerializable_512*1(b *testing.B)  { benchmarkUnMarshal(b, "n512d1") }
-// func BenchmarkSerializable_512*2(b *testing.B)  { benchmarkUnMarshal(b, "n512d2") }
-// func BenchmarkSerializable_512*4(b *testing.B)  { benchmarkUnMarshal(b, "n512d4") }
-// func BenchmarkSerializable_512*8(b *testing.B)  { benchmarkUnMarshal(b, "n512d8") }
-// func BenchmarkSerializable_512*32(b *testing.B)  { benchmarkUnMarshal(b, "n512d32") }
-//
-// func BenchmarkSerializable_4096*1(b *testing.B)  { benchmarkUnMarshal(b, "n4096d1") }
-// func BenchmarkSerializable_4096*2(b *testing.B)  { benchmarkUnMarshal(b, "n4096d2") }
-// func BenchmarkSerializable_4096*4(b *testing.B)  { benchmarkUnMarshal(b, "n4096d4") }
-// func BenchmarkSerializable_4096*8(b *testing.B)  { benchmarkUnMarshal(b, "n4096d8") }
-// func BenchmarkSerializable_4096*32(b *testing.B)  { benchmarkUnMarshal(b, "n4096d32") }
-//
-// func BenchmarkSerializable_16384*1(b *testing.B)  { benchmarkUnMarshal(b, "n16384d1") }
-// func BenchmarkSerializable_16384*2(b *testing.B)  { benchmarkUnMarshal(b, "n16384d2") }
-// func BenchmarkSerializable_16384*4(b *testing.B)  { benchmarkUnMarshal(b, "n16384d4") }
-// func BenchmarkSerializable_16384*8(b *testing.B)  { benchmarkUnMarshal(b, "n16384d8") }
-// func BenchmarkSerializable_16384*32(b *testing.B)  { benchmarkUnMarshal(b, "n16384d32") }
 
 func BenchmarkDeserializable_8_1(b *testing.B)  { benchmarkUnMarshal(b, "n8d1") }
 func BenchmarkDeserializable_8_2(b *testing.B)  { benchmarkUnMarshal(b, "n8d2") }
@@ -121,21 +103,3 @@ func BenchmarkDeserializable_64_4(b *testing.B)  { benchmarkUnMarshal(b, "n64d4"
 func BenchmarkDeserializable_64_8(b *testing.B)  { benchmarkUnMarshal(b, "n64d8") }
 func BenchmarkDeserializable_64_32(b *testing.B)  { benchmarkUnMarshal(b, "n64d32") }
 
-//Go does not have a case corresponding to 128.
-// func BenchmarkDeserializable_512*1(b *testing.B)  { benchmarkUnMarshal(b, "n512d1") }
-// func BenchmarkDeserializable_512*2(b *testing.B)  { benchmarkUnMarshal(b, "n512d2") }
-// func BenchmarkDeserializable_512*4(b *testing.B)  { benchmarkUnMarshal(b, "n512d4") }
-// func BenchmarkDeserializable_512*8(b *testing.B)  { benchmarkUnMarshal(b, "n512d8") }
-// func BenchmarkDeserializable_512*32(b *testing.B)  { benchmarkUnMarshal(b, "n512d32") }
-//
-// func BenchmarkDeserializable_4096*1(b *testing.B)  { benchmarkUnMarshal(b, "n4096d1") }
-// func BenchmarkDeserializable_4096*2(b *testing.B)  { benchmarkUnMarshal(b, "n4096d2") }
-// func BenchmarkDeserializable_4096*4(b *testing.B)  { benchmarkUnMarshal(b, "n4096d4") }
-// func BenchmarkDeserializable_4096*8(b *testing.B)  { benchmarkUnMarshal(b, "n4096d8") }
-// func BenchmarkDeserializable_4096*32(b *testing.B)  { benchmarkUnMarshal(b, "n4096d32") }
-//
-// func BenchmarkDeserializable_16384*1(b *testing.B)  { benchmarkUnMarshal(b, "n16384d1") }
-// func BenchmarkDeserializable_16384*2(b *testing.B)  { benchmarkUnMarshal(b, "n16384d2") }
-// func BenchmarkDeserializable_16384*4(b *testing.B)  { benchmarkUnMarshal(b, "n16384d4") }
-// func BenchmarkDeserializable_16384*8(b *testing.B)  { benchmarkUnMarshal(b, "n16384d8") }
-// func BenchmarkDeserializable_16384*32(b *testing.B)  { benchmarkUnMarshal(b, "n16384d32") }

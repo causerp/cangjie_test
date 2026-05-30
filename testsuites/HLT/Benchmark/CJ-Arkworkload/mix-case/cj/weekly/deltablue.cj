@@ -867,23 +867,18 @@ func projectionTest(n: Int64) {
     }
     change(src, 17)
     if (dst.value != 1170) {
-        // throw Exception()
     }
     change(dst, 1050)
-    // println(src.value)
     if (src.value != 5) {
-        // throw Exception()
     }
     change(scale, 5)
     for (i in 0..n - 1) {
         if (dests.at(i).value != (i * 5 + 1000)) {
-            // throw Exception()
         }
     }
     change(offset, 2000)
     for (i in 0..n - 1) {
         if (dests.at(i).value != (i * 5 + 2000)) {
-            // throw Exception()
         }
     }
 }

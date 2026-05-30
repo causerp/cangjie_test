@@ -405,7 +405,6 @@ class JsonTokenizer {
     
     func scanSpaces() {
         var ch = current()
-        // println(ch.getOrThrow())
         while (ch.isSome() && ch.getOrThrow().toString() == " ") {
             ch = peekNext()
         }

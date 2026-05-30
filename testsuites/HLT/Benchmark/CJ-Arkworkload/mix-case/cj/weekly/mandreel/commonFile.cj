@@ -188,8 +188,7 @@ class Stufix {
 
 func Malloc(bytes: Int64) : Int64
 {
-    // if (heapClassInst.heap == Option<>.None) {
-    // }
+   
     var newOffset = commonVariable.heapNewPos;
     commonVariable.heapNewPos += ((bytes + 3) & 0xfffffffc);
     if (commonVariable.heapNewPos > mandreel_total_memory) {
@@ -2665,7 +2664,7 @@ func get_string_from_ptr(ptr: Int64) : String
         if (heapClassInst.heapU8[ptr + i] == 0) {
             break;
         }
-        // let t = String(UnicodeScalar(heapClassInst.heapU8[ptr + i]))
+        
         let t = String.fromUtf8([UInt8(heapClassInst.heap8[ptr + i])])
         ret += t;
         i += 1;
@@ -11591,22 +11590,7 @@ func initHeap() : Unit
     }
     
     heapClassInst.size = Int64(mandreel_total_memory)
-    // let heap_1 = heapClassInst.heap.bindMemory(to: Int8.self, capacity: mandreel_total_memory)
-    // heapClassInst.heap8 = UnsafeMutableBufferPointer(start: heap_1, count: mandreel_total_memory)
-    // let heap_2 = heapClassInst.heap.bindMemory(to: UInt8.self, capacity: mandreel_total_memory)
-    // heapClassInst.heapU8 = UnsafeMutableBufferPointer(start: heap_2, count: mandreel_total_memory)
-    // let heap_3 = heapClassInst.heap.bindMemory(to: Int16.self, capacity: mandreel_total_memory)
-    // heapClassInst.heap16 = UnsafeMutableBufferPointer(start: heap_3, count: mandreel_total_memory / 2)
-    // let heap_4 = heapClassInst.heap.bindMemory(to: UInt16.self, capacity: mandreel_total_memory)
-    // heapClassInst.heapU16 = UnsafeMutableBufferPointer(start: heap_4, count: mandreel_total_memory / 2)
-    // let heap_5 = heapClassInst.heap.bindMemory(to: Int32.self, capacity: mandreel_total_memory)
-    // heapClassInst.heap32 = UnsafeMutableBufferPointer(start: heap_5, count: mandreel_total_memory / 4)
-    // let heap_6 = heapClassInst.heap.bindMemory(to: UInt32.self, capacity: mandreel_total_memory)
-    // heapClassInst.heapU32 = UnsafeMutableBufferPointer(start: heap_6, count: mandreel_total_memory / 4)
-    // let heap_7 = heapClassInst.heap.bindMemory(to: Float32.self, capacity: mandreel_total_memory)
-    // heapClassInst.heapFloat = UnsafeMutableBufferPointer(start: heap_7, count: mandreel_total_memory / 4)
-    // let heap_8 = heapClassInst.heap.bindMemory(to: Float64.self, capacity: mandreel_total_memory)
-    // heapClassInst.heapFloat64 = UnsafeMutableBufferPointer(start: heap_8, count: mandreel_total_memory / 8)
+
     for (i in 0..(mandreel_total_memory / 4))
     {
         heapClassInst.heapU32[i] = 0;
@@ -12309,10 +12293,6 @@ func my_mandreel_call_constructors(ptr: Int64, size: Int64, stackPos: Int64) : U
         heapClassInst.my_heap = malloc(UIntNative(mandreel_total_memory))
     }
     
-    // let heap_1 = heapClassInst.my_heap.bindMemory(to: Int8.self, capacity: mandreel_total_memory)
-    // heapClassInst.my_heap8 = UnsafeMutableBufferPointer(start: heap_1, count: mandreel_total_memory)
-    // let heap_2 = heapClassInst.my_heap.bindMemory(to: Int32.self, capacity: mandreel_total_memory)
-    // heapClassInst.my_heap32 = UnsafeMutableBufferPointer(start: heap_2, count: mandreel_total_memory / 4)
     for (i in 0..(mandreel_total_memory / 4)) {
         heapClassInst.my_heap32[i] = heapClassInst.heap32[i];
     }

@@ -55,13 +55,7 @@ var sout : Array<Int16> = Array<Int16>(Int64(N),repeat:0)
       }
     }
 
-  // @OverflowWrapping
-  //  func  verifyExample2a() :Bool{
-  //     timeExample2a(1)
-  //     var  hashCode  = Int32(out.hashCode())
-  //     var  expectedHashCode :Int32 = 620167169
-  //     return hashCode == expectedHashCode
-  //   }
+ 
 
   public func example2a (n:Int32, x:Int32, out:Array<Int32>) :Unit{
      for (i in 0..n) {

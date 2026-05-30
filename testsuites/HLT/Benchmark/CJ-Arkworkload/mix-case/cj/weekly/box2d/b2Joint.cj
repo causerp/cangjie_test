@@ -139,13 +139,9 @@ open class B2Joint {
         mIslandFlag = false
         mUserData = def.userData
         mEdgeA = None
-        // mEdgeA.getOrThrow().other = Option<B2Body>.None
-        // mEdgeA.getOrThrow().prev = Option<B2JointEdge>.None
-        // mEdgeA.getOrThrow().next = Option<B2JointEdge>.None
+
         mEdgeB = None
-        // mEdgeB.getOrThrow().other = Option<B2Body>.None
-        // mEdgeB.getOrThrow().prev = Option<B2JointEdge>.None
-        // mEdgeB.getOrThrow().next = Option<B2JointEdge>.None
+
     }
     func setup(){
         mEdgeA = B2JointEdge(this)

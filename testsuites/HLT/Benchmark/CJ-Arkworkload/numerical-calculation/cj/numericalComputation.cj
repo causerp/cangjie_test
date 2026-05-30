@@ -183,10 +183,10 @@ func bitOpsOR(input!: Float64 = 3000000.0) :Float64 {
     for (i in 0..count) {
         if ((resources[i % b3 & (resourcesLength - 1)] & 1) == 0) {
             b3 = (b3 | b1) + 1
-            // b3 = b3 | resources[i & (resourcesLength - 1)]
+       
         } else {
             b3 = (b3 | b2) + 1
-            // b3 = b3 | resources[(i + 5) & (resourcesLength - 1)]
+         
         }
     }
     let time = timer.stop()
@@ -363,19 +363,17 @@ func integerNumDivision(input!: Float64 = 3000000.0) :Float64 {
             i3 = 32768;
         }
         if ((resources[i % i3 & (resourcesLength - 1)] & 1) == 0) { // ark:21ms node:4ms
-            // i3 += i2 / i1
+        
             i3 /= i1
-            /* results[i % 5] = i2 / i1 */
+           
         } else {
-            // i3 += i2 / i1 / 2
+           
             i3 /= i2
-            /* results[i % 5] = i2 / i1 / 2 */
+           
         }
     }
     let time = timer.stop()
-    /* for i in 0..<5 { */
-        /* i3 += results[i] */
-    /* } */
+ 
     println(i3)
     print("Numerical Calculation - IntegerNumDivision:\t${Float64(time.toNanoseconds())/1000000.0}\tms\n");
    return Float64(time.toMilliseconds())

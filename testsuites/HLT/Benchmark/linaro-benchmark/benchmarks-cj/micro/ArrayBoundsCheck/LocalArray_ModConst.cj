@@ -62,6 +62,5 @@ main():Int64{
     print("Error!\n")
   }
 
-  // print(perTime.format(".2")+"ns\n")
   return 0 
 }

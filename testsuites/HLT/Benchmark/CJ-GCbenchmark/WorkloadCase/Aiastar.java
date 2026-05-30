@@ -84,7 +84,7 @@ class Astar {
             GridNode currentNode = openHeap.pop();
 
             // End case -- result has been found
-            // return the traced path.
+
             if (currentNode == end) {
                 return Num.pathTo(currentNode);
             }

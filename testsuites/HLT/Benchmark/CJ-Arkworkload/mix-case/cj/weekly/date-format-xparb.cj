@@ -41,11 +41,11 @@ open class MyDate {
         return  1167585071000
     }
     public func getDate(): Int64 {
-        //Returns a day of the month
+        
         return 1
     }
     public func getTimezoneOffset(): Int64{
-        //Returns the time difference between Greenwich Mean Time and local time:
+        
         return  -480
     }
     public func getYear(): Int64{
@@ -53,32 +53,32 @@ open class MyDate {
         return 2007
     }
     public  func getFullYear(): Int64 {
-        //return a year
+        
         return 2007
     }
     public func getMonth(): Int64{
-        //return a month
+        
         return 1
     }
     public func getHours(): Int64{
-        //Returns the hour field of the time based on the specified time:
+        
         return 1
     }
     public func getMinutes(): Int64{
-        //Returns the minute field of the time based on the specified time:
+        
         return 11
     }
     public  func getSeconds(): Int64 {
-        //Returns the second field of the time based on the specified time:
+        
         return 11
     }
     public  func getDay(): Int64 {
-        //Returns the number of a day of the week.
+        
         return 1
     }
     
     public func getTime(): Int64{
-        //Returns the number of milliseconds between January 1, 1970:
+        
         let timeInterval = this.timeIntervalSince1970()
         return   timeInterval * 1000
     }
@@ -260,7 +260,7 @@ class DateClass <: MyDate {
     func substring(str: String ,startOffset: Int64, endOffset: Int64): String {
         let startIndex = startOffset
         let endIndex = endOffset
-        // let substring = str[startIndex...endIndex]
+        
         let substring = str[Range<Int64>(startIndex, endIndex, 1, true, true, true)]
         return substring
     }

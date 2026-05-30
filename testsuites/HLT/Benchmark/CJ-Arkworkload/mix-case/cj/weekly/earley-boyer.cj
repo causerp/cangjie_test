@@ -85,7 +85,7 @@ private func rewrite_args_nboyer(lst:Any) : Any {
     )
 }
 private func translate_alist_nboyer(alist:Any) : Any {
-    //debuglog("This is translate_alist_nboyer")
+    
     var sc_alist_6:Any
     var term:Any
     var car_value:Any
@@ -212,7 +212,7 @@ private func rewrite_nboyer(term:Any) : Any {
 }
 
 private func tautologyp_nboyer(sc_x_1:Any, true_lst:Any, false_lst_a:Any ) : Bool {
-    //debuglog("This is tautologyp_nboyer")
+  
     var tmp1125:Bool
     var x:Any
     var tmp1126:Bool
@@ -255,7 +255,7 @@ private func tautologyp_nboyer(sc_x_1:Any, true_lst:Any, false_lst_a:Any ) : Boo
 }
 
 private func BgL_setupzd2boyerzd2() : Bool {
-    //debuglog("This is BgL_setupzd2boyerzd2");
+
     var symbol_record:sc_Vector
     var value:sc_Pair
     var BgL_sc_symbolzd2record_16zd2:Any
@@ -305,7 +305,7 @@ private func BgL_setupzd2boyerzd2() : Bool {
 }
 
 private func BgL_testzd2boyerzd2(n: Int64) : Any {
-    //debuglog("This is BgL_testzd2boyerzd2");
+  
     var optrOpnd:Any
     var term:Any
     var sc_n_20:Int64
@@ -371,7 +371,7 @@ private func run():Any{
 }
 
 private func BgL_nboyerzd2benchmarkzd2(argumentsAry: ArrayList<Any>){
-    //debuglog("This is BgL_nboyerzd2benchmarkzd2");
+   
     var args: ?sc_Pair = Option<sc_Pair>.None
     var sc_tmp = argumentsAry.size - 1
     while (sc_tmp >= 0) {
@@ -384,7 +384,7 @@ private func BgL_nboyerzd2benchmarkzd2(argumentsAry: ArrayList<Any>){
 }
 
 private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> sc_Pair)) : (input:sc_Pair) -> ArrayList<Any>{
-    //debuglog("This is BgL_makezd2parserzd2")
+
     var i: Int64
     // var parser_descr: ArrayList<Any>
     var nb_nts: Int64
@@ -404,7 +404,7 @@ private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> 
     var sc_nts_8: ArrayList<String> = ArrayList<String>()
 
     func BgL_sc_defzd2loop_9zd2(defs: Any, sc_nts_11: Any) : ArrayList<String>  {
-        //debuglog("This is BgL_sc_defzd2loop_9zd2")
+    
         var head: Any
         var def: sc_Pair
         if (defs is sc_Pair) {
@@ -445,7 +445,7 @@ private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> 
     BgL_sc_nbzd2nts_7zd2 = sc_nts_8.size
 
     func BgL_sc_defzd2loop_6zd2(defs: Any, BgL_sc_nbzd2confs_14zd2: Int64) : Int64 {
-        //debuglog("This is BgL_sc_defzd2loop_6zd2")
+     
         let def: Any
         if (defs is sc_Pair) {
             def = (defs as sc_Pair).getOrThrow().car
@@ -499,7 +499,7 @@ private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> 
         i -= 1
     }
     func def_loop(defs: Any, conf: Int64) : Any {
-        //debuglog("This is def_loop")
+    
         var head: String
         var def: sc_Pair
         if (defs is sc_Pair) {
@@ -551,7 +551,7 @@ private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> 
 
 
     return { input =>
-        //debuglog("This is input")
+   
         var optrOpnd: Any
         var sc_optrOpnd_20: sc_Pair
         var sc_optrOpnd_21: sc_Pair
@@ -594,7 +594,7 @@ private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> 
         var sc_nts_42: ?ArrayList<String>
 
         func make_states(BgL_sc_nbzd2toks_50zd2: Int64, BgL_sc_nbzd2confs_51zd2: Int64) : sc_Vector {
-            //debuglog("This is make_states")
+        
             var v: sc_Vector
             var i: Int64
             var sc_states_52: sc_Vector
@@ -644,7 +644,7 @@ private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> 
             }
         }
         func BgL_sc_confzd2setzd2adjoinza2_45za2(sc_states_57: sc_Vector, BgL_sc_statezd2num_58zd2: Int64, l: sc_Pair, i: Int64) : Any {
-            //debuglog("This is BgL_sc_confzd2setzd2adjoinza2_45za2")
+    
             var conf_set: sc_Vector
             var sc_conf_59: Int64
             var l1: Any
@@ -681,7 +681,7 @@ private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> 
             }
         }
         func conf_set_union(state: sc_Vector, conf_set: sc_Vector, sc_conf_66: Int64, other_set: sc_Vector) : Any {
-            //debuglog("This is conf_set_union");
+        
             var i = other_set.arr[2]
             while ((i as Int64).getOrThrow() >= 0 ){
                 var temp_bool1 = (conf_set.arr[(i as Int64).getOrThrow() + 5] as Bool)
@@ -695,7 +695,7 @@ private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> 
             return SC_NSNull()
         }
         func forw(sc_states_67: sc_Vector, BgL_sc_statezd2num_68zd2: Int64, sc_starters_69: sc_Vector, sc_enders_70: sc_Vector, sc_predictors_71: sc_Vector, sc_steps_72: sc_Vector, sc_nts_73: ArrayList<String>) : Any{
-            // debugLog("This is forw")
+        
             var next_set: sc_Vector
             var next: Int64
             var conf_set: Any
@@ -956,14 +956,14 @@ private func BgL_makezd2parserzd2(grammar: sc_Pair, lexer: ((lexer: sc_Pair) -> 
             loop1()
             i -= 1
         }
-        // optrOpnd = BgL_sc_statesza2_30za2
+  
         optrOpnd = BgL_sc_statesza2_30za2
         return ArrayList<Any>([sc_nts_42.getOrThrow(), sc_starters_41, sc_enders_40, sc_predictors_39, sc_steps_38, sc_names_37, sc_toks_36, optrOpnd, 0, 0, 0])
     }
 }
 
 private func ind(nt: String, sc_nts_10:ArrayList<String>) : Any{
-    //debuglog("This is ind")
+
     var i = sc_nts_10.size - 1
     while (true) {
         if (i >= 0) {
@@ -979,7 +979,7 @@ private func ind(nt: String, sc_nts_10:ArrayList<String>) : Any{
 }
 
 private func test(k: Int64) : Int64 {
-    //debuglog("This is test")
+
     let const_earley = sc_Pair(sc_Pair("\u{1E9C}s",sc_Pair(sc_Pair("\u{1E9C}a", SC_NSNull()),sc_Pair(sc_Pair("\u{1E9C}s",sc_Pair("\u{1E9C}s", SC_NSNull())),SC_NSNull()))),SC_NSNull());
     var x:ArrayList<Any>
     var p: (input: sc_Pair) -> ArrayList<Any>
@@ -1004,7 +1004,7 @@ private func lexer(l: sc_Pair) : sc_Pair{
 }
 
 private func deriv_trees(sc_conf_91: Int64, i: Int64, j: Int64, sc_enders_92: sc_Vector, sc_steps_93: sc_Vector, sc_names_94:sc_Vector,sc_toks_95: ArrayList<sc_Pair>, sc_states_96: sc_Vector, BgL_sc_nbzd2nts_97zd2: Int64) : sc_Pair {
-    //debuglog("This is deriv_trees")
+
     var prev: Int64
     let name: Any = sc_names_94.arr[sc_conf_91]
     if (((name as Bool) ?? true) != false) {
@@ -1016,7 +1016,7 @@ private func deriv_trees(sc_conf_91: Int64, i: Int64, j: Int64, sc_enders_92: sc
     } else {
         prev = sc_conf_91 - 1
         func sc_loop1_98(l1_param: Any, l2_param: Any) : Any {
-            //debuglog("This is sc_loop1_98")
+     
             var ender_set: Any
             var state: sc_Vector
             var ender: Int64
@@ -1086,7 +1086,7 @@ private func deriv_trees(sc_conf_91: Int64, i: Int64, j: Int64, sc_enders_92: sc
 }
 
 private func BgL_sc_derivzd2treesza2_47z70(nt: String, i: Int64, j: Int64, sc_nts_101: ArrayList<String>, sc_enders_102: sc_Vector, sc_steps_103: sc_Vector, sc_names_104: sc_Vector, sc_toks_105: ArrayList<sc_Pair>, sc_states_106: sc_Vector) : Any {
-    //debuglog("This is BgL_sc_derivzd2treesza2_47z70")
+
     var conf_set: Any
     var state: sc_Vector
     var sc_conf_107: Int64
@@ -1122,7 +1122,7 @@ private func BgL_sc_derivzd2treesza2_47z70(nt: String, i: Int64, j: Int64, sc_nt
 }
 
 private func BgL_parsezd2ze3treesz31(parse: ArrayList<Any>, nt: String, i: Int64, j:Int64) : Any {
-    //debuglog("This is BgL_parsezd2ze3treesz31")
+
     var states: sc_Vector
     var toks: ArrayList<sc_Pair> = ArrayList<sc_Pair>()
     var names: sc_Vector
@@ -1144,7 +1144,7 @@ private func BgL_parsezd2ze3treesz31(parse: ArrayList<Any>, nt: String, i: Int64
 }
 
 private func sc_ind_43(nt: Any, sc_nts_49: ArrayList<String>) : Any {
-    //debuglog("This is sc_ind_43")
+    
     var i = sc_nts_49.size - 1
     while (true) {
         if (i >= 0) {
@@ -1160,7 +1160,7 @@ private func sc_ind_43(nt: Any, sc_nts_49: ArrayList<String>) : Any {
 }
 
 private func sc_number2jsstring(x:Int64) : String {
-    //debuglog("This is sc_number2jsstring")
+   
     return x.toString()
 }
 
@@ -1174,7 +1174,7 @@ private class sc_ErrorOutputPort{
 private let SC_DEFAULT_OUT = sc_ErrorOutputPort()
 
 private func sc_toWriteString(o:Any) : String {
-    //debuglog("This is sc_toWriteString")
+
 
     if (o is SC_NSNull) {
         return "()"
@@ -1190,7 +1190,7 @@ private func sc_toWriteString(o:Any) : String {
 }
 
 private func sc_toDisplayString(o:Any) : String {
-    //debuglog("This is sc_toDisplayString")
+
 
     if (o is SC_NSNull) {
         return "()"
@@ -1216,7 +1216,7 @@ private func sc_list(args:ArrayList<Any>) : Any {
 }
 
 private func sc_write(o:Any,p:Any) {
-    //debuglog("This is sc_write")
+ 
 
     var p1 = p
     if(p is SC_NSNull){
@@ -1226,7 +1226,7 @@ private func sc_write(o:Any,p:Any) {
 }
 
 private func sc_display(o:Any,p:Any) {
-    //debuglog("This is sc_display")
+   
 
     var p1 = p
     if(p is SC_NSNull){
@@ -1297,7 +1297,7 @@ private func sc_assq(o:String, al:Any) : Any {
 }
 
 private func BgL_sc_symbolzd2ze3symbolzd2record_1ze3_nboyer(sym: String) : Any {
-    //debuglog("This is BgL_sc_symbolzd2ze3symbolzd2record_1ze3_nboyer")
+    
     var r:Any
     var x:Any
     x = sc_assq(sym, BgL_sc_za2symbolzd2recordszd2alistza2_2z00_nboyer);
@@ -1314,7 +1314,7 @@ private func BgL_sc_symbolzd2ze3symbolzd2record_1ze3_nboyer(sym: String) : Any {
 }
 
 private func translate_term_nboyer(term: Any) : Any {
-    //debuglog("This is translate_term_nboyer")
+   
     var lst: Any
     var cdr_value: Any
     if (!(term is sc_Pair)) {
@@ -1339,7 +1339,7 @@ private func translate_term_nboyer(term: Any) : Any {
 }
 
 private func translate_args_nboyer(lst: Any) : Any {
-    //debuglog("This is translate_args_nboyer")
+  
     var sc_lst_5: Any
     var term: Any
     var car_value: Any
@@ -1391,7 +1391,7 @@ private func apply_subst_nboyer(alist:Any, term:Any) : Any {
 }
 
 private func is_term_member_nboyer(x:Any, lst:Any) : Bool {
-    //debuglog("This is is_term_member_nboyer");
+
     var temp_lst = lst
     while (true) {
         if (temp_lst is SC_NSNull) {
@@ -1543,7 +1543,7 @@ private func sc_reverse(l1: Any) : Any {
 }
 
 private func BgL_earleyzd2benchmarkzd2(argumentsAry: ArrayList<Any>) {
-    //debuglog("This is BgL_earleyzd2benchmarkzd2")
+
 
     var args: Any = SC_NSNull()
     var sc_tmp = argumentsAry.size - 1
@@ -1572,10 +1572,10 @@ private func sc_newline(p: Any) {
 }
 
 private func RunBenchmark(name: String, count:Int64, run:()-> Any, warn:(Any) -> Bool){
-    //debuglog("This is RunBenchmark")
+
     for (_ in 0..count) {
         let result:Any = run()
-        //debuglog("result: \(result)")
+    
         if (!warn(result)) {
             return
         }

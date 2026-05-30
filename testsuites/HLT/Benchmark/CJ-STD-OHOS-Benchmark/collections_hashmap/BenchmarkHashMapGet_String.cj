@@ -89,7 +89,6 @@ public class Test_HashMap_Get_String {
 main(){
     let testInfo = Test_HashMap_Get_String().asTestSuite().runBenchmarks().reportTo(RawStatsReporter())
     for(cases in testInfo) {
-        // println("access-binary-trees: ms = ${Float64((end-start).toNanoseconds())/1000000.0}")
         println("${cases[0]}: ms = ${cases[1][0]/1000000.0}")
     }
 }

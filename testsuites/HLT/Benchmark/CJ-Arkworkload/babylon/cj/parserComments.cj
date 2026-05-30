@@ -21,23 +21,5 @@
  * limitations under the License.
  */
 
-// 定义见 parser.cj
-// extend Array<T> {
-//     public func splice(start: Int64, deleteCount: Int64) : ArrayList<T> {
-//         var deleteItems: ArrayList<T> = ArrayList<T>()
-//         for (i in (0..this.size)) {
-//             if (i > start && i < deleteCount) {
-//                 deleteItems.add(this[i])
-//             }
-//         }
-//         return deleteItems
-//     }
-    
-//     public func slice(start: Int64, end!: ?Int64 = Option<Int64>.None) : ArrayList<T> {
-//         if (end.isNone()) {
-//             return ArrayList<T>(this.slice(Range(start,this.size-1,1,true,true,true)))
-//         }
-//         return ArrayList<T>(this.slice(Range(start,end-1,1,true,true,true)))
-//     }
-// }
+
 

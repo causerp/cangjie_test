@@ -692,7 +692,7 @@ class Pbkdf2 {
         if (length != 0) {
             out = BitArray.clamp(out, length.getOrThrow())
         }
-        //debugLog("pbkdf2-out", out)
+        
         return out
     }
 }
@@ -711,9 +711,9 @@ class Benchmark {
             let salt = "BA DB EE FB AD BE EF 00"
             let count = 2048
             let strArr = SJCLCodecHex.toBits(salt)
-            //debugLog("strArr", strArr)
+            
             let output = SJCLCodecHex.fromBits(Pbkdf2.pbkdf2(password, strArr, size: count))
-            //debugLog("output", output)
+            
             if (output != "5436c4c0d73e425a521f4a5a13e0fffe5cd957a823f435385fa0a75068a26803") {
                 throw Exception("Bad output")
             }

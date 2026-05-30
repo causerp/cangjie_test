@@ -152,17 +152,6 @@ open class B2Rope {
         }
     }
     
-    // public mut prop vertexCount: Int64 {
-    //     get(){
-    //         mCount
-    //     }
-    // }
-    
-    // public mut prop vertices: ArrayList<B2Vec2> {
-    //     get(){
-    //         mps.getOrThrow()
-    //     }
-    // }
     
     func setAngle( angle: Float64) {
         let count3 = mCount - indexTwo

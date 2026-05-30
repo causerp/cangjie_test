@@ -176,15 +176,7 @@ func NoneExtension() : Float64 {
     var res: Array<Int64> = Array<Int64>(arraySize,repeat:0)
     timer.start()
     for (i in 0..count) {
-        // if (resourcesPerson[i % resourcesPerson.count].name == "John" && resourcesPerson[i % resourcesPerson.count].age <= 20) {
-        //     if (student1.university == "UNY") {
-        //         res[i % arraySize] += 1
-        //     }
-        // } else {
-        //     if (student1.age == 21) {
-        //         res[i % arraySize] += 2
-        //     }
-        // }
+     
         let a = resourcesPerson[i % arraySize];
         if (a.equal(cmp : person1)) {
             let b = resourcesPerson[(i + 1) % arraySize];

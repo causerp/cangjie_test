@@ -34,7 +34,7 @@ class Morph {
                 let x = Float64((j - 1)) * PI2nx
                 arr[index] = Float64(sin(x)) * (-f30)
                 if (index % 317 == 1) {
-                    //DebugLog("arr index value is " + "\(arr[index])")
+                    
                 }
             }
         }
@@ -60,7 +60,7 @@ class Morph {
             }
             testOutput += a[index]
         }
-        //DebugLog("testOutput value is \(testOutput)")
+
                 
         var epsilon = 1e-13
         
@@ -73,11 +73,7 @@ class Morph {
 }
 
 let isDebug : Bool = false
-// func DebugLog(msg: Any , file!: String = file, line!: Int64 = line, fn!: String = function){
-//     if (isDebug) {
-//         print("${msg}")
-//     }
-// }
+
 
 class Timer {
     // ms

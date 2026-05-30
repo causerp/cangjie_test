@@ -11,14 +11,7 @@
 // RUN-EXEC: %export cjHeapSize=512mb && %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan ms
 
-/**
- ** A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
- ** in FIPS PUB 180-1
- ** Version 2.1a Copyright Paul Johnston 2000 - 2002.
- ** Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
- ** Distributed under the BSD License
- ** See http://pajhome.org.uk/crypt/md5 for details.
- **/
+
 import std.time.*
 import std.collection.*
 
@@ -237,7 +230,7 @@ class Benchmark {
             run()
         }
         let endTime = currentTimestamp13()
-        //log("crypto-sha1: ms = ${endTime - startTime}")
+       
     }
 }
 
@@ -247,7 +240,7 @@ main() {
         let startTimeInLoop = currentTimestamp13()
         Benchmark().runIteration()
         let endTimeInLoop = currentTimestamp13()
-        //log("crypto-sha1: ms = \(endTimeInLoop - startTimeInLoop) i = \(i)")
+       
     }
     let endTime = currentTimestamp13()
     println("crypto-sha1: ms = ${Float64((endTime-startTime).toNanoseconds())/1000000.0}")

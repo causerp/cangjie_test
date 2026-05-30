@@ -112,13 +112,11 @@ public class HeapClass {
         }
     }
     public var my_heap: CPointer<Unit> = CPointer<Unit>()
-    // public var my_heap8: Array<Int8> = []
     public prop my_heap8: CPointer<Int8> {
         get() {
             CPointer<Int8>(this.my_heap)
         }
     }
-    // public var my_heap32: Array<Int32> = []
     public prop my_heap32: CPointer<Int32> {
         get() {
             CPointer<Int32>(this.my_heap)
