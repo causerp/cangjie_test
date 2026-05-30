@@ -471,8 +471,6 @@ class Cube {
         Testing.Init = true
         Loop()
 
-        //DebugLog("CubeSize is \(Int(CubeSize)), MTrans value is \(MTrans[0][0]) \(MTrans[0][1]) \(MTrans[0][2]) \(MTrans[0][3])")
-        //DebugLog("CubeSize is \(Int(CubeSize)), MQube value is \(MQube[0][0]) \(MQube[0][1]) \(MQube[0][2]) \(MQube[0][3])")
 
         // Perform a simple sum-based verification.
         var sum: Float64 = 0.0
@@ -483,7 +481,7 @@ class Cube {
             }
         }
         if (sum != validation[Int64(CubeSize)]) {
-            // println("Error: bad vector sum for CubeSize =  + ${CubeSize} + ; expected  + ${validation[Int64(CubeSize)]} +  but got  + ${sum}")
+
 
         }
     }
@@ -497,12 +495,7 @@ class Cube {
     }
 
     let isDebug: Bool = false
-    // func DebugLog(_ msg : Any , file: String = #file, line: Int = #line, fn: String = #function){
-    //     if isDebug {
-    //         let prefix = "\(msg)"
-    //         print(prefix)
-    //     }
-    // }
+
 }
 
 class Timer {

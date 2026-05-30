@@ -48,12 +48,7 @@ func setupArrays() :Unit{
     }
   }
 
-//  public func verifyVectAddDouble() :Bool{
-//     timeVectAddDouble(1)
-//     var hashCode :Int32 = Int32(dc.hashCode())
-//     var expectedHashCode :Int32 = 1937416705
-//     return hashCode == expectedHashCode
-//   }
+
 
 }
 

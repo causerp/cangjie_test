@@ -94,7 +94,7 @@ func getChars(str_src : String , srcBegin :Int32, srcEnd :Int32, dst :Array<Rune
             }
          }
        }catch(e:Exception){
-          // println("There is an exception : IndexOutOfBoundsException!")
+     
        }
     return dst_Carr
 }

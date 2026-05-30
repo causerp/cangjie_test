@@ -271,8 +271,6 @@ class Benchmark {
             let files = spawn {
                 fs.forEachFileRecursively()
             } 
-            // printLog("根节点fs下所有dir的数量=====" + dirs.get().size.toString())
-            // printLog("根节点fs下所有dir下的file的数量=====" + files.get().size.toString())
         }
         var thread1 = spawn {
             fs.forEachFileRecursively()
@@ -288,8 +286,6 @@ class Benchmark {
             if (dir.fileCount() > 3) {
                 if (isDebug) {
                     let deles = dir.fileCount()
-                    // printLog("")
-                    // printLog("dir对象删除的file数量=====" + deles.toString())
                 }
                 for (name in dir.forEachFile()) {
                     let result = dir.rm(name[0])

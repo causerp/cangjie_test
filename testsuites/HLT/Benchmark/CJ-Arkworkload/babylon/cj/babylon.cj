@@ -30,7 +30,7 @@ private let LOOP_COUNT = 1
 public class BenchMark {
     
     let allJsFiles = [airBlob, babylonBlob, inspectorBlob, basicBlob]
-    // let allJsFiles = [inspectorBlob]
+    
 
     func parse(input: String, options: ParserOptions) : Node {
         return Parser(options, input).parse();

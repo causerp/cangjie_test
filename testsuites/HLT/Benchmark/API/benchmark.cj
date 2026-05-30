@@ -17,12 +17,8 @@ public macro MAIN(a:Tokens){
     if (!(code is MainDecl)) {
         throw Exception("Please use as @MAIN[main(){} , only support main!")
     }
-    // var name = code.getIdentifier()
-    // if (name.value != "main"){
-    //     throw Exception("Please use as @MAIN[main(){} , only support main!")
-    // }
+
     var res = quote(main(){
-       //println("case name".padLeft(20)+"total time(ns),".padLeft(20)+"each time(ns/op)".padLeft(20))
        println("case name"+"total time(ns),"+"each time(ns/op)")
     )
     var l = all_bench_case_name.size
@@ -79,11 +75,10 @@ public macro BENCHMARK(a:Tokens,b:Tokens){
             // origin code have last } here.
             var t = (DateTime.now() - start).toNanoseconds()
             var t_each = t / $a
-            // println("${name}".padLeft(20)+": ${t}ns,".padLeft(20)+"${t_each}ns/op".padLeft(20))
             println("${name}"+": ${t}ns,"+"${t_each}ns/op")
 
         }
         )
-        //println(res.toString())
+
         return res
 }

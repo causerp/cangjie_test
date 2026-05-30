@@ -103,7 +103,7 @@ class Splay {
         // Check if the platform has the performance.now high resolution timer.
         // If not, throw exception and quit.
         if (Timer().getTime() == 0.0) {
-            //deBugLog("PerformanceNowUnsupported")
+      
             return
         }
         splayTree = SplayTree()
@@ -422,7 +422,7 @@ class Splay1{
         let splay = Splay()
         splay.SplaySetup()
         let setupEnd = Timer().getTime()
-        //deBugLog("setupTime: " + String(setupEnd - setupStart) + " ms")
+        
         for (_ in 0..20) {
             for (_ in 0..50) {
                 splay.SplayRun()

@@ -26,9 +26,9 @@ var server: Server = unsafe { zeroValue<Server>() }
 let buf = Array<Byte>(4096, repeat: 0)
 
 // High-load data running core dump
-// let nums:Array<Int64> =[32, 256, 2048, 16384, 131072, 1048576, 8388608, 67108864, 536870912,4294967296]
+
 let nums: Array<Int64> =[32, 256, 2048, 16384, 131072, 1048576, 8388608, 67108864]
-// let dataSize: Array<String> =["32", "256", "2K", "16K", "128K", "1M", "8M", "64M", "512M", "4G"]
+
 
 let repsAll:Array<Int64> =[11406, 9939, 10000, 5348, 1890, 608, 60 , 12, 1, 1]
 let len: Int64 = nums.size

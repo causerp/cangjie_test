@@ -1867,9 +1867,6 @@ func runOnce()  {
     
     clen = dnaInputResult.size
 
-    // for (i in seqs) {
-    //     dnaOutputString += i + " " + Matcher(Regex(i), dnaInputResult).allCount().toString() + "\n"
-    // }
 
     for (regexStr in seqs) {
         let matchCnt = allCountWithCache(regexStr, dnaInputResult)

@@ -28,5 +28,5 @@ let lineBreak = Regex("\\r\\n?|\\n|\u{2028}|\u{2029}")
 let lineBreakG = lineBreak
 
 // 仓颉暂不支持 Unicode 正则
-// let nonASCIIwhitespace = Regex("[\\u1680\\u180e\\u2000-\\u200a\\u202f\\u205f\\u3000\\ufeff]")
+
 let nonASCIIwhitespace =["\u{1680}","\u{180e}","\u{2000}","\u{2001}","\u{2002}","\u{2003}","\u{2004}","\u{2005}","\u{2006}","\u{2007}","\u{2008}","\u{2009}","\u{200a}","\u{202f}","\u{205f}","\u{3000}","\u{feff}"]

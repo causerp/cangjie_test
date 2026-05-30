@@ -125,7 +125,6 @@ func runFasta2():Int64{
     let bufferSize = 256 * 1024
     var buffer = Array<Int64>(bufferSize, repeat:10)
     let n: Int64 = 250000
-    // alu.popLast()
     timer.start()
     randomFasta(buffer: buffer, acid: iub,n:3*n)
     let time = timer.stop()

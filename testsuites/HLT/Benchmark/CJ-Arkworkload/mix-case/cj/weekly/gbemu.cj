@@ -222,7 +222,7 @@ func setStateSum( a: Array<Int64>) : Int64 {
 }
 
 func resetGlobalVariables() {
-    //deBugLog("This is resetGlobalVariables")
+
     //Audio API Event Handler:
     audioContextHandle = None
     audioNode = None
@@ -725,7 +725,7 @@ func resetCallbackAPIAudioBuffer( APISampleRate: Float64,  bufferAlloc: Int64) {
 
 //Initialize WebKit Audio:
 func initializeWebKitAudio() {
-    //deBugLog("This is initializeWebKitAudio")
+ 
     if ( (!launchedContext)) {
         // The following line was modified for benchmarking:
         audioContextHandle = GameBoyAudioContext()                       //Create a system audio context.
@@ -1541,7 +1541,7 @@ class GameBoyCore {
     var swizzledFrame: Array<Int64> = []                		//The secondary gfx buffer that holds the converted RGBA values.
     var canvasBuffer: ?GameBoyContextImageDataResult =None      // imageData handle
     var pixelStart: Int64 = 0                                     // Temp variable for holding the current working framebuffer offset.
-    // Variables used for scaling in JS:
+
     var onscreenWidth: Int64 = 160
     var offscreenWidth: Int64 = 160
     var onscreenHeight: Int64 = 144
@@ -5670,7 +5670,7 @@ class GameBoyCore {
         intializeWhiteNoise()
     }
     func returnFromRTCState() {
-        //deBugLog("This is returnFromRTCState")
+        
         if ( cTIMER) {
             let rtcData = this.openRTC(name)
             var index = 0
@@ -5702,7 +5702,7 @@ class GameBoyCore {
         }
     }
     func start() {
-        //deBugLog("This is GameBoyCore-start")
+
         this.initMemory()   //Write the startup memory.
         this.ROMLoad()      //Load the ROM into memory and get cartridge information from it.
         this.initLCD()      //Initialize the graphics.
@@ -5710,7 +5710,7 @@ class GameBoyCore {
         this.run()         //Start the emulation.
     }
     func initMemory() {
-        //deBugLog("This is initMemory")
+
         //Initialize the RAM:
         memory = Array<Int64>(0x10000,repeat:0)
         frameBuffer =Array<Int64>(23040, repeat:0xF8F8F8)
@@ -5720,7 +5720,7 @@ class GameBoyCore {
         channel3PCM = Array<Int64>(0x20, repeat:0)
     }
     func generateCacheArray( tileAmount: Int64) : ArrayList<ArrayObject> {
-        //deBugLog("This is generateCacheArray")
+    
         var tileArray: ArrayList<ArrayObject> = ArrayList<ArrayObject> ()
         var tileNumber: Int64 = 0
         while ( tileNumber < tileAmount) {
@@ -5732,7 +5732,7 @@ class GameBoyCore {
         return tileArray
     }
     func initSkipBootstrap() {
-        //deBugLog("This is initSkipBootstrap")
+ 
         var index: Int64 = 0xFF
         while ( index >= 0) {
             if ( index >= 0x30 && index < 0x40) {
@@ -5871,7 +5871,7 @@ class GameBoyCore {
         currentX = 0
     }
     func initBootstrap() {
-        //deBugLog("This is initBootstrap")
+    
         //Start as an unset device:
         cout("Starting the selected boot ROM.", 0)
         programCounter = 0
@@ -5907,7 +5907,7 @@ class GameBoyCore {
         memory[0xFF00] = 0xF  //Set the joypad state.
     }
     func ROMLoad() {
-        //deBugLog("This is ROMLoad")
+     
         //Load the first two ROM banks (0x0000 - 0x7FFF) into regular gameboy memory:
         ROM = []
         usedBootROM = (settings[1] as Bool).getOrThrow()
@@ -5972,7 +5972,7 @@ class GameBoyCore {
         checkIRQMatching()
     }
     func getROMImage() : Any {
-        //Return the binary version of the ROM image currently running:
+        
         if ( ROMImage.size > 0) {
             return ROMImage.size
         }
@@ -5983,7 +5983,7 @@ class GameBoyCore {
         return ROMImage
     }
     func interpretCartridge() {
-        //deBugLog("This is interpretCartridge")
+        
         // ROM name
         for ( index in 0x134..0x13F) {
             if (String(ROMImage.toRuneArray()[index]).toArray()[0] > 0) {
@@ -6223,7 +6223,7 @@ class GameBoyCore {
         ROMImage = ""  //Memory consumption reduction.
     }
     func initializeTiming() {
-        //deBugLog("This is initializeTiming")
+        
         //Emulator Timing:
         baseCPUCyclesPerIteration = Float64(0x80000) / Float64(0x7D) * Float64((settings[6] as Int64).getOrThrow())
         CPUCyclesTotalRoundoff = Float64(Int64(baseCPUCyclesPerIteration) % 4)
@@ -6232,7 +6232,7 @@ class GameBoyCore {
         CPUCyclesTotalCurrent = 0.0
     }
     func setupRAM() {
-        //deBugLog("This is setupRAM")
+        
         //Setup the auxilliary/switchable RAM:
         if ( (cMBC2)) {
             numRAMBanks = 1 / 16
@@ -6273,11 +6273,11 @@ class GameBoyCore {
         memoryWriteJumpCompile()
     }
     func MBCRAMUtilized() : Bool {
-        //deBugLog("This is MBCRAMUtilized")
+        
         return cMBC1 || cMBC2 || cMBC3 || cMBC5 || cMBC7 || cRUMBLE
     }
     func recomputeDimension() {
-        //deBugLog("This is recomputeDimension")
+        
         initNewCanvas()
         //Cache some dimension info:
         onscreenWidth = canvas.getOrThrow().width
@@ -6315,7 +6315,7 @@ class GameBoyCore {
         offscreenRGBCount = offscreenWidth * offscreenHeight * 4
     }
     func initLCD() {
-        //deBugLog("This is initLCD")
+        
         recomputeDimension()
         if ( (offscreenRGBCount != 92160)) {
             //Only create the resizer handle if we need it:
@@ -6350,7 +6350,7 @@ class GameBoyCore {
         requestDraw()
     }
     func graphicsBlit() {
-        //deBugLog("This is graphicsBlit")
+        
         if ( (offscreenWidth == onscreenWidth && offscreenHeight == onscreenHeight)) {
             drawContextOnscreen.getOrThrow().putImageData(canvasBuffer.getOrThrow(), 0, 0)
         }
@@ -6397,7 +6397,7 @@ class GameBoyCore {
         lowY = y & 0xFF
     }
     func initSound() {
-        //deBugLog("This is initSound")
+       
         sampleSize = Float64(0x400000) / 1000.0 * Float64((settings[6] as Int64).getOrThrow())
         machineOut = (settings[13] as Int64).getOrThrow()
         if ( (settings[0] as Bool).getOrThrow()) {
@@ -6416,7 +6416,7 @@ class GameBoyCore {
         }
     }
     func initAudioBuffer() {
-        //deBugLog("This is initAudioBuffer")
+      
         audioIndex = 0
         bufferContainAmount = max(Int64(sampleSize * Float64((settings[7] as Int64).getOrThrow()) / Float64((settings[13] as Int64).getOrThrow())), 4096) << 1
         numSamplesTotal = (Int64(sampleSize) - (Int64(sampleSize) % (settings[13] as Int64).getOrThrow())) | 0
@@ -6424,7 +6424,7 @@ class GameBoyCore {
         secondaryBuffer = Array<Float32>((numSamplesTotal << 1) / (settings[13] as Int64).getOrThrow(), repeat:0.0)
     }
     func intializeWhiteNoise() {
-        //deBugLog("This is intializeWhiteNoise")
+    
         //Noise Sample Tables:
         var randomFactor = 1
         //15-bit LSFR Cache Generation:
@@ -6490,7 +6490,7 @@ class GameBoyCore {
         }
     }
     func audioUnderrunAdjustment() {
-        //deBugLog("This is audioUnderrunAdjustment")
+        
         if ( (settings[0] as Bool).getOrThrow()) {
             var underrunAmount = bufferContainAmount - audioHandle.getOrThrow().remainingBuffer() 
             if ( (underrunAmount > 0)) {
@@ -6500,7 +6500,7 @@ class GameBoyCore {
         }
     }
     func initializeAudioStartState() {
-        //deBugLog("This is initializeAudioStartState")
+        
         channel1FrequencyTracker = 0x2000
         channel1DutyTracker = 0
         channel1CachedDuty = dutyLookup[2]
@@ -6573,7 +6573,7 @@ class GameBoyCore {
         channel4OutputLevelCache()
     }
     func outputAudio() {
-        //deBugLog("This is outputAudio")
+        
         var sampleFactor: Int64 = 0
         var dirtySample: Int64 = 0
         var averageL: Float32 = 0.0
@@ -6602,7 +6602,7 @@ class GameBoyCore {
     }
     //Below are the audio generation functions timed against the CPU:
     func generateAudio( numSamplesTemp: Int64) {
-        //deBugLog("This is generateAudio")
+        
         var numSamples = numSamplesTemp
         if ( (soundMasterEnabled && !CPUStopped)) {
             var samplesToGenerate = 0
@@ -6647,7 +6647,7 @@ class GameBoyCore {
     }
     //Generate audio, but don't actually output it (Used for when sound is disabled by user/browser):
     func generateAudioFake( numSamples: Int64) {
-        //deBugLog("This is generateAudioFake( numSamples: Int64)")
+        
         if ( (soundMasterEnabled && !CPUStopped)) {
             var numSamples = numSamples - 1
             while ( (numSamples > -1)) {
@@ -6662,7 +6662,7 @@ class GameBoyCore {
         }
     }
     func audioJIT() {
-        //deBugLog("This is audioJIT")
+        
         //Audio Sample Generation Timing:
         if ( (settings[0] as Bool).getOrThrow()) {
             generateAudio(Int64(audioTicks))
@@ -6673,7 +6673,7 @@ class GameBoyCore {
         audioTicks = 0.0
     }
     func audioComputeSequencer() {
-        //deBugLog("This is audioComputeSequencer")
+        
         match ( (sequencePosition)) {
         case 0=>
             clockAudioLength()
@@ -6750,7 +6750,7 @@ class GameBoyCore {
         }
     }
     func runAudioSweep() {
-        //deBugLog("This is runAudioSweep")
+   
         //Channel 1:
         if ( (channel1lastTimeSweep > 0)) {
             if ( (channel1frequencySweepDivider > 0)) {
@@ -6791,7 +6791,7 @@ class GameBoyCore {
         }
     }
     func clockAudioEnvelope() {
-        //deBugLog("This is clockAudioEnvelope")
+        
         //Channel 1:
         if ( (channel1envelopeSweepsLast > -1)) {
             if ( (channel1envelopeSweeps > 0)) {
@@ -6915,7 +6915,7 @@ class GameBoyCore {
         channel1OutputLevelSecondaryCache()
     }
     func channel1OutputLevelCache() {
-        //deBugLog("This is channel1OutputLevelCache")
+      
         if(leftChannel1){
             channel1currentSampleLeft = channel1envelopeVolume 
         }else{
@@ -6929,7 +6929,7 @@ class GameBoyCore {
         channel1OutputLevelSecondaryCache()
     }
     func channel1OutputLevelSecondaryCache() {
-        //deBugLog("This is channel1OutputLevelSecondaryCache")
+      
         if ( (channel1Enabled)) {
             channel1currentSampleLeftSecondary = channel1currentSampleLeft
             channel1currentSampleRightSecondary = channel1currentSampleRight
@@ -6941,7 +6941,7 @@ class GameBoyCore {
         channel1OutputLevelTrimaryCache()
     }
     func channel1OutputLevelTrimaryCache() {
-        //deBugLog("This is channel1OutputLevelTrimaryCache")
+      
         if ( (channel1CachedDuty[channel1DutyTracker])) {
             channel1currentSampleLeftTrimary = channel1currentSampleLeftSecondary
             channel1currentSampleRightTrimary = channel1currentSampleRightSecondary
@@ -6962,7 +6962,7 @@ class GameBoyCore {
         channel2OutputLevelSecondaryCache()
     }
     func channel2OutputLevelCache() {
-        //deBugLog("This is channel2OutputLevelCache")
+      
         if(leftChannel2){
             channel2currentSampleLeft = channel2envelopeVolume 
         }else{
@@ -6976,7 +6976,7 @@ class GameBoyCore {
         channel2OutputLevelSecondaryCache()
     }
     func channel2OutputLevelSecondaryCache() {
-        //deBugLog("This is channel2OutputLevelSecondaryCache")
+       
         if ( (channel2Enabled)) {
             channel2currentSampleLeftSecondary = channel2currentSampleLeft
             channel2currentSampleRightSecondary = channel2currentSampleRight
@@ -6988,7 +6988,7 @@ class GameBoyCore {
         channel2OutputLevelTrimaryCache()
     }
     func channel2OutputLevelTrimaryCache() {
-        //deBugLog("This is channel2OutputLevelTrimaryCache")
+       
         if ( (channel2CachedDuty[channel2DutyTracker])) {
             channel2currentSampleLeftTrimary = channel2currentSampleLeftSecondary
             channel2currentSampleRightTrimary = channel2currentSampleRightSecondary
@@ -7083,7 +7083,7 @@ class GameBoyCore {
         channel4OutputLevelCache()
     }
     func run() {
-        //deBugLog("This is GameBoyCore run")
+        
         //The preprocessing before the actual iteration loop:
         if ( ((stopEmulator & 2) == 0)) {
             if ( ((stopEmulator & 1) == 1)) {
@@ -7123,7 +7123,7 @@ class GameBoyCore {
         }
     }
     func executeIteration() {
-        //deBugLog("This is executeIteration")
+        
         //Iterate the interpreter loop:
         var opcodeToExecute = 0
         var timedTicks = 0
@@ -7209,7 +7209,7 @@ class GameBoyCore {
         }
     }
     func iterationEndRoutine() {
-        //deBugLog("This is iterationEndRoutine")
+   
         if ( ((stopEmulator & 0x1) == 0)) {
             audioJIT()  //Make sure we at least output once per iteration.
             //Update DIV Alignment (Int64eger overflow safety):
@@ -7223,7 +7223,7 @@ class GameBoyCore {
         }
     }
     func handleSTOP() {
-        //deBugLog("This is handleSTOP")
+    
         CPUStopped = true            //Stop CPU until joypad input changes.
         iterationEndRoutine()
         if ( (emulatorTicks < 0.0)) {
@@ -7232,7 +7232,7 @@ class GameBoyCore {
         }
     }
     func recalculateIterationClockLimit() {
-        //deBugLog("This is recalculateIterationClockLimit")
+       
         let endModulus = Float64(Int64(CPUCyclesTotalCurrent) % 4)
         CPUCyclesTotal = CPUCyclesTotalBase + CPUCyclesTotalCurrent - endModulus
         CPUCyclesTotalCurrent = endModulus
@@ -7285,7 +7285,7 @@ class GameBoyCore {
         }
     }
     func clocksUntilLYCMatch() : Int64 {
-        //deBugLog("This is clocksUntilLYCMatch")
+   
         if ( (memory[0xFF45] != 0)) {
             if ( memory[0xFF45] > actualScanLine) {
                 return 456 * (memory[0xFF45] - actualScanLine)
@@ -7299,7 +7299,7 @@ class GameBoyCore {
         }
     }
     func clocksUntilMode0() : Int64 {
-        //deBugLog("This is clocksUntilMode0")
+
         match ( (modeSTAT)) {
         case 0=>
             if ( (actualScanLine == 143)) {
@@ -7341,7 +7341,7 @@ class GameBoyCore {
         }
     }
     func matchLYC() {  //LYC Register Compare
-        //deBugLog("This is matchLYC")
+
         if ( (memory[0xFF44] == memory[0xFF45])) {
             memory[0xFF41] |= 0x04
             if ( (LYCMatchTriggerSTAT)) {
@@ -7354,7 +7354,7 @@ class GameBoyCore {
         }
     }
     func updateCore() {
-        //deBugLog("This is updateCore")
+   
         //Update the clocking for the LCD emulation:
         LCDTicks += CPUTicks >> doubleSpeedShifter  //LCD Timing
         LCDCONTROL[actualScanLine](this)          //Scan Line and STAT Mode Control
@@ -7392,7 +7392,7 @@ class GameBoyCore {
         }
     }
     func updateCoreFull() {
-        //deBugLog("This is updateCoreFull")
+    
         //Update the state machine:
         updateCore()
         //End of iteration routine:
@@ -7401,7 +7401,7 @@ class GameBoyCore {
         }
     }
     func initializeLCDController() {
-        //deBugLog("This is initializeLCDController")
+       
         //Display on hanlding:
         var line = 0
         while ( (line < 154)) {
@@ -7584,7 +7584,7 @@ class GameBoyCore {
         }
     }
     func DisplayShowOff() {
-        //deBugLog("This is DisplayShowOff")
+        
         if ( (drewBlank == 0)) {
             //Output a blank screen to the output framebuffer:
             clearFrameBuffer()
@@ -7613,7 +7613,7 @@ class GameBoyCore {
         }
     }
     func clockUpdate() {
-        //deBugLog("This is clockUpdate")
+    
         if ( (cTIMER)) {
             let dateObj = new_Date() // The line is changed for benchmarking.
             let newTime = dateObj.getTime()
@@ -7642,19 +7642,18 @@ class GameBoyCore {
         }
     }
     func prepareFrame() {
-        //deBugLog("This is prepareFrame")
         //Copy the internal frame buffer to the output buffer:
         swizzleFrameBuffer()
         drewFrame = true
     }
     func requestDraw() {
-        //deBugLog("This is requestDraw")
+
         if ( (drewFrame)) {
             dispatchDraw()
         }
     }
     func dispatchDraw() {
-        //deBugLog("This is dispatchDraw")
+
         let canvasRGBALength = offscreenRGBCount
         if ( (canvasRGBALength > 0)) {
             //We actually updated the graphics internally, so copy out:
@@ -7678,7 +7677,7 @@ class GameBoyCore {
         }
     }
     func swizzleFrameBuffer() {
-        //deBugLog("This is swizzleFrameBuffer")
+        
         //Convert our dirty 24-bit (24-bit, with internal render flags above it) framebuffer to an 8-bit buffer with separate indices for the RGB channels:
         let frameBuffer = frameBuffer
         var bufferIndex = 0
@@ -7694,7 +7693,7 @@ class GameBoyCore {
         }
     }
     func clearFrameBuffer() {
-        //deBugLog("This is clearFrameBuffer")
+        
         var bufferIndex = 0
         if ( (cGBC || colorizedGBPalettes)) {
             while ( (bufferIndex < 69120)) {
@@ -7714,8 +7713,8 @@ class GameBoyCore {
         }
     }
     func resizeFrameBuffer() : Array<Int64> {
-        //deBugLog("This is resizeFrameBuffer")
-        //Return a reference to the generated resized framebuffer:
+        
+        
         var t1 : Array<Float32> = []
 
         if((resizer.getOrThrow().resize(t1) as Array<Int64>).isSome()){
@@ -7730,7 +7729,7 @@ class GameBoyCore {
         }
     }
     func compileResizeFrameBufferFunction() {
-        //deBugLog("This is compileResizeFrameBufferFunction")
+        
         if ( (offscreenRGBCount > 0)) {
             resizer = Resize(widthOriginal:160,heightOriginal: 144, targetWidth:offscreenWidth, targetHeight:offscreenHeight, blendAlpha:false, interpolationPass:true)
         }
@@ -7790,7 +7789,7 @@ class GameBoyCore {
         }
     }
     func initializeModeSpecificArrays(){
-        //deBugLog("This is initializeModeSpecificArrays")
+        
         if(LCDisOn){
             LCDCONTROL = LINECONTROL 
         }else{
@@ -7821,7 +7820,7 @@ class GameBoyCore {
         renderPathBuild()
     }
     func GBCtoGBModeAdjust() {
-        //deBugLog("This is GBCtoGBModeAdjust")
+      
         cout("Stepping down from GBC mode.", 0)
         BGCHRBank2.array = []
         VRAM = []
@@ -7852,7 +7851,7 @@ class GameBoyCore {
         memoryWriteJumpCompile()
     }
     func renderPathBuild() {
-        //deBugLog("This is renderPathBuild")
+    
         if ( (!cGBC)) {
             BGLayerRender = BGGBLayerRender
             WindowLayerRender = WindowGBLayerRender
@@ -7864,7 +7863,7 @@ class GameBoyCore {
         }
     }
     func priorityFlaggingPathRebuild() {
-        //deBugLog("This is priorityFlaggingPathRebuild")
+    
         if ( (BGPriorityEnabled)) {
             BGLayerRender = BGGBCLayerRender
             WindowLayerRender = WindowGBCLayerRender
@@ -7882,7 +7881,7 @@ class GameBoyCore {
         return ((r * 13 + g * 2 + b) >> 1) << 16 | (g * 3 + b) << 9 | (r * 3 + g * 2 + b * 11) >> 1
     }
     func updateGBColorizedBGPalette( data: Int64) {
-        //deBugLog("This is updateGBColorizedBGPalette")
+    
         //GB colorization:
         gbBGColorizedPalette[0] = cachedBGPaletteConversion[data & 0x03] | 0x2000000
         gbBGColorizedPalette[1] = cachedBGPaletteConversion[(data >> 2) & 0x03]
@@ -7890,14 +7889,14 @@ class GameBoyCore {
         gbBGColorizedPalette[3] = cachedBGPaletteConversion[data >> 6]
     }
     func updateGBColorizedOBJPalette( index: Int64,  data: Int64) {
-        //deBugLog("This is updateGBColorizedOBJPalette")
+  
         //GB colorization:
         gbOBJColorizedPalette[index | 1] = cachedOBJPaletteConversion[index | ((data >> 2) & 0x03)]
         gbOBJColorizedPalette[index | 2] = cachedOBJPaletteConversion[index | ((data >> 4) & 0x03)]
         gbOBJColorizedPalette[index | 3] = cachedOBJPaletteConversion[index | (data >> 6)]
     }
     func getGBCColor() {
-        //deBugLog("This is getGBCColor")
+     
         //GBC Colorization of DMG ROMs:
         //BG
         var counter: Int64 = 0
@@ -7925,14 +7924,14 @@ class GameBoyCore {
         colorizedGBPalettes = true
     }
     func updateGBRegularBGPalette( data: Int64) {
-        //deBugLog("This is updateGBRegularBGPalette")
+   
         gbBGPalette[0] = colors[data & 0x03] | 0x2000000
         gbBGPalette[1] = colors[(data >> 2) & 0x03]
         gbBGPalette[2] = colors[(data >> 4) & 0x03]
         gbBGPalette[3] = colors[data >> 6]
     }
     func updateGBRegularOBJPalette( index: Int64,  data: Int64) {
-        //deBugLog("This is updateGBRegularOBJPalette")
+     
         gbOBJPalette[index | 1] = colors[(data >> 2) & 0x03]
         gbOBJPalette[index | 2] = colors[(data >> 4) & 0x03]
         gbOBJPalette[index | 3] = colors[data >> 6]
@@ -7972,7 +7971,7 @@ class GameBoyCore {
         }
     }
     func BGGBLayerRender( scanlineToRender: Int64) {
-        //deBugLog("This is BGGBLayerRender")
+      
         let scrollYAdjusted = (backgroundY + scanlineToRender) & 0xFF            //The line of the BG we're at.
         let tileYLine = (scrollYAdjusted & 7) << 3
         var tileYDown = gfxBackgroundCHRBankPosition | ((scrollYAdjusted & 0xF8) << 2)  //The row of cached tiles we're fetching from.
@@ -8301,7 +8300,7 @@ class GameBoyCore {
         }
     }
     func BGGBCLayerRenderNoPriorityFlagging( scanlineToRender: Int64) {
-        //deBugLog("This is BGGBCLayerRenderNoPriorityFlagging")
+        
         let scrollYAdjusted = (backgroundY + scanlineToRender) & 0xFF            //The line of the BG we're at.
         let tileYLine = (scrollYAdjusted & 7) << 3
         var tileYDown = gfxBackgroundCHRBankPosition | ((scrollYAdjusted & 0xF8) << 2)  //The row of cached tiles we're fetching from.
@@ -8472,7 +8471,7 @@ class GameBoyCore {
         }
     }
     func WindowGBLayerRender( scanlineToRender: Int64) {
-        //deBugLog("This is WindowGBLayerRender")
+        
         if ( (gfxWindowDisplay)) {                  //Is the window enabled?
             let scrollYAdjusted = scanlineToRender - windowY    //The line of the BG we're at.
             if ( (scrollYAdjusted >= 0)) {
@@ -8703,7 +8702,7 @@ class GameBoyCore {
         }
     }
     func WindowGBCLayerRenderNoPriorityFlagging( scanlineToRender: Int64) {
-        //deBugLog("This is WindowGBCLayerRenderNoPriorityFlagging")
+        
         if ( (gfxWindowDisplay)) {                  //Is the window enabled?
             let scrollYAdjusted = scanlineToRender - windowY    //The line of the BG we're at.
             if ( (scrollYAdjusted >= 0)) {
@@ -8801,7 +8800,7 @@ class GameBoyCore {
         }
     }
     func SpriteGBLayerRender( scanlineToRender: Int64) {
-        //deBugLog("This is SpriteGBLayerRender")
+        
         if ( (gfxSpriteShow)) {                    //Are sprites enabled?
             let lineAdjusted = scanlineToRender + 0x10
             var OAMAddress = 0xFE00
@@ -8922,7 +8921,7 @@ class GameBoyCore {
         }
     }
     func findLowestSpriteDrawable( scanlineToRender: Int64,  drawableRange: Int64) : Int64 {
-        //deBugLog("This is findLowestSpriteDrawable")
+        
         var address = 0xFE00
         var spriteCount = 0
         var diff = 0
@@ -9031,7 +9030,7 @@ class GameBoyCore {
     }
     //Generate only a single tile line for the GB tile cache mode:
     func generateGBTileLine( addressTemp: Int64) {
-        //deBugLog("This is generateGBTileLine")
+        
         var address = addressTemp
         let lineCopy = (memory[0x1 | address] << 8) | memory[0x9FFE & address]
         let tileBlock = tileCache[(address & 0x1FF0) >> 4]
@@ -9142,7 +9141,7 @@ class GameBoyCore {
     }
     //Generate only a single tile line for the GBC tile cache mode (Bank 2):
     func generateGBCTileLineBank2( addressTemp: Int64) {
-        //deBugLog("This is generateGBCTileLineBank2")
+        
         var address = addressTemp
         let lineCopy = (VRAM[0x1 | address] << 8) | VRAM[0x1FFE & address]
         let tileBlock1 = tileCache[0x800 | (address >> 4)]
@@ -9236,7 +9235,7 @@ class GameBoyCore {
     }
     //Generate only a single tile line for the GB tile cache mode (OAM accessible range):
     func generateGBOAMTileLine( addressTemp: Int64) {
-        //deBugLog("This is generateGBOAMTileLine")
+        
         var address = addressTemp
         let lineCopy = (memory[0x1 | address] << 8) | memory[0x9FFE & address]
         address &= 0x1FFE
@@ -9286,7 +9285,7 @@ class GameBoyCore {
         }
     }
     func graphicsJITVBlank() {
-        //deBugLog("This is graphicsJITVBlank")
+        
         //JIT the graphics to v-blank framing:
         totalLinesPassed += queuedScanLines
         graphicsJITScanlineGroup()
@@ -9325,7 +9324,7 @@ class GameBoyCore {
     }
     //Check for the highest priority IRQ to fire:
     func launchIRQ() {
-        //deBugLog("This is launchIRQ")
+        
         var bitShift = 0
         var testbit = 1
         do {
@@ -9368,7 +9367,7 @@ class GameBoyCore {
      all the IRQ prediction cases and they usually get them wrong.
      */
     func calculateHALTPeriod() {
-        //deBugLog("This is calculateHALTPeriod")
+        
         //Initialize our variables and start our prediction:
         var currentClocks = 0
         if ( (!halt)) {
@@ -9467,7 +9466,7 @@ class GameBoyCore {
         return memoryHighReader[address](this, address)    //This seems to be faster than the usual if/else.
     }
     func memoryReadJumpCompile() {
-        //deBugLog("This is memoryReadJumpCompile")
+        
         //Faster in some browsers, since we are doing less conditionals overall by implementing them in advance.
         for ( index in 0x0000..0xFFFF+1) {
             if ( (index < 0x4000)) {
@@ -9760,7 +9759,7 @@ class GameBoyCore {
                 case 0xFF56=>
                     if ( (cGBC)) {
                         memoryReader[0xFF56] = { parentObj, address =>
-                            //Return IR "not connected" status:
+                            
                             if(parentObj.memory[0xFF56] >= 0xC0){
                                 return 0x3C | ( (0x2 | (parentObj.memory[0xFF56] & 0xC1)) )
                             }else{
@@ -9846,7 +9845,7 @@ class GameBoyCore {
         return 0xFF
     }
     func memoryReadMBC7( parentObj: GameBoyCore,  address: Int64) : Int64 {
-        //deBugLog("This is memoryReadMBC7")
+        
         //Switchable RAM
         if ( (parentObj.MBCRAMBanksEnabled || (settings[10] as Bool).getOrThrow())) {
             match ( (address)) {
@@ -9954,7 +9953,7 @@ class GameBoyCore {
         return parentObj.BGCHRBank1.array[address & 0x7FF]
     }
     func setCurrentMBC1ROMBank() {
-        //deBugLog("This is setCurrentMBC1ROMBank")
+        
         //Read the cartridge ROM data from RAM memory:
         match ( (ROMBank1offs)) {
         case 0x00|0x20|0x40|0x60=>
@@ -9985,7 +9984,7 @@ class GameBoyCore {
         return memoryHighWriter[address](this, address, data)
     }
     func memoryWriteJumpCompile() {
-        //deBugLog("This is memoryWriteJumpCompile")
+        
         //Faster in some browsers, since we are doing less conditionals overall by implementing them in advance.
         for ( index in 0x0000..0xFFFF+1) {
             if ( (index < 0x8000)) {
@@ -10143,13 +10142,13 @@ class GameBoyCore {
         parentObj.MBCRAMBanksEnabled = ((data & 0x0F) == 0x0A)  //If lower nibble is 0x0A, then enable, otherwise disable.
     }
     func MBC1WriteROMBank( parentObj: GameBoyCore,  address: Int64,  data: Int64) {
-        //deBugLog("This is MBC1WriteROMBank")
+        
         //MBC1 ROM bank switching:
         parentObj.ROMBank1offs = (parentObj.ROMBank1offs & 0x60) | (data & 0x1F)
         parentObj.setCurrentMBC1ROMBank()
     }
     func MBC1WriteRAMBank( parentObj: GameBoyCore,  address: Int64,  data: Int64) {
-         //deBugLog("This is MBC1WriteRAMBank")
+         
         //MBC1 RAM bank switching
         if ( (parentObj.MBC1Mode)) {
             //4/32 Mode
@@ -10246,7 +10245,7 @@ class GameBoyCore {
         }
     }
     func memoryWriteMBC3RAM( parentObj: GameBoyCore,  address: Int64,  data: Int64) {
-        //deBugLog("This is memoryWriteMBC3RAM")
+        
         if ( (parentObj.MBCRAMBanksEnabled || (settings[10] as Bool).getOrThrow())) {
             match ( (parentObj.currMBCRAMBank)) {
             case 0x00|0x01|0x02|0x03=>
@@ -10584,7 +10583,7 @@ class GameBoyCore {
         memory[0xFF54] = destination & 0xF0
     }
     func registerWriteJumpCompile() {
-        //deBugLog("This is registerWriteJumpCompile")
+        
         //I/O Registers (GB + GBC):
         //JoyPad
         memoryWriter[0xFF00] = { parentObj:GameBoyCore, address:Int64, data:Int64 =>
@@ -11191,7 +11190,7 @@ class GameBoyCore {
     }
     
     func recompileModelSpecificIOWriteHandling() {
-        //deBugLog("This is recompileModelSpecificIOWriteHandling")
+        
         if ( cGBC) {
             //GameBoy Color Specific I/O:
             //SC (Serial Transfer Control Register)
@@ -11610,7 +11609,7 @@ class GameBoyCore {
         }
     }
     func disableBootROM() :Unit {
-        //deBugLog("This is disableBootROM")
+        
         //Remove any traces of the boot ROM from ROM memory.
         for (index in 0..0x100) {
             memory[index] = ROM[index]  //Replace the GameBoy or GameBoy Color boot ROM with the game ROM.
@@ -11634,11 +11633,11 @@ class GameBoyCore {
     }
 
     func recompileBootIOWriteHandling() {
-        //deBugLog("This is recompileBootIOWriteHandling")
+        
         // Boot I/O Registers:
         if ( inBootstrap) {
             memoryWriter[0xFF50] = { parentObj:GameBoyCore, address:Int64, data:Int64 =>
-                //deBugLog("Boot ROM reads blocked: Bootstrap process has ended.")
+                
                 parentObj.inBootstrap = false
                 parentObj.disableBootROM()
                 parentObj.memory[0xFF50] = data
@@ -11750,7 +11749,7 @@ class GameBoyCore {
 // Start of js/GameBoyIO.js file.
 
 func start( canvas: GameBoyCanvas,  ROM: String) {
-    //deBugLog("This is start")
+    
     clearLastEmulation()
     gameboy = GameBoyCore(canvas, ROM)
     gameboy.getOrThrow().openMBC = openSRAM
@@ -11760,7 +11759,7 @@ func start( canvas: GameBoyCanvas,  ROM: String) {
 }
 
 func run() {
-    //deBugLog("This is run")
+    
     if ( (GameBoyEmulatorInitialized())) {
         if ( (!GameBoyEmulatorPlaying())) {
             gameboy.getOrThrow().stopEmulator &= 1

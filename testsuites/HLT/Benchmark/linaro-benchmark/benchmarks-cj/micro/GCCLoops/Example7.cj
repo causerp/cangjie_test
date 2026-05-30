@@ -66,13 +66,6 @@ func setupArrays() :Unit{
       }
     }
 
-    // @OverflowWrapping
-    // func  verifyExample7() :Bool{
-    //   timeExample7(1)
-    //   var  hashCode  = Int32(out.hashCode())
-    //   var  expectedHashCode :Int32 = 1762596313
-    //   return hashCode == expectedHashCode
-    // }
 
   public func  example7 (b:Array<Int32>, x:Int32, out:Array<Int32>) :Unit{
     //feature: support for read accesses with an unknown misalignment

@@ -227,34 +227,4 @@ func BenchmarkAtomicAddUInt64(b *testing.B) {
 	}
 }
 
-// func BenchmarkAtomicSubInt32(b *testing.B) {
-// 	var x int32
-// 	ptr := &x
-// 	for i := 0; i < b.N; i++ {
-// 		AddInt32(ptr, -1)
-// 	}
-// }
-//
-// func BenchmarkAtomicSubUint32(b *testing.B) {
-// 	var x uint32
-// 	ptr := &x
-// 	for i := 0; i < b.N; i++ {
-// 		AddUint32(ptr, ^uint32(0))
-// 	}
-// }
-//
-// func BenchmarkAtomicSubInt64(b *testing.B) {
-// 	var x int64
-// 	ptr := &x
-// 	for i := 0; i < b.N; i++ {
-// 		AddInt64(ptr, -1)
-// 	}
-// }
-//
-// func BenchmarkAtomicSubUint64(b *testing.B) {
-// 	var x uint64
-// 	ptr := &x
-// 	for i := 0; i < b.N; i++ {
-// 		AddUint64(ptr, ^uint64(0))
-// 	}
-// }
+

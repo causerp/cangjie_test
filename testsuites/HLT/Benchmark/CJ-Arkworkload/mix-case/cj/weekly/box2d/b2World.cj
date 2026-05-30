@@ -335,11 +335,7 @@ open class B2World {
         }
     }
     
-    // public open mut prop autoClearForces: Bool {
-    //     get(){
-    //         (mFlags & FlagsW.clearForces) == FlagsW.clearForces            
-    //     }        
-    // }
+
     
     public open func shiftOrigin( newOrigin: B2Vec2) {
         if ((mFlags & FlagsW.locked) == FlagsW.locked) {
@@ -360,17 +356,7 @@ open class B2World {
         mContactManager.mBroadPhase.shiftOrigin(newOrigin)
     }
     
-    // public open mut prop contactManager: B2ContactManager {
-    //     get(){
-    //         mContactManager
-    //     }
-    // }
-    
-    // public open mut prop profile: B2Profile {
-    //     get(){
-    //         mProfile
-    //     }
-    // }
+
     
     func solve( step: B2TimeStep) {
         mProfile.solveInit = 0.0

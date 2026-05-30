@@ -482,7 +482,7 @@ class Parser{
         if (names.size == 0) {
             firstToken.parseError(Option<Any>.None)
         }
-        //return HashMap<String, Any>([("codeOrigin", codeOrigin), ("names", names)])
+   
         return HashMap<String,Any>([("codeOrigin", codeOrigin), ("names", names.toArray())])
     }
     
@@ -582,13 +582,13 @@ class Parser{
                 let dic :HashMap<String,Any> = parseTextInParens()
                 codeOrigin = (dic["codeOrigin"] as CodeOrigin).getOrThrow()
                 text = (dic["text"] as Array<String>).getOrThrow()
-                // textStr = text.getOrThrow().joined(separator: "")
+      
                 textStr = String.join(text.getOrThrow(),delimiter: "::")
             } else {
                 let dic :HashMap<String,Any> = parseColonColon()
                 codeOrigin = (dic["codeOrigin"] as CodeOrigin).getOrThrow()
                 names = (dic["names"] as Array<String>).getOrThrow()
-                // textStr = names.getOrThrow().joined(separator: "::")
+           
                 textStr = String.join(names.getOrThrow(),delimiter: "::")
             }
             return ConstExpr.forName(codeOrigin.getOrThrow(), textStr)
@@ -973,6 +973,6 @@ func parseData( data: String,  fileName: String) : Sequence {
 }
 
 func parse( fileName: String) : Sequence {
-//    DeBugLog("Load fileName: " + "${fileName}")
+
     return parseData(File.open(fileName).read(), fileName)
 }

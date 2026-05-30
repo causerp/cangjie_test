@@ -1475,7 +1475,7 @@ class Collection{
         }else if ( types.isSome()) {
             return types.getOrThrow().size
         }else{
-            //return returnStatementsWithExpressions.getOrThrow().size
+            
             return returnStatementsWithExpressions.getOrThrow().size 
         }
     }
@@ -2040,7 +2040,7 @@ open class AST <:ASTSpan{
     }
     
     open public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is AST.typeCheck")
+        
         if (nodeType == NodeType.error ){
             `type` = typeFlow.anyType
         } else if (nodeType ==  NodeType.emptyExpr  ){
@@ -2068,7 +2068,7 @@ open class AST <:ASTSpan{
     }
     
     open public func emit( emitter:Emitter, tokenId:Int64, startLine:Bool) {
-        //debugLog("This is AST.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true)
         if (nodeType ==  NodeType.`this` ){
             emitter.recordSourceMappingStart(this)
@@ -2254,14 +2254,14 @@ class ASTList <: AST{
     }
     
     override public func emit( emitter:Emitter, tokenId:Int64, startLine:Bool)  {
-        //debugLog("This is ASTList.emit and to emitJavascriptList")
+        
         emitter.recordSourceMappingStart(this)
         emitter.emitJavascriptList(this, Option<String>.None, TokenID.semicolon, startLine:startLine, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
         emitter.recordSourceMappingEnd(this)
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is ASTList.typeCheck")
+        
         let len = this.members.size
         typeFlow.nestingLevel += 1
         for ( i in 0..len) {
@@ -2328,12 +2328,12 @@ open class Identifier <:AST{
     }
     
      override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is Identifier.typeCheck")
+        
         return typeFlow.typeCheckName(this)
     }
     
      override open public func emit( emitter: Emitter, tokenId: Int64, startLine: Bool)  {
-        //debugLog("This is Identifier.emit")
+        
         emitter.emitJavascriptName(this, true)
     }
     
@@ -2352,7 +2352,7 @@ class MissingIdentifier <:Identifier{
     }
     
      override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is MissingIdentifier.emit")
+        
     }
 }
 
@@ -2369,13 +2369,13 @@ class Label <:AST{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is Label.typeCheck")
+        
         this.`type` = typeFlow.voidType
         return this
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is Label.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.recordSourceMappingStart((this.id.getOrThrow() as AST).getOrThrow())
@@ -2418,7 +2418,7 @@ class UnaryExpression <:Expression{
     }
     
     override public func typeCheck(typeFlow: TypeFlow) : AST {
-        //debugLog("This is UnaryExpression.typeCheck")
+        
         if (nodeType == NodeType.not) {
             return typeFlow.typeCheckBitNot(this)
         } else if (nodeType == NodeType.logNot) {
@@ -2466,7 +2466,7 @@ class UnaryExpression <:Expression{
         return this
     }
      override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is UnaryExpression.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         if (this.nodeType == NodeType.incPost) {
@@ -2554,7 +2554,7 @@ class CallExpression <:Expression{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is CallExpression.typeCheck")
+        
         if ((this.nodeType == NodeType.iNew)) {
             return typeFlow.typeCheckNew(this);
         } else {
@@ -2563,7 +2563,7 @@ class CallExpression <:Expression{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool) {
-        //debugLog("This is CallExpression.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         if ((this.nodeType == NodeType.iNew)) {
@@ -2587,7 +2587,7 @@ class BinaryExpression <:Expression{
     }
     
     override public func typeCheck(typeFlow: TypeFlow) : AST {
-        //debugLog("This is BinaryExpression.typeCheck")
+        
         if (this.nodeType == NodeType.dot) {
             return typeFlow.typeCheckDotOperator(this);
         } else if ( this.nodeType == NodeType.asg ) {
@@ -2666,7 +2666,7 @@ class BinaryExpression <:Expression{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is BinaryExpression.emit")
+        
         let binTokenId = getTypeScript().nodeTypeToTokTable[this.nodeType];
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
@@ -2741,12 +2741,12 @@ class ConditionalExpression <:Expression{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is ConditionalExpression.typeCheck")
+        
         return typeFlow.typeCheckQMark(this);
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is ConditionalExpression.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.emitJavascript(this.operand1, TokenID.question, false);
@@ -2772,7 +2772,7 @@ class NumberLiteral  <:Expression{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is NumberLiteral.typeCheck")
+        
         this.`type` = typeFlow.doubleType;
         return this;
     }
@@ -2782,7 +2782,7 @@ class NumberLiteral  <:Expression{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is NumberLiteral.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         if ((this.isNegativeZero)) {
@@ -2826,13 +2826,13 @@ class RegexLiteral <:Expression{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is RegexLiteral.typeCheck")
+        
         this.`type` = typeFlow.regexType;
         return this;
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is RegexLiteral.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.writeToOutput(this.regex.toString());
@@ -2850,7 +2850,7 @@ class StringLiteral <:Expression{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is StringLiteral.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.emitStringLiteral(this.text);
@@ -2859,7 +2859,7 @@ class StringLiteral <:Expression{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is StringLiteral.typeCheck")
+        
         this.`type` = typeFlow.stringType;
         return this;
     }
@@ -2902,7 +2902,7 @@ class ImportDeclaration <:ModuleElement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is ImportDeclaration.emit")
+        
         if ((!this.isDynamicImport || (this.id.getOrThrow().sym.isSome() && !(this.id.getOrThrow().sym.getOrThrow() as TypeSymbol).getOrThrow().onlyReferencedAsTypeRef))) {
             let prevModAliasId = emitter.modAliasId;
             let prevFirstModAlias = emitter.firstModAlias;
@@ -2923,7 +2923,7 @@ class ImportDeclaration <:ModuleElement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is ImportDeclaration.typeCheck")
+        
         return typeFlow.typeCheckImportDecl(this);
     }
     
@@ -2989,7 +2989,7 @@ open class BoundDecl <:AST{
     }
     
     override public open func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is BoundDecl.typeCheck")
+        
         return typeFlow.typeCheckBoundDecl(this)
     }
     
@@ -3016,7 +3016,7 @@ class VarDecl <:BoundDecl{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is VarDecl.emit")
+        
         emitter.emitJavascriptVarDecl(this, tokenId)
     }
     
@@ -3043,7 +3043,7 @@ class ArgDecl <: BoundDecl{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is ArgDecl.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.writeToOutput(this.id.getOrThrow().actualText);
@@ -3193,12 +3193,12 @@ open class FuncDecl <:AST{
     }
     
     override open public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is FuncDecl.typeCheck")
+        
         return typeFlow.typeCheckFunction(this);
     }
     
     override open public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is FuncDecl.emit")
+        
         emitter.emitJavascriptFunction(this);
     }
     
@@ -3318,7 +3318,7 @@ class Script <:FuncDecl {
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is Script.typeCheck")
+        
         return typeFlow.typeCheckScript(this);
     }
     
@@ -3369,10 +3369,10 @@ class Script <:FuncDecl {
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is Script.emit")
+        
         if ((this.emitRequired(emitter.emitOptions))) {
             emitter.emitParensAndCommentsInPlace(this.bod.getOrThrow(), true);
-            //debugLog("This is Script.emit to emitJavascriptList")
+            
             emitter.emitJavascriptList(this.bod.getOrThrow() as AST,Option<String>.None, TokenID.semicolon, startLine:true, onlyStatics:false, emitClassPropertiesAfterSuperCall:false, isEmitPrologue:true,  requiresExtendsBlock:this.requiresExtendsBlock);
             emitter.emitParensAndCommentsInPlace(this.bod.getOrThrow(), false);
         }
@@ -3462,12 +3462,12 @@ class ModuleDeclaration <:NamedDeclaration{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is ModuleDeclaration.typeCheck")
+        
         return typeFlow.typeCheckModule(this)
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is ModuleDeclaration.emit")
+        
         if ( !getTypeScript().hasFlag(this.modFlags, ModuleFlags.shouldEmitModuleDecl)) {
             emitter.emitParensAndCommentsInPlace(this, true)
             emitter.recordSourceMappingStart(this)
@@ -3517,12 +3517,12 @@ class ClassDeclaration <:TypeDeclaration{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is ClassDeclaration.typeCheck")
+        
         return typeFlow.typeCheckClass(this);
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is ClassDeclaration.emit")
+        
         emitter.emitJavascriptClass(this);
     }
 }
@@ -3533,12 +3533,12 @@ class InterfaceDeclaration <:TypeDeclaration{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is InterfaceDeclaration.typeCheck")
+        
         return typeFlow.typeCheckInterface(this);
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is InterfaceDeclaration.emit")
+        
     }
 }
 
@@ -3561,7 +3561,7 @@ open class Statement <:ModuleElement{
     }
     
     override open public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is Statement.typeCheck")
+        
         this.`type` = typeFlow.voidType;
         return this;
     }
@@ -3585,7 +3585,7 @@ class LabeledStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is LabeledStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         if (this.labels.isSome()) {
@@ -3600,7 +3600,7 @@ class LabeledStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is LabeledStatement.typeCheck")
+        
         typeFlow.typeCheck(this.labels.getOrThrow()  as AST);
         this.stmt = this.stmt.getOrThrow().typeCheck(typeFlow);
         return this;
@@ -3625,7 +3625,7 @@ class Block <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is Block.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         if ((this.isStatementBlock)) {
@@ -3636,7 +3636,7 @@ class Block <:Statement{
         }
         let temp = emitter.setInObjectLiteral(false);
         if ((this.statements.isSome())) {
-            //debugLog("This is Block.emit to emitJavascriptList")
+            
             emitter.emitJavascriptList(this.statements.getOrThrow() as AST,Option<String>.None, TokenID.semicolon, startLine:true, onlyStatics:false, emitClassPropertiesAfterSuperCall:false);
         }
         if ((this.isStatementBlock)) {
@@ -3664,7 +3664,7 @@ class Block <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is Block.typeCheck")
+        
         if ((!typeFlow.checker.styleSettings.getOrThrow().emptyBlocks)) {
             if ((this.statements.isNone()) || (this.statements.getOrThrow().members.size == 0)) {
                 typeFlow.checker.errorReporter.getOrThrow().styleError(this, "empty block");
@@ -3713,7 +3713,7 @@ class Jump <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is Jump.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         if (this.nodeType == NodeType.`break`) {
@@ -3744,7 +3744,7 @@ class WhileStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is WhileStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         let temp = emitter.setInObjectLiteral(false);
@@ -3758,7 +3758,7 @@ class WhileStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is WhileStatement.typeCheck")
+        
         return typeFlow.typeCheckWhile(this);
     }
     
@@ -3802,7 +3802,7 @@ class DoWhileStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is DoWhileStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         let temp = emitter.setInObjectLiteral(false);
@@ -3821,7 +3821,7 @@ class DoWhileStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is DoWhileStatement.typeCheck")
+        
         return typeFlow.typeCheckDoWhile(this);
     }
     
@@ -3865,7 +3865,7 @@ class IfStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is IfStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         let temp = emitter.setInObjectLiteral(false);
@@ -3890,7 +3890,7 @@ class IfStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is IfStatement.typeCheck")
+        
         return typeFlow.typeCheckIf(this);
     }
     
@@ -3945,7 +3945,7 @@ class ReturnStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is ReturnStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         let temp = emitter.setInObjectLiteral(false);
@@ -3969,7 +3969,7 @@ class ReturnStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is ReturnStatement.typeCheck")
+        
         return typeFlow.typeCheckReturn(this);
     }
 }
@@ -4047,7 +4047,7 @@ class ForInStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is ForInStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         let temp = emitter.setInObjectLiteral(false);
@@ -4065,7 +4065,7 @@ class ForInStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is ForInStatement.typeCheck")
+        
         if ((typeFlow.checker.styleSettings.getOrThrow().forin)) {
             if ((!this.isFiltered())) {
                 typeFlow.checker.errorReporter.getOrThrow().styleError(this, "no hasOwnProperty filter");
@@ -4116,7 +4116,7 @@ class ForStatement <:Statement{
         return true
     }
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is ForStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         let temp = emitter.setInObjectLiteral(false);
@@ -4127,7 +4127,7 @@ class ForStatement <:Statement{
             }
             else {
                 emitter.setInVarBlock((this.initial.getOrThrow() as ASTList).getOrThrow().members.size);
-                //debugLog("This is ForStatement.emit to emitJavascriptList")
+                
                 emitter.emitJavascriptList(this.initial,Option<String>.None, TokenID.`for`,startLine:false, onlyStatics:false, emitClassPropertiesAfterSuperCall:false);
             }
         }
@@ -4143,7 +4143,7 @@ class ForStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is ForStatement.typeCheck")
+        
         return typeFlow.typeCheckFor(this);
     }
     
@@ -4217,7 +4217,7 @@ class WithStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is WithStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.writeToOutput("with (");
@@ -4231,7 +4231,7 @@ class WithStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is WithStatement.typeCheck")
+        
         return typeFlow.typeCheckWith(this);
     }
 }
@@ -4252,7 +4252,7 @@ class SwitchStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is SwitchStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         let temp = emitter.setInObjectLiteral(false);
@@ -4277,7 +4277,7 @@ class SwitchStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is SwitchStatement.typeCheck")
+        
         let len = this.caseList.getOrThrow().members.size 
         this.val = typeFlow.typeCheck(this.val);
         for ( i in 0..len) {
@@ -4328,7 +4328,7 @@ class CaseStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is CaseStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         if ((this.expr.isSome())) {
@@ -4351,7 +4351,7 @@ class CaseStatement <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is CaseStatement.typeCheck")
+        
         this.expr = typeFlow.typeCheck(this.expr);
         let _ = typeFlow.typeCheck(this.body.getOrThrow()  as AST);
         this.`type` = typeFlow.voidType;
@@ -4390,12 +4390,12 @@ class TypeReference <:AST{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is TypeReference.emit")
+        
         throw Exception("should not emit a type ref")
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is TypeReference.typeCheck")
+        
         let prevInTCTR = typeFlow.inTypeRefTypeCheck;
         typeFlow.inTypeRefTypeCheck = true;
         let typeLink = getTypeScript().getTypeLink(this, typeFlow.checker, true);
@@ -4428,7 +4428,7 @@ class TryFinally <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is TryFinally.emit")
+        
         emitter.recordSourceMappingStart(this);
         emitter.emitJavascript(this.tryNode, TokenID.`try`, false);
         emitter.emitJavascript(this.finallyNode.getOrThrow() as AST, TokenID.`finally`, false);
@@ -4436,7 +4436,7 @@ class TryFinally <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is TryFinally.typeCheck")
+        
         this.tryNode = typeFlow.typeCheck(this.tryNode);
         this.finallyNode = typeFlow.typeCheck(this.finallyNode.getOrThrow() as AST).getOrThrow() as Finally
         this.`type` = typeFlow.voidType;
@@ -4482,7 +4482,7 @@ class TryCatch <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is TryCatch.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.emitJavascript(this.tryNode.getOrThrow() as AST, TokenID.`try`, false);
@@ -4518,7 +4518,7 @@ class TryCatch <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is TryCatch.typeCheck")
+        
         this.tryNode = typeFlow.typeCheck(this.tryNode.getOrThrow() as AST).getOrThrow() as Try
         this.catchNode = typeFlow.typeCheck(this.catchNode.getOrThrow() as AST).getOrThrow() as Catch
         this.`type` = typeFlow.voidType;
@@ -4535,7 +4535,7 @@ class Try <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is Try.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.writeToOutput("try ");
@@ -4545,7 +4545,7 @@ class Try <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is Try.typeCheck")
+        
         this.body = typeFlow.typeCheck(this.body);
         return this;
     }
@@ -4575,7 +4575,7 @@ class Catch <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is Catch.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.writeToOutput(" ");
@@ -4604,7 +4604,7 @@ class Catch <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is Catch.typeCheck")
+        
         let prevScope = typeFlow.scope;
         typeFlow.scope = this.containedScope;
         this.param = typeFlow.typeCheck(this.param.getOrThrow() as AST).getOrThrow() as VarDecl;
@@ -4641,7 +4641,7 @@ class Finally <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is Finally.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.writeToOutput("finally");
@@ -4659,7 +4659,7 @@ class Finally <:Statement{
     }
     
     override public func typeCheck( typeFlow: TypeFlow) : AST {
-        //debugLog("This is Finally.typeCheck")
+    
         this.body = typeFlow.typeCheck(this.body);
         return this;
     }
@@ -4929,7 +4929,7 @@ class DebuggerStatement <:Statement{
     }
     
     override public func emit( emitter: Emitter,  tokenId: Int64,  startLine: Bool)  {
-        //debugLog("This is DebuggerStatement.emit")
+        
         emitter.emitParensAndCommentsInPlace(this, true);
         emitter.recordSourceMappingStart(this);
         emitter.writeLineToOutput("debugger;");
@@ -6075,7 +6075,7 @@ class Emitter{
         this.writeLineToOutput("{")
         this.indenter.increaseIndent()
         let inObjectLiteral = this.setInObjectLiteral(true)
-        //debugLog("This is emitObjectLiteral to emitJavascriptList")
+  
         this.emitJavascriptList(content, ", ", TokenID.comma, startLine:true, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
         this.setInObjectLiteral(inObjectLiteral)
         this.indenter.decreaseIndent()
@@ -6087,7 +6087,7 @@ class Emitter{
         if ((content.isSome())) {
             this.writeLineToOutput("")
             this.indenter.increaseIndent()
-            //debugLog("This is emitArrayLiteral to emitJavascriptList")
+
             this.emitJavascriptList(content, ", ", TokenID.comma, startLine:true, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
             this.indenter.decreaseIndent()
             this.emitIndent()
@@ -6108,7 +6108,7 @@ class Emitter{
             this.emitJavascript(target, TokenID.tilde, false)
             this.recordSourceMappingStart(args)
             this.writeToOutput("(")
-            //debugLog("This is emitNew to emitJavascriptList")
+         
             this.emitJavascriptList(args, ", ", TokenID.comma, startLine:false, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
             this.writeToOutput(")")
             this.recordSourceMappingEnd(args)
@@ -6159,7 +6159,7 @@ class Emitter{
                         this.writeToOutput(", ")
                     }
                 }
-                //debugLog("This is emitCall to emitJavascriptList")
+             
                 this.emitJavascriptList(args.getOrThrow() as AST, ", ", TokenID.comma, startLine:false, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
                 this.writeToOutput(")")
                 this.recordSourceMappingEnd(args.getOrThrow() as AST)
@@ -6192,7 +6192,7 @@ class Emitter{
                 let args = baseExpr.arguments
                 if ((args.isSome() && args.getOrThrow().members.size > 0)) {
                     this.writeToOutput(", ")
-                    //debugLog("This is emitConstructorCalls to emitJavascriptList")
+           
                     this.emitJavascriptList(args.getOrThrow() as AST, ", ", TokenID.comma, startLine:false, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
                 }
                 this.writeToOutput(")")
@@ -6493,7 +6493,7 @@ class Emitter{
             if ( ((moduleDecl.modFlags & ModuleFlags.mustCaptureThis) != 0)) {
                 this.writeCaptureThisStatement(moduleDecl)
             }
-            //debugLog("This is emitJavascriptModule to emitJavascriptList")
+    
             this.emitJavascriptList(moduleDecl.members.getOrThrow() as AST,Option<String>.None, TokenID.semicolon, startLine:true, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
 
             if ( !isDynamicMod || getTypeScript().moduleGenTarget == ModuleGenTarget.asynchronous) {
@@ -6536,7 +6536,7 @@ class Emitter{
                     this.writeLineToOutput(")(this.${this.moduleName} || (this.${this.moduleName} = {}));")
                 } else {
                     if ( isExported || temp == EmitContainer.prog) {
-                        //let dotMod = svModuleName != "" ? (parentIsDynamic ? "exports" : svModuleName) + "." : svModuleName
+                        
                         let dotMod = if (svModuleName != "") { (if (parentIsDynamic) { "exports" } else { svModuleName}) + "." } else { svModuleName }
                         this.writeToOutput("}")
                         if ( !isWholeFile) {
@@ -6584,7 +6584,7 @@ class Emitter{
         let temp = setInObjectLiteral(false)
         this.emitJavascript(operand1, TokenID.tilde, false)
         this.writeToOutput("[")
-        //debugLog("This is emitIndex to emitJavascriptList")
+        
         this.emitJavascriptList(operand2, ", ", TokenID.comma, startLine:false, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
         this.writeToOutput("]")
         this.setInObjectLiteral(temp)
@@ -6902,7 +6902,7 @@ class Emitter{
                         this.writeLineToOutput(" {")
                         this.indenter.increaseIndent()
                     }
-                    //debugLog("This is emitJavascriptStatements to emitJavascriptList")
+                
                     this.emitJavascriptList(stmt,Option<String>.None, TokenID.semicolon, startLine:true, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
                     if ( !hasOnlyBlockStatement) {
                         this.writeLineToOutput("")
@@ -6929,7 +6929,7 @@ class Emitter{
                     this.emitJavascript(stmtList.members[0], TokenID.semicolon, true)
                     this.writeLineToOutput("")
                 } else {
-                    //debugLog("This is emitBareJavascriptStatements to emitJavascriptList")
+              
                     this.emitJavascriptList(stmts,Option<String>.None, TokenID.semicolon, startLine:true, onlyStatics:false, emitClassPropertiesAfterSuperCall:emitClassPropertiesAfterSuperCall)
                 }
             } else {
@@ -6997,10 +6997,9 @@ class Emitter{
         this.outfile.close()
     }
     
-     //var testEmitJavascriptListCount = 0
+ 
     func emitJavascriptList( ast: ?AST,  delimiter: ?String,  tokenId: Int64,  startLine!: Bool = false,  onlyStatics!: Bool = false,  emitClassPropertiesAfterSuperCall!: Bool = false,  isEmitPrologue!: Bool = false,  requiresExtendsBlock!: Bool = false) {
-         //testEmitJavascriptListCount += 1
-        //debugLog("This is emitJavascriptList count: ${String${testEmitJavascriptListCount}}");
+ 
         if ( ast.isNone()) {
             return
 
@@ -7096,7 +7095,7 @@ class Emitter{
      //var testEmitJavascriptCount = 0
     public func emitJavascript( ast: ?AST,  tokenId: Int64,  startLine: Bool)  {
          //testEmitJavascriptCount += 1
-        //debugLog("This is emitJavascript count: ${String${testEmitJavascriptCount}}")
+        
         if ( ast.isNone()) {
             return
         }
@@ -7390,7 +7389,7 @@ class Emitter{
                 this.emitThis()
                 if ( callEx.arguments.isSome() && callEx.arguments.getOrThrow().members.size > 0) {
                     this.writeToOutput(", ")
-                    //debugLog("This is emitSuperCall to emitJavascriptList")
+                  
                     this.emitJavascriptList(callEx.arguments.getOrThrow(), ", ", TokenID.comma, startLine:false, onlyStatics:false, emitClassPropertiesAfterSuperCall:false)
                 }
                 this.writeToOutput(")")
@@ -8153,7 +8152,7 @@ class Parser {
         } else {
             this.allowImportDeclaration = false
         }
-        //debugLog("This is parseModuleDecl to parseStatementList")
+    
         parseStatementList(errorRecoverySet | ErrorRecoverySet.rCurly, moduleBody, true, true, AllowedElements.global, modifiers)
         moduleBody.minChar = bodyMinChar
         moduleBody.limChar = scanner.pos
@@ -8367,7 +8366,7 @@ class Parser {
         checkCurrentToken(TokenID.openBrace, errorRecoverySet | ErrorRecoverySet.stmtStart)
         let savedInFunction = inFunction
         inFunction = true
-        //debugLog("This is parseFunctionBlock to parseStatementList")
+        
         parseStatementList(errorRecoverySet | ErrorRecoverySet.rCurly | ErrorRecoverySet.stmtStart, bod, true, false, allowedElements, parentModifiers)
         bod.minChar = bodMinChar
         bod.limChar = scanner.pos
@@ -8472,7 +8471,7 @@ class Parser {
                 return this.transformAnonymousArgsIntoFormals(formals, operand)
             } else {
                 if ( operand.nodeType == NodeType.iName || operand.nodeType == NodeType.asg) {
-                    //let opArg = operand.nodeType == NodeType.asg ? (operand as BinaryExpression).operand1 : operand
+                    
                     var opArg :?AST
                     if (operand.nodeType == NodeType.asg) {
                         opArg = (operand as BinaryExpression).getOrThrow().operand1
@@ -9846,7 +9845,7 @@ class Parser {
         return arrayLiteral
     }
     public func parseTerm( errorRecoverySet: Int64,  allowCall: Bool,  aTypeContext: Int64,  inCast: Bool) : AST {
-        //debugLog("This is parseTerm")
+   
         var ast: ?AST = Option<AST>.None
         var sawId = false
         var inNew = false
@@ -10087,7 +10086,7 @@ class Parser {
     }
 
     func parseExpr( errorRecoverySet: Int64,  minPrecedence: Int64,  allowIn: Bool,  typeContext: Int64,  possiblyInLambda!: Bool = false) : AST {
-        //debugLog("This is parseExpr")
+        
         var ast: ?AST = Option<AST>.None
         let tokenInfo = getTypeScript().lookupToken(this.currentToken.getOrThrow().tokenId)
         var canAssign = true
@@ -10237,7 +10236,7 @@ class Parser {
         return ast.getOrThrow()
     }
     public func parsePostfixOperators( errorRecoverySet: Int64,  iAst: ?AST,  allowCall: Bool,  iInNew: Bool,  typeContext: Int64,  lhsMinChar: Int64,  lhsLimChar: Int64) : ?AST {
-        //debugLog("This is parsePostfixOperators")
+
         var ast = iAst
         var inNew = iInNew
         if ( ast.isNone()) {
@@ -10471,10 +10470,9 @@ class Parser {
         }
     }
     
-     //var testParseStatementCount = 0
+   
     public func parseStatement( errorRecoverySet: Int64,  allowedElements: Int64,  parentModifiers: Int64) : ?AST {
-         //testParseStatementCount += 1
-        //debugLog("This is parseStatement count: ${String${testParseStatementCount}}");
+
         var ast: ?AST = Option<AST>.None
         var labelList: ?ASTList = Option<ASTList>.None
         
@@ -10488,7 +10486,7 @@ class Parser {
         state = ParseState.startStatement
         
         while ( true) {
-            //debugLog("This is parseStatement while tokenId: ${String(currentToken.getOrThrow().tokenId)}");
+       
             if (currentToken.getOrThrow().tokenId == TokenID.endOfFile ) {
                 let ast = AST(NodeType.error)
                 ast.minChar = minChar
@@ -10900,7 +10898,7 @@ class Parser {
                         }
                         this.checkCurrentToken(TokenID.colon, errorRecoverySet | ErrorRecoverySet.stmtStart);
                         caseStmt.getOrThrow().body = ASTList()
-                        //debugLog("This is TokenID.Switch while to parseStatementList")
+                        
                         this.parseStatementList(errorRecoverySet | ErrorRecoverySet.rCurly, caseStmt.getOrThrow().body.getOrThrow(), false, true, allowedElements, modifiers);
                         caseStmt.getOrThrow().limChar = caseStmt.getOrThrow().body.getOrThrow().limChar
                         switchStmt.caseList.getOrThrow().append(caseStmt.getOrThrow())
@@ -11001,7 +10999,7 @@ class Parser {
                 this.currentToken = this.scanner.scan()
                 let block = Block(ASTList(), true)
                 this.pushStmt(block, labelList)
-                //debugLog("This is TokenID.OpenBrace to parseStatementList")
+             
                 this.parseStatementList(errorRecoverySet | ErrorRecoverySet.rCurly, block.statements.getOrThrow(), false, false, AllowedElements.none, modifiers)
                 this.popStmt()
                 block.statements.getOrThrow().minChar = minChar
@@ -11201,8 +11199,7 @@ class Parser {
         state = ParseState.startStatementList
         let oldStrictMode = strictMode
         nestingLevel += 1
-         //testParseStatementListCount += 1
-        //debugLog("This is parseStatementList count: ${String${testParseStatementListCount}} nestingLevel: ${String${nestingLevel}}")
+   
         while ( true) {
             if ( this.currentToken.getOrThrow().tokenId == TokenID.closeBrace || (noLeadingCase && (this.currentToken.getOrThrow().tokenId == TokenID.`case` || this.currentToken.getOrThrow().tokenId == TokenID.default)) || (innerStmts && this.currentToken.getOrThrow().tokenId == TokenID.`export`) || (classNope && this.currentToken.getOrThrow().tokenId == TokenID.`class`) || this.currentToken.getOrThrow().tokenId == TokenID.endOfFile) {
                 state = ParseState.endStmtList
@@ -11214,13 +11211,13 @@ class Parser {
                 }
                 strictMode = oldStrictMode
                 nestingLevel -= 1
-                //debugLog("This is parseStatementList while end")
+           
                 return
             }
             let stmt = parseStatement(errorRecoverySet & (!(ErrorRecoverySet.`else` | ErrorRecoverySet.rParen | ErrorRecoverySet.`catch` | ErrorRecoverySet.colon)), allowedElements, parentModifiers)
             if ( stmt.isSome()) {
         
-                //debugLog("This is parseStatementList while stmt")
+          
                 stmt.getOrThrow().postComments = combineComments(stmt.getOrThrow().postComments, parseCommentsForLine(scanner.prevLine))
                 statements.append(stmt.getOrThrow())
         
@@ -11274,7 +11271,7 @@ class Parser {
         parsingDeclareFile = getTypeScript().isDSTRFile(filename) || getTypeScript().isDTSFile(filename)
         
         while ( true) {
-            //debugLog("This is parse to parseStatementList")
+         
             parseStatementList(ErrorRecoverySet.eof | ErrorRecoverySet.`func`, bod, true, false, allowedElements, Modifiers.none)
             if ( currentToken.getOrThrow().tokenId == TokenID.endOfFile) {
                 break
@@ -12697,7 +12694,7 @@ class EnclosingScopeContext {
     }
     
     public func getScope() : ?SymbolScope {
-        //return scopeGetter.isSome() ? scopeGetter!() :None;
+        
         if (scopeGetter.isSome() ) {
             return scopeGetter.getOrThrow()() 
         } else {
@@ -12706,7 +12703,7 @@ class EnclosingScopeContext {
     };
     
     public func getObjectLiteralScope() : ?SymbolScope {
-        //return objectLiteralScopeGetter.isSome() ? objectLiteralScopeGetter!() :Option<SymbolScope>.None;
+        
         if(objectLiteralScopeGetter.isSome()) {
             return objectLiteralScopeGetter.getOrThrow()()
         } else {
@@ -12767,7 +12764,7 @@ class Signature <:PhasedTypecheckObject {
         hasVariableArgList = false
         parameters = Option<ArrayList<ParameterSymbol>>.None
         declAST = Option<FuncDecl>.None
-        //typeCheckStatus = TypeCheckStatus.notStarted
+        
         
 
         nonOptionalParameterCount = 0
@@ -12954,7 +12951,7 @@ class SignatureGroup {
     }
     
     public func typeCheck( checker:TypeChecker, ast:AST, hasConstruct:Bool)  {
-        //debugLog("This is SignatureGroup.typeCheck")
+    
         if ( hasBeenTypechecked) {
             return
         }
@@ -13111,7 +13108,7 @@ open class ISymbol {
             }
         }
         if ((commonNodeIndex >= 0)) {
-            //return Array(aPath[0...commonNodeIndex]);
+            
             return aPath[Range(0, commonNodeIndex,1,true, true, true)]
         } else {
             return aPath;
@@ -15156,7 +15153,7 @@ class ContextualTypingContextStack{
     }
     
     public func popContextualType() : ?ContextualTypeContext {
-        //let tc = self.contextStack.popLast()
+        ()
         let tc = this.contextStack[this.contextStack.size - 1]
         this.contextStack =  this.contextStack.slice(Range(0, this.contextStack.size -2, 1, true ,true, true))    
         checker.errorReporter.getOrThrow().pushToErrorSink = this.isProvisional()
@@ -15996,7 +15993,7 @@ class TypeChecker {
                 }
             }
             
-            //for ( _ in (0..arrayCount).reverse()) {
+            
             var i = arrayCount
             while(i > 0) {
                 typeLink.getOrThrow().`type` = makeArrayType(typeLink.getOrThrow().`type`)
@@ -17431,7 +17428,7 @@ class TypeFlow {
         this.checker.typeFlow = this
     }
     public func initLibs() {
-        //debugLog("This is initLibs")
+  
         let arraySym:?ISymbol = globalScope.getOrThrow().find("Array", false, true) ??Option<ISymbol>.None
         if ( arraySym.isSome() && arraySym.getOrThrow().kind() == SymbolKind.`type`) {
             arrayInterfaceType = arraySym.getOrThrow().`type`
@@ -17536,11 +17533,10 @@ class TypeFlow {
         scope = prevScope
         return updated
     }
-     //var testTypeFlowtypeCheckCount = 0
+
     
     public func typeCheck( ast: ?AST) : ?AST {
-         //testTypeFlowtypeCheckCount += 1
-        //debugLog("This is TypeFlow.typeCheck count: ${String${testTypeFlowtypeCheckCount}}")
+
         if ( ast.isSome()) {
             return ast.getOrThrow().typeCheck(this)
         } else {
@@ -17639,7 +17635,7 @@ class TypeFlow {
     }
     
     public func typeCheckBoundDecl( varDecl: BoundDecl) : BoundDecl {
-        //debugLog("This is typeCheckBoundDecl")
+  
         var infSym = Option<InferenceSymbol>.None
         if (varDecl.sym.isSome()) {
             infSym = varDecl.sym.getOrThrow() as InferenceSymbol
@@ -17766,7 +17762,7 @@ class TypeFlow {
     }
     
     public func typeCheckSuper( ast: AST) : AST {
-        //debugLog("This is typeCheckSuper")
+
         if ( thisType.isSome() && (enclosingFncIsMethod && !(thisFnc.getOrThrow().isStatic())) && thisType.getOrThrow().baseClass().isSome()) {
             ast.`type` = thisType.getOrThrow().baseClass()
         } else {
@@ -17787,7 +17783,7 @@ class TypeFlow {
         return ast
     }
     public func typeCheckThis( ast: AST) : AST {
-        //debugLog("This is typeCheckThis")
+
         ast.`type` = anyType
         var illegalThisRef = false
         if ( thisFnc.isNone()) {
@@ -17888,7 +17884,7 @@ class TypeFlow {
     }
 
     public func typeCheckName( ast: AST) : Identifier {
-        //debugLog("This is typeCheckName")
+   
         let identifier = ast as Identifier;
         if ( (checker.inWith)) {
             identifier.getOrThrow().`type` = anyType;
@@ -17935,7 +17931,7 @@ class TypeFlow {
     }
     
     public func typeCheckScript( script: Script) : Script {
-        //debugLog("This is typeCheckScript")
+    
         checker.locationInfo = script.locationInfo
         scope = checker.globalScope
         if ((script.topLevelMod.isNone())) {
@@ -17947,21 +17943,21 @@ class TypeFlow {
         return script
     }
     public func typeCheckBitNot( ast: AST) : UnaryExpression {
-        //debugLog("This is typeCheckBitNot")
+
         let unex = (ast as UnaryExpression).getOrThrow()
         unex.operand = typeCheck(unex.operand)
         unex.`type` = doubleType
         return unex
     }
     public func typeCheckUnaryNumberOperator( ast: AST) : UnaryExpression {
-        //debugLog("This is typeCheckUnaryNumberOperator")
+ 
         let unex = (ast as UnaryExpression).getOrThrow()
         unex.operand = typeCheck(unex.operand)
         unex.`type` = doubleType
         return unex
     }
     public func typeCheckLogNot( ast: AST) : UnaryExpression {
-        //debugLog("This is typeCheckLogNot")
+     
         let unex = (ast as UnaryExpression).getOrThrow()
         unex.operand = typeCheck(unex.operand)
         unex.`type` = booleanType
@@ -17974,7 +17970,7 @@ class TypeFlow {
         return getTypeScript().hasFlag(ast.getOrThrow().flags, ASTFlags.writeable)
     }
     public func typeCheckIncOrDec( ast: AST) : UnaryExpression {
-        //debugLog("This is typeCheckIncOrDec")
+     
         var unex = (ast as UnaryExpression).getOrThrow()
         if ( (!astIsWriteable(unex))) {
             checker.errorReporter.getOrThrow().valueCannotBeModified(unex)
@@ -17988,7 +17984,7 @@ class TypeFlow {
         return unex
     }
     public func typeCheckBitwiseOperator( ast: AST, assignment:Bool) : BinaryExpression {
-        //debugLog("This is typeCheckBitwiseOperator")
+     
         let binex = (ast as BinaryExpression).getOrThrow()
         var resultType: ?IType = Option<IType>.None
         binex.operand1 = typeCheck(binex.operand1)
@@ -18028,7 +18024,7 @@ class TypeFlow {
         return binex;
     }
     public func typeCheckArithmeticOperator( ast: AST, assignment:Bool) : BinaryExpression {
-        //debugLog("This is typeCheckArithmeticOperator")
+        
         let binex = (ast as BinaryExpression).getOrThrow()
         binex.operand1 = typeCheck(binex.operand1)
         binex.operand2 = typeCheck(binex.operand2)
@@ -18092,7 +18088,7 @@ class TypeFlow {
         return binex
     }
     public func typeCheckDotOperator( ast: AST) : AST {
-        //debugLog("This is typeCheckDotOperator")
+ 
         let binex = (ast as BinaryExpression).getOrThrow()
         binex.operand1 = typeCheck(binex.operand1)
         let leftType = binex.operand1.getOrThrow().`type`  
@@ -18198,7 +18194,7 @@ class TypeFlow {
         return binex;
     }
     public func typeCheckBooleanOperator( ast: AST) : AST {
-        //debugLog("This is typeCheckBooleanOperator")
+       
         let binex = (ast as BinaryExpression).getOrThrow()
         binex.operand1 = typeCheck(binex.operand1)
         binex.operand2 = typeCheck(binex.operand2)
@@ -18211,7 +18207,7 @@ class TypeFlow {
         return binex
     }
     public func typeCheckAsgOperator( ast: AST) : AST {
-        //debugLog("This is typeCheckAsgOperator")
+  
         let binex = (ast as BinaryExpression).getOrThrow()
         let applyTargetType = !(binex.operand2.getOrThrow().isParenthesized )
         binex.operand1 = typeCheck(binex.operand1);
@@ -18235,7 +18231,7 @@ class TypeFlow {
         return binex
     }
     public func typeCheckIndex( ast: AST) : AST {
-        //debugLog("This is typeCheckIndex")
+ 
         let binex = (ast as BinaryExpression).getOrThrow()
         binex.operand1 = typeCheck(binex.operand1)
         binex.operand2 = typeCheck(binex.operand2)
@@ -18290,7 +18286,7 @@ class TypeFlow {
         return binex;
     }
     public func typeCheckInOperator( binex: BinaryExpression) : BinaryExpression {
-        //debugLog("This is typeCheckInOperator")
+        
         binex.operand1 = cast(typeCheck(binex.operand1).getOrThrow(), stringType);
         binex.operand2 = typeCheck(binex.operand2);
         if  (!((binex.operand1.getOrThrow().`type`.getOrThrow() == checker.anyType || binex.operand1.getOrThrow().`type`.getOrThrow() == checker.stringType) && 
@@ -18302,7 +18298,7 @@ class TypeFlow {
         return binex
     }
     public func typeCheckShift( binex: BinaryExpression, assignment:Bool) : BinaryExpression {
-        //debugLog("This is typeCheckShift")
+ 
         binex.operand1 = cast(typeCheck(binex.operand1).getOrThrow(), doubleType)
         binex.operand2 = cast(typeCheck(binex.operand2).getOrThrow(), doubleType)
         if ( (assignment && (!(astIsWriteable(binex.operand1.getOrThrow()))))) {
@@ -18312,7 +18308,7 @@ class TypeFlow {
         return binex;
     }
     public func typeCheckQMark( trinex: ConditionalExpression) : ConditionalExpression {
-        //debugLog("This is typeCheckQMark")
+        
         trinex.operand1 = typeCheck(trinex.operand1)
         trinex.operand2 = typeCheck(trinex.operand2)
         trinex.operand3 = typeCheck(trinex.operand3)
@@ -19053,7 +19049,7 @@ class TypeFlow {
         if ( funcDecl.returnTypeAnnotation.isSome()) {
             checkForVoidConstructor(funcDecl.returnTypeAnnotation.getOrThrow().`type`, funcDecl.returnTypeAnnotation.getOrThrow() as AST);
             if ((signature.getOrThrow().returnType.getOrThrow().`type`.isNone())) {
-                //debugLog("This is typeCheckFunction to resolveTypeLink")
+                
                 checker.resolveTypeLink(scope, signature.getOrThrow().returnType, false)
             }
         } else {
@@ -21111,7 +21107,7 @@ class TypeScriptCompiler {
     
     public func typeCheck() : ?Any{
         return (this.timeFunction("typeCheck()") { =>
-            //debugLog("This is Start typeCheck")
+            
             let binder = Binder(this.typeChecker.getOrThrow());
             this.typeChecker.getOrThrow().units = this.units;
             
@@ -21276,7 +21272,7 @@ class TypeScriptCompiler {
         }
         //this.emitSettings.getOrThrow().commonDirectoryPath = Array(commonComponents[0...commonComponentsLength]).toArray().join("/") + "/"
         this.emitSettings.getOrThrow().commonDirectoryPath = String.join(commonComponents[Range(0,commonComponentsLength, 1, true, true, true)].toArray(),delimiter:"/")  + "/"
-        //return aPath[Range(0, commonNodeIndex-1,1,true, true, true)]
+        
         if ((this.emitSettings.getOrThrow().outputOption.charAt(this.emitSettings.getOrThrow().outputOption.size - 1) != r'/')) {
             this.emitSettings.getOrThrow().outputOption += "/";
         }
@@ -21383,7 +21379,7 @@ class TypeScriptCompiler {
     
     
     func emitUnit( script:Script, reuseEmitter:Bool, emitters!:?Emitter = Option<Emitter>.None)  : ?Emitter {
-        //debugLog("This is emitUnit");
+        
         if ((!script.emitRequired(this.emitSettings))) {
             return Option<Emitter>.None;
         }
@@ -24696,7 +24692,7 @@ class TypeScript {
             }
             typeSymbol = symbol.getOrThrow() as TypeSymbol
             let publicEnclosedTypes = typeSymbol.getOrThrow().`type`.getOrThrow().getAllEnclosedTypes().getOrThrow().publicMembers;
-            //let publicEnclosedTypesTable = (publicEnclosedTypes.isNone()) ? StringHashTable() : publicEnclosedTypes.getOrThrow();
+            
             var publicEnclosedTypesTable :StringHashTable
             if (publicEnclosedTypes.isNone()) {
                 publicEnclosedTypesTable = StringHashTable()
@@ -24705,7 +24701,7 @@ class TypeScript {
             }
             let enclosedTypes = ScopedMembers(DualStringHashTable(publicEnclosedTypesTable, StringHashTable()));
             let publicEnclosedAmbientTypes = typeSymbol.getOrThrow().`type`.getOrThrow().getAllAmbientEnclosedTypes().getOrThrow().publicMembers;
-            //let publicAmbientEnclosedTypesTable = (publicEnclosedAmbientTypes.isNone()) ? StringHashTable() : publicEnclosedAmbientTypes.getOrThrow();
+        
             var publicAmbientEnclosedTypesTable :StringHashTable
             if (publicEnclosedAmbientTypes.isNone()) {
                 publicAmbientEnclosedTypesTable = StringHashTable()
@@ -24714,7 +24710,7 @@ class TypeScript {
             }
             let ambientEnclosedTypes = ScopedMembers(DualStringHashTable(publicAmbientEnclosedTypesTable, StringHashTable()));
             let publicMembers = typeSymbol.getOrThrow().`type`.getOrThrow().members.getOrThrow().publicMembers;
-            //let publicMembersTable = (publicMembers.isNone()) ? StringHashTable() : publicMembers.getOrThrow();
+   
             var publicMembersTable = publicMembers.getOrThrow()
             if (publicMembers.isNone()) {
                 publicMembersTable = StringHashTable()
@@ -24722,7 +24718,7 @@ class TypeScript {
             
             let members = ScopedMembers(DualStringHashTable(publicMembersTable, StringHashTable()));
             let publicAmbientMembers = typeSymbol.getOrThrow().`type`.getOrThrow().ambientMembers.getOrThrow().publicMembers;
-            //let publicAmbientMembersTable = (publicAmbientMembers.isNone()) ? StringHashTable() : publicAmbientMembers.getOrThrow();
+
             var publicAmbientMembersTable = publicAmbientMembers.getOrThrow()
             if (publicAmbientMembers.isNone()) {
                 publicAmbientMembersTable = StringHashTable()
@@ -25177,7 +25173,7 @@ class TypeScript {
         return modName;
     }
     public func getDeclareFilePath( fname:String) : String{
-        //return isSTRFile(fname) ? changePathToDSTR(fname) : isTSFile(fname) ? changePathToDTS(fname) : changePathToDTS(fname);
+        
         if (isSTRFile(fname)) {
             return  changePathToDSTR(fname) 
         } else {
@@ -25260,7 +25256,7 @@ class TypeScript {
             return modPath;
         } else {
             let components = modName.split(path)
-            //let fileIndex = components.size > 1 ? 1 : 0;
+         
 			var fileIndex =  0
             if (components.size > 1) {
                 fileIndex =  1
@@ -25579,7 +25575,7 @@ open class Outfile <:OutProtocol {
     }
     
     override public func verify( s: String) : Unit  {
-        //debugLog("This is outfileVerify: " + s);
+        
         if (!s.isAscii()) {
             return
         }

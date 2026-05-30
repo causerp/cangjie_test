@@ -541,12 +541,12 @@ class Engine {
                 let ray = scene.camera.getRay(xp, yp)
                 let color = this.getPixelColor(ray, scene)
                 this.setPixel(x, y, color)
-                //debugLog("y = \(y), x = \(x), ray.position = \(String(describing: ray.position?.toString()))")
-                //debugLog("y = \(y), x = \(x), ray.direction = \(String(describing: ray.direction?.toString()))")
-                //debugLog("y = \(y), x = \(x), color = \(color.toString())")
+                
+                
+                
             }
         }
-        //debugLog("checkNumber = \(String(describing: checkNumber))")
+        
         if (checkNumber != 2321) {
             println("Scene rendered incorrectly")
         }
@@ -696,22 +696,22 @@ func renderScene() {
     
     let raytracer = Engine(option)
     raytracer.renderScene(scene)
-    //debugLog("Create camera: ")
-    //debugLog(scene.camera.toString())
-    //debugLog("Create Background： ")
-    //debugLog((scene.background.color?.toString())!)
-    //debugLog("Create sphere: ")
-    //debugLog(sphere.toString())
-    //debugLog("Create sphere1: ")
-    //debugLog(sphere1.toString())
-    //debugLog("Create plane: ")
-    //debugLog(plane.toString())
-    //debugLog("Create light: ")
-    //debugLog(light.toString())
-    //debugLog("Create light1: ")
-    //debugLog(light1.toString())
-    //debugLog("Create option ")
-    //debugLog(String(describing: option))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 /**

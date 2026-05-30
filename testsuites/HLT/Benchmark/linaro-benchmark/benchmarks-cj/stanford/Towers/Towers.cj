@@ -74,8 +74,7 @@ class Towers1{
     public func Init(s:Int64,n:Int64){
         var discctr : Int64 = 0
         Makenull(s)
-        // for ( discctr = n; discctr >= 1; discctr-- )
-	    // Push(discctr,s);
+
         while(discctr >= 1){
             Push(discctr,s)
             discctr = discctr -1

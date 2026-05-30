@@ -64,7 +64,7 @@ class Puzzle1{
     }
 
     public func Trial(j : Int64):Bool{
-        // var i : Int64 = 0
+    
         var k : Int64 = 0
         kount = kount + 1
         for (i in 0..=typemax){
@@ -84,9 +84,7 @@ class Puzzle1{
     }
 
     public init() {
-        // var i : Int64 
-        // var j : Int64 
-        // var k : Int64
+     
         var z : Int64
         for (m in 0..=size){
             puzzl[m] = true

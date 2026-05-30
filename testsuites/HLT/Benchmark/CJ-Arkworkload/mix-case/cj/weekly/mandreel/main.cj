@@ -48,7 +48,6 @@ class Benchmark {
     public static func runIteration() : Unit {
         let start = DateTime.now()
         setupMandreel()
-        // for (_ in 0..3) {
         for (_ in 0..1) {
             runMandreel();
         }
@@ -57,17 +56,10 @@ class Benchmark {
     }
 }
 
-// class Timer {
-//     public func getTime() {
-//         let time = DateTime.now()
-//         return time
-//     }
-// }
 
 class Timer {
    
     func getTime(): Float64 {
-        // return Double(time_spec.tv_sec * 1_000_000 + time_spec.tv_nsec / 1_000)
         let time = DateTime.now()
         return Float64(time.second) * 1000000.0 + Float64(time.nanosecond)/ 1000.0
     }

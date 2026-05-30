@@ -74,7 +74,6 @@ main() {
         let startTimeInLoop = currentTimestamp13()
         run()
         let endTimeInLoop = currentTimestamp13()
-        // println("controlflow-recursive: ms = ${(endTimeInLoop - startTimeInLoop)} i= ${i}")
     }
     let endTime = currentTimestamp13()
     println("controlflow-recursive: ms = ${Float64((endTime-startTime).toNanoseconds())/1000000.0}")

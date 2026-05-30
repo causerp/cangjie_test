@@ -16,7 +16,6 @@ import std.convert.*
 
 let step: Int64 = 64
 
-// let memberLen :Array<Int64> =[32, 256, 2048, 16384, 131072,1048576,8388608,67108864,536870912,4294967296]
 let memberLen: Array<(Int64,Int64)> = [(32,1000000), (256,500000), (2048,100000), (16384,100)]
 
 func timeBenchmarkWriteArrayOutOfOrderD2(len: Int64, reps: Int64, step: Int64): Unit {

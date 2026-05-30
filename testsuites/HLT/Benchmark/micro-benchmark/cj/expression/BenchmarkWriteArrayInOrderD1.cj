@@ -14,7 +14,7 @@ import std.time.*
 import std.convert.*
 import std.convert.*
 
-// let memberLen :Array<Int64> =[32, 256, 2048, 16384, 131072,1048576,8388608,67108864,536870912,4294967296]
+
 let memberLen: Array<(Int64,Int64)> = [(32,1000000), (256,50000), (2048,1000), (16384,500), (131072,100), (1048576,100)]//Go does not have test cases that match 131072 and 1048576.
 
 func timeBenchmarkWriteArrayInOrderD1(len: Int64, reps: Int64): Unit {

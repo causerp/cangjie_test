@@ -99,5 +99,5 @@ main(){
     RunCordic()
     print("Cordic Is End , global value is ${global}\n")
     return 0
-    // print(RunCordic())
+
 }

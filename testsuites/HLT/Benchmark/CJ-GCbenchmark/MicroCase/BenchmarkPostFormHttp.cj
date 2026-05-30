@@ -26,7 +26,7 @@ import std.console.Console
 var server: Server = unsafe { zeroValue<Server>() }
 
 // High-load data running core dump
-// let nums:Array<Int64> =[32, 256, 2048, 16384, 131072, 1048576, 8388608, 67108864, 536870912,4294967296]
+
 let nums: Array<Int64> =[32, 256, 2048, 16384, 131072, 1048576]
 
 let repsAll:Array<Int64> =[10239, 10000, 9146, 8498, 3326, 1416, 1704 , 1080, 1530, 1598]

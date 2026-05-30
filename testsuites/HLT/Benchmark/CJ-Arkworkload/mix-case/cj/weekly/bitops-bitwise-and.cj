@@ -51,9 +51,7 @@ class Benchmark {
         var bitwiseAndValue = 4294967296
         for (i in 0..600000) {
             bitwiseAndValue = bitwiseAndValue & i;
-            // if (inDebug && i % 100000 == 0) {
-            //     //log("bitops-bitwise-and: i = \(i) bitwiseAndValue = \(bitwiseAndValue)")
-            // }
+           
         }
 
         let result = bitwiseAndValue
@@ -74,9 +72,9 @@ class Timer {
 main() {
     let startTime = Timer().getTime()
     for (i in 0..80) {
-        // let startTimeInLoop = Timer().getTime()
+        
         Benchmark().run()
-        // let endTimeInLoop = Timer().getTime()
+  
     }
     let endTime = Timer().getTime()
     println("bitops-bitwise-and: ms = ${Float64((endTime-startTime).toNanoseconds())/1000000.0}")

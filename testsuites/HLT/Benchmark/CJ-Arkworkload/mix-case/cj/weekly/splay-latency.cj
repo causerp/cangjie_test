@@ -288,7 +288,7 @@ class BenchmarkSuite {
             // If we've run too few iterations, we continue for another second.
             if (data.getOrThrow().runs < benchmark.minIterations) { return data}
             let usec = Float64(data.getOrThrow().elapsed * 1_000.0) / Float64(data.getOrThrow().runs)
-            // let latencySamples = (benchmark.latencyResult.isSome()) ? benchmark.latencyResult.getOrThrow()() : [0]
+            
             let latencySamples: ArrayList<Float64>
             if (benchmark.latencyResult.isSome()) {
                 latencySamples = benchmark.latencyResult.getOrThrow()()
@@ -474,11 +474,7 @@ class BenchmarkSuite {
             return None
         }
         var current: ?Node = opt_startNode ?? this.root_
-        // if (opt_startNode.isSome()) {
-        //     current = opt_startNode
-        // } else {
-        //     current = this.root_
-        // }
+
 
         while (current.getOrThrow().right.isSome()) {
             current = current.getOrThrow().right

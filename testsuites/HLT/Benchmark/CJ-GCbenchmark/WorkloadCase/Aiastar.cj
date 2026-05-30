@@ -51,7 +51,7 @@ class Astar {
     func search(graph: Graph, start: GridNode, end: GridNode, options!: Options = Options()): ArrayList<GridNode> {
         graph.cleanDirty()
 
-        // let options = options ?? Options()
+        
 
         let heuristic = options.heuristic ?? Heuristics.manhattan
         let closest = options.closest ?? false
@@ -95,7 +95,7 @@ class Astar {
                     neighbor.visited = true
                     neighbor.parent = currentNode
 
-                    // neighbor.h = neighbor.h != 0 ? neighbor.h : heuristic(neighbor, end)
+                    
 
                     if (neighbor.h != 0) {
                         neighbor.h = neighbor.h
@@ -340,21 +340,7 @@ class BinaryHeap {
         }
         return result
     }
-    // func remove(node: GridNode){
-    //     let i = this.content.firstIndex(where: {node.x == $0.x && node.y == $0.y})
 
-    //     // When it is found, the process seen in 'pop' is repeated
-    //     // to fill up the hole.
-    //     let end = content.remove(at: content.size - 1)
-    //     if (i != content.size - 1) {
-    //         content[index] = end
-    //         if (scoreFunction(end) < scoreFunction(node)) {
-    //             sinkDown(index)
-    //         } else {
-    //             bubbleUp(index)
-    //         }
-    //     }
-    // }
     func size(): Int64 {
         return content.size
     }
@@ -432,9 +418,7 @@ class BinaryHeap {
                     }
                 }
 
-                // if (child2Score < (swap == nil ? elemScore : child1Score!)) {
-                //     swap = child2N
-                // }
+                
             }
 
             // If the element needs to be moved, swap it, and continue.
@@ -7973,7 +7957,6 @@ class Aiastar {
             let start = graph.grid[0][0]
             let end = graph.grid[123][321]
             let result = astar.search(graph, start, end)
-            ////DebugLog(result)
         }
         let endTime = Timer().getTime()
         println("Aiastar: ms = " + "${Float64((endTime-startTime).toNanoseconds())/1000000.0}")

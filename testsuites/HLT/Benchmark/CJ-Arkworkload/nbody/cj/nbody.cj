@@ -140,7 +140,7 @@ func advance(bodies!: Array<Body>, dt!: Float64) {
             
             let d2 = dx * dx + dy * dy + dz * dz
             let mag = dt / (d2 * sqrt(d2))
-            //let mag = dt / (d2 * d2)
+  
             let massiMag = massi * mag
             
             let massj = bodyj.mass

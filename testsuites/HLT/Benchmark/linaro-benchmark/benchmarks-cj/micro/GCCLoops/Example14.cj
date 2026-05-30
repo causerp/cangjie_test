@@ -79,13 +79,7 @@ static func initMatrixI(matrix:Array<Array<Int32>>) :Unit{
      }
    }
 
-  //  @OverflowWrapping
-  //  func  verifyExample14() :Bool{
-  //    timeExample14(1)
-  //    var  hashCode  = Int32(out.hashCode())
-  //    var  expectedHashCode :Int32 = 248257147
-  //    return hashCode == expectedHashCode
-  //  }
+ 
 
    public func example14(in_p: Array<Array<Int32>>,coeff: Array<Array<Int32>>,out:Array<Int32>):Unit{
      for (k in 0..K) {

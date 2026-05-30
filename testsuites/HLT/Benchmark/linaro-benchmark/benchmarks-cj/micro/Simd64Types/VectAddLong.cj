@@ -47,12 +47,7 @@ func setupArrays() :Unit{
     }
   }
 
-  // public func verifyVectAddLong() :Bool{
-  //   timeVectAddLong(1)
-  //   var hashCode :Int32 = Int32(lc.hashCode())
-  //   var expectedHashCode :Int32 = 1992969217
-  //   return hashCode == expectedHashCode
-  // }
+
 
 }
 

@@ -123,7 +123,7 @@ main() {
         let startTimeInLoop = currentTimestamp13()
         Benchmark().run()
         let endTimeInLoop = currentTimestamp13()
-        //log("bitops-nsieve-bits: ms = ${(endTimeInLoop - startTimeInLoop)} i= ${i}")
+
     }
     let endTime = currentTimestamp13()
     println("bitops-nsieve-bits: ms = ${Float64((endTime-startTime).toNanoseconds())/1000000.0}")

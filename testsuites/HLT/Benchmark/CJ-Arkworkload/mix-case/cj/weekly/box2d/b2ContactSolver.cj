@@ -433,7 +433,7 @@ open class B2ContactSolver {
                 let rnA = b2Cross(rA, normal)
                 let rnB = b2Cross(rB, normal)
                 let mK = mA + mB + iA * rnA * rnA + iB * rnB * rnB
-                //let impulse = mK > 0.0 .getOrThrow() -mC / mK : 0.0
+               
 		var impulse = 0.0
 		if(mK > 0.0) {
 		    impulse =-mC / mK

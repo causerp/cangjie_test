@@ -74,13 +74,7 @@ func setupArrays() :Unit{
    }
  }
 
-//  @OverflowWrapping
-//  func  verifyExample24() :Bool{
-//    timeExample24(1)
-//    var  hashCode  = Int32(out.hashCode())
-//    var  expectedHashCode :Int32 = 620167169
-//    return hashCode == expectedHashCode
-//  }
+
 
    public func example24 (fa:Array<Float32>, fb:Array<Float32>,x:Int16,y:Int16,out:Array<Int32>) :Unit{
      var  arr_pi :Int32

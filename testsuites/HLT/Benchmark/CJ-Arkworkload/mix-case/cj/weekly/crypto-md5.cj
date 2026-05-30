@@ -276,7 +276,6 @@ main() {
         let startTimeInLoop = currentTimestamp13()
         benchmark.runIteration()
         let endTimeInLoop = currentTimestamp13()
-        //log("crypto-md5: ms = \(endTimeInLoop - startTimeInLoop) i = \(i)")
     }
     let endTime = currentTimestamp13()
     println("crypto-md5: ms = ${Float64((endTime-startTime).toNanoseconds())/1000000.0}")

@@ -50,7 +50,7 @@ var out2 : Array<Int32> = Array<Int32>(Int64(N*2),repeat:0)
 var sout : Array<Int16> = Array<Int16>(Int64(N),repeat:0)
 
 func setupArrays() :Unit{
- // initArrayI(a)
+ 
   initArrayI(b)
   initArrayI(c)
   initArrayS(sb)
@@ -77,13 +77,7 @@ func setupArrays() :Unit{
        }
      }
 
-//  @OverflowWrapping
-//  func  verifyExample10b() :Bool{
-//     timeExample10b(1)
-//     var  hashCode  = Int32(out.hashCode())
-//     var  expectedHashCode :Int32 = -1067172794
-//     return hashCode == expectedHashCode
-//   }
+
 
    public func example10b(sb:Array<Int16>,out:Array<Int32>) :Unit{
      for (i in 0..N) {

@@ -88,13 +88,7 @@ static func initMatrixI(matrix:Array<Array<Int32>>) :Unit{
       }
     }
 
-    // @OverflowWrapping
-    // func  verifyExample23() :Bool{
-    //   timeExample23(1)
-    //   var  hashCode  = Int32(out.hashCode())
-    //   var  expectedHashCode :Int32 = 1545084673
-    //   return hashCode == expectedHashCode
-    // }
+
 
    public func example23 (src:Array<Rune>,dst:Array<Int32>):Unit{
      for (i in 0..256) {

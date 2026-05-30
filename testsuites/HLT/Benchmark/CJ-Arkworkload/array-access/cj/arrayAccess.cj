@@ -69,12 +69,12 @@ func integerArray() : Float64 {
     let integerIndexes = GenerateFakeRandomIndex();
     var res:  Array<Int64> = [0, 0, 0, 0, 0];
     var num = 1
-    // var res = 1
+
     timer.start()
     let length = resources.size - 1
     let resLength = res.size - 1
     for (i in 0..count) {
-        // res += resources[i % res & length]
+
         num += integerIndexes[i % num & length];
         res[i & resLength] = resources[i % num & length];
     }
@@ -83,7 +83,7 @@ func integerArray() : Float64 {
     for (i in 0..5) {
        tmp += res[i] 
     }
-//    print(tmp)
+
     return Float64(time.toNanoseconds())
 }
 
@@ -94,13 +94,13 @@ func floatArray() :Float64 {
     let resources = GenerateFakeRandomFloat()
     let integerIndexes = GenerateFakeRandomIndex();
     var num = 1
-    /* var res = 1.0 */
+
     timer.start()
     let length = resources.size - 1
     let resLength = res.size - 1
     for (i in 0..count) {
         num += integerIndexes[i % num & length];
-        /* res += resources[i % integerIndexes[i % 15] % 15]; */
+ 
 		res[i & resLength] = resources[i % num & length];
     }
     let time = timer.stop()
@@ -108,7 +108,7 @@ func floatArray() :Float64 {
     for (i in 0..5) {
        tmp += res[i] 
     }
-//    print(tmp)
+
     return Float64(time.toNanoseconds())
 
 }
@@ -134,7 +134,7 @@ func boolArray() : Float64 {
     for (i in 0..5) {
        tmp += res[i] 
     }
-//    print(tmp)
+
     return Float64(time.toNanoseconds())
 }
 
@@ -151,7 +151,7 @@ func stringArray() :Float64 {
     for (i in 0..res.size) {
         sum += res[i]
     }
-//    print(sum)
+
     return Float64(time.toNanoseconds())
 }
 
@@ -169,21 +169,21 @@ func GenerateFakeRandomObject() :Array<Obj>{
 
 func objectArray() :Float64 {
     let count = input
-    /* var res = 1; */
+
     var res:Array<Obj>= Array<Obj>(5,repeat:Obj(Random().nextInt64(9)+1))
     let resources = GenerateFakeRandomObject()
     timer.start()
     for (i in 0..count) {
-        /* res += resources[i % res % 15].value */
+      
         res[i % 5] = resources[i % 15];
     }
     let time = timer.stop()
-    /* print(res) */
+  
     var tmp = 1;
     for (i in 0..5) {
         tmp += res[i].value
     }
-//    print(tmp)
+
     return Float64(time.toNanoseconds())
 }
 

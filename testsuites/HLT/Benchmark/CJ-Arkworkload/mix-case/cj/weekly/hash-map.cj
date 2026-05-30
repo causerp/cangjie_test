@@ -238,11 +238,7 @@ class HashMap {
        
         let result = entry.getOrThrow().value
         entry.getOrThrow().value = value
-        // if inDebug {
-        //     if let key = key as? Int, key % 10000 == 0 {
-        //         log("put:" + (entry?.toString())!)
-        //     }
-        // }
+ 
         return result
     }
     
@@ -545,12 +541,7 @@ class Benchmark {
         for (_ in 0..5) {
             for (i in 0..COUNT) {
                 result += (map.get(i).getOrThrow() as Int64).getOrThrow()
-                // if inDebug {
-                //     if  i % 10000 == 0 {
-                //         let value:Int = map.get(i) as! Int
-                //         log("get:" + "\(i)=\(value)")
-                //     }
-                // }
+           
             }
         }
         

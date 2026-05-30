@@ -486,7 +486,6 @@ func run3d():Unit{
 
         // // create line pixels
         Q.numPx = 9.0 * 2.0 * cubeSize
-        // for i in 0..<Q.numPx { createP(0,0,0) }
         MTrans = translate(M: MTrans, Dx: Origin[0], Dy: Origin[1], Dz: Origin[2])
         MQube = mMulti(M1: MTrans, M2: MQube)
 
@@ -505,7 +504,6 @@ func run3d():Unit{
             let vector = Q.arr[i].V
             for (j in 0..vector.size) {
                 sum += vector[j]
-                // print("vector[j]: \(vector[j])")
             }
         }
 

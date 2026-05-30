@@ -10,12 +10,7 @@
 // EXEC: %compiler %cmp_opt %optimization_level_2 --no-sub-pkg %f -o %output
 // RUN-EXEC: %export cjHeapSize=512mb && %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan ms
-//
-//  richards.swift
-//  richards
-//
-//  Created by 李 on 2023/11/7.
-//
+
 
 import std.time.*
 import std.collection.*
@@ -547,9 +542,9 @@ func runRichards() {
     // status check
     if (scheduler.queueCount != EXPECTED_QUEUE_COUNT || scheduler.holdCount != EXPECTED_HOLD_COUNT) {
         let msg = "Error during execution: queueCount = ${scheduler.queueCount}, holdCount = ${scheduler.holdCount}."
-        //DeBugLog(msg)
+        
     }
-    //DeBugLog("queueCount = \(scheduler.queueCount) ; holdCount = \(scheduler.holdCount) ")
+    
 }
 
 class Timer {
@@ -570,7 +565,7 @@ class BenchMark{
    */
     func runIterationTime() {
         let start = Timer().getTime()
-        // let richard = runRichards()
+        
         for (_ in 0..20) {
             for (_ in 0..50) {
                 runRichards()

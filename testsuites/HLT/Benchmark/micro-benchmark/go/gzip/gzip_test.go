@@ -103,11 +103,6 @@ func BenchmarkCompress_1M(b *testing.B) { benchmarkCompress(b, 1024*1024) }
 func BenchmarkCompress_8M(b *testing.B) { benchmarkCompress(b, 8*1024*1024) }
 func BenchmarkCompress_64M(b *testing.B) { benchmarkCompress(b, 64*1024*1024) }
 func BenchmarkCompress_512M(b *testing.B) { benchmarkCompress(b, 512*1024*1024) }
-// The execution time is too long.
-//func BenchmarkUnCompress_4G(b *testing.B) { benchmarkCompressAndUncompress(b, 4*1024*1024*1024) }
-//func BenchmarkUnCompress_32G(b *testing.B) { benchmarkCompressAndUncompress(b, 32*1024*1024*1024) }
-//func BenchmarkUnCompress_256G(b *testing.B) { benchmarkCompressAndUncompress(b, 256*1024*1024*1024) }
-//func BenchmarkUnCompress_512G(b *testing.B) { benchmarkCompressAndUncompress(b, 512*1024*1024*1024) }
 
 
 
@@ -119,9 +114,4 @@ func BenchmarkUnCompress_128k(b *testing.B) { benchmarkUncompress(b, 128*1024) }
 func BenchmarkUnCompress_1M(b *testing.B) { benchmarkUncompress(b, 1024*1024) }
 func BenchmarkUnCompress_8M(b *testing.B) { benchmarkUncompress(b, 8*1024*1024) }
 func BenchmarkUnCompress_64M(b *testing.B) { benchmarkUncompress(b, 64*1024*1024) }
-// The execution time is too long.
-// func BenchmarkUnCompress_512M(b *testing.B) { benchmarkUncompress(b, 512*1024*1024) }
-//func BenchmarkUnCompress_4G(b *testing.B) { benchmarkCompressAndUncompress(b, 4*1024*1024*1024) }
-//func BenchmarkUnCompress_32G(b *testing.B) { benchmarkCompressAndUncompress(b, 32*1024*1024*1024) }
-//func BenchmarkUnCompress_256G(b *testing.B) { benchmarkCompressAndUncompress(b, 256*1024*1024*1024) }
-//func BenchmarkUnCompress_512G(b *testing.B) { benchmarkCompressAndUncompress(b, 512*1024*1024*1024) }
+

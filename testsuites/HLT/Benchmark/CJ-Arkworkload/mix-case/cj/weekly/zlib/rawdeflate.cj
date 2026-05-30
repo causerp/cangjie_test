@@ -290,7 +290,7 @@ public class RawDeflate {
         this.input = input
         this.op = 0
         // option parameters
-        //let opt_params = opt_params
+
         if (opt_params.isSome()) {
             if (opt_params.getOrThrow().lazy.isSome()) {
                 this.lazy = opt_params.getOrThrow().lazy.getOrThrow()
@@ -640,7 +640,7 @@ public class RawDeflate {
                 matchKey = (matchKey << 8) | UInt32(dataArray.getOrThrow()[position + i])
             }
             
-           // println(matchKey)
+
             
             if ( table.get(matchKey).isSome() ) {
                 matchsList = table.get(matchKey).getOrThrow().getOrThrow()
@@ -896,18 +896,7 @@ public class RawDeflate {
             var weight: Int64 = 0
             var next: Int64 = 0
             let takePackage = RawDeflate_1(type_tmp, currentPosition, symbols, codeLength)
-            //func takePackage(index: UInt32) {
-            //    let x = type_tmp[Int64(index)][Int64(currentPosition[Int64(index)])]
-            //
-            //    if (Int64(x) == symbols) {
-            //        takePackage(index + 1)
-            //        takePackage(index + 1)
-            //    } else {
-            //        codeLength[Int64(x)] -= 1
-            //    }
-            //
-            //    currentPosition[Int64(index)] += 1
-            //}
+        
 
             minimumCost[Int64(limit) - 1] = UInt16(symbols)
 

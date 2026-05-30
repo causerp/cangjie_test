@@ -199,14 +199,7 @@ func evalBetweenTwoKeyFrames (
     let ONE_THIRD = 1.0 / 3.0
     let prevTangentWeightEnabled = false
     let nextTangentWeightEnabled = false
-    // let {
-    //     rightTangent: prevTangent,
-    //     rightTangentWeight: prevTangentWeightSpecified,
-    // } = prevValue;
-    // let {
-    //     leftTangent: nextTangent,
-    //     leftTangentWeight: nextTangentWeightSpecified,
-    // } = nextValue;
+
     let prevTangent = prevValue.rightTangent
     let prevTangentWeightSpecified = prevValue.rightTangentWeight
     let nextTangent = nextValue.leftTangent
@@ -228,7 +221,6 @@ enum TestError {
 
 func assertIsTrue (expr!: Bool, message!: String = ""):Unit {
     if (!expr) {
-        // throw TestError.ErrorOne("错误1")
     }
 }
 
@@ -241,12 +233,9 @@ class RealCurve {
 
     private var _times: ArrayList<Float64> = ArrayList<Float64>.of(0.1111111, 0.555555555, 0.999999999)
     private var _values: ArrayList<RealKeyframeValue> = ArrayList<RealKeyframeValue>.of(RealKeyframeValue(0.2, 0.7, 0.0, 0.3, 0.0), RealKeyframeValue(0.3, 0.4, 0.0, 0.2, 0.0), RealKeyframeValue(0.4, 0.5, 0.0, 0.6, 0.0))
-    // values = [0.2,0.3,0.4]
+
     public func evaluate(time1: Float64): Float64 {
-        // let {
-        //     _times: times,
-        //     _values: values,
-        // } = self;
+
         var time = time1
         let times = this._times
         let values = this._values
@@ -273,7 +262,6 @@ class RealCurve {
         let preValue = values[iPre]
         let nextTime = times[iNext]
         let nextValue = values[iNext]
-        // assertIsTrue(nextTime > time && time > preTime);
         let dt = nextTime - preTime
 
         let ratio = (time - preTime) / dt
@@ -356,7 +344,6 @@ class VelocityModule {
 
 class ParticleSystemRenderCPU {
     private var _particles: ArrayList<Particle>
-    // private _runAnimateList: Array<any>;
     private var _sizeModule: SizeModule
     private var _velocityModule: VelocityModule
 
@@ -368,7 +355,6 @@ class ParticleSystemRenderCPU {
         for (i in 0..size) {
             this._particles.add(Particle(this))
         }
-        // self._runAnimateList = [new SizeModule(), new VelocityModule()]
     }
 
     public func UpdateParticles(dt: Float64): Unit {
@@ -378,9 +364,6 @@ class ParticleSystemRenderCPU {
 
             Vec3.copy(p.ultimateVelocity, p.velocity)
 
-            // self._runAnimateList.forEach((value) => {
-            //     value.animate(p, dt);
-            // });
             this._sizeModule.animate(p, dt)
             this._velocityModule.animate(p, dt)
             Vec3.scaleAndAdd(p.position, p.position, p.ultimateVelocity, dt) // apply velocity.
@@ -390,7 +373,6 @@ class ParticleSystemRenderCPU {
 
 func runCocos(): Int64{
     var systems: ArrayList<ParticleSystemRenderCPU> = ArrayList<ParticleSystemRenderCPU>(18, { index => ParticleSystemRenderCPU() })
-    // print("hello")
     let timer = Timer()
     timer.start()
     for (x in 0..600) {
@@ -401,8 +383,7 @@ func runCocos(): Int64{
     let time = timer.stop()
     println("Cocos - RunCocos:\t${Float64(time.toNanoseconds())/1000000.0}\tms")
     return 0
-    // print("duration:", endTime - startTime)
-    // print(n)
+
 }
 
 main(): Int64 {
