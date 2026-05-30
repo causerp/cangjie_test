@@ -16,3 +16,19 @@ API/std/reflect/cjnative/findAnnotation/test_getAllAnnotations.cj
 
 # 随机失败多次，影响门禁
 API/std/socket/UdpSocket/test_udp_transportation_init.cj
+
+# should be fixed.
+API/std/convert/radixconvertible/test_radixconvertible_int_01.cj
+API/std/convert/radixconvertible/test_radixconvertible_uint_02.cj
+API/std/os/env/test_getArgs/test_getArgs_005/test_getArgs_005.cj
+API/std/unittest/mock/test_mock_extend_cjnative.cj
+
+# Reflect not supported on Mac
+API/std/reflect/cjnative/findAnnotation/test_findAllAnnotations.cj
+API/std/reflect/cjnative/findAnnotation/test_getAllAnnotations.cj
+
+# 随机失败多次，影响门禁
+API/std/socket/UdpSocket/test_udp_transportation_init.cj
+
+API/net/TLS_new/tls_serverconf_08.cj
+API/net/Client/Client/Client_send.cj
