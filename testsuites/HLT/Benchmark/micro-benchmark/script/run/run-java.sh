@@ -9,7 +9,8 @@
 set -xe
 
 API="$1"
-TESTSUITES="${WORKSPACE}/testsuites"
+export WORKSPACE="${WORKSPACE}/code/Cangjie-test"
+TESTSUITES="${WORKSPACE}/testsuites/HLT"
 BENCHMARK="${TESTSUITES}/Benchmark"
 # micro-benchmark根目录。
 export MICRO_BENCHMARK="${BENCHMARK}/micro-benchmark"
@@ -71,7 +72,7 @@ function cffi_benchmark() {
 }
 
 function jmh_benchmark() {
-  JMH="${WORKSPACE}/jmh_microbenchmark"
+  JMH="${MICRO_BENCHMARK}/jmh_microbenchmark"
   rm -rf "${JMH}/src/main/java/org/sample"/*
   while IFS= read -r CASE_NAME; do
     cp "${MICRO_BENCHMARK}/java/${API}/${CASE_NAME}.java" "${JMH}/src/main/java/org/sample"
@@ -85,7 +86,8 @@ function jmh_benchmark() {
   cd "${JMH}" || exit
   mvn clean verify
 
-  CLASS_PATH="${JMH}/target/benchmarks.jar"
+  #CLASS_PATH="${JMH}/target/benchmarks.jar"
+  CLASS_PATH=""
   if [[ "${API}" == "json" ]]; then
     CLASS_PATH+=":${GSON}"
   fi
@@ -173,7 +175,7 @@ function java_https_filter() {
 }
 
 function jmh_xml_benchmark() {
-  JMH="${WORKSPACE}/jmh_microbenchmark"
+  JMH="${MICRO_BENCHMARK}/jmh_microbenchmark"
   rm -rf "${JMH}/src/main/java/org/sample"/*
   while IFS= read -r CASE_NAME; do
     cp "${MICRO_BENCHMARK}/java/${API}/${CASE_NAME}.java" "${JMH}/src/main/java/org/sample"

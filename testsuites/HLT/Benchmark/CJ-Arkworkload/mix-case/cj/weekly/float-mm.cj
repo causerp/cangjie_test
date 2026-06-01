@@ -68,7 +68,7 @@ func Mm(run: Int64): Unit {
         }
     }
     if (run < rowsize) {
-        //printLog("\(rmr[run + 1][run + 1])")
+        
     }
 }
 

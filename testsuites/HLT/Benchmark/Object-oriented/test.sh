@@ -12,7 +12,7 @@
 #   export JET_DIR=
 #   export LLVM_GC_DIR=
 #   ./test.sh [cj/jet | cj/jet/pgo | cj/llvmgc | cj/llvmgc/lto | go | java | net/vm | net/aot]
-
+set -x
 source ./env.sh
 
 #TEST_LANG=(cj/jet cj/jet/pgo cj/llvmgc cj/llvmgc/lto go java)
@@ -37,6 +37,7 @@ do
   cp -r ../${case} ./
   cd ${case}
   echo "${case}:"
-  ./test.sh "${TEST_LANG[*]}"
+  chmod +x ./test.sh
+  bash ./test.sh "${TEST_LANG[*]}"
   cd ..
 done

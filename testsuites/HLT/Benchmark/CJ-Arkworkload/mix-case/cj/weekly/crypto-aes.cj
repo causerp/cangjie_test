@@ -135,7 +135,7 @@ private func MixColumns(s1: Array<Array<Int16>>): Array<Array<Int16>> {   // com
                 b[i] = s[i][c]<<1
             }
         }
-        // a[n] ^ b[n] is a•{03} in GF(2^8)
+  
         s[0][c] = b[0] ^ a[1] ^ b[1] ^ a[2] ^ a[3]; // 2*a0 + 3*a1 + a2 + a3
         s[1][c] = a[0] ^ b[1] ^ a[2] ^ b[2] ^ a[3]; // a0 * 2*a1 + 3*a2 + a3
         s[2][c] = a[0] ^ a[1] ^ b[2] ^ a[3] ^ b[3]; // a0 + a1 + 2*a2 + 3*a3
@@ -263,7 +263,7 @@ private func AESEncryptCtr(plaintext: String, password: String, nBits: Int64): S
 
     // generate key schedule - an expansion of the key into distinct Key Rounds for each round
     let keySchedule = KeyExpansion(keyTemp);
-    // log("crypto-aes: keySchedule = ${keySchedule}")
+
     let blockCount = Int64(ceil(Float64(plaintext.size)/Float64(blockSize)))
     var ciphertext = Array<String>(blockCount, repeat:"") // ciphertext as array of strings
     for (b in 0..blockCount) {
@@ -393,7 +393,7 @@ private func escCtrlChars(str: String): String {  // escape control chars which 
         var c =arr[i]
         var a =String(c).toArray()
         if(String(c) == " "){s += "!${160}!"}
-        // else if(String(c) == "\r\n"){s += "!13!!10!"}
+
         else if(a.size == 1 && tmpsArr.contains(Int64(a[0]))) { 
             s += "!${a[0]}!"
         }else{

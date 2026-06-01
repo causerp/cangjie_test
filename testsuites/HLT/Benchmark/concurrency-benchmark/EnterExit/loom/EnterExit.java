@@ -44,7 +44,7 @@ public class EnterExit {
 
     static class Worker implements Runnable {
         int id;
-        Matrix m;
+        final Matrix m;
         CountDownLatch start, ready, finish;
 
         Worker(int id, Matrix m, CountDownLatch start, CountDownLatch ready, CountDownLatch finish) {
@@ -96,7 +96,7 @@ public class EnterExit {
     static int  problemSize    = 700000;
     static int  nSlicesForStat = 0;
 
-    static volatile Matrix hide;
+    static final volatile Matrix hide;
     static volatile Thread t;
 
     static void prepareMatrix(Matrix m) {

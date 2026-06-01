@@ -150,7 +150,7 @@ class Benchmark {
         if (tagcloud.size < expectedMinLength) {
             throw Exception("ERROR: bad result: expected length at least ${expectedMinLength} but got ${tagcloud.size}")
         } else {
-//            print("tagcloud: tagcloud.count < expectedMinLength is true")
+//            
         }
     }
 

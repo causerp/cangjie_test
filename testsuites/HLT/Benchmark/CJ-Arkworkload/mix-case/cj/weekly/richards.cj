@@ -34,25 +34,16 @@ var NUMBER_OF_IDS = 6
 var KIND_DEVICE = 0
 var KIND_WORK = 1
 
-/**
- * The task is running and is currently scheduled.
- */
+
 var STATE_RUNNING = 0;
 
-/**
- * The task has packets left to process.
- */
+
 var STATE_RUNNABLE = 1;
 
-/**
- * The task is not currently running.  The task is not blocked as such and may
- * be started by the scheduler.
- */
+
 var STATE_SUSPENDED = 2;
 
-/**
- * The task is blocked and cannot be run until it is explicitly released.
- */
+
 var STATE_HELD = 4;
 
 var STATE_SUSPENDED_RUNNABLE = STATE_SUSPENDED | STATE_RUNNABLE;
@@ -294,13 +285,7 @@ class TaskControlBlock {
     var task: Task
     var state: Int64
     
-    /// A task control block manages a task and the queue of work packages associated with it.
-    /// - Parameters:
-    ///   - link: the preceding block in the linked block list
-    ///   - id: the id of this block
-    ///   - priority: the priority of this block
-    ///   - queue: the queue of packages to be processed by the task
-    ///   - task: the task
+   
     init(link: ?TaskControlBlock, id: Int64, priority: Int64, queue: ?Packet, task: Task) {
         this.link = link
         this.id = id
