@@ -6,4 +6,11 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-enum M : unsigned __int128 { a, b = 1, c = 0xffffffffffffffff, d };
+@interface M
+-(nullable M*)int1: (nullable M*)x;
+-(nonnull M*)int2: (nonnull M*)x;
+-(nullable M*)init1: (nullable M*)x;
+-(nonnull M*)init2: (nonnull M*)x;
++(nullable M*)init1: (nullable M*)x;
++(nonnull M*)init2: (nonnull M*)x;
+@end

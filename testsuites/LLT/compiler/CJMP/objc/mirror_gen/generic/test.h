@@ -6,4 +6,12 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-enum M : unsigned __int128 { a, b = 1, c = 0xffffffffffffffff, d };
+@interface NSArray <__covariant ObjectType>
+@end
+
+@interface M<ObjectType> : NSArray<ObjectType>
+-(void)f1:(ObjectType)x;
+-(void)f2:(NSArray<ObjectType>*)x;
+-(void)f3:(NSArray<NSArray<ObjectType>*>*)x;
+-(void)f4:(NSArray*)x;
+@end
