@@ -10,11 +10,22 @@
 // EXEC: %compiler %cmp_opt %optimization_level_2 --no-sub-pkg %f -o %output
 // RUN-EXEC: %export cjHeapSize=512mb && %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan ms
+// RUN-EXEC-PIPE: %run %run_opt %output %run_args
+
 import std.time.*
 import std.collection.*
 import std.random.*
 import std.math.*
 import std.sort.SortExtension
+import std.sync.*
+
+var insertNode = 0
+var runTime = 0
+var insertTime = 0
+var remove1 = 0
+var remove2 = 0
+var findTime = 0
+var findGreatestLessThanTime = 0
 
 var bigen_time = DateTime.now()
 
@@ -23,6 +34,7 @@ class Timer {
     public func getTime(): Float64 {
         let time = DateTime.now()
         return Float64((time - bigen_time).toNanoseconds()) / 1000000.0
+        
     }
 }
 
@@ -61,11 +73,12 @@ class SuiteData {
     }
 }
 
+
 /*
  * @State
  * @Tags Jetstream2
  */
-class Benchmark {
+class SplayLatency1 {
     var name: String
     var doWarmup: Bool
     var doDeterministic: Bool
@@ -96,13 +109,17 @@ class Benchmark {
     }
 }
 
+// SplayLatency1 results hold the benchmark and the measured time used to
+// run the benchmark. The benchmark score is computed later once a
+// full benchmark suite has run to completion. If latency is set to 0
+// then there is no latency score for this benchmark.
 
 class BenchmarkResult {
-    var benchmark: Benchmark
+    var benchmark: SplayLatency1
     var time: Float64
     var latency: Float64
 
-    init(benchmark: Benchmark, time: Float64, latency: Float64) {
+    init(benchmark: SplayLatency1, time: Float64, latency: Float64) {
         this.benchmark = benchmark
         this.time = time
         this.latency = latency
@@ -116,10 +133,11 @@ class BenchmarkResult {
 }
 
 
+
 class BenchmarkSuite {
     let name: String
     let reference: Array<Int>
-    var benchmarks: Array<Benchmark>
+    var benchmarks: Array<SplayLatency1>
     var results: ArrayList<BenchmarkResult> = ArrayList<BenchmarkResult>()
     var runner: ?Runner = Option<Runner>.None
     // Keep track of all declared benchmark suites.
@@ -127,7 +145,7 @@ class BenchmarkSuite {
     static let version = "9"
     static var scores: Array<Float64> = []
 
-    init(name: String, reference: Array<Int>, benchmarks: Array<Benchmark>) {
+    init(name: String, reference: Array<Int>, benchmarks: Array<SplayLatency1>) {
         this.name = name
         this.reference = reference
         this.benchmarks = benchmarks
@@ -159,7 +177,7 @@ class BenchmarkSuite {
         let suite = this
         var data: ?SuiteData = Option<SuiteData>.None
 
-        // @Benchmark
+        // @SplayLatency1
         func runNextBenchmark(): Option<Any> {
             data = suite.RunSingleBenchmark(suite.benchmarks[index], DATA: data)
             // If data is nil, we're done with this benchmark.
@@ -198,10 +216,7 @@ class BenchmarkSuite {
         return runNextSetup()
     }
 
-    // Runs all registered benchmark suites and optionally yields between
-    // each individual benchmark to avoid running for too long in the
-    // context of browsers. Once done, the final score is reported to the
-    // runner.
+
     static func RunSuites(runner: Runner) {
         var continuation: ?Any = Option<Any>.None
         let SUITES = BenchmarkSuite.suites
@@ -231,7 +246,7 @@ class BenchmarkSuite {
 
     // Runs a single benchmark for at least a second and computes the
     // average time it takes to run a single iteration.
-    func RunSingleBenchmark(benchmark: Benchmark, DATA!: ?SuiteData = Option<SuiteData>.None): ?SuiteData {
+    func RunSingleBenchmark(benchmark: SplayLatency1, DATA!: ?SuiteData = Option<SuiteData>.None): ?SuiteData {
         var data = DATA
         func Measure(data!: ?SuiteData = Option<SuiteData>.None){
             var elapsed: Float64 = 0.0
@@ -271,7 +286,7 @@ class BenchmarkSuite {
             // If we've run too few iterations, we continue for another second.
             if (data.getOrThrow().runs < benchmark.minIterations) { return data}
             let usec = Float64(data.getOrThrow().elapsed * 1_000.0) / Float64(data.getOrThrow().runs)
-            
+    
             let latencySamples: ArrayList<Float64>
             if (benchmark.latencyResult.isSome()) {
                 latencySamples = benchmark.latencyResult.getOrThrow()()
@@ -283,7 +298,7 @@ class BenchmarkSuite {
             let latency = averageAbovePercentile(latencySamples, percentile) * 1_000.0
             let benchmarkResult = BenchmarkResult(benchmark,  usec, latency);
             notifyStep(benchmarkResult)
-            println("splay-latency: ms = ${latency/1000.0}")
+            println("SplayLatency1: ms = ${latency/1000.0}")
             return Option<SuiteData>.None
         }
     }
@@ -351,18 +366,21 @@ class BenchmarkSuite {
         return this.root_.isNone()
     }
 
-
+  
     func insert(key: Float64, value: Object): Unit {
         if (this.isEmpty()) {
             this.root_ = Node(key, value)
+            insertNode++;
             return
         }
 
         this.splay_(key)
+        insertTime++
         if (this.root_?.key == key) {
             return
         }
         let node: Node = Node(key, value)
+        insertNode++;
         if (key > ((this.root_?.key).getOrThrow()).getOrThrow()) {
             node.left = this.root_
             node.right = (this.root_?.right).getOrThrow()
@@ -381,6 +399,7 @@ class BenchmarkSuite {
             return Option<Node>.None
         }
         this.splay_(key)
+        remove1++
         if (this.root_?.key != key) {
             return Option<Node>.None
         }
@@ -392,6 +411,7 @@ class BenchmarkSuite {
             this.root_ = (this.root_?.left).getOrThrow()
             // Splay to make sure that the new root has an empty right child.
             this.splay_(key)
+            remove2++
             // Insert the original right child as the right child of the new
             // root.
             this.root_?.right = right
@@ -400,12 +420,12 @@ class BenchmarkSuite {
         return removed
     }
 
-  
     func find(key: Float64): ?Node {
         if (this.isEmpty()) {
             return None
         }
         this.splay_(key)
+        findTime++
         if ((this.root_?.key).getOrThrow() == key) {
             return this.root_
         } else {
@@ -421,7 +441,11 @@ class BenchmarkSuite {
             return None
         }
         var current: ?Node = opt_startNode ?? this.root_
-
+        // if (opt_startNode.isSome()) {
+        //     current = opt_startNode
+        // } else {
+        //     current = this.root_
+        // }
 
         while (current.getOrThrow().right.isSome()) {
             current = current.getOrThrow().right
@@ -440,6 +464,7 @@ class BenchmarkSuite {
         // Splay on the key to move the node with the given key or the last
         // node on the search path to the top of the tree.
         this.splay_(key)
+        findGreatestLessThanTime++
         // Now the result is either the root node or the greatest node in
         // the left subtree.
         if (this.root_.getOrThrow().key.getOrThrow() < key) {
@@ -462,13 +487,15 @@ class BenchmarkSuite {
         return result
     }
 
-  
+
     func splay_(key: Float64) {
+        insertNode++
         if (this.isEmpty()) {
             return
         }
-  
-        let dummy: ?Node = Node(0.0, 0.0)
+   
+        let dummy: ?Node = Node(0.0, Object())
+
         var left: ?Node = dummy
         var right: ?Node = dummy
         var current: Node = this.root_.getOrThrow()
@@ -526,11 +553,11 @@ var splayTree: ?SplayTree = Option<SplayTree>.None
 
 class Node {
     var key: ?Float64
-    var value: Any // Todo TS value | two types
+    var value: Object // Todo TS value | two types
     var left: ?Node = None
     var right: ?Node = None
 
-    init(key: ?Float64, value: Any) {
+    init(key: ?Float64, value: Object) {
         this.key = key
         this.value = value
     }
@@ -590,19 +617,21 @@ class SplayLatency <: Runner   {
         }
     }
 
+
     func insertNewNode(): Float64 {
         // Insert new node with a unique key.
         var key: Float64
         do {
             key = generateKey()
         } while ((splayTree.getOrThrow().find(key)).isSome())
-
         let payload = generatePayloadTree(kSplayTreePayloadDepth, key.toString())
         splayTree.getOrThrow().insert(key, payload)
+        
         return key
     }
 
     func SplayRun() {
+        runTime++
         // Replace a few nodes in the splay tree.
         for (_ in 0..kSplayTreeModifications) {
             let key = insertNewNode()
@@ -626,9 +655,7 @@ class SplayLatency <: Runner   {
         }
     }
     func SplayTearDown() {
-        // Allow the garbage collector to reclaim the memory
-        // used by the splay tree no matter how we exit the
-        // tear down function.
+  
         let keys: ArrayList<Float64> = splayTree.getOrThrow().exportKeys()
         splayTree = Option<SplayTree>.None
         splaySamples = ArrayList<Float64>([])
@@ -662,7 +689,8 @@ func start() {
 
 main() {
 
-    let benchmark=Benchmark("Splay",true,false, splayLatency.SplayRun, setup: splayLatency.SplaySetup, tearDown: splayLatency.SplayTearDown, latencyResult: splayLatency.SplayLatency, minIterations: 32)
+    let benchmark=SplayLatency1("Splay",true,false, splayLatency.SplayRun, setup: splayLatency.SplaySetup, tearDown: splayLatency.SplayTearDown, latencyResult: splayLatency.SplayLatency, minIterations: 32)
     let benchmarkSuite=BenchmarkSuite("Splay", [81491, 2739514], [benchmark])
     start()
+ 
 }

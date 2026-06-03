@@ -2290,7 +2290,7 @@ open class Identifier <:AST{
         super(NodeType.iName)
         this.actualText = actualText
         this.hasEscapeSequence = hasEscapeSequence
-        // this.setText(actualText, hasEscapeSequence:hasEscapeSequence);
+
         this.actualText = actualText
         if ( hasEscapeSequence) {
             this.text = AST.getResolvedIdentifierName(actualText)
@@ -9028,7 +9028,7 @@ class Parser {
                                         id.minChar = this.scanner.startPos;
                                         id.limChar = this.scanner.pos;
                                         if ((wasGetOrSetId)) {
-                                            //modifiers = modifiers ^ (((modifiers & Modifiers.getter) != 0) ? Modifiers.getter : Modifiers.setter);
+
                                             if ((modifiers & Modifiers.getter) != 0) {
                                                 modifiers = modifiers ^ ( Modifiers.getter )
                                             } else {
@@ -9675,7 +9675,7 @@ class Parser {
                 getSetPos = scanner.pos
                 currentToken = scanner.scan()
                 if ( (currentToken.getOrThrow().tokenId == TokenID.identifier) || getTypeScript().convertTokToIDName(currentToken.getOrThrow())) {
-                    //idHint = isSet ? "set" : "get"
+                   
                     if (isSet) {
                         idHint = "set"
                     } else {
@@ -9749,7 +9749,7 @@ class Parser {
                     this.reportParseError("Property setters may not declare a return type")
                 }
                 
-                //funcDecl.fncFlags |= isSet ? FncFlags.setAccessor : FncFlags.getAccessor
+
                 if (isSet) {
                     funcDecl.fncFlags |= FncFlags.setAccessor
                 } else {
@@ -21270,7 +21270,7 @@ class TypeScriptCompiler {
                 }
             }
         }
-        //this.emitSettings.getOrThrow().commonDirectoryPath = Array(commonComponents[0...commonComponentsLength]).toArray().join("/") + "/"
+
         this.emitSettings.getOrThrow().commonDirectoryPath = String.join(commonComponents[Range(0,commonComponentsLength, 1, true, true, true)].toArray(),delimiter:"/")  + "/"
         
         if ((this.emitSettings.getOrThrow().outputOption.charAt(this.emitSettings.getOrThrow().outputOption.size - 1) != r'/')) {
@@ -25803,7 +25803,7 @@ func typeScriptCompilerRunIteration() {
 }
 
 func debugLog( str:String){
-//    print(str)
+
 }
 
 main() {

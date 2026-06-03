@@ -64,12 +64,7 @@ let NUM_STIME_CONST = 1000;
 let NUM_TIME_LOOP_CONST = 60;
 let NUM_TIME_LOOP_5 = 5;
 
-//struct Exception {
- //   var desc: String
- //   init(desc: String) {
-  //      this.desc = desc
-  //  }
-//}
+
 
 class MlOptions {
     var inPlace = true

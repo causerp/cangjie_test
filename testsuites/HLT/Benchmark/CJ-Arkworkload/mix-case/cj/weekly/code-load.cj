@@ -71,7 +71,7 @@ private class CodeLoad {
         } else {
             this.index += 1
         }
-//        debugLog("text: " + this.text)
+//        
     }
 }
 

@@ -10,13 +10,7 @@
 // EXEC: %compiler %cmp_opt %optimization_level_2 --no-sub-pkg %f -o %output
 // RUN-EXEC: %export cjHeapSize=512mb && %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan ms
-// import j2cjlib.utils.J2CjStringExtension
-// import j2cjlib.utils.ValueBox
-// import j2cjlib.utils.castOrThrow
-// import j2cjlib.utils.parse
-// import j2cjlib.utils.shl
-// import j2cjlib.utils.shr
-// import j2cjlib.utils.ushr
+
 import std.collection.ArrayList
 import std.math.floor
 import std.math.pow

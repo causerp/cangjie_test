@@ -7,7 +7,7 @@
 
 declare -A PATH_MAP
 declare -A SCRIPT_MAP
-
+set -x
 PATH_MAP["cj/jet"]="cj"
 PATH_MAP["cj/jet/pgo"]="cj"
 PATH_MAP["cj/llvmgc"]="cj"
@@ -36,8 +36,9 @@ run_test() {
     script=${SCRIPT_MAP[${lang}]}
     echo "${lang}..."
     cd $path
-    "./${script}"
+    chmod +x ./${script}
+    bash "./${script}"
     cd ..
-    $write_file ${path}/run.log ${lang}
+    #$write_file ${path}/run.log ${lang}
   done
 }

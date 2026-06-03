@@ -548,11 +548,7 @@ class Variable {
     init(name: String, initialValue: ?Int64) {
         this.name = name
         this.value = initialValue ?? 0
-        // this.constraints = OrderedCollection<Constraint>()
-        // this.determinedBy = Option<Constraint>.None
-        // this.mark = 0
-        // this.walkStrength = Strength.WEAKEST
-        // this.stay = true
+
     }
 
     /**

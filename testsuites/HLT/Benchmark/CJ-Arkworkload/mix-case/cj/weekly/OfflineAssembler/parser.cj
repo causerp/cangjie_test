@@ -204,11 +204,7 @@ func lex( strs: String,  file: SourceFile) : Array<Any> {
         str = str[tokenMatch.getOrThrow()[0].size..str.size]
     }
     
-//    if ((isDebug)) {
-//        for ( i in 0..result.size) {
-//            DeBugLog("${i}" + " line in result: " + "${(result[i] as? Token)?.toString${} ?? ""}");
-//        }
-//    }
+
     return result.toArray()
 }
 
@@ -371,10 +367,7 @@ class Parser{
     }
     
     func parsePredicate() : ?Node {
-        // some examples of precedence:
-        // not a and b : (not a) and b
-        // a and b or c : (a and b) or c
-        // a or b and c : a or (b and c)
+      
         
         var result = parsePredicateAnd()
         while (tokens[idx].getOrThrow().isEqualTo("or")) {

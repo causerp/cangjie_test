@@ -458,9 +458,7 @@ class DateClass <: MyDate {
                 return getFullYear();
             }
         }
-        // else, do this:
-        // codes thanks to ppk:
-        // http://www.xs4all.nl/~ppk/js/introdate.html
+ 
         let x = this.getYear();
         var y = x % 100;
         if (y < 38) {

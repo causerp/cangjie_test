@@ -89,14 +89,7 @@ func run() {
     println("OfflineAssembler: ms = ${Float64((endTime-startTime).toNanoseconds())/1000000.0}")
 }
 
-// class Timer {
-//     private let CLOCKREALTIME = 0
-//     private var timespec = timespec()
-//     func getTime() : Float64 {
-//         clockgettime(Int32(CLOCKREALTIME),&timespec)
-//         return Float64(timespec.tvsec * 1000000 + timespec.tvnsec / 1000)
-//     }
-// }
+
 
 class Timer {
     public func getTime() {

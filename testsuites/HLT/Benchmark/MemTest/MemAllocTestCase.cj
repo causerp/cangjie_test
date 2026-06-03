@@ -1027,7 +1027,7 @@ public func oom_testcase_1(){
     while (true){
         index++
         for (i in 0..2*DEFAULT_THREAD_NUM){
-            //threadReference.add(None<ArrayList<AllocUnit>>)
+ 
             threadReference.add(ArrayList<AllocUnit>())
             slot = i % MAX_SLOT_NUM
             var size = ALLOC_2K

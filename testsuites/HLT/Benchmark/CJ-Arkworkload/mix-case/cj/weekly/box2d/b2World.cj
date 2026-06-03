@@ -240,14 +240,7 @@ open class B2World {
         mWarmStarting = flag
     }
     
-    // open mut prop warmStarting: Bool {
-    //     get() {
-    //         mWarmStarting
-    //     }
-    //     set(newValue) {
-    //         setWarmStarting(newValue)
-    //     }
-    // }
+  
     
     public open func setContinuousPhysics( flag: Bool) {
         mContinuousPhysics = flag
