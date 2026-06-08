@@ -8,58 +8,8 @@
 
 // LEVEL: 3
 // (not MAC and not OHOS) EXEC: %compiler %cmp_opt %f -o %output
-/*
- *  Licensed to the Apache Software Foundation (ASF) under one or more
- *  contributor license agreements.  See the NOTICE below for additional
- *  information regarding copyright ownership.
- *  The ASF licenses this file to You under the Apache License, Version 2.0
- *  (the "License"); you may not use this file except in compliance with
- *  the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-
-/******* NOTICE *********
-
-Apache Harmony
-Copyright 2006, 2010 The Apache Software Foundation.
-
-This product includes software developed at
-The Apache Software Foundation (http://www.apache.org/).
-
-Portions of Apache Harmony were originally developed by
-Intel Corporation and are licensed to the Apache Software
-Foundation under the "Software Grant and Corporate Contribution
-License Agreement" and for which the following copyright notices
-apply
-         (C) Copyright 2005 Intel Corporation
-         (C) Copyright 2005-2006 Intel Corporation
-         (C) Copyright 2006 Intel Corporation
 
 
-The following copyright notice(s) were affixed to portions of the code
-with which this file is now or was at one time distributed
-and are placed here unaltered.
-
-(C) Copyright 1997,2004 International Business Machines Corporation.
-All rights reserved.
-
-(C) Copyright IBM Corp. 2003. 
-
-
-This software contains code derived from UNIX V7, Copyright(C)
-Caldera International Inc.
-
-************************/
-
-// This code is a manual translation of Apache Harmony's HashMap class to
-// JavaScript.
 
 import std.convert.*
 import std.collection.*

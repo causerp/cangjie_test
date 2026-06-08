@@ -5,7 +5,6 @@
 # with Runtime Library Exception.
 # 
 # See https://cangjie-lang.cn/pages/LICENSE for license information.
-
 import sys
 import os
 import csv

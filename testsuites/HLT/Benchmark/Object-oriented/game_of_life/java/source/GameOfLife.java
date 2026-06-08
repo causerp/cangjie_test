@@ -193,22 +193,23 @@ public class GameOfLife {
         // Initialization
 
         try (FileInputStream input = new FileInputStream("data.txt")) {
-            Scanner scanner = new Scanner(input);
-            planetSize = scanner.nextInt();
-            s = new Planet(planetSize, planetSize);
+            try (Scanner scanner = new Scanner(input)) {
+                planetSize = scanner.nextInt();
+                s = new Planet(planetSize, planetSize);
 
-            days = scanner.nextInt();
+                days = scanner.nextInt();
 
-            String str = scanner.nextLine();
-            str = scanner.nextLine();
+                String str = scanner.nextLine();
+                str = scanner.nextLine();
 
-            for (int i = 0; i < planetSize; i++) {
-                String currentString = scanner.nextLine();
-                for (int j = 1; j < planetSize + 1; j++) {
-                    char currentChar = currentString.charAt(j);
-                    if (currentChar == '*') {
-                        Point t = new Point(i, j - 1);
-                        s.occupyPlace(t, new People(t));
+                for (int i = 0; i < planetSize; i++) {
+                    String currentString = scanner.nextLine();
+                    for (int j = 1; j < planetSize + 1; j++) {
+                        char currentChar = currentString.charAt(j);
+                        if (currentChar == '*') {
+                            Point t = new Point(i, j - 1);
+                            s.occupyPlace(t, new People(t));
+                        }
                     }
                 }
             }

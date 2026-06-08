@@ -36,14 +36,17 @@ public class BenchmarkGetHttp {
             clientSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }finally {
+        in.close();
+        out.close();
+    }
     }
 
 
     public static void benchmarkGet(int num) throws IOException {
         
-
         ServerSocket serverSocket = new ServerSocket(0);
+        try {
         int port = serverSocket.getLocalPort();
         new Thread(() -> {
             try {
@@ -65,7 +68,11 @@ public class BenchmarkGetHttp {
         client.dispatcher().cancelAll();
         client.connectionPool().evictAll();
         client.dispatcher().executorService().shutdown();
+        } finally {
         serverSocket.close();
+
+        }
+        
     }
 
     public static void main(String[] args) throws IOException {

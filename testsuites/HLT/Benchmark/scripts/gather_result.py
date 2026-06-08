@@ -836,11 +836,7 @@ if __name__ == '__main__':
 3. 性能波动用例的历史数据图。
 
 如果图片不显示，请手动单击下载或者开启outlook自动下载选项。
-</pre>''' \
-                   '<p> Data Source: http://10.50.90.171:3000/testmanage/performancereport/refactordailyreport </p>' \
-                   '<p> Jenkins Link: http://7.183.124.91/jenkins/view/Benchmark/</p>' \
-                   '<p> Benchmark Wiki: https://open.codehub.huawei.com/innersource/CangjieLang/Cangjie-test/wiki/view/doc/709508?categoryId=8&sn=WIKI202307301720397</p>' \
-                   '<p>  </p>'
+</pre>''' 
 
     send_reason = '<br><h1> Performance Degradation </h1>'
 
