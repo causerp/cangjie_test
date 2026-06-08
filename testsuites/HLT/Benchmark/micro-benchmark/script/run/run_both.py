@@ -74,6 +74,7 @@ def get_api(api_list, api_file):
 
 
 def run_benchmark(language, apix):
+    print("language, apix")
     print(language, apix)
     if language == "llvmgc":
         subprocess.call(r"{} {}".format("bash run-cj.sh", apix), shell=True)

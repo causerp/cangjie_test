@@ -115,12 +115,7 @@ def generate_tables_for(benchmark_result_dir_path: str, comparison_table: dict):
                 f'{mode} Code Size(KB)': code_size_in_kb,
             }
 
-    """
-    compilation_efficiency_table_header = cangjie_compilation_efficiency_table_header if mode == "Cangjie" else swift_compilation_efficiency_table_header
 
-    compilation_efficiency_table = pd.DataFrame.from_dict(compilation_efficiency_records, orient='index',
-                                                          columns=compilation_efficiency_table_header)
-    """
 
     compilation_efficiency_table = pd.DataFrame.from_dict(compilation_efficiency_records, orient='index',
                                                           columns=compilation_efficiency_table_header)

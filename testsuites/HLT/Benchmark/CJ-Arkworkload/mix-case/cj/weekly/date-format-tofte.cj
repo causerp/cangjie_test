@@ -129,22 +129,7 @@ class DateClass <: MyDate {
         
     }
     func formatDate(input: String, time: ?Int64): String {
-    // formatDate :
-    // a PHP date like function, for formatting date strings
-    // See: http://www.php.net/date
-    //
-    // input : format string
-    // time : epoch time (seconds, and optional)
-    //
-    // if time is not passed, formatting is based on
-    // the current "this" date object's set time.
-    //
-    // supported:
-    // a, A, B, d, D, F, g, G, h, H, i, j, l (lowercase L), L,
-    // m, M, n, O, r, s, S, t, U, w, W, y, Y, z
-    //
-    // unsupported:
-    // I (capital i), T, Z
+
         var prevTime = 0
         if (time.isSome()) {
             // save time
@@ -214,9 +199,7 @@ class DateClass <: MyDate {
     }
 
     func B(): String{
-        // Swatch internet time. code simply grabbed from ppk,
-        // since I was feeling lazy:
-        // http://www.xs4all.nl/~ppk/js/beat.html
+        
         let off = (this.getTimezoneOffset() + 60)*60;
         let theSeconds = (this.getHours() * 3600) + (this.getMinutes() * 60) + this.getSeconds() + off;
         var beat = floor(Float64(theSeconds)/86.4);
@@ -389,12 +372,7 @@ class DateClass <: MyDate {
         return round(Float64(this.getTime()/1000));
     }
     func W(): String{
-        // Weeknumber, as per ISO specification:
-        // http://www.cl.cam.ac.uk/~mgk25/iso-time.html
-
-        // if the day is three days before newyears eve,
-        // there's a chance it's "week 1" of next year.
-        // here we check for that.
+   
         let beforeNY = 364+L() - Int64(z());
         let afterNY  = z();
         var weekday = w(); // makes sunday (0), into 6.
@@ -421,10 +399,7 @@ class DateClass <: MyDate {
             (nyDay >= 4)  &&
             (Int64(afterNY) >= (6-nyDay))
         ) {
-            // Since I'm not sure we can just always return 53,
-            // i call the function here again, using the last day
-            // of the previous year, as the date, and then just
-            // return that week.
+
 
             let prevNY = DateClass("December 31 " + "$(Y()-1)" + " 00:00:00")
             return  prevNY.formatDate("W", Option<Int64>.None)
@@ -445,11 +420,7 @@ class DateClass <: MyDate {
         return this.getDay();
     }
     func Y(): Int64 {
-        // A full numeric representation of a year, 4 digits
 
-        // we first check, if getFullYear is supported. if it
-        // is, we just use that. ppks code is nice, but wont
-        // work with dates outside 1900-2038, or something like that
         if (this.getFullYear() != 0) {
             let newDate = DateClass("January 1 2001 00:00:00 +0000")
             let x = newDate.getYear()

@@ -10,14 +10,7 @@
 // EXEC: %compiler %cmp_opt %optimization_level_2 --no-sub-pkg %f -o %output
 // RUN-EXEC: %export cjHeapSize=512mb && %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan ms
-/**
- ** A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
- ** Digest Algorithm, as defined in RFC 1321.
- ** Version 2.1 Copyright (C) Paul Johnston 1999 - 2002.
- ** Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
- ** Distributed under the BSD License
- ** See http://pajhome.org.uk/crypt/md5 for more info.
- **/
+
 import std.time.*
 import std.collection.*
 
@@ -39,10 +32,7 @@ func currentTimestamp13() {
    return Timer().getTime() 
 }
 
-/*
- * Configurable variables. You may need to tweak these to be compatible with
- * the server-side, but the defaults work in most cases.
- */
+
 let hexcase:Bool = false
 let chrsz:Int64 = 8
 

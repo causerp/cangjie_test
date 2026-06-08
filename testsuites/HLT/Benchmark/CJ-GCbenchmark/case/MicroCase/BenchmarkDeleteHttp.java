@@ -35,7 +35,10 @@ public class BenchmarkDeleteHttp {
             clientSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }finally {
+        in.close();
+        out.close();
+    }
     }
     
     public static void benchmarkDelete() throws IOException {

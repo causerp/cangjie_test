@@ -73,8 +73,9 @@ public class Echo {
             final CountDownLatch stop = new CountDownLatch(connections);
 
             for (int i = 0; i < connections; ++i) {
-                final SocketChannel conn = SocketChannel.open()
-                        .setOption(StandardSocketOptions.TCP_NODELAY, true);
+                try(final SocketChannel conn = SocketChannel.open()
+                        .setOption(StandardSocketOptions.TCP_NODELAY, true);){
+                
                 boolean success = conn.connect(address);
                 assert success;
 
@@ -90,6 +91,7 @@ public class Echo {
                     conn.close();
                     stop.countDown();
                 }));
+            }
             }
 
             ser.join();

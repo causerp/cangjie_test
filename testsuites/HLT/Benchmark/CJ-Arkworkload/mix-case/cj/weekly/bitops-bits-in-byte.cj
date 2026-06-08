@@ -10,7 +10,7 @@
 // EXEC: %compiler %cmp_opt %optimization_level_2 --no-sub-pkg %f -o %output
 // RUN-EXEC: %export cjHeapSize=512mb && %run %run_opt %output %run_args 2>&1 | compare %f
 // ASSERT: scan ms
-// Copyright (c) 2004 by Arthur Langereis (arthur_ext at domain xfinitegames, tld com)
+
 
 import std.time.*
 import std.collection.*
