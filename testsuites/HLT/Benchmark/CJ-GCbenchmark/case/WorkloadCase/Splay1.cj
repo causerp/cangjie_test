@@ -154,14 +154,7 @@ class Splay {
     }
 }
 
-/**
- ** Constructs a Splay tree.  A splay tree is a self-balancing binary
- ** search tree with the additional property that recently accessed
- ** elements are quick to access again. It performs basic operations
- ** such as insertion, look-up and removal in O(log(n)) amortized time.
- **
- ** @constructor
- **/
+
 class SplayTree {
     /**
      * Pointer to the root node of the tree.
@@ -176,14 +169,7 @@ class SplayTree {
     func isEmpty(): Bool {
         return this.root_.isNone()
     }
-    /**
-   ** Inserts a node into the tree with the specified key and value if
-   ** the tree does not already contain a node with the specified key. If
-   ** the value is inserted, it becomes the root of the tree.
-   *
-   ** @param {number} key Key to insert into the tree.
-   ** @param {*} value Value to insert into the tree.
-   **/
+  
     func insert(key: Float64, value: Object): Unit {
         if (this.isEmpty()) {
             this.root_ = Node(key, value)
@@ -207,14 +193,7 @@ class SplayTree {
         }
         this.root_ = node
     }
-    /**
-   ** Removes a node with the specified key from the tree if the tree
-   ** contains a node with this key. The removed node is returned. If the
-   ** key is not found, an exception is thrown.
-   *
-   ** @param {number} key Key to find and remove from the tree.
-   ** @return {SplayTree.Node} The removed node.
-   **/
+  
     func remove(key: Float64): ?Node {
         if (this.isEmpty()) {
             return Option<Node>.None
@@ -229,21 +208,13 @@ class SplayTree {
         } else {
             let right: Option<Node> = (this.root_?.right).getOrThrow()
             this.root_ = (this.root_?.left).getOrThrow()
-            // Splay to make sure that the new root has an empty right child.
             this.splay_(key)
-            // Insert the original right child as the right child of the new root.
             this.root_?.right = right
         }
         
         return removed
     }
-    /**
-     * Returns the node having the specified key or null if the tree doesn't contain
-     * a node with the specified key.
-     *
-     * @param {number} key Key to find in the tree.
-     * @return {SplayTree.Node} Node having the specified key.
-     */
+
     func find(key: Float64): ?Node {
         if (this.isEmpty()) {
             return None
@@ -276,11 +247,9 @@ class SplayTree {
         if (this.isEmpty()) {
             return None
         }
-        // Splay on the key to move the node with the given key or the last
-        // node on the search path to the top of the tree.
+
         this.splay_(key)
-        // Now the result is either the root node or the greatest node in
-        // the left subtree.
+
         if (this.root_.getOrThrow().key.getOrThrow() < key) {
             return this.root_
         } else if (this.root_.getOrThrow().left.isSome()) {
@@ -299,16 +268,7 @@ class SplayTree {
         }
         return result
     }
-    /**
-   ** Perform the splay operation for the given key. Moves the node with
-   ** the given key to the top of the tree.  If no node has the given
-   ** key, the last node on the search path is moved to the top of the
-   ** tree. This is the simplified top-down splaying algorithm from:
-   ** "Self-adjusting Binary Search Trees" by Sleator and Tarjan
-   *
-   ** @param {number} key Key to splay the tree on.
-   ** @private
-   **/
+
     func splay_(key: Float64) {
         if (this.isEmpty()) {
             return
