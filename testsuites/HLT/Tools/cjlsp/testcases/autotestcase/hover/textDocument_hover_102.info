@@ -19,4 +19,4 @@ Req#
 {"jsonrpc": "2.0", "method": "exit", "params": {}}
 
 Rev#
-{"id": 226,"jsonrpc": "2.0","result": {"contents": {"kind": "markdown","value": "Declared in: enum001.cj  \nPackage info: default.Enum  \n\n```cangjie\ninternal enum TimeUnit\n```\n\n---\n\nenum的普通枚举值和函数形式的枚举值\n"},"range": {"end": {"character": 13,"line": 11},"start": {"character": 5,"line": 11}}}}
+{"id": 226,"jsonrpc": "2.0","result": {"contents": {"kind": "markdown","value": "Declared in: enum001.cj  \nPackage info: default.Enum  \n\n```cangjie\ninternal enum TimeUnit\n```\n\n---\n\nenum的普通枚举值和函数形式的枚举值  \n"},"range": {"end": {"character": 13,"line": 11},"start": {"character": 5,"line": 11}}}}
