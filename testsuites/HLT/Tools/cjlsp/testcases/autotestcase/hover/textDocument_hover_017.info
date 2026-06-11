@@ -19,4 +19,4 @@ Req#
 {"jsonrpc": "2.0", "method": "exit", "params": {}}
 
 Rev#
-{"id": 38,"jsonrpc": "2.0","result": {"contents": {"kind": "markdown","value": "Declared in: array003.cj  \nPackage info: default.Arrary  \n\n```cangjie\ninternal class DataClass\n```\n\n---\n\nArray关键字、Array类型变量应用于class、record、enum内部\n"},"range": {"end": {"character": 15,"line":11},"start": {"character": 6,"line":11}}}}
+{"id": 38,"jsonrpc": "2.0","result": {"contents": {"kind": "markdown","value": "Declared in: array003.cj  \nPackage info: default.Arrary  \n\n```cangjie\ninternal class DataClass\n```\n\n---\n\nArray关键字、Array类型变量应用于class、record、enum内部  \n"},"range": {"end": {"character": 15,"line":11},"start": {"character": 6,"line":11}}}}
