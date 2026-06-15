@@ -34,7 +34,7 @@ def get_last_result(productName, envTypeName, taskName, category):
               'taskName': taskName,
               'category': category}
     r = requests.get(
-        url='http://10.50.90.171:3000/api/cpltp/api/tasklog/testcase/api/v1/task/performance/getPerformanceTaskLastResults/testcases',
+        url='http://api/cpltp/api/tasklog/testcase/api/v1/task/performance/getPerformanceTaskLastResults/testcases',
         params=params
     )
     x = json.loads(r.content)
@@ -46,7 +46,7 @@ def get_last_result_new(productName, level_str):
     params = {'productName': productName,
               'level_str': level_str}
     r = requests.get(
-        url='http://10.50.90.171:3000/api/cpltp/api/tasklog/testcase/api/v1/task/performance/daily/getPerformanceTaskLastResults/testcases',
+        url='http://api/cpltp/api/tasklog/testcase/api/v1/task/performance/daily/getPerformanceTaskLastResults/testcases',
         params=params
     )
     x = json.loads(r.content)

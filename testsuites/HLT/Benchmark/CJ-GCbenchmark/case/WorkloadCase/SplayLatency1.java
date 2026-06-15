@@ -402,21 +402,13 @@ class SplayTree {
         } else {
             final Nodes right = this.root_.right;
             this.root_ = this.root_.left;
-            // Splay to make sure that the new root has an empty right child.
+
             this.splay_(key);
-            // Insert the original right child as the right child of the new
-            // root.
             this.root_.right = right;
         }
         return removed;
     }
-  /**
-   * Returns the node having the specified key or null if the tree doesn't contain
-   * a node with the specified key.
-   *
-   * @param {number} key Key to find in the tree.
-   * @return {SplayTree.Node} Node having the specified key.
-   */
+
     public Nodes find(double key) {
         if (this.isEmpty()) {
             return null;
