@@ -26,7 +26,7 @@ cur_path = os.path.dirname(os.path.abspath(__file__))
 
 # run `nohup http-server 
 home_dir = ''
-http_date_dir = 'http://10.175.96.30:8080/'
+http_date_dir = ''
 
 from_addr = ""
 all_to_addrs = [
@@ -146,7 +146,7 @@ def get_one_timestamp_result(timestamp, level_str):
             'levelStr': level_str,
             'timestamp': [timestamp]}
     r = requests.post(
-        url='http://10.50.90.171:3000/api/cpltp/api/task/performance/test/daily_performance/getTableData',
+        url='',
         headers=header,
         data=json.dumps(body)
     )
@@ -163,7 +163,7 @@ def get_all_timestamp(productName, level_str):
               'pageSize': 100, }
 
     time_result = requests.get(
-        url='http://10.50.90.171:3000/api/cpltp/api/task/performance/test/daily_performance/getTaskExecNumbers',
+        url='',
         headers=header,
         params=params
     )

@@ -82,7 +82,7 @@ def parser_all_measurements_csv(filename="all_measurements.csv"):
 def token():
     header = {'Content-Type': 'application/json'}
     r = requests.get(
-        url='http://10.50.90.171:8889/cpltp/api/user/user/appToken/getRestAppDynamicToken?uid=s00613938&pwd=cda6045683bb3f3c64fbb959514d90b999708123f0a3a7c8aecfb8ed5112f708',
+        url='http://cpltp/api/user/user/appToken/getRestAppDynamicToken?uid=s00613938&pwd=cda6045683bb3f3c64fbb959514d90b999708123f0a3a7c8aecfb8ed5112f708',
         headers=header)
     return json.loads(r.content.decode('utf-8'))['data']
 
@@ -145,7 +145,7 @@ def post_one_url(raw, version_json=None):
     data = bytes(data, 'utf-8')
     print(data)
     r = requests.post(
-        url='http://10.50.90.171:3000/api/cpltp/api/tasklog/testcase/api/v1/task/performance/result/{}/testcases'.format(cmc_version),
+        url='http://api/cpltp/api/tasklog/testcase/api/v1/task/performance/result/{}/testcases'.format(cmc_version),
         headers=header,
         data=data)
     print(r.content.decode('utf-8'))
@@ -167,7 +167,7 @@ def post_one_url_new(raw, version_json=None):
     data = bytes(data, 'utf-8')
     print(data)
     r = requests.post(
-        url='http://10.50.90.171:3000/api/cpltp/api/tasklog/testcase/api/v1/task/performance/result/daily/{}/testcases'.format(
+        url='http://api/cpltp/api/tasklog/testcase/api/v1/task/performance/result/daily/{}/testcases'.format(
             cmc_version),
         headers=header,
         data=data)
@@ -182,7 +182,7 @@ def updata_version():
     header = {'Content-Type': 'application/json',
               'Authorization': token()}
     r = requests.post(
-        url="http://10.50.90.171:3000/api/cpltp/api/task/cmc/cmcversion/refresh/76",
+        url="http://api/cpltp/api/task/cmc/cmcversion/refresh/76",
         headers=header
     )
     print(r.content.decode('utf-8'))
