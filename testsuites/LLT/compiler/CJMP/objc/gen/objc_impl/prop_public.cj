@@ -12,7 +12,7 @@
     if (self.$registryId == -1) {
         [NSException raise: @"Use before Cangjie counterpart is initialized" format: @"selector `%@` is overriden in Cangjie and cannot be used before Cangjie counterpart is initialized", NSStringFromSelector(_cmd)];
     }
-    return (__bridge A*)CJImpl_ObjC_cjworld_A_p_get(self.$registryId);
+    return (__bridge_transfer A*)CJImpl_ObjC_cjworld_A_p_get(self.$registryId);
 }
 */
 /* SCAN-IN

@@ -50,7 +50,7 @@ compiler/CJMP/objc/parser/class/objc_impl/ctor.cj
 ## objc (illegal instruction 4 failure)
 compiler/CJMP/objc/integration/cjmapping_open_class
 
-## "Objective-C calls Cangjie" interop (cjmapping) is disabled
+## "Objective-C uses Cangjie" interop (cjmapping) is disabled
 compiler/CJMP/objc/sema/cj_mapping_interop_lib_not_imported_class.cj
 compiler/CJMP/objc/sema/cjmapping_struct.cj
 compiler/CJMP/objc/integration/cj-mapping-generic-class-static/cj-mapping-generic-class-static.info
