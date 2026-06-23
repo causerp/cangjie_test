@@ -6,7 +6,7 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
-// LEVEL: 0
+// LEVEL: 3
 // DEPENDENCE:  ../../../script/cjprof_heap.py ../../../sourcecode/depth_5_example.cj ./heap_export_02.py
 // (not Windows) EXEC: %compiler %cmp_opt depth_5_example.cj -o depth_5_example%cmp_output
 // (not Windows) EXEC-2: %python heap_export_02.py depth_5_example%cmp_output %run_env
