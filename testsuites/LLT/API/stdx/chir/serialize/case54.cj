@@ -8,16 +8,15 @@
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f
 // RUN-EXEC: %set_stdx_path %run %run_opt %n.%suffix %run_args
 
-import std.collection.*
 import stdx.chir.*
 
-// Invoke, TryInvoke
+// Invoke overflowStrategy serialize roundtrip
 
 main() {
-    let pkg = Package("pkg.ser16", AccessLevel.Public)
+    let pkg = Package("pkg.ser49", AccessLevel.Public)
     let i32 = IntType.getInt32()
 
-    let fn1 = pkg.addFunction(FuncType.get(Array<Type>(), UnitType.get()), "fn1", "fn1", "pkg.ser16")
+    let fn1 = pkg.addFunction(FuncType.get(Array<Type>(), UnitType.get()), "fn1", "fn1", "pkg.ser49")
     fn1.initBody()
     let bb = fn1.body.getOrThrow().entryBlock
 
@@ -25,19 +24,21 @@ main() {
     bb.appendExpr(gs)
 
     let mty = FuncType.get([i32], UnitType.get())
-    let methodFn = pkg.addFunction(mty, "bar", "bar", "pkg.ser16")
+    let methodFn = pkg.addFunction(mty, "add", "add", "pkg.ser49")
     let arg = Constant.create(IntLiteral.get(i32, 7u64))
     bb.appendExpr(arg)
-    let ic = InvokeCallContext(gs.result, FuncCallContext([arg.result], Array<Type>(), None), methodFn)
+    let ic = InvokeCallContext(gs.result, FuncCallContext([arg.result], Array<Type>(), None), methodFn,
+        overflowStrategy: OverflowStrategy.Wrapping)
 
     let inv = Invoke.create(UnitType.get(), ic)
     bb.appendExpr(inv)
 
-    // TryInvoke: terminator
     let bg = fn1.body.getOrThrow()
     let normalBb = bg.appendBlock()
     let errorBb = bg.appendBlock()
-    let ti = TryInvoke.create(i32, ic, normalBb, errorBb)
+    let icSat = InvokeCallContext(gs.result, FuncCallContext([arg.result], Array<Type>(), None), methodFn,
+        overflowStrategy: OverflowStrategy.Saturating)
+    let ti = TryInvoke.create(i32, icSat, normalBb, errorBb)
     bb.appendExpr(ti)
     normalBb.appendExpr(Exit.create())
     errorBb.appendExpr(Exit.create())
