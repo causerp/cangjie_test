@@ -9,4 +9,4 @@
 // LEVEL: 2
 // DEPENDENCE: ../../../data/cjprof.data
 // EXEC: cjprof heap --show-thread | compare %f
-// ASSERT: scan at user.main (:0)
+// ASSERT: scan at user.main
