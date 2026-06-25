@@ -13,6 +13,9 @@
 
 main(): Int64 {
     var varr: VArray<Int64, $9223372036854775807> = VArray<Int64, $9223372036854775807> {i => i + 1}
+    for (i in 0..10) {
+        println(varr[i])
+    }
     if (varr.size == 9223372036854775807) {
         return varr[0] - 1
     }
