@@ -163,7 +163,7 @@ def get_all_timestamp(productName, level_str):
               'pageSize': 100, }
 
     time_result = requests.get(
-        url='http://10.50.90.171:3000/api/cpltp/api/task/performance/test/daily_performance/getTaskExecNumbers',
+        url='',
         headers=header,
         params=params
     )
@@ -179,7 +179,7 @@ def get_one_timestamp_result(timestamp, level_str):
             'levelStr': level_str,
             'timestamp': [timestamp]}
     r = requests.post(
-        url='http://10.50.90.171:3000/api/cpltp/api/task/performance/test/daily_performance/getTableData',
+        url='',
         headers=header,
         data=json.dumps(body)
     )
@@ -291,7 +291,7 @@ def post_one_url_new(raw, version_json=None):
     data = json.dumps(raw)
     data = bytes(data, 'utf-8')
     r = requests.post(
-        url='http://10.50.90.171:3000/api/cpltp/api/tasklog/testcase/api/v1/task/performance/result/daily/{}/testcases'.format(
+        url='{}'.format(
             cmc_version),
         headers=header,
         data=data)

@@ -4503,9 +4503,9 @@ public class ApolloTestPage <: CustomView {
 
     func tryQuery() {
         spawn { AppLog.info("spawn start")
-            let transport = HttpNetworkTransportBuilder("https://dev.lingkou.xyz/graphql")
+            let transport = HttpNetworkTransportBuilder("https://cangjie-lang.cn/graphql")
 
-            let apolloClient = ApolloClientBuilder().httpServerUrl("https://dev.lingkou.xyz/graphql").build()
+            let apolloClient = ApolloClientBuilder().httpServerUrl("https://cangjie-lang.cn/graphql").build()
 
             let query = QuestionTagTypeWithTagsQuery()
 
@@ -4537,9 +4537,9 @@ public class ApolloTestPage <: CustomView {
 
     func tryMutation() {
         spawn { AppLog.info("spawn start")
-            let transport = HttpNetworkTransportBuilder("https://dev.lingkou.xyz/graphql")
+            let transport = HttpNetworkTransportBuilder("https://cangjie-lang.cn/graphql")
 
-            let apolloClient = ApolloClientBuilder().httpServerUrl("https://dev.lingkou.xyz/graphql").build()
+            let apolloClient = ApolloClientBuilder().httpServerUrl("https://cangjie-lang.cn/graphql").build()
 
             let mutation = AccountLoginMutation("18321847217", "a12345678", "6aDJGWCvP3nrhjCkuxKa0EdKWYNcHK57T1mt9Tr4", "CFXzhKhxYuifROGi3kqpehX1PjxI0mQEffddHEqRm0G7N6PRDoIs1KOed4NrqXiOnavbIHRviTJdRco2hzHk7SthMUJmzeL1OrAABKijudI6Ixti1L3JfKOCOZlBEPXU")
 

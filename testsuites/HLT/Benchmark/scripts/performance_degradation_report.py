@@ -175,7 +175,7 @@ def get_one_timestamp_result(timestamp, level_str):
             'levelStr': level_str,
             'timestamp': [timestamp]}
     r = requests.post(
-        url='http://10.50.90.171:3000/api/cpltp/api/task/performance/test/daily_performance/getTableData',
+        url='',
         headers=header,
         data=json.dumps(body)
     )
@@ -192,7 +192,7 @@ def get_all_timestamp(productName, level_str):
               'pageSize': 100, }
 
     time_result = requests.get(
-        url='http://10.50.90.171:3000/api/cpltp/api/task/performance/test/daily_performance/getTaskExecNumbers',
+        url='',
         headers=header,
         params=params
     )
@@ -767,7 +767,7 @@ if __name__ == '__main__':
     current_date = int(current_date.strftime("%Y%m%d"))
     
     summary_pics = '<h1> Cangjie Benchmark Daily 性能劣化汇总 </h1>' \
-                   '<p> Data Source: http://10.50.90.171:3000/testmanage/performancereport/refactordailyreport </p>' \
+                   '<p> Data Source:  </p>' \
                    '<p>  </p>'
 
     send_reason_new = '<br><h2> New Performance Degradation </h2>'

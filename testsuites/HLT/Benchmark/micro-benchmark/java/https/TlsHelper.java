@@ -86,7 +86,7 @@ class TlsServerHelper {
         RSAPrivateKey key = rsaPrivateKey(keyData);
 
         // jks 需要设置密码
-        char[] passwd = "Changeme-123".toCharArray();
+        char[] passwd = getVariable("SRYPTO_PASSWORD").getOrThrow().toCharArray();
 
         // 构建 KeyStore, 用于构建 KeyManager -- SSLContext 必须
         KeyStore ks = KeyStore.getInstance("JKS");

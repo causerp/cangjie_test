@@ -11486,7 +11486,7 @@ func global_init7(stackPos: Int64): Unit {
   emit_OpenHarmony_start(_E2_str1594)
   emit_OpenHarmony_String("Overflow in AABB, object removed from simulation\u{00}");
   emit_OpenHarmony_start(_E2_str1695)
-  emit_OpenHarmony_String("If you can reproduce this, please email bugs@continuousphysics.com\u{0a}\u{00}");
+  emit_OpenHarmony_String("If you can reproduce this, please email\u{0a}\u{00}");
   emit_OpenHarmony_start(_E2_str1796)
   emit_OpenHarmony_String("Please include above information, your Platform, version of OS.\u{0a}\u{00}");
   emit_OpenHarmony_start(_E2_str1897)
