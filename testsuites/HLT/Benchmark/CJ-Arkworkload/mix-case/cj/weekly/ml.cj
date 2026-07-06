@@ -1604,10 +1604,7 @@ class MlMatrixDCUtilCls {
         }
         return 0.0
     }
-    // For use in the decomposition algorithms. With big matrices, access time is
-    // too long on elements from array subclass
-    // todo check when it is fixed in v8
-    // http://jsperf.com/access-and-write-array-subclass
+  
     func getEmpty2DArray( rows: Int64,  columns: Int64) :Array<Array<Float64>> {
         var array = Array<Array<Float64>>(rows,repeat: [0.0])
         for (i in 0..rows) {

@@ -1,7 +1,4 @@
 package test
-/*
- * Copyright (c) Example Technologies Co., Ltd. 2024-2024. All rights reserved.
- */
 
 internal import stdx.log.*
 main() {

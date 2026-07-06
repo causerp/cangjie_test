@@ -146,7 +146,7 @@ class Astar {
     }
 }
 
-// See list of heuristics: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
+
 class Heuristics {
     public static int manhattan(GridNode pos0, GridNode pos1) {
         int d1 = Math.abs(pos1.x - pos0.x);
