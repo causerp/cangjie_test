@@ -93,7 +93,7 @@ def construct_tool_shell_cmd(cmd: str):
         symbol = '\''
     remote_temp_dir = '/data/local/tmp'
     h = '{}/{}'.format(remote_temp_dir, uuid.uuid4())
-    shell_cmd = f'{cmd} 1> {h}_stdout.txt 2> {h}_stderr.txt ; echo exit_code_start$?exit_code_end > {h}_exit_code.txt ; cat {h}_stdout.txt ; cat {h}_exit_code.txt ; cat {h}_stderr.txt'
+    shell_cmd = f'{cmd} 1> {h}_stdout.txt 2> {h}_stderr.txt ; echo exit_code_start$?exit_code_end > {h}_exit_code.txt ; cat {h}_stdout.txt ; cat {h}_exit_code.txt ; cat {h}_stderr.txt ; rm {h}_stdout.txt ; rm {h}_exit_code.txt ; rm {h}_stderr.txt'
     cmd = f"{tool} shell {symbol}{shell_cmd}{symbol}"
     return cmd
 
@@ -138,7 +138,6 @@ def construct_remote_cmd(execute_cmd, execute_case_cmd, upload_file, remote_temp
     ]
     remove_case_cmd = (
         "rm -rf {}".format(remote_temp_dir)
-        # "ls {}".format(remote_temp_dir)
     )
     execute_cmd["remove_file_on_remote"] = construct_tool_shell_cmd(remove_case_cmd)
 
