@@ -1,3 +1,10 @@
+#!/bin/bash
+# Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
+# This source file is part of the Cangjie project, licensed under Apache-2.0
+# with Runtime Library Exception.
+# 
+# See https://cangjie-lang.cn/pages/LICENSE for license information.
+
 export JET_DIR=/home/jenkins2/workspace/Object-oriented_All_Daily_aarch64/Cangjie/cangjie_jet/cangjie
 export JAVA_HOME=/home/jenkins2/workspace/zhy_tmp/jdk8u372-b07-jre/
 export PATH=$JAVA_HOME/bin:$PATH
