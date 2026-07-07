@@ -218,15 +218,7 @@ private func RotWord(w1: Array<Int16>): Array<Int16> {// rotate 4-byte word w le
     return wTemp
 }
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
-/*
- * Use AES to encrypt 'plaintext' with 'password' using 'nBits' key, in 'Counter' mode of operation
- *                           - see http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf;
- *   for each block;
- *   - outputblock = cipher(counter, key);
- *   - cipherblock = plaintext xor outputblock;
- */
 private func AESEncryptCtr(plaintext: String, password: String, nBits: Int64): String {
     if (!(nBits==128 || nBits==192 || nBits==256)) {
         return ""

@@ -133,7 +133,7 @@ class Astar {
 
 let astar = Astar()
 
-// See list of heuristics: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
+
 class Heuristics {
     static func manhattan(pos0: GridNode, pos1: GridNode): Int64 {
         let d1 = abs(pos1.x - pos0.x)

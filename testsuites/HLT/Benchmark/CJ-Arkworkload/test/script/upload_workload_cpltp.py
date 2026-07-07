@@ -89,7 +89,7 @@ def post_one_url_new(raw, version_json=None):
     data = bytes(data, 'utf-8')
     # print(data)
     r = requests.post(
-        url='http://10.50.90.171:3000/api/cpltp/api/tasklog/testcase/api/v1/task/performance/result/daily/{}/testcases'.format(
+        url='{}'.format(
             cmc_version),
         headers=header,
         data=data)
@@ -116,7 +116,7 @@ def updata_version():
     header = {'Content-Type': 'application/json',
               'Authorization': token()}
     r = requests.post(
-        url="http://10.50.90.171:3000/api/cpltp/api/task/cmc/cmcversion/refresh/76",
+        url="",
         headers=header
     )
     print(r.content.decode('utf-8'))
