@@ -50,7 +50,6 @@ macro cCall2(function)
         # rdx (a1) should contain the first argument, and r8 (a2) should contain the second argument.
         # On return, rax contains a pointer to this stack value, and we then need to copy the 16 byte return value into rax (r0) and rdx (r1)
         # since the return value is expected to be split between the two.
-        # See http://msdn.microsoft.com/en-us/library/7572ztz4.aspx
         move a1, a2
         move a0, a1
         subp 48, sp
@@ -75,7 +74,6 @@ macro cCall2Void(function)
         # as the Win64 cCall2 implemenation is only correct when the return type size is > 8 bytes.
         # On Win64, rcx and rdx are used for passing the first two parameters.
         # We also need to make room on the stack for all four parameter registers.
-        # See http://msdn.microsoft.com/en-us/library/ms235286.aspx
         subp 32, sp
         call function
         addp 32, sp
@@ -92,7 +90,6 @@ macro cCall4(function)
     elsif X86_64_WIN
         # On Win64, rcx, rdx, r8, and r9 are used for passing the first four parameters.
         # We also need to make room on the stack for all four parameter registers.
-        # See http://msdn.microsoft.com/en-us/library/ms235286.aspx
         subp 64, sp
         call function
         addp 64, sp
