@@ -146,7 +146,7 @@ def calculate_rate(a, b):
 
 
 def send_email(html_txt, user_info, to_addrs):
-    smtp_server = "smtpscn1.huawei.com"
+    smtp_server = ""
     server = smtplib.SMTP(smtp_server, 25)
     server.set_debuglevel(1)
     server.login(user_info[0], user_info[1])
