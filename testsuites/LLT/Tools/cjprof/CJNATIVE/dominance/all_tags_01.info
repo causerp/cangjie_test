@@ -21,4 +21,8 @@ all_tags,/api/fragment/layout,PRIMITIVE_ARRAY,regex,STRUCT_ARRAY
 all_tags,/api/fragment/layout,PINNED_OBJECT,regex,LARGE_OBJECT
 all_tags,/api/fragment/layout,PRIMITIVE_ARRAY,regex,FREE_SPACE
 all_tags,/api/fragment/overview,"used_size":520,regex,"utilization"
+all_tags,/api/fragment/overview,"address_range_start":64,scan,"address_range_end":272
+all_tags,/api/fragment/distribution,"address_range_start":"0x40",scan,"address_range_end":"0x110"
+all_tags,/api/fragment/distribution,"type":"PINNED_OBJECT",scan,"percentage":100.0
+all_tags,/api/fragment/distribution,"total_address_range":208,scan,"row_index":0
 all_tags,/api/snapshot,"gc_root_count":3,regex,"object_count":14

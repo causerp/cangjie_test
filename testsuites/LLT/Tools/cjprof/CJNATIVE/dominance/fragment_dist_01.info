@@ -15,3 +15,7 @@ test#
 dist_spread,/api/fragment/layout,INSTANCE_OBJECT,regex,PRIMITIVE_ARRAY
 dist_spread,/api/fragment/layout,"OBJECT_ARRAY",regex,"FREE_SPACE"
 dist_spread,/api/fragment/summary,"instance_object_total":64,regex,"primitive_array_total":56
+dist_spread,/api/fragment/distribution,"address_range_start":"0x10",scan,"address_range_end":"0x20000"
+dist_spread,/api/fragment/distribution,"type":"INSTANCE_OBJECT",scan,"type":"PRIMITIVE_ARRAY"
+dist_spread,/api/fragment/distribution,"percentage":50.01,scan,"percentage":49.99
+dist_spread,/api/fragment/distribution,"total_address_range":131056,scan,"row_index":0

@@ -19,3 +19,6 @@
 test#
 empty_fragment,/api/fragment/overview,"used_size":0,scan,"utilization":0.0
 empty_fragment,/api/snapshot,"object_count":3,scan,"used_size":0
+empty_fragment,/api/fragment/distribution,"address_range_start":"0x40",scan,"address_range_end":"0x60"
+empty_fragment,/api/fragment/distribution,"type":"FREE_SPACE",scan,"percentage":100.0
+empty_fragment,/api/fragment/distribution,"total_address_range":32,scan,"row_index":0
