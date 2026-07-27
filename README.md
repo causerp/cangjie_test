@@ -13,7 +13,7 @@ cangjie_test/
     `-- LLT             # Cangjie LLT Test Suite
 ```
 
-## Cangjie SPEC Conformance Test Suite Guide
+## Cangjie SPEC  Conformance Test Suite Guide.
 
 [Harness Test Framework](Conformance/Compiler/harness/README.md)
 
