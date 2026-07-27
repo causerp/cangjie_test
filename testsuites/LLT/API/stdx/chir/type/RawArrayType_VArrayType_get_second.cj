@@ -7,21 +7,21 @@
  */
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f
 // RUN-EXEC: %set_stdx_path %run %run_opt %n.%suffix %run_args | compare %f
+// RawArrayType.get / VArrayType.get：同 elementType 下第二维/尺寸走 cache 未命中创建
 
 /* SCAN
-box ref of i32: true
-box ref of bool: false
-plain ref not box ref: false
-nonRef not box ref: false
+ra dims 3: true
+va size 7: true
 */
 
 import stdx.chir.*
 
 main() {
     let i32 = IntType.getInt32()
-    let rb = RefType.get(BoxType.get(i32))
-    println("box ref of i32: ${rb.isBoxRefTypeOf(i32)}")
-    println("box ref of bool: ${rb.isBoxRefTypeOf(BoolType.get())}")
-    println("plain ref not box ref: ${RefType.get(i32).isBoxRefTypeOf(i32)}")
-    println("nonRef not box ref: ${i32.isBoxRefTypeOf(i32)}")
+    let _ = RawArrayType.get(i32, 1u32)
+    let ra2 = RawArrayType.get(i32, 3u32)
+    let _ = VArrayType.get(i32, 2)
+    let va2 = VArrayType.get(i32, 7)
+    println("ra dims 3: ${ra2.dims == 3}")
+    println("va size 7: ${va2.size == 7}")
 }

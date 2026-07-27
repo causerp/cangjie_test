@@ -7,30 +7,16 @@
  */
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f
 // RUN-EXEC: %set_stdx_path %run %run_opt %n.%suffix %run_args | compare %f
-// IRActionMode、CHIRVisitor.walk Continue/Stop/Skip 与多 block
+// CHIRVisitor：BlockGroup/嵌套 subBg 的 Stop 提前返回，以及默认 action
 
 /* SCAN
-mode continue eq: true
-mode stop ne continue: true
-mode skip eq: true
-walk no body: 0
-walk continue count: 6
-walk stop count: 2
-walk skip lambda: 4
-walk two blocks: 7
+walk stop bg early: 1
+walk stop nested: 3
+walk default action: 7
 */
 
 import std.collection.*
 import stdx.chir.*
-
-class CountVisitor <: CHIRVisitor {
-    public var count: Int64 = 0
-
-    public override func action(_: Expression): IRActionMode {
-        count += 1
-        return IRActionMode.Continue
-    }
-}
 
 class StopAtVisitor <: CHIRVisitor {
     public var count: Int64 = 0
@@ -49,15 +35,14 @@ class StopAtVisitor <: CHIRVisitor {
     }
 }
 
-class SkipLambdaVisitor <: CHIRVisitor {
+class DefaultActionVisitor <: CHIRVisitor {}
+
+class SuperActionVisitor <: CHIRVisitor {
     public var count: Int64 = 0
 
     public override func action(ty: Expression): IRActionMode {
         count += 1
-        if (ty.isLambda()) {
-            return IRActionMode.Skip
-        }
-        return IRActionMode.Continue
+        return super.action(ty)
     }
 }
 
@@ -86,33 +71,25 @@ func buildSampleBody(pkg: Package): (Function, BlockGroup) {
 }
 
 main() {
-    println("mode continue eq: ${IRActionMode.Continue == IRActionMode.Continue}")
-    println("mode stop ne continue: ${IRActionMode.Stop != IRActionMode.Continue}")
-    println("mode skip eq: ${IRActionMode.Skip == IRActionMode.Skip}")
-
-    let pkg = Package("pkg.ir.vis", AccessLevel.Public)
+    let pkg = Package("pkg.ir.vis.stop", AccessLevel.Public)
     let (fn, bg) = buildSampleBody(pkg)
-
-    let noBody = pkg.addFunction(FuncType.get(Array<Type>(), UnitType.get()), "nobody", "nobody", pkg.name)
-    let emptyVisitor = CountVisitor()
-    emptyVisitor.walk(noBody)
-    println("walk no body: ${emptyVisitor.count}")
-
-    let contVisitor = CountVisitor()
-    contVisitor.walk(fn)
-    println("walk continue count: ${contVisitor.count}")
-
-    let stopVisitor = StopAtVisitor(2)
-    stopVisitor.walk(fn.body.getOrThrow().entryBlock)
-    println("walk stop count: ${stopVisitor.count}")
-
-    let skipVisitor = SkipLambdaVisitor()
-    skipVisitor.walk(fn.body.getOrThrow().entryBlock)
-    println("walk skip lambda: ${skipVisitor.count}")
 
     let bb2 = bg.appendBlock()
     bb2.appendExpr(Constant.create(IntLiteral.get(IntType.getInt32(), 3u64)))
-    let bgVisitor = CountVisitor()
-    bgVisitor.walk(bg)
-    println("walk two blocks: ${bgVisitor.count}")
+
+    // Stop 发生在第一个 block 后，walk(bg) 在第二个 block 前因 isStop 提前 return
+    let stopBg = StopAtVisitor(1)
+    stopBg.walk(bg)
+    println("walk stop bg early: ${stopBg.count}")
+
+    // Continue 进入 Lambda，在嵌套 block group 内 Stop
+    let stopNested = StopAtVisitor(3)
+    stopNested.walk(fn.body.getOrThrow().entryBlock)
+    println("walk stop nested: ${stopNested.count}")
+
+    let defVisitor = DefaultActionVisitor()
+    defVisitor.walk(fn)
+    let superVisitor = SuperActionVisitor()
+    superVisitor.walk(fn)
+    println("walk default action: ${superVisitor.count}")
 }
