@@ -14,6 +14,7 @@ Unit tests for utils from core
 import unittest
 import subprocess
 import os
+import tempfile
 
 from utils import utils
 
@@ -33,6 +34,35 @@ class UtilsTests(unittest.TestCase):
     value = self.custom_str_numbers
     value.sort(key=utils.natural_keys)
     self.assertEqual(value, ['0.00000007', '0.2', '5', 'text'])
+
+  def test_cross_decode(self):
+    '''Checking cross_decode with supported encodings and empty output'''
+    self.assertEqual(utils.cross_decode(None), '')
+    self.assertEqual(utils.cross_decode('仓颉'.encode('utf-8')), '仓颉')
+    self.assertEqual(utils.cross_decode('тест'.encode('cp866')), 'тест')
+
+  def test_clear_message(self):
+    '''Checking ANSI color sequences are removed from messages'''
+    message = f'{utils.PT_BOLD_RED}failed{utils.PT_END_COLORING}: details'
+    self.assertEqual(utils.clear_message(message), 'failed: details')
+
+  def test_find_files_by_creation_date(self):
+    '''Checking files are filtered by mask and sorted by modification time'''
+    with tempfile.TemporaryDirectory() as directory:
+      newest_file = os.path.join(directory, 'newest.log')
+      oldest_file = os.path.join(directory, 'oldest.log')
+      ignored_file = os.path.join(directory, 'ignored.txt')
+      for file_path in [newest_file, oldest_file, ignored_file]:
+        with open(file_path, 'w', encoding='utf-8'):
+          pass
+      os.utime(oldest_file, (1, 1))
+      os.utime(newest_file, (2, 2))
+
+      self.assertEqual(
+        utils.find_files_by_creation_date(directory, '*.log'),
+        [oldest_file, newest_file]
+      )
+      self.assertEqual(utils.find_files_by_creation_date(directory, '*.json'), [])
 
   def test_kill_processes(self):
     '''Checking the kill_processes function on a custom processes'''
