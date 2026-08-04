@@ -11,8 +11,8 @@
 #   - per-bucket dominant-category selection (largest cumulative size wins)
 #   - the segment-merge loop: adjacent buckets all differ -> no merge -> 7 segments
 #   - categoryToString() for every ObjectCategory (INSTANCE/OBJECT_ARRAY/
-#     STRUCT_ARRAY/PRIMITIVE_ARRAY/PINNED/LARGE; UNMOVABLE is merged into PINNED)
-#   - UNMOVABLE_OBJECT->PINNED_OBJECT merge (bucket 6 becomes a 2nd PINNED segment)
+#     STRUCT_ARRAY/PRIMITIVE_ARRAY/PINNED/LARGE/UNMOVABLE)
+#   - UNMOVABLE_OBJECT is emitted as an independent segment
 #   - percentage rounding (each segment = 14.29%)
 #   - single-row grouping (total range < 64MB -> row_index 0)
 # Also asserts the address_range_start/end fields added by handleFragmentOverview.
@@ -28,3 +28,4 @@ fragment_dist,/api/fragment/distribution,"total_address_range":458752,scan,"type
 fragment_dist,/api/fragment/distribution,"type":"PRIMITIVE_ARRAY",scan,"type":"OBJECT_ARRAY"
 fragment_dist,/api/fragment/distribution,"type":"STRUCT_ARRAY",scan,"type":"PINNED_OBJECT"
 fragment_dist,/api/fragment/distribution,"type":"LARGE_OBJECT",scan,"percentage":14.29
+fragment_dist,/api/fragment/distribution,"type":"UNMOVABLE_OBJECT",scan,"percentage":14.29
