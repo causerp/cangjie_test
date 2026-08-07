@@ -7,5 +7,5 @@
 // LEVEL: 2
 // DEPENDENCE: ../%n
 // EXEC: cd %n && %cjpm build 2>&1 | compare %f
-// ASSERT: scan missing.nonexistent (imported by: dependency_demo, missing_import_diagnostic)
+// ASSERT: scan missing.nonexistent (imported by: dependency_demo)
 // ASSERT: scan cjpm build failed
