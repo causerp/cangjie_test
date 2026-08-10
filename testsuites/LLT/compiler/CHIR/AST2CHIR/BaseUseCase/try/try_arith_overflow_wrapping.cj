@@ -7,9 +7,9 @@
 // LEVEL: 0
 // EXEC: %compiler %f %dumpCHIRDebug
 // (Linux and CJNATIVE) EXEC: %cat default_CHIR/[0-9]*_AST_CHIR.chirtxt | sed -n -r '/Func @_CN7default4testHv/,/^}$/p' | compare %f
-// (Linux and CJNATIVE) ASSERT: scan-not NumericCastWithException
-// (Linux and CJNATIVE) ASSERT: scan-not AddWithException
-// (Linux and CJNATIVE) ASSERT: scan Int8 = DivWithException(
+// (Linux and CJNATIVE) ASSERT: scan-not TryNumericCast
+// (Linux and CJNATIVE) ASSERT: scan-not TryAdd
+// (Linux and CJNATIVE) ASSERT: scan Int8 = TryDiv(
 // (Linux and CJNATIVE) ASSERT: scan Int8 = NumericCast(
 // (Linux and CJNATIVE) ASSERT: scan Int8 = Add(
 
