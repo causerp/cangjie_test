@@ -6,19 +6,28 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
  
-// DEPENDENCE: ../test.toml test.h
+// DEPENDENCE: test.toml test.h
 // EXEC: ObjCInteropGen test.toml
 // EXEC: %cat test.cj | compare %f
 /* SCAN-IN
-@ObjCMirror["M"]
-public interface MProtocolProtocol {
+@C
+public struct M {
 }
 
-@ObjCMirror
-public open class MProtocol {
+@C
+public struct NStructStruct {
+    public var x: CPointer<NStruct> = CPointer<NStruct>()
 }
 
-@ObjCMirror
-public open class M <: MProtocol & MProtocolProtocol {
+@C
+public struct NStruct {
 }
+
+foreign func N(): Unit
+
+@C
+public struct OStruct {
+}
+
+foreign func O(): Unit
 */

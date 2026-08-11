@@ -10,15 +10,17 @@
 // EXEC: ObjCInteropGen test.toml
 // EXEC: %cat test.cj | compare %f
 /* SCAN-IN
-@ObjCMirror["M"]
-public interface MProtocolProtocol {
-}
+public type PM = M
 
 @ObjCMirror
-public open class MProtocol {
+public open class A {
+    public open func foo(): PM
 }
 
+public type PA = A
+
 @ObjCMirror
-public open class M <: MProtocol & MProtocolProtocol {
+public open class M <: A {
+    public open func foo(): PM
 }
 */
