@@ -15,6 +15,8 @@ import unittest
 import subprocess
 import os
 import tempfile
+import time
+from pathlib import Path
 
 from utils import utils
 
@@ -49,18 +51,20 @@ class UtilsTests(unittest.TestCase):
   def test_find_files_by_creation_date(self):
     '''Checking files are filtered by mask and sorted by modification time'''
     with tempfile.TemporaryDirectory() as directory:
-      newest_file = os.path.join(directory, 'newest.log')
-      oldest_file = os.path.join(directory, 'oldest.log')
-      ignored_file = os.path.join(directory, 'ignored.txt')
+      newest_file = Path(directory, 'newest.log')
+      oldest_file = Path(directory, 'oldest.log')
+      ignored_file = Path(directory, 'ignored.txt')
+
       for file_path in [newest_file, oldest_file, ignored_file]:
-        with open(file_path, 'w', encoding='utf-8'):
-          pass
-      os.utime(oldest_file, (1, 1))
-      os.utime(newest_file, (2, 2))
+        file_path.touch()
+
+      now = time.time()
+      os.utime(oldest_file, (now - 100, now - 100))
+      os.utime(newest_file, (now - 10, now - 10))
 
       self.assertEqual(
         utils.find_files_by_creation_date(directory, '*.log'),
-        [oldest_file, newest_file]
+        [str(oldest_file), str(newest_file)]
       )
       self.assertEqual(utils.find_files_by_creation_date(directory, '*.json'), [])
 
