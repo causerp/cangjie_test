@@ -7,21 +7,21 @@
  */
 // EXEC: %compiler %import-cangjie-stdx %cmp_opt -o %n.%suffix %f
 // RUN-EXEC: %set_stdx_path %run %run_opt %n.%suffix %run_args | compare %f
+// GenericType.upperBounds：拒绝值类型上界
 
 /* SCAN
-box ref of i32: true
-box ref of bool: false
-plain ref not box ref: false
-nonRef not box ref: false
+gen ub value throw: true
 */
 
 import stdx.chir.*
 
 main() {
-    let i32 = IntType.getInt32()
-    let rb = RefType.get(BoxType.get(i32))
-    println("box ref of i32: ${rb.isBoxRefTypeOf(i32)}")
-    println("box ref of bool: ${rb.isBoxRefTypeOf(BoolType.get())}")
-    println("plain ref not box ref: ${RefType.get(i32).isBoxRefTypeOf(i32)}")
-    println("nonRef not box ref: ${i32.isBoxRefTypeOf(i32)}")
+    let g = GenericType.get("gBadUb", "Tv")
+    var threw = false
+    try {
+        g.upperBounds = [IntType.getInt32()]
+    } catch (e: IllegalArgumentException) {
+        threw = true
+    }
+    println("gen ub value throw: ${threw}")
 }
