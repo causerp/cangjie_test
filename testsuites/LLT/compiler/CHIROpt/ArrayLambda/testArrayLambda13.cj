@@ -1,24 +1,25 @@
-// Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+// Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
 // This source file is part of the Cangjie project, licensed under Apache-2.0
 // with Runtime Library Exception.
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // DEPENDENCE: ../pick_defination.py
-// EXEC: %compiler %cmp_opt %enableO2 %dumpCHIRDebug %n.cj
+// EXEC: %compiler %cmp_opt %enableO2 %dumpCHIRDebug -Woff unused %n.cj
 // EXEC: %python pick_defination.py default_CHIR/[0-9]*_ArrayLambdaOpt.chirtxt "Func @_CN7default6<main>Hv" | compare %f
 // RUN-EXEC-PIPE-0: %run main
-// ASSERT: scan RawArrayInitByValue
+// ASSERT: scan-2 RawArrayInitByValue
 // ASSERT: scan-not arrayInitByFunction
 // ASSERT: regex-not %[0-9]*: \(.*\) -> .* = Lambda
-
-internal import std.collection.*
+// String / Rune constant lambdas should also be rewritten.
 
 main() {
-    var sum = 0
-    for (i in 0..100) {
-        var a = ArrayList<Int64>(100000, {i => 2})
-        sum += a[i]
+    let s = Array<String>(3, { i => "hi" })
+    let r = Array<Rune>(3, { i => r'a' })
+    println(s[0])
+    return if (r[0] == r'a') {
+        0
+    } else {
+        1
     }
-    return sum - 200
 }
