@@ -17,6 +17,8 @@ from queue import Queue, Empty
 import shlex
 import signal
 import random
+
+_KILL_SIGNAL = getattr(signal, 'SIGKILL', signal.SIGTERM)
 import socket
 import re
 import threading
@@ -73,9 +75,9 @@ ANDROID_RUNTIME_PUSH_LOCK_PATH = os.path.join(LOCK_DIR, 'android_runtime_push_lo
 LLDB_SERVER_PORT_START = 12000
 LLDB_SERVER_PORT_END = 35000
 
-# Timeouts: Windows defaults larger than Linux/Mac due to DLL loading and
-# CPU contention under concurrency. Env vars still override on any platform.
-if sys.platform == 'win32':
+# Timeouts: Windows/Mac defaults larger than Linux due to DLL/dylib loading
+# and CPU contention under concurrency. Env vars still override on any platform.
+if sys.platform == 'win32' or sys.platform == 'darwin':
     LLDB_STARTUP_TIMEOUT = int(os.environ.get('LLDB_STARTUP_TIMEOUT', 30))
     LLDB_ATTACH_TIMEOUT = int(os.environ.get('LLDB_ATTACH_TIMEOUT', 15))
     LLDB_CMD_TIMEOUT = int(os.environ.get('LLDB_CMD_TIMEOUT', 30))
@@ -830,10 +832,11 @@ def choose_lldb_server_port():
     Choose a free port for lldb-server
     Returns: (port_string, lock_object) or (None, None) on failure
     """
-    for _ in range(10):
+    for _ in range(50):
         bind = check_free_port(LLDB_SERVER_PORT_START, LLDB_SERVER_PORT_END)
         if bind.port is None:
             bind.release()
+            time.sleep(0.1 + random.random() * 0.2)
             continue
         lock = InterProcessLock(path=os.path.join(LOCK_DIR, 'lldb_port_{}.lock'.format(bind.port)))
         success = lock.acquire(blocking=False)
@@ -843,6 +846,7 @@ def choose_lldb_server_port():
             return str(port), lock
         else:
             bind.release()
+            time.sleep(0.05 + random.random() * 0.1)
     return None, None
 
 
@@ -870,6 +874,32 @@ def send_and_expect_lldb(process, cmd, timeout=None):
     process.expect([re.escape(cmd.strip()), pexpect.EOF, pexpect.TIMEOUT], timeout=5)
     process.expect(['\\(lldb\\)', pexpect.EOF, pexpect.TIMEOUT], timeout=timeout)
     return process.before
+
+
+def _safe_wait(process, drain_timeout=3):
+    """Drain PTY output then wait() to avoid macOS PTY deadlock.
+
+    On macOS, ptyprocess.wait() can block forever if the PTY has unread
+    output even after the child has exited. Drain remaining output first,
+    force-kill if the process is still alive, then wait().
+    """
+    try:
+        process.expect([pexpect.EOF, pexpect.TIMEOUT], timeout=drain_timeout)
+    except Exception:
+        pass
+    try:
+        if process.isalive():
+            process.kill(_KILL_SIGNAL)
+            try:
+                process.expect([pexpect.EOF, pexpect.TIMEOUT], timeout=drain_timeout)
+            except Exception:
+                pass
+    except Exception:
+        pass
+    try:
+        process.wait()
+    except Exception:
+        pass
 
 
 def on_debugging(f_e, lines_e, test_case, cmp_res, run_platform, run_env, port_num, android_session=None, process=None):
@@ -932,8 +962,7 @@ def on_debugging(f_e, lines_e, test_case, cmp_res, run_platform, run_env, port_n
                 process.sendline("y")
             except OSError:
                 pass
-            if run_platform != 'darwin':
-                process.wait()
+            _safe_wait(process)
             break
 
         # AOT-cmd only run on cjnative (non-Android/iOS) backend
@@ -1005,8 +1034,7 @@ def on_debugging(f_e, lines_e, test_case, cmp_res, run_platform, run_env, port_n
             process.sendline("y")
         except OSError:
             pass
-        if run_platform != 'darwin':
-            process.wait()
+        _safe_wait(process)
 
     return process, p
 
@@ -1036,10 +1064,7 @@ def dotest(process, doline, result, f_e, run_env, run_platform, p=None):
             process.expect(['\\(lldb\\)', pexpect.EOF, pexpect.TIMEOUT], timeout=3)
 
     else:
-        if run_platform == 'linux' or run_platform == 'windows' or "android_aarch64" in run_env:
-            expected_pattern = '\r?\n[\\s\\S]*' + result + '[\\s\\S]*\\(cjdb\\)'
-        else:
-            expected_pattern = '\r?\n[\\s\\S]*' + result + '[\\s\\S]*'
+        expected_pattern = '\r?\n[\\s\\S]*' + result + '[\\s\\S]*\\(cjdb\\)'
         index = process.expect([expected_pattern, pexpect.EOF, pexpect.TIMEOUT], timeout=LLDB_CMD_TIMEOUT)
     
     indextest(process, doline, index, f_e, run_env, run_platform, p)
@@ -1075,10 +1100,8 @@ def indextest(process, doline, index, f_e, run_env, run_platform, p):
 
         process.sendline("q")
         process.sendline("y")
-        if run_platform != 'darwin':
-            process.wait()
+        _safe_wait(process)
         f_e.close()
-        process.kill(0)
 
         raise DebugTestFailed("Debug command failed: " + doline)
     return
@@ -1195,23 +1218,48 @@ def debugging():
 
         if android_session:
             android_session.cleanup()
+            android_session = None
 
         if ios_session:
             ios_session.cleanup()
+            ios_session = None
 
         f_e.close()
-        process.kill(0)
+        process.kill(_KILL_SIGNAL)
     except DebugTestFailed as e:
         print(f"Test failed: {e}")
         if android_session:
             android_session.cleanup()
+            android_session = None
         if ios_session:
             ios_session.cleanup()
+            ios_session = None
         if process:
-            process.kill(0)
+            process.kill(_KILL_SIGNAL)
         if f_e:
             f_e.close()
         test_failed = True
+    finally:
+        if android_session:
+            try:
+                android_session.cleanup()
+            except Exception:
+                pass
+        if ios_session:
+            try:
+                ios_session.cleanup()
+            except Exception:
+                pass
+        if process:
+            try:
+                process.kill(_KILL_SIGNAL)
+            except Exception:
+                pass
+        if f_e:
+            try:
+                f_e.close()
+            except Exception:
+                pass
 
     return not test_failed
 
