@@ -26,4 +26,8 @@ foreign func M3(x: Int32, _: Int32): Unit
 foreign func M4(_1: Int32, _2: Int32): Unit
 
 foreign func M5(_2: Int32, _1: Int32, _3: Int32): Unit
+
+foreign func M6(_: Int32, _1: Int32): Unit
+
+foreign func M7(_1: Int32, _: Int32, _2: Int32): Unit
 */

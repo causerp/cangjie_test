@@ -17,3 +17,5 @@ void M2(int, int x);
 void M3(int x, int);
 void M4(int, int);
 void M5(int _2, int, int);
+void M6(int _, int);
+void M7(int _1, int _, int);
