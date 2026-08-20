@@ -10,15 +10,29 @@
 // EXEC: ObjCInteropGen test.toml
 // EXEC: %cat test.cj | compare %f
 /* SCAN-IN
-@ObjCMirror["M"]
-public interface MProtocolProtocol {
+@ObjCMirror
+public open class A {
 }
 
 @ObjCMirror
-public open class MProtocol {
+public open class AProtocol {
+}
+
+@ObjCMirror["A"]
+public interface AProtocolProtocol {
+    func aaa(): Unit
+}
+
+@ObjCMirror["AProtocol"]
+public interface AProtocolProtocolProtocol {
+    func ppp(): Unit
 }
 
 @ObjCMirror
-public open class M <: MProtocol & MProtocolProtocol {
+public open class M {
+    protected var a: ?A
+    protected var p: ?AProtocol
+    protected var pa: ?AProtocolProtocol
+    protected var pp: ?AProtocolProtocolProtocol
 }
 */
