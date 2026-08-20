@@ -6,19 +6,24 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
  
-// DEPENDENCE: ../test.toml test.h
+// DEPENDENCE: test.toml test.h
 // EXEC: ObjCInteropGen test.toml
 // EXEC: %cat test.cj | compare %f
 /* SCAN-IN
-@ObjCMirror["M"]
-public interface MProtocolProtocol {
+@C
+public struct M1Struct {
 }
 
-@ObjCMirror
-public open class MProtocol {
+public type M1 = Int32
+
+@C
+public struct M2Union {
 }
 
-@ObjCMirror
-public open class M <: MProtocol & MProtocolProtocol {
-}
+public type M2 = Int32
+
+public type M3Enum = Int32
+public const a: M3Enum = 0
+
+public type M3 = Int32
 */
