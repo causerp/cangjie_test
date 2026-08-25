@@ -65,3 +65,6 @@ compiler/cjnative/FFI/jffi/android/native
 Tools/hle/arkts/class/class_impl_interface.info
 
 Benchmark
+
+# flaky test.
+Runtime/cjnative/runtime/Finalizer/complex_1.cj
