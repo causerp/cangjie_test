@@ -120,10 +120,11 @@ class DiffReporter:
       self.second = args.second
       self._logger.debug('Second data file: %s', self.second)
     else:
-      if exists(args.first) and isfile(args.first):
+      if not (exists(args.first) and isfile(args.first)):
         self._logger.error('Path to the first data file is wrong: %s', args.first)
-      if exists(args.second) and isfile(args.second) :
+      if not (exists(args.second) and isfile(args.second)):
         self._logger.error('Path to the second data file is wrong: %s', args.second)
+      exit(1)
 
     # output file
     if args.report_file is None:
