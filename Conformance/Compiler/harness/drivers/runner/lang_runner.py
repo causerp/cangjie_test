@@ -141,7 +141,7 @@ class LangRunner(BaseRunner):
                      f' -p "{exceptions_package}" --output-type=staticlib'
                      f' -o "{lib_file}"', timeout=self.cfg.base_timeout, env=self.env, cwd=dirname(lib_file))
       if result.returncode:
-        raise ValueError(f'Exceptions lib compiled with errors: {result.stdout}; {result.stderr}')
+        raise ValueError(f'Exceptions lib compiled with errors: {result.stdout.decode("utf-8")}; {result.stderr.decode("utf-8")}')
       if self.cfg.is_jet:
         self.default_libs_arg += f' {lib_file}'
       else:
@@ -168,7 +168,7 @@ class LangRunner(BaseRunner):
                             f' -p "{macros_package}" {macro_option}'
                             f' --output-dir "{macros_lib_dir}"', timeout=self.cfg.base_timeout, env=self.env, cwd=dirname(macros_lib_dir))
       if macros_result.returncode:
-        raise ValueError(f'Macros lib compiled with errors: {macros_result.stdout}; {macros_result.stderr}')
+        raise ValueError(f'Macros lib compiled with errors: {macros_result.stdout.decode("utf-8")}; {macros_result.stderr.decode("utf-8")}')
       # if self.cfg.is_jet:
       #   self.default_libs_arg += f' --interp-macro "{macros_lib_dir}"'
       # else:
