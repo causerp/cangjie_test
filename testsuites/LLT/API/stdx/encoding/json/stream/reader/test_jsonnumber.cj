@@ -315,7 +315,7 @@ public class JsonNumberTest {
             reader.readValue<UInt64>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for UInt64.")
+            @Expect(e.message, "Number is out of range for UInt64.")
         }
     }
 
@@ -371,7 +371,7 @@ public class JsonNumberTest {
             reader.readValue<Int32>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for Int32.")
+            @Expect(e.message, "Number is out of range for Int32.")
         }
     }
 
@@ -386,7 +386,7 @@ public class JsonNumberTest {
             reader.readValue<Int32>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for Int32.")
+            @Expect(e.message, "Number is out of range for Int32.")
         }
     }
 
@@ -421,7 +421,7 @@ public class JsonNumberTest {
             reader.readValue<Int16>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for Int16.")
+            @Expect(e.message, "Number is out of range for Int16.")
         }
     }
 
@@ -436,7 +436,7 @@ public class JsonNumberTest {
             reader.readValue<Int16>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for Int16.")
+            @Expect(e.message, "Number is out of range for Int16.")
         }
     }
 
@@ -471,7 +471,7 @@ public class JsonNumberTest {
             reader.readValue<Int8>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for Int8.")
+            @Expect(e.message, "Number is out of range for Int8.")
         }
     }
 
@@ -486,7 +486,7 @@ public class JsonNumberTest {
             reader.readValue<Int8>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for Int8.")
+            @Expect(e.message, "Number is out of range for Int8.")
         }
     }
 
@@ -540,7 +540,7 @@ public class JsonNumberTest {
                 reader.readValue<IntNative>()
                 @Expect(false)
             } catch (e: OverflowException) {
-                @Expect(e.message, "The next number is out of range for IntNative.")
+                @Expect(e.message, "Number is out of range for IntNative.")
             }
         }
     }
@@ -557,7 +557,7 @@ public class JsonNumberTest {
                 reader.readValue<IntNative>()
                 @Expect(false)
             } catch (e: OverflowException) {
-                @Expect(e.message, "The next number is out of range for IntNative.")
+                @Expect(e.message, "Number is out of range for IntNative.")
             }
         }
     }
@@ -584,7 +584,7 @@ public class JsonNumberTest {
             reader.readValue<UInt32>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for UInt32.")
+            @Expect(e.message, "Number is out of range for UInt32.")
         }
     }
 
@@ -610,7 +610,7 @@ public class JsonNumberTest {
             reader.readValue<UInt16>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for UInt16.")
+            @Expect(e.message, "Number is out of range for UInt16.")
         }
     }
 
@@ -636,7 +636,7 @@ public class JsonNumberTest {
             reader.readValue<UInt8>()
             @Expect(false)
         } catch (e: OverflowException) {
-            @Expect(e.message, "The next number is out of range for UInt8.")
+            @Expect(e.message, "Number is out of range for UInt8.")
         }
     }
 
@@ -673,7 +673,7 @@ public class JsonNumberTest {
                 reader.readValue<UIntNative>()
                 @Expect(false)
             } catch (e: OverflowException) {
-                @Expect(e.message, "The next number is out of range for UIntNative.")
+                @Expect(e.message, "Number is out of range for UIntNative.")
             }
         }
     }
