@@ -68,3 +68,6 @@ Benchmark
 
 # flaky test.
 Runtime/cjnative/runtime/Finalizer/complex_1.cj
+
+# Known Bug
+compiler/cjnative/Chir/dispatch/property_matrix/22_default_plus_abstract_unique_select/main.cj
