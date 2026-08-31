@@ -5,11 +5,9 @@
  * 
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
- 
-// DEPENDENCE: test.toml test1.toml test2.toml test.h
-// EXEC: ObjCInteropGen test.toml 2>&1 | compare %f
+
+// DEPENDENCE: iimportyou.toml youimportme.toml
+// EXEC: ObjCInteropGen iimportyou.toml 2>&1 | compare %f
 /* SCAN-IN
-`test2.toml`: multiple import
-  First import: `test.toml` -> `test1.toml` -> `test2.toml`
-  Additional import (ignored): `test.toml` -> `test2.toml`
+`iimportyou.toml`: recursive import: `iimportyou.toml` -> `youimportme.toml` -> `iimportyou.toml`
 */
