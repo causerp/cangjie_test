@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
  * This source file is part of the Cangjie project, licensed under Apache-2.0
  * with Runtime Library Exception.
  *
@@ -7,10 +7,11 @@
  */
 
 // LEVEL: 0
-// EXEC: %compiler %import-cangjie-stdx %cmp_opt %f -o %output %cmp_utest_opt
-// RUN-EXEC: %run_stdx %output %run_utest_opt %run_args
+// EXEC: %compiler  %import-cangjie-stdx  %cmp_opt -V %f %cmp_utest_opt -o %output
+// EXEC-PIPE:%set_stdx_path %run %run_opt %output %run_utest_opt %run_args
 
 import std.io.*
+import std.unittest.*
 import stdx.encoding.json.stream.*
 
 class ArrayInputStream <: InputStream {
