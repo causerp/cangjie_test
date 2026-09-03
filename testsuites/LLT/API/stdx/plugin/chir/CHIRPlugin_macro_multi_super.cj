@@ -7,20 +7,22 @@
  */
 // EXEC: %set_stdx_path %compiler %import-cangjie-stdx %cmp_opt -Woff unused -o %n.%suffix %f
 // RUN-EXEC: %set_stdx_path %run %run_opt %n.%suffix %run_args | compare %f
-// @CHIRPlugin prepends CHIRPluginBase so an existing interface super type is valid
+// @CHIRPlugin 扫描多个 RefType 父类型（for 循环二次迭代）
 
 /* SCAN
-name: WithIface
-ok: true
+name: MultiSuper
+m: true
+o: true
 */
 
 import stdx.plugin.*
 import stdx.chir.*
 
 interface Marker {}
+interface Other {}
 
 @CHIRPlugin
-class WithIface <: Marker {
+class MultiSuper <: Marker & Other {
     public override func run(pkg: Package): Bool {
         let _ = pkg
         true
@@ -28,7 +30,8 @@ class WithIface <: Marker {
 }
 
 main() {
-    let p = WithIface()
+    let p = MultiSuper()
     println("name: ${p.name}")
-    println("ok: ${p is Marker}")
+    println("m: ${p is Marker}")
+    println("o: ${p is Other}")
 }
