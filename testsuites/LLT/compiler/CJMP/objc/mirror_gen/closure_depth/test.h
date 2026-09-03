@@ -42,4 +42,5 @@ struct CStruct {
     id<P> p;
     struct CStruct* c_struct;
 }
+- (instancetype)init;
 @end
