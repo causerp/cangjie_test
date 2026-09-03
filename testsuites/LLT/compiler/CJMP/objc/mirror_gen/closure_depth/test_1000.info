@@ -55,5 +55,6 @@ public open class M <: BaseClass & BaseProtocol {
     protected var c: ?C
     protected var p: ?P
     protected var c_struct: ObjCPointer<CStruct>
+    public init()
 }
 */
