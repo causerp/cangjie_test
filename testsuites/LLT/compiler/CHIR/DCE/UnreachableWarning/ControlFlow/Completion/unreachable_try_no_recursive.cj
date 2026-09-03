@@ -1,33 +1,26 @@
-// Copyright (c) Huawei Technologies Co., Ltd. 2025. All rights reserved.
+// Copyright (c) Huawei Technologies Co., Ltd. 2026. All rights reserved.
 // This source file is part of the Cangjie project, licensed under Apache-2.0
 // with Runtime Library Exception.
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
+// Verify an unreachable all-terminating try does not create a nested warning.
 // EXEC-PIPE-0: %compiler %cmp_opt %diag_json %f -o %output 2>&1 | compare %f
-// EXEC-PIPE-0: %run %run_opt %output %run_args
 
 // ASSERT: scan-1 "DiagKind": "chir_dce_unreachable_expression_hint"
 
-func foo(): Int64 {
+func unreachableTryDoesNotRecurse(): Int64 {
+    return 1
     // EXPECT: chir_dce_unreachable_expression_hint
-    return try {
-        return 0
-    } catch (_) {
-        return 1
-    }
-}
-
-func foo1(): Int64 {
     try {
-        return 0
-    } catch (_) {
-        return 1
+        throw Exception()
+    } catch (_: Exception) {
+        throw Exception()
     }
+    println("unreachable successor")
+    return 2
 }
 
 main() {
-    foo()
-    foo1()
-    0
+    unreachableTryDoesNotRecurse()
 }
