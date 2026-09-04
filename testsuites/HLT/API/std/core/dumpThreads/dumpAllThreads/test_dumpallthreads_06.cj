@@ -24,14 +24,18 @@ public func foo() {
 }
 
 // check threadstate changes
-main() {
+@When[os=="iOS"]
+var size:Int64=3
+@When[os!="iOS"]
+var size:Int64=2
+main():Unit {
     let _thread = spawn { 
         sleep(Duration.second * 3)
         foo()
     }
     var _thread_infos = ThreadSnapshot.dumpAllThreads()
 
-    @Assert(_thread_infos.size, 2)
+    @Assert(_thread_infos.size, size)
     func findThread(id: Int64, infos: Array<ThreadSnapshot>): ThreadSnapshot {
         for (info in infos) {
             if (info.id == id) {
@@ -46,7 +50,7 @@ main() {
     var _retry = 0
     while (_retry < 100) {
         _thread_infos = ThreadSnapshot.dumpAllThreads()
-        @Assert(_thread_infos.size, 2)
+        @Assert(_thread_infos.size, size)
         _thread_info = findThread(_thread.thread.id, _thread_infos)
         if (match(_thread_info.state) { case ThreadState.Pending => true; case _ => false }) {
             break
@@ -73,7 +77,7 @@ main() {
         _retry++
     }
     _thread_infos = ThreadSnapshot.dumpAllThreads()
-    @Assert(_thread_infos.size, 2)
+    @Assert(_thread_infos.size, size)
     _thread_info = findThread(_thread.thread.id, _thread_infos)
     match(_thread_info.state) {
         case ThreadState.Running => println("Running")
@@ -86,7 +90,7 @@ main() {
     _thread.cancel()
     sleep(Duration.second)
     _thread_infos = ThreadSnapshot.dumpAllThreads()
-    @Assert(_thread_infos.size, 1)
+    @Assert(_thread_infos.size, size-1)
     @Assert(_thread.thread.state.toString(), "Terminated")
     @Assert(_thread.get(), 0)
 }

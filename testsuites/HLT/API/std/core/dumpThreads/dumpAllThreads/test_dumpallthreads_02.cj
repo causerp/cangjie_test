@@ -13,7 +13,11 @@
 import std.unittest.*
 import std.unittest.testmacro.*
 
-main() {
+main():Unit {
+    @When[os=="iOS"]
+    var size:Int64=3
+    @When[os!="iOS"]
+    var size:Int64=2
     let _thread = spawn {
         while (true) {
             if (Thread.currentThread.hasPendingCancellation) {
@@ -23,7 +27,7 @@ main() {
         return 1
     }
     let _thread_infos = ThreadSnapshot.dumpAllThreads()
-    @Assert(_thread_infos.size, 2)
+    @Assert(_thread_infos.size, size)
     func findThread(id: Int64, infos: Array<ThreadSnapshot>): ThreadSnapshot {
         for (info in infos) {
             if (info.id == id) {
