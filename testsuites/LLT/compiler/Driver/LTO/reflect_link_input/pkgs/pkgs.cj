@@ -6,14 +6,17 @@
 
 package pkgs
 
+import std.reflect.*
+
 public struct Data<T> {
     public let width: T
     public let length: T
-    public Data(width1: T, length1: T) {
+    public init(width1: T, length1: T) {
         width = width1
         length = length1
     }
-    public func area(): T {
-        return width
-    }
+}
+
+public func reflectName(): String {
+    return TypeInfo.of<Data<Int32>>().toString()
 }
