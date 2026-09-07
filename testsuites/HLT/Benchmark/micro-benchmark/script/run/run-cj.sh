@@ -152,6 +152,8 @@ function run_server_benchmark() {
     benchmark=$1
     cjc ${benchmark}.cj $opt -o ${benchmark}.out
     timeout 1800 ./${benchmark}.out &
+    # Wait for server to be ready before h2load/JMeter starts sending requests
+    sleep 5
     echo "${benchmark} started."
 }
 
