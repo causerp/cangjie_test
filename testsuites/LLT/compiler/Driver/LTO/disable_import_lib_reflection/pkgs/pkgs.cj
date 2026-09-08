@@ -9,7 +9,7 @@ package pkgs
 public struct Data<T> {
     public let width: T
     public let length: T
-    public Data(width1: T, length1: T) {
+    public init(width1: T, length1: T) {
         width = width1
         length = length1
     }
