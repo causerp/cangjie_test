@@ -49,7 +49,7 @@ main(): Int64 {
         let funcParam = FuncParam(tmp)
         funcParam.expr
     } catch (e: ASTException) {
-        if (e.message == "'FuncParam' has no expression.") {
+        if (e.message == "'FuncParam' has no default value.") {
             cnt++
         }
     }

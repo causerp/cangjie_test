@@ -8,7 +8,7 @@
 
 // EXEC: %compiler %cmp_opt_chir2hlir %f -o %output
 // RUN-EXEC: %run %run_opt %output %run_args | compare %f
-// ASSERT: scan-begin ASTException: 'MatchCase' has no expression.
+// ASSERT: scan-begin ASTException: 'MatchCase' has no expression following '=>'.
 // ASSERT: scan-next ASTException: 'MatchCase' has no pattern guard.
 
 internal import std.ast.*

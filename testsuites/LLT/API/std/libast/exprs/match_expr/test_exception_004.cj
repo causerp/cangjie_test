@@ -8,7 +8,7 @@
 
 // EXEC: %compiler %cmp_opt_chir2hlir %f -o %output
 // RUN-EXEC: %run %run_opt %output %run_args | compare %f
-// ASSERT: scan-begin ASTException: 'MatchExpr' has no selector.
+// ASSERT: scan-begin ASTException: 'MatchExpr' has no value to be matched.
 // ASSERT: scan-next ASTException: 'MatchCase' has no pattern guard.
 
 internal import std.ast.*
