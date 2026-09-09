@@ -7,24 +7,25 @@
  */
 
 // EXEC-PIPE-1: export LD_LIBRARY_PATH=$CANGJIE_HOME/tools/lib:$LD_LIBRARY_PATH && %compiler %import-cangjie-stdx %cmp_opt %f -o %output %collect_aspects_plugin %weave_aspects_plugin 2>&1 | compare %f
-// ASSERT: scan annotated with @ReplaceFuncBody has return type
+// ASSERT: scan cannot be generic or belong to a generic type.
 // ASSERT: scan-not core dumped
 // ASSERT: scan-not stack trace
 
 import stdx.aspect_cj.*
 
-@ReplaceFuncBody[packageName: "default", className: "", methodName: "woven", isStatic: false,
-    recursive: false]
-public func aspect(f: () -> Unit): Int64 {
-    f()
-    1
-}
+public class Box<T> {
+    @InsertAtEntry[packageName: "default", className: "Box", methodName: "foo", isStatic: false,
+        recursive: false, funcTypeStr: "()->Unit"]
+    public func aspect(): Unit {
+        println("aspect")
+    }
 
-public func woven(): Unit {
-    println("woven")
+    public func foo(): Unit {
+        println("foo")
+    }
 }
 
 main() {
-    woven()
+    Box<Int64>().foo()
     0
 }

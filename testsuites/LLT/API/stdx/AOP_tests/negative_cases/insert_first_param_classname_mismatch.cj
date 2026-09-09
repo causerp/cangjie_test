@@ -6,25 +6,30 @@
  * See https://cangjie-lang.cn/pages/LICENSE for license information.
  */
 
+// First parameter is a CustomType, but srcCodeName does not match className.
+
 // EXEC-PIPE-1: export LD_LIBRARY_PATH=$CANGJIE_HOME/tools/lib:$LD_LIBRARY_PATH && %compiler %import-cangjie-stdx %cmp_opt %f -o %output %collect_aspects_plugin %weave_aspects_plugin 2>&1 | compare %f
-// ASSERT: scan annotated with @ReplaceFuncBody has return type
+// ASSERT: scan has first parameter type
 // ASSERT: scan-not core dumped
 // ASSERT: scan-not stack trace
 
 import stdx.aspect_cj.*
 
-@ReplaceFuncBody[packageName: "default", className: "", methodName: "woven", isStatic: false,
-    recursive: false]
-public func aspect(f: () -> Unit): Int64 {
-    f()
-    1
+public struct CA {
+    public func foo(x: String): Unit {
+        println(x)
+    }
 }
 
-public func woven(): Unit {
-    println("woven")
+public struct CB {}
+
+@InsertAtEntry[packageName: "default", className: "CA", methodName: "foo", isStatic: false,
+    recursive: false, funcTypeStr: "(std.core.String)->Unit"]
+public func aspect(self: CB, x: String): Unit {
+    println("aspect: ${x}")
 }
 
 main() {
-    woven()
+    CA().foo("ok")
     0
 }
