@@ -85,7 +85,7 @@ ASTException: Cannot construct the 'ReturnExpr' node.
 ASTException: Cannot construct the 'ReturnExpr' node.
 */
 /*SCAN-IN
-ASTException: 'ReturnExpr' has no expression.
+ASTException: 'ReturnExpr' has no return value.
 */
 /*SCAN-IN
 description: return, token_id: 108, token_literal_value: return
