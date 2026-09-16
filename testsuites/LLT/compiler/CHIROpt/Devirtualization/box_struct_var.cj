@@ -5,7 +5,7 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // LEVEL: 0
-// Positive: HandleBox records EXACTLY(struct); let i: I = S(); i.foo() -> Apply(S::foo).
+// Positive: var x: I = S(); x.foo() — Box exact type flows through Store/Load.
 // DEPENDENCE: ../pick_defination.py
 // EXEC: %compiler %cmp_opt %enableDevirtualization %dumpCHIRDebug -Woff all %n.cj
 // EXEC: %python pick_defination.py default_CHIR/[0-9]*_Devirtualization.chirtxt "Func @_CN7default3useHv" | compare %f
@@ -25,8 +25,8 @@ struct S <: I {
 }
 
 func use(): Int64 {
-    let i: I = S()
-    i.foo()
+    var x: I = S()
+    x.foo()
 }
 
 main() {

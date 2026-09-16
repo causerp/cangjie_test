@@ -5,30 +5,35 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // LEVEL: 0
-// Positive: HandleBox records EXACTLY(struct); let i: I = S(); i.foo() -> Apply(S::foo).
+// Positive: same generic extend<T> CPointer<T> <: I, two type args (UInt8 / Int64) both de-virt.
 // DEPENDENCE: ../pick_defination.py
 // EXEC: %compiler %cmp_opt %enableDevirtualization %dumpCHIRDebug -Woff all %n.cj
-// EXEC: %python pick_defination.py default_CHIR/[0-9]*_Devirtualization.chirtxt "Func @_CN7default3useHv" | compare %f
+// EXEC: %python pick_defination.py default_CHIR/[0-9]*_Devirtualization.chirtxt "WHOLE" | compare %f
 // RUN-EXEC-PIPE-0: %run main
-// ASSERT: scan Box(
-// ASSERT: scan Apply(Struct-_CN7default1SE->@_CN7default1S3fooHv
+// ASSERT: scan Apply(@_CIN7defaultXPG_3fooHv$h
+// ASSERT: scan Apply(@_CIN7defaultXPG_3fooHv$l
 // ASSERT: scan-not Invoke(Class-_CN7default1IE&->@_CN7default1I3fooHv
 
 interface I {
     func foo(): Int64
 }
 
-struct S <: I {
+extend<T> CPointer<T> <: I {
     public func foo(): Int64 {
-        9
+        4
     }
 }
 
-func use(): Int64 {
-    let i: I = S()
-    i.foo()
+func useU8(): Int64 {
+    var x: I = CPointer<UInt8>()
+    x.foo()
+}
+
+func useI64(): Int64 {
+    var x: I = CPointer<Int64>()
+    x.foo()
 }
 
 main() {
-    use() - 9
+    useU8() + useI64() - 8
 }
