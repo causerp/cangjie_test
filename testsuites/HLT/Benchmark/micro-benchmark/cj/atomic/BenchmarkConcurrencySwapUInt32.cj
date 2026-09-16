@@ -7,8 +7,8 @@
  */
 
 // LEVEL: 3
-// (LLVM and x86) EXEC: %compiler %cmp_opt %optimization_level_2 %overflow_wrapping --no-sub-pkg -Woff=all %f -o %output
-// (LLVM and arm) EXEC: %compiler %cmp_opt %optimization_level_2 %overflow_wrapping --no-sub-pkg -Woff=all --target-cpu=tsv110 --experimental %f -o %output
+// (LLVM and x86) EXEC: %compiler %cmp_opt -O2 %overflow_wrapping --no-sub-pkg -Woff=all %f -o %output
+// (LLVM and arm) EXEC: %compiler %cmp_opt -O2 %overflow_wrapping --no-sub-pkg -Woff=all --target-cpu=tsv110 --experimental %f -o %output
 // (JET) EXEC: %compiler %cmp_opt %overflow_wrapping -Woff=all %f -o %output
 // RUN-EXEC: %export cjHeapSize=16gb && %export cjStackSize=64mb && %export JETVMPROP="-Xmx16G -Djet.cj.use.fibers -Djet.fiber.stack.size=64M" && %run %run_opt %output %run_utest_opt %run_args
 
