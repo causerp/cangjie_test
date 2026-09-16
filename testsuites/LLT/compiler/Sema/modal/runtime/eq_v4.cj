@@ -5,10 +5,7 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // EXEC: %compiler %f -o %output
-// EXEC: %run %run_opt %output %run_args
-
-package demo
-import std.core.*
+// EXEC-1: %run %run_opt %output %run_args
 
 // 成员方法形态（约束扩展）：T @local? == 比较 → 之前 ICE
 extend<T> Array<T> where T <: Equatable<T> {
