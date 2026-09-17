@@ -5,12 +5,8 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // EXEC: %compiler %f -o %output
-// EXEC: %run %run_opt %output %run_args
+// EXEC-1: %run %run_opt %output %run_args
 
-package demo
-import std.core.*
-
-// 之前触发 ICE 的形态：约束扩展 + @local? 值参数
 extend<T> Array<T> where T <: Equatable<T> {
     public func myContainsCE(this @local?, element: T @local?): Bool {
         var idx: Int64 = this.size - 1

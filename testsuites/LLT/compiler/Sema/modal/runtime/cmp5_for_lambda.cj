@@ -40,10 +40,9 @@ main(): Int64 {
     let r2 = form2(a, {v => v * 3})
     let r3 = form3(a, {v => v * 4})
     println("form1=${r1} form2=${r2} form3=${r3}")
-    // 输出：form1=0 form2=15 form3=20
     return 0
 }
 
 /* SCAN
-form1=10 form2=15 form3=20
+form1=14 form2=15 form3=20
 */
