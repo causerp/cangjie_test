@@ -4,15 +4,9 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// EXEC: %compiler %f -o %output
-func foo(a: CFunc<()->Int>) {
-    unsafe { println(a().toString()) }
-}
-func foo(a: CFunc<()->Int> @local!) {
-    unsafe { println(a().toString()) }
-}
-
-@C foreign func rand(): Int
+// ERRCHECK: %compiler %f -Woff all %diag_json 2>&1
 main() {
-    foo(rand)
+    let p = arrayInitByCollection
 }
+// ASSERT: scan-1 "DiagKind": "sema_undeclared_identifier",
+// ASSERT: scan "Errors": 1,

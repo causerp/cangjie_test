@@ -5,14 +5,19 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // EXEC: %compiler %f -o %output
-func foo(a: CFunc<()->Int>) {
-    unsafe { println(a().toString()) }
+// EXEC: %run %run_opt %output %run_args
+public interface InputStream {
+    func read(_: Array<Byte>): Int64 {
+        0
+    }
+    func read(_: Array<Byte> @local!): Int64 {
+        1
+    }
 }
-func foo(a: CFunc<()->Int> @local!) {
-    unsafe { println(a().toString()) }
+class M <: InputStream {}
+func foo(a: InputStream): Int64 {
+    a.read([1,2,3])
 }
-
-@C foreign func rand(): Int
 main() {
-    foo(rand)
+    foo(M())
 }
