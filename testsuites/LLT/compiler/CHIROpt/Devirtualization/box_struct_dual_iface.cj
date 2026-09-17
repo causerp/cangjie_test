@@ -5,30 +5,32 @@
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
 // LEVEL: 0
-// Positive: HandleBox records EXACTLY(struct); let i: I = S(); i.foo() -> Apply(S::foo).
+// Positive: same struct S <: I<Int64> & I<String>; boxed as either iface -> Apply(S::foo).
 // DEPENDENCE: ../pick_defination.py
 // EXEC: %compiler %cmp_opt %enableDevirtualization %dumpCHIRDebug -Woff all %n.cj
 // EXEC: %python pick_defination.py default_CHIR/[0-9]*_Devirtualization.chirtxt "Func @_CN7default3useHv" | compare %f
 // RUN-EXEC-PIPE-0: %run main
 // ASSERT: scan Box(
-// ASSERT: scan Apply(Struct-_CN7default1SE->@_CN7default1S3fooHv
-// ASSERT: scan-not Invoke(Class-_CN7default1IE&->@_CN7default1I3fooHv
+// ASSERT: scan-2 Apply(Struct-_CN7default1SE->@_CN7default1S3fooHv
+// ASSERT: scan-not Invoke(Class-_CN7default1IIG_E<Int64>&->@_CN7default1IIG_E3fooHv
+// ASSERT: scan-not Invoke(Class-_CN7default1IIG_E<Struct-_CNat6StringE>&->@_CN7default1IIG_E3fooHv
 
-interface I {
+interface I<T> {
     func foo(): Int64
 }
 
-struct S <: I {
+struct S <: I<Int64> & I<String> {
     public func foo(): Int64 {
-        9
+        2
     }
 }
 
 func use(): Int64 {
-    let i: I = S()
-    i.foo()
+    var a: I<Int64> = S()
+    var b: I<String> = S()
+    a.foo() + b.foo()
 }
 
 main() {
-    use() - 9
+    use() - 4
 }
