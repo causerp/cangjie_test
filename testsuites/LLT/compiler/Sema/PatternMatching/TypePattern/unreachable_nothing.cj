@@ -4,12 +4,8 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// (CJNATIVE)EXEC-PIPE: %compiler %cmp_opt %diag_json %f -o %output 2>&1 | compare %f
+// (CJNATIVE)EXEC-PIPE: %compiler %cmp_opt %f -o %output 2>&1 | compare %f
 // (CJNATIVE)EXEC: %run %run_opt %output %run_args
-
-// ASSERT: scan-1 "DiagKind": "sema_unreachable_pattern"
-// ASSERT: scan-1 "DiagKind": "chir_dce_unused_function"
-// ASSERT: scan-not "DiagKind": "chir_dce_unreachable"
 
 func f(x: Int64) {
     match (x) {
@@ -21,3 +17,39 @@ func f(x: Int64) {
 main() {
     f(return 0)
 }
+
+/* SCAN-IN
+warning: unreachable pattern
+  ==> unreachable_nothing.cj:12:14:
+   | 
+12 |         case _: Nothing => -1 // unreachable
+   |              ^^^^^^^^^^ 
+   | 
+   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
+*/
+
+/* SCAN-IN
+warning: unused function:'f'
+  ==> unreachable_nothing.cj:10:1:
+   | 
+10 |   func f(x: Int64) {
+   |  _^
+11 | |     match (x) {
+   | | ...
+15 | | }
+   | |_^ unused function
+   | 
+   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
+*/
+
+/* SCAN-IN
+warning: unreachable 'call'
+  ==> unreachable_nothing.cj:18:5:
+   | 
+18 |     f(return 0)
+   |     ^ ~~~~~~~~ any code following this expression is unreachable
+   |     |
+   |     unreachable 'call'
+   | 
+   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
+*/
