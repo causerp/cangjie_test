@@ -152,10 +152,6 @@ compiler/CHIROpt/ArrayLambda/testArrayLambda02.cj
 compiler/CHIROptTest/Devirtualization/box.cj
 compiler/CodegenCommon/global/globalvariable/UInt8ti.cj
 compiler/Sema/modal/expr/array_lit2.cj
-# timeout
-API/std/core/error_handler_stackoverflow_throws_error.cj
-# CJMP did not adapt to modal type
-compiler/CJMP/
 
 
 # daignose is changed
