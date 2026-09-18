@@ -4,29 +4,40 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// A known nested Some value makes the failed if-let else branch unreachable.
+// Verify a constant all-return if reports only the unreachable source branch.
 // EXEC-PIPE-0: %compiler %cmp_opt %f -o %output 2>&1 | compare %f
 
-main() {
-    let value = Option<Option<Int64>>.Some(Option<Int64>.Some(1))
-    if (let Some(Some(number)) <- value) {
-        println(number)
+func constantAllReturnIf(value: UInt64): UInt64 {
+    const useWide = true
+    if (useWide) {
+        if (value > 63) {
+            return value & 63
+        } else {
+            return value
+        }
     } else {
-        println("dead nested Some else")
+        if (value > 31) {
+            return value & 31
+        } else {
+            return value
+        }
     }
+}
+
+main() {
+    constantAllReturnIf(1)
 }
 
 /* SCAN-IN
 warning: unreachable block in 'if' expression
-  ==> nested_if_let_known_some.cj:14:12:
+  ==> constant_all_return_if.cj:18:12:
    | 
-14 |       } else {
+18 |       } else {
    |  ____________^
-15 | |         println("dead nested Some else")
-16 | |     }
+19 | |         if (value > 31) {
+   | | ...
+24 | |     }
    | |_____^ unreachable block in 'if' expression
    | 
    # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-1 warning generated, 1 warning printed.
 */
