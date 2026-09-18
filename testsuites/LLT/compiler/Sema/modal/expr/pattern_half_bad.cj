@@ -11,21 +11,22 @@ enum F {
 
     func foo(val: (String, String) @local?) : String @local? {
         exclave {
-            let (x, y) = val
-            x + y
+            let (x, _) = val
+            jet(x)
         }
     }
     func foo(this @local!) {
         exclave {
             match (this) {
                 case B => println("B")
-                case C(x) => let gar = x + "Hello" // should report error because x is @local?
+                case C(x) => let gar = jet(x)
             }
         }
     }
 }
+func jet(_: String) {}
 
 main() {}
 
-// ASSERT: scan-2 "DiagKind": "sema_invalid_binary_expr",
+// ASSERT: scan-2 "DiagKind": "sema_mismatched_types",
 // ASSERT: scan "Errors": 2,

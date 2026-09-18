@@ -4,20 +4,21 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// EXEC: %compiler %f -o %output
+// DEPENDENCE: identity.macro.cj
+// EXEC: %compiler %cmp_macro identity.macro.cj
+// EXEC: %run_macro %compiler %cmp_opt %f -o %output
 // RUN-EXEC: %run %run_opt %output %run_args
 
-class C {}
-struct A<T> {}
+import identity_macro.*
 
-type MM = C
-
-func foo() {
-    let a = C() @~local
-    let b = MM() @~local
-    let e: Int32 @local! = Int32(8)
-    let f: UInt8 @local! = UInt8(e)
-    let g: Int64 @local? = Int64(f)
-    let h: Float32 @~local = Float32(g)
+@Identity
+func take(local!: Int64): Int64 {
+    local
 }
-main() {}
+
+main() {
+    let n = take(local: 1)
+    if (n == 1) {
+        println("ok")
+    }
+}

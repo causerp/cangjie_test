@@ -4,10 +4,12 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// ERRCHECK: %compiler %f -Woff all %diag_json 2>&1
-main() {
-    let p = arrayInitByCollection
-    let q = arrayInitByFunction
-}
-// ASSERT: scan-2 "DiagKind": "sema_undeclared_identifier",
-// ASSERT: scan "Errors": 2,
+// DEPENDENCE: %n.macro.cj
+// EXEC: %compiler %cmp_macro %n.macro.cj
+// EXEC: %run_macro %compiler %cmp_opt %f -o %output
+// RUN-EXEC: %run %run_opt %output %run_args
+
+import refresh_local_named_param_lex_macro.*
+
+@EmitNamedLocal
+func _Placeholder() {}
