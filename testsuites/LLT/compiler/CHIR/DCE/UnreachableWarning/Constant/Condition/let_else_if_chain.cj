@@ -4,18 +4,19 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// Verify that a multi-level else-if chain reports each unreachable sibling body.
+// Verify each unreachable branch body in a constant local-value else-if chain.
 // EXEC-PIPE-0: %compiler %cmp_opt %f -o %output 2>&1 | compare %f
 
 main() {
-    if (false) {
-        println("outer then")
-    } else if (true) {
-        println("reachable")
-    } else if (false) {
-        println("nested then")
+    let x = 15
+    if (x > 20) {
+        println("x>20")
+    } else if (x > 10) {
+        println("x>10")
+    } else if (x > 0) {
+        println("x>0")
     } else {
-        println("nested else")
+        println("x<0")
     }
 }
 
@@ -23,12 +24,12 @@ main() {
 
 /* SCAN-IN
 warning: unreachable block in 'if' expression
-  ==> else_if_recursion_boundary.cj:11:16:
+  ==> let_else_if_chain.cj:12:17:
    | 
-11 |       if (false) {
-   |  ________________^
-12 | |         println("outer then")
-13 | |     } else if (true) {
+12 |       if (x > 20) {
+   |  _________________^
+13 | |         println("x>20")
+14 | |     } else if (x > 10) {
    | |_____^ unreachable block in 'if' expression
    | 
    # note: this warning can be suppressed by setting the compiler option `-Woff unused`
@@ -36,12 +37,12 @@ warning: unreachable block in 'if' expression
 
 /* SCAN-IN
 warning: unreachable block in 'if' expression
-  ==> else_if_recursion_boundary.cj:15:23:
+  ==> let_else_if_chain.cj:16:23:
    | 
-15 |       } else if (false) {
+16 |       } else if (x > 0) {
    |  _______________________^
-16 | |         println("nested then")
-17 | |     } else {
+17 | |         println("x>0")
+18 | |     } else {
    | |_____^ unreachable block in 'if' expression
    | 
    # note: this warning can be suppressed by setting the compiler option `-Woff unused`
@@ -49,12 +50,12 @@ warning: unreachable block in 'if' expression
 
 /* SCAN-IN
 warning: unreachable block in 'if' expression
-  ==> else_if_recursion_boundary.cj:17:12:
+  ==> let_else_if_chain.cj:18:12:
    | 
-17 |       } else {
+18 |       } else {
    |  ____________^
-18 | |         println("nested else")
-19 | |     }
+19 | |         println("x<0")
+20 | |     }
    | |_____^ unreachable block in 'if' expression
    | 
    # note: this warning can be suppressed by setting the compiler option `-Woff unused`
