@@ -4,11 +4,20 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// DEPENDENCE: ../macro/identity.macro.cj
+// DEPENDENCE: identity.macro.cj
 // EXEC: %compiler %cmp_macro identity.macro.cj
-// EXEC: %compiler %f -Woff all --debug-macro
+// EXEC-PIPE-1: %run_macro %compiler %f %diag_json -Woff all 2>&1 | compare %f
 
 import identity_macro.*
-main() {
-    @local @local? func foo() {}
+
+@Identity
+func badBang() {
+    let x: Int64 @local ! = 0
 }
+
+@Identity
+func badTilde() {
+    let y: Int64 @~ local = 0
+}
+
+// ASSERT: scan "DiagKind": "parse_expected_character",

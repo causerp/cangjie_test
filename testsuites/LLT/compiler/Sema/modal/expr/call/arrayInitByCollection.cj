@@ -4,10 +4,10 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-macro package modal_parse_macro
-
-internal import std.ast.*
-
-public macro local(input: Tokens): Tokens {
-    input
+// ERRCHECK: %compiler %f -Woff all %diag_json 2>&1
+main() {
+    let p = arrayInitByCollection
+    let q = arrayInitByFunction
 }
+// ASSERT: scan-2 "DiagKind": "sema_undeclared_identifier",
+// ASSERT: scan "Errors": 2,

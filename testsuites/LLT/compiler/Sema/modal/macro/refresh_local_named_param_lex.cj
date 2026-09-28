@@ -4,20 +4,12 @@
 //
 // See https://cangjie-lang.cn/pages/LICENSE for license information.
 
-// EXEC: %compiler %f -o %output
+// DEPENDENCE: %n.macro.cj
+// EXEC: %compiler %cmp_macro %n.macro.cj
+// EXEC: %run_macro %compiler %cmp_opt %f -o %output
 // RUN-EXEC: %run %run_opt %output %run_args
 
-class C {}
-struct A<T> {}
+import refresh_local_named_param_lex_macro.*
 
-type MM = C
-
-func foo() {
-    let a = C() @~local
-    let b = MM() @~local
-    let e: Int32 @local! = Int32(8)
-    let f: UInt8 @local! = UInt8(e)
-    let g: Int64 @local? = Int64(f)
-    let h: Float32 @~local = Float32(g)
-}
-main() {}
+@EmitNamedLocal
+func _Placeholder() {}
