@@ -133,7 +133,6 @@ compiler/IncrementalCompilation/DeclLevel/Extend_CrossPackage/AddExtends/Interfa
 API/stdx/AOP_tests/custom_plugin/chir_anno/case_chir_anno.cj
 # runtime signal sigsegv signal
 compiler/CHIROptTest/Devirtualization/box.cj
-compiler/CodegenCommon/global/globalvariable/UInt8ti.cj
 compiler/Sema/modal/expr/array_lit2.cj
 
 
